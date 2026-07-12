@@ -1,0 +1,29 @@
+# Krynn Tools
+
+> 100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, works in your browser. No signup required.
+
+## About
+Krynn Tools is a free collection of 100+ online utilities. All tools run entirely in your browser — files never leave your device. Built with Next.js and React.
+
+## Tool Categories
+- PDF Tools: Compress, merge, split, convert, OCR PDF files
+- Image Tools: Compress, resize, crop, rotate, convert images
+- Text Tools: Word counter, character counter, case converter, text diff
+- Developer Tools: JSON formatter, Base64 encoder, UUID generator, regex tester
+- Web Design Tools: CSS gradient generator, box shadow generator, color palette
+- Calculators: BMI, age, percentage, loan EMI, currency converter
+- Security Tools: Password generator, hash generator, QR code generator
+- Misc Tools: Dice roller, spinner wheel, barcode generator, internet speed test
+- Social Media Tools: Instagram bio counter, username validator, image resizer
+
+## Key Features
+- 100% client-side processing — files never leave your device
+- No signup or account required
+- Works on desktop, tablet, and mobile
+- Free forever with no limits
+
+## Website
+https://krynntools.online
+
+## Contact
+contact@krynntools.online

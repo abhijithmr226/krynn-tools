@@ -11,7 +11,7 @@ export function generateMetadata({ params }: { params: Promise<{ slug: string }>
     const cat = categories.find(c => c.slug === slug);
     const url = `https://krynntools.online/${slug}`;
     return {
-      title: `${cat?.name || slug} – Free Online Tools | Krynn Tools`,
+      title: `${cat?.name || slug} – Free Online Tools`,
       description: cat?.description || `Free online ${cat?.name} tools. Process files in your browser.`,
       alternates: { canonical: url },
       openGraph: {
@@ -19,15 +19,15 @@ export function generateMetadata({ params }: { params: Promise<{ slug: string }>
         locale: "en_US",
         url,
         siteName: "Krynn Tools",
-        title: `${cat?.name || slug} – Free Online Tools | Krynn Tools`,
+        title: `${cat?.name || slug} – Free Online Tools`,
         description: cat?.description || `Free online ${cat?.name} tools.`,
-        images: [{ url: "/logo.png", width: 1200, height: 630, alt: `${cat?.name} – Krynn Tools` }],
+        images: [{ url: "https://krynntools.online/logo.png", width: 1200, height: 630, alt: `${cat?.name} – Krynn Tools` }],
       },
       twitter: {
         card: "summary_large_image",
-        title: `${cat?.name || slug} – Free Online Tools | Krynn Tools`,
+        title: `${cat?.name || slug} – Free Online Tools`,
         description: cat?.description || `Free online ${cat?.name} tools.`,
-        images: ["/logo.png"],
+        images: ["https://krynntools.online/logo.png"],
       },
     };
   });

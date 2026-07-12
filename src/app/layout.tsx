@@ -43,13 +43,13 @@ export const metadata: Metadata = {
     siteName: "Krynn Tools",
     title: "Krynn Tools – 100+ Free Online Tools",
     description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, works in your browser.",
-    images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
+    images: [{ url: "https://krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Krynn Tools – 100+ Free Online Tools",
     description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security.",
-    images: ["/logo.png"],
+    images: ["https://krynntools.online/logo.png"],
   },
   robots: {
     index: true,

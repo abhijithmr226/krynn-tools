@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Disclaimer | Krynn Tools",
+  title: "Disclaimer",
   description: "Disclaimer for Krynn Tools.",
+  alternates: { canonical: "https://krynntools.online/disclaimer" },
 };
 
 export default function DisclaimerPage() {

@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How to Remove a Background From a Photo in 10 Seconds",
   description: "Remove photo backgrounds instantly with a free browser-based tool. No software install, no upload required.",
-  keywords: ["remove background", "background remover", "remove photo background free", "cut out image", "transparent background"],
+  keywords: ["remove background","background remover","delete photo background","transparent background"],
+  alternates: { canonical: "https://krynntools.online/blog/how-to-remove-background-from-photo" },
+  openGraph: {
+    title: "How to Remove a Background From a Photo in 10 Seconds",
+    description: "Remove photo backgrounds instantly with a free browser-based tool. No software install, no upload required.",
+    type: "article",
+    url: "https://krynntools.online/blog/how-to-remove-background-from-photo",
+    images: [{ url: "https://krynntools.online/images/blog/remove-background.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-02-05T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -229,6 +239,23 @@ export default function BlogPost() {
             — free, instant, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "How to Remove a Background From a Photo in 10 Seconds",
+            description: "Remove photo backgrounds instantly with a free browser-based tool. No software install, no upload required.",
+            image: "https://krynntools.online/images/blog/remove-background.svg",
+            datePublished: "2026-02-05T00:00:00Z",
+            dateModified: "2026-02-05T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/how-to-remove-background-from-photo" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

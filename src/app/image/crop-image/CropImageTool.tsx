@@ -25,6 +25,32 @@ const ASPECT_PRESETS = [
   { label: "9:16", value: 9 / 16 },
 ];
 
+interface SizePreset {
+  label: string;
+  width: number;
+  height: number;
+  category: string;
+}
+
+const SIZE_PRESETS: SizePreset[] = [
+  { label: "Passport (US)", width: 51, height: 51, category: "ID / Visa" },
+  { label: "Passport (UK/EU)", width: 35, height: 45, category: "ID / Visa" },
+  { label: "Passport (India)", width: 35, height: 45, category: "ID / Visa" },
+  { label: "Passport (Canada)", width: 50, height: 70, category: "ID / Visa" },
+  { label: "Passport (Australia)", width: 40, height: 50, category: "ID / Visa" },
+  { label: "Visa Photo (US)", width: 51, height: 51, category: "ID / Visa" },
+  { label: "ID Card", width: 35, height: 45, category: "ID / Visa" },
+  { label: "Profile Picture", width: 500, height: 500, category: "Social Media" },
+  { label: "Instagram Post", width: 1080, height: 1080, category: "Social Media" },
+  { label: "Instagram Story", width: 1080, height: 1920, category: "Social Media" },
+  { label: "Facebook Cover", width: 820, height: 312, category: "Social Media" },
+  { label: "Facebook Post", width: 1200, height: 630, category: "Social Media" },
+  { label: "YouTube Thumbnail", width: 1280, height: 720, category: "Social Media" },
+  { label: "YouTube Banner", width: 2560, height: 1440, category: "Social Media" },
+  { label: "Twitter/X Header", width: 1500, height: 500, category: "Social Media" },
+  { label: "LinkedIn Banner", width: 1584, height: 396, category: "Social Media" },
+];
+
 export default function CropImageTool({
   relatedTools,
   schema,
@@ -33,6 +59,7 @@ export default function CropImageTool({
   const [preview, setPreview] = useState<string>("");
   const [imgNatural, setImgNatural] = useState({ w: 0, h: 0 });
   const [aspectPreset, setAspectPreset] = useState<number | null>(null);
+  const [sizePreset, setSizePreset] = useState<SizePreset | null>(null);
   const [crop, setCrop] = useState<CropArea>({ x: 0, y: 0, width: 0, height: 0 });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -50,6 +77,7 @@ export default function CropImageTool({
     setFile(f);
     setResultBlob(null);
     setAspectPreset(null);
+    setSizePreset(null);
     const reader = new FileReader();
     reader.onload = (e) => {
       const url = e.target?.result as string;
@@ -118,6 +146,7 @@ export default function CropImageTool({
   const handleAspectChange = useCallback(
     (ratio: number | null) => {
       setAspectPreset(ratio);
+      setSizePreset(null);
       if (ratio && imgNatural.w && imgNatural.h) {
         const currentRatio = crop.width / crop.height;
         if (Math.abs(currentRatio - ratio) > 0.01) {
@@ -129,6 +158,24 @@ export default function CropImageTool({
           }
           setCrop({ x: crop.x, y: crop.y, width: newW, height: newH });
         }
+      }
+    },
+    [crop, imgNatural]
+  );
+
+  const handleSizePreset = useCallback(
+    (preset: SizePreset) => {
+      setSizePreset(preset);
+      const ratio = preset.width / preset.height;
+      setAspectPreset(ratio);
+      if (imgNatural.w && imgNatural.h) {
+        let newW = crop.width;
+        let newH = crop.width / ratio;
+        if (newH > imgNatural.h) {
+          newH = imgNatural.h;
+          newW = newH * ratio;
+        }
+        setCrop({ x: crop.x, y: crop.y, width: newW, height: newH });
       }
     },
     [crop, imgNatural]
@@ -190,11 +237,17 @@ export default function CropImageTool({
       subtitle="Crop images with custom aspect ratios. No upload needed."
       howToUse={[
         "Drag and drop your image into the upload area or click to browse.",
-        "Choose an aspect ratio preset or leave it on Free for custom cropping.",
+        "Select a quick size preset (passport, social media, etc.) or choose an aspect ratio.",
+        "Adjust the crop area by editing the X, Y, Width, and Height values.",
         "Click the Crop Image button to process your selection.",
         "Download your cropped image instantly.",
       ]}
       faq={[
+        {
+          question: "What size presets are available?",
+          answer:
+            "We offer presets for passport photos (US, UK, EU, India, Canada, Australia), ID cards, profile pictures, Instagram posts and stories, Facebook covers, YouTube thumbnails and banners, Twitter/X headers, and LinkedIn banners.",
+        },
         {
           question: "What aspect ratios are available?",
           answer:
@@ -248,6 +301,28 @@ export default function CropImageTool({
         {file && (
           <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
             <label className="mb-3 block text-sm font-semibold text-[var(--color-foreground)]">
+              Quick Size Presets
+            </label>
+            <div className="mb-4 flex flex-wrap gap-2">
+              {SIZE_PRESETS.map((preset) => (
+                <button
+                  key={preset.label}
+                  onClick={() => handleSizePreset(preset)}
+                  className={`cursor-pointer rounded-md px-3 py-1.5 text-xs font-medium transition-colors duration-200 ${
+                    sizePreset?.label === preset.label
+                      ? "bg-[var(--color-primary)] text-white"
+                      : "bg-[var(--color-muted)] text-[var(--color-foreground)] hover:bg-[var(--color-border)]"
+                  }`}
+                >
+                  {preset.label}
+                  <span className="ml-1 opacity-60">
+                    {preset.width}x{preset.height}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            <label className="mb-3 block text-sm font-semibold text-[var(--color-foreground)]">
               Aspect Ratio
             </label>
             <div className="flex flex-wrap gap-2">
@@ -256,7 +331,7 @@ export default function CropImageTool({
                   key={preset.label}
                   onClick={() => handleAspectChange(preset.value)}
                   className={`cursor-pointer rounded-md px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                    aspectPreset === preset.value
+                    aspectPreset === preset.value && !sizePreset
                       ? "bg-[var(--color-primary)] text-white"
                       : "bg-[var(--color-muted)] text-[var(--color-foreground)] hover:bg-[var(--color-border)]"
                   }`}

@@ -3,8 +3,18 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "JSON Formatting Best Practices for Developers",
-  description: "Master JSON formatting with best practices for indentation, naming, validation, and tooling. Clean, readable JSON every time.",
-  keywords: ["JSON formatting", "JSON best practices", "JSON validator", "JSON formatter", "developer tips"],
+  description: "Master JSON formatting with best practices for indentation, naming, validation, and tooling.",
+  keywords: ["JSON formatting","JSON best practices","JSON validator","JSON formatter","developer tips"],
+  alternates: { canonical: "https://krynntools.online/blog/json-formatting-best-practices" },
+  openGraph: {
+    title: "JSON Formatting Best Practices for Developers",
+    description: "Master JSON formatting with best practices for indentation, naming, validation, and tooling.",
+    type: "article",
+    url: "https://krynntools.online/blog/json-formatting-best-practices",
+    images: [{ url: "https://krynntools.online/images/blog/json-formatter.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-02-10T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -278,6 +288,23 @@ export default function BlogPost() {
             — free, instant, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "JSON Formatting Best Practices for Developers",
+            description: "Master JSON formatting with best practices for indentation, naming, validation, and tooling.",
+            image: "https://krynntools.online/images/blog/json-formatter.svg",
+            datePublished: "2026-02-10T00:00:00Z",
+            dateModified: "2026-02-10T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/json-formatting-best-practices" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

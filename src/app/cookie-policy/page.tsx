@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Krynn Tools",
+  title: "Cookie Policy",
   description: "Cookie Policy for Krynn Tools. Learn about how we use cookies.",
+  alternates: { canonical: "https://krynntools.online/cookie-policy" },
 };
 
 export default function CookiePolicy() {

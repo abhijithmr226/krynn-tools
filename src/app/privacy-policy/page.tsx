@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Krynn Tools",
+  title: "Privacy Policy",
   description: "Privacy Policy for Krynn Tools. Learn how we handle your data and protect your privacy.",
+  alternates: { canonical: "https://krynntools.online/privacy-policy" },
 };
 
 export default function PrivacyPolicy() {

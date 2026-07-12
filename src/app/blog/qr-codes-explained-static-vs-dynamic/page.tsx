@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "QR Codes Explained: Static vs Dynamic",
   description: "Understand the difference between static and dynamic QR codes, when to use each, and how to generate them for free.",
-  keywords: ["static vs dynamic QR code", "QR code types", "QR code explained", "qr code generator", "dynamic QR code benefits"],
+  keywords: ["static vs dynamic qr code","qr code types","qr code generator","qr code explained"],
+  alternates: { canonical: "https://krynntools.online/blog/qr-codes-explained-static-vs-dynamic" },
+  openGraph: {
+    title: "QR Codes Explained: Static vs Dynamic",
+    description: "Understand the difference between static and dynamic QR codes, when to use each, and how to generate them for free.",
+    type: "article",
+    url: "https://krynntools.online/blog/qr-codes-explained-static-vs-dynamic",
+    images: [{ url: "https://krynntools.online/images/blog/qr-code-generator.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-01-30T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -225,6 +235,23 @@ export default function BlogPost() {
             — free, fast, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "QR Codes Explained: Static vs Dynamic",
+            description: "Understand the difference between static and dynamic QR codes, when to use each, and how to generate them for free.",
+            image: "https://krynntools.online/images/blog/qr-code-generator.svg",
+            datePublished: "2026-01-30T00:00:00Z",
+            dateModified: "2026-01-30T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/qr-codes-explained-static-vs-dynamic" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

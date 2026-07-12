@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How EMI Is Calculated on a Loan (With Formula)",
   description: "Understand how loan EMI is calculated with the reducing balance formula. Includes examples and a free calculator.",
-  keywords: ["EMI calculation", "loan EMI formula", "how EMI is calculated", "loan calculator", "monthly installment"],
+  keywords: ["emi calculation","loan emi formula","how emi is calculated","emi calculator"],
+  alternates: { canonical: "https://krynntools.online/blog/how-emi-is-calculated-on-loan" },
+  openGraph: {
+    title: "How EMI Is Calculated on a Loan (With Formula)",
+    description: "Understand how loan EMI is calculated with the reducing balance formula. Includes examples and a free calculator.",
+    type: "article",
+    url: "https://krynntools.online/blog/how-emi-is-calculated-on-loan",
+    images: [{ url: "https://krynntools.online/images/blog/loan-emi-calculator.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-02-25T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -243,6 +253,23 @@ EMI ≈ ₹8,678 per month`}</pre>
             — free, instant, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "How EMI Is Calculated on a Loan (With Formula)",
+            description: "Understand how loan EMI is calculated with the reducing balance formula.",
+            image: "https://krynntools.online/images/blog/loan-emi-calculator.svg",
+            datePublished: "2026-02-25T00:00:00Z",
+            dateModified: "2026-02-25T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/how-emi-is-calculated-on-loan" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

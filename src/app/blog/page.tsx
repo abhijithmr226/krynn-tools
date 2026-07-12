@@ -2,9 +2,10 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Blog | Krynn Tools",
+  title: "Blog & Tutorials",
   description: "Tips, guides, and tutorials for using free online tools. Learn about PDF compression, image optimization, JSON formatting, and more.",
   keywords: ["online tools blog", "PDF tips", "image compression guide", "developer tools", "free online utilities"],
+  alternates: { canonical: "https://krynntools.online/blog" },
 };
 
 interface BlogPost {
@@ -107,6 +108,33 @@ const blogPosts: BlogPost[] = [
     category: "Finance",
     readingTime: "8 min",
     image: "/images/blog/loan-emi-calculator.svg",
+  },
+  {
+    slug: "how-to-extract-text-from-scanned-pdfs",
+    title: "How to Extract Text from Scanned PDFs",
+    description: "Learn how to extract text from scanned PDFs using free client-side OCR. Step-by-step guide with privacy-first processing.",
+    date: "July 12, 2026",
+    category: "PDF",
+    readingTime: "6 min",
+    image: "/images/blog/compress-pdf.svg",
+  },
+  {
+    slug: "best-free-dice-roller-for-board-games",
+    title: "Best Free Dice Roller for Board Games",
+    description: "Find the best free online dice roller for board games and tabletop RPGs. Roll D4, D6, D8, D10, D12, D20 with realistic animations.",
+    date: "July 12, 2026",
+    category: "Misc",
+    readingTime: "5 min",
+    image: "/images/blog/base64-encoder.svg",
+  },
+  {
+    slug: "how-to-crop-passport-size-photos-online",
+    title: "How to Crop Passport Size Photos Online",
+    description: "Learn how to crop passport size photos online for free. Includes US, UK, India, and other country-specific photo dimensions.",
+    date: "July 12, 2026",
+    category: "Image",
+    readingTime: "6 min",
+    image: "/images/blog/compress-image.svg",
   },
 ];
 

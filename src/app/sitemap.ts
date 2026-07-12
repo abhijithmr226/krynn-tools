@@ -40,6 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/blog/what-is-base64-encoding`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
     { url: `${BASE_URL}/blog/bmi-explained-what-numbers-mean`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
     { url: `${BASE_URL}/blog/how-emi-is-calculated-on-loan`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${BASE_URL}/blog/how-to-generate-qr-codes-for-business`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${BASE_URL}/blog/best-practices-for-qr-code-design`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${BASE_URL}/blog/understanding-error-correction-in-qr-codes`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${BASE_URL}/blog/how-to-extract-text-from-scanned-pdfs`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${BASE_URL}/blog/best-free-dice-roller-for-board-games`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
+    { url: `${BASE_URL}/blog/how-to-crop-passport-size-photos-online`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
   ];
 
   return [...staticPages, ...categoryPages, ...toolPages, ...blogPages];

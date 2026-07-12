@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "BMI Explained: What the Numbers Actually Mean",
   description: "Understand BMI categories, how to calculate yours, and what the numbers really tell you about your health.",
-  keywords: ["BMI explained", "BMI calculator", "body mass index", "BMI categories", "health assessment"],
+  keywords: ["bmi explained","bmi categories","what is bmi","body mass index"],
+  alternates: { canonical: "https://krynntools.online/blog/bmi-explained-what-numbers-mean" },
+  openGraph: {
+    title: "BMI Explained: What the Numbers Actually Mean",
+    description: "Understand BMI categories, how to calculate yours, and what the numbers really tell you about your health.",
+    type: "article",
+    url: "https://krynntools.online/blog/bmi-explained-what-numbers-mean",
+    images: [{ url: "https://krynntools.online/images/blog/bmi-calculator.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-02-20T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -234,6 +244,23 @@ Example: 70 kg ÷ (1.75 m)² = 22.9`}</pre>
             — free, instant, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "BMI Explained: What the Numbers Actually Mean",
+            description: "Understand BMI categories, how to calculate yours, and what the numbers really tell you.",
+            image: "https://krynntools.online/images/blog/bmi-calculator.svg",
+            datePublished: "2026-02-20T00:00:00Z",
+            dateModified: "2026-02-20T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/bmi-explained-what-numbers-mean" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

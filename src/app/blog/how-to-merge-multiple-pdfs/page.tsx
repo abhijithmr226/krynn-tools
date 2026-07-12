@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How to Merge Multiple PDFs Into One File for Free",
   description: "Learn how to merge multiple PDF files into a single document for free. Client-side processing keeps your files private.",
-  keywords: ["merge pdf", "combine pdf", "merge pdf files free", "join pdf", "pdf merger online"],
+  keywords: ["merge pdf","combine pdf","merge pdf files free","join pdf","pdf merger online"],
+  alternates: { canonical: "https://krynntools.online/blog/how-to-merge-multiple-pdfs" },
+  openGraph: {
+    title: "How to Merge Multiple PDFs Into One File for Free",
+    description: "Learn how to merge multiple PDF files into a single document for free. Client-side processing keeps your files private.",
+    type: "article",
+    url: "https://krynntools.online/blog/how-to-merge-multiple-pdfs",
+    images: [{ url: "https://krynntools.online/images/blog/merge-pdf.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-01-20T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -201,6 +211,23 @@ export default function BlogPost() {
             — free, fast, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "How to Merge Multiple PDFs Into One File for Free",
+            description: "Learn how to merge multiple PDF files into a single document for free. Client-side processing keeps your files private.",
+            image: "https://krynntools.online/images/blog/merge-pdf.svg",
+            datePublished: "2026-01-20T00:00:00Z",
+            dateModified: "2026-01-20T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/how-to-merge-multiple-pdfs" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

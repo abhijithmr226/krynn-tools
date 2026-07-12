@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How to Shrink Image File Size Without Losing Quality",
   description: "Learn how to shrink image file sizes for web, email, and social media without losing visible quality.",
-  keywords: ["shrink image size", "compress image", "reduce image file size", "image optimizer", "compress jpg png"],
+  keywords: ["shrink image size","reduce image file size","compress image online","image optimizer"],
+  alternates: { canonical: "https://krynntools.online/blog/how-to-shrink-image-file-size" },
+  openGraph: {
+    title: "How to Shrink Image File Size Without Losing Quality",
+    description: "Learn how to shrink image file sizes for web, email, and social media without losing visible quality.",
+    type: "article",
+    url: "https://krynntools.online/blog/how-to-shrink-image-file-size",
+    images: [{ url: "https://krynntools.online/images/blog/compress-image.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-02-01T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -248,6 +258,23 @@ export default function BlogPost() {
             — free, fast, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "How to Shrink Image File Size Without Losing Quality",
+            description: "Learn how to shrink image file sizes for web, email, and social media without losing visible quality.",
+            image: "https://krynntools.online/images/blog/compress-image.svg",
+            datePublished: "2026-02-01T00:00:00Z",
+            dateModified: "2026-02-01T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/how-to-shrink-image-file-size" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

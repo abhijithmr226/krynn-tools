@@ -26,6 +26,7 @@ export const categories: Category[] = [
   { name: "Calculators", slug: "calculators", description: "BMI, age, percentage, EMI, unit converters, and more free calculators.", icon: "Calculator", color: "#06B6D4" },
   { name: "Security Tools", slug: "security", description: "Generate passwords, hashes, QR codes, and check password strength.", icon: "Shield", color: "#EC4899" },
   { name: "Misc Tools", slug: "misc", description: "Random numbers, dice roller, coin flip, barcode generator, and more.", icon: "Sparkles", color: "#6366F1" },
+  { name: "Social Media Tools", slug: "social-media", description: "Character counters, image resizers, hashtag tools, and more for social media.", icon: "ShareNetwork", color: "#E8100A" },
 ];
 
 export const tools: Tool[] = [
@@ -144,6 +145,13 @@ export const tools: Tool[] = [
   { slug: "time-zone-converter", name: "Time Zone Converter", description: "Convert a date and time between any two of the world's time zones.", category: "Misc Tools", categorySlug: "misc", icon: "Globe", keywords: ["time zone converter", "timezone converter online", "world clock converter"] },
   { slug: "file-checksum-calculator", name: "File Checksum Calculator", description: "Compute MD5, SHA-256, and SHA-512 checksums for any uploaded file.", category: "Misc Tools", categorySlug: "misc", icon: "Fingerprint", keywords: ["file checksum calculator", "file hash calculator", "md5 file checksum"] },
   { slug: "internet-speed-test", name: "Internet Speed Test", description: "Measure your download connection speed with a lightweight client-side test.", category: "Misc Tools", categorySlug: "misc", icon: "Lightning", keywords: ["internet speed test", "speed test online", "download speed test"] },
+  { slug: "spinner-wheel", name: "Spinner Wheel", description: "Spin the wheel with custom options for random picking, giveaways, and decisions.", category: "Misc Tools", categorySlug: "misc", icon: "ArrowsClockwise", keywords: ["spin the wheel", "random picker wheel", "wheel spinner online", "decision maker"], popular: true },
+
+  // Social Media Tools (4)
+  { slug: "instagram-bio-counter", name: "Instagram Bio Counter", description: "Count characters, words, and lines for Instagram bios and captions with live limits.", category: "Social Media Tools", categorySlug: "social-media", icon: "TextAa", keywords: ["instagram bio character counter", "instagram caption counter", "instagram text limit"], popular: true },
+  { slug: "username-validator", name: "Username Validator", description: "Check if usernames meet Instagram, TikTok, and Twitter/X format requirements.", category: "Social Media Tools", categorySlug: "social-media", icon: "CheckCircle", keywords: ["instagram username validator", "username format checker", "social media username rules"] },
+  { slug: "social-image-resizer", name: "Social Media Image Resizer", description: "Resize images for Instagram, Facebook, Twitter, LinkedIn, and YouTube with preset sizes.", category: "Social Media Tools", categorySlug: "social-media", icon: "Image", keywords: ["social media image resizer", "instagram image resizer", "resize image for social media"], popular: true },
+  { slug: "hashtag-counter", name: "Hashtag Counter", description: "Count hashtags in your text and get platform-specific limits for Instagram and TikTok.", category: "Social Media Tools", categorySlug: "social-media", icon: "Hash", keywords: ["hashtag counter", "instagram hashtag counter", "hashtag generator"] },
 ];
 
 export function getToolsByCategory(categorySlug: string): Tool[] {

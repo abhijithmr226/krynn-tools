@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "What Is Base64 Encoding and When Do You Need It?",
   description: "Understand Base64 encoding, how it works, and when you actually need to use it. Practical examples for developers.",
-  keywords: ["base64 encoding", "base64 explained", "base64 encode decode", "base64 use cases", "developer tool"],
+  keywords: ["base64 encoding","what is base64","base64 decoder","base64 explained"],
+  alternates: { canonical: "https://krynntools.online/blog/what-is-base64-encoding" },
+  openGraph: {
+    title: "What Is Base64 Encoding and When Do You Need It?",
+    description: "Understand Base64 encoding, how it works, and when you actually need to use it. Practical examples for developers.",
+    type: "article",
+    url: "https://krynntools.online/blog/what-is-base64-encoding",
+    images: [{ url: "https://krynntools.online/images/blog/base64-encoder.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-02-15T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -235,6 +245,23 @@ export default function BlogPost() {
             — free, instant, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "What Is Base64 Encoding and When Do You Need It?",
+            description: "Understand Base64 encoding, how it works, and when you actually need to use it.",
+            image: "https://krynntools.online/images/blog/base64-encoder.svg",
+            datePublished: "2026-02-15T00:00:00Z",
+            dateModified: "2026-02-15T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/what-is-base64-encoding" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

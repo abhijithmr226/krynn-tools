@@ -91,6 +91,9 @@ import {
   // ── Misc ─────────────────────────────────────────────────────
   DiceFive,
   Coin,
+  // ── Social Media ──────────────────────────────────────────────
+  ShareNetwork,
+  TextAa,
   // ── Navigation & UI ──────────────────────────────────────────
   House,
   MagnifyingGlass,
@@ -249,6 +252,10 @@ const ICON_MAP: Record<string, Icon> = {
   Sparkles:        Sparkle,
   SortAscending:   ArrowsDownUp,
   TextAlignLeft:   AlignLeft,
+
+  // ── Social Media ──────────────────────────────────────────────
+  ShareNetwork,
+  TextAa,
 
   // ── Navigation ───────────────────────────────────────────────
   House,

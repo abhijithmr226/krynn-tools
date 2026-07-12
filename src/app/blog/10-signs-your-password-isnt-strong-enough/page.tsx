@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "10 Signs Your Password Isn't Strong Enough",
   description: "Is your password really protecting you? Learn 10 warning signs that your passwords need an upgrade.",
-  keywords: ["password strength", "weak password signs", "password security", "password generator", "online security tips"],
+  keywords: ["password strength","weak password signs","password security","password generator","online security tips"],
+  alternates: { canonical: "https://krynntools.online/blog/10-signs-your-password-isnt-strong-enough" },
+  openGraph: {
+    title: "10 Signs Your Password Isn't Strong Enough",
+    description: "Is your password really protecting you? Learn 10 warning signs that your passwords need an upgrade.",
+    type: "article",
+    url: "https://krynntools.online/blog/10-signs-your-password-isnt-strong-enough",
+    images: [{ url: "https://krynntools.online/images/blog/password-generator.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-01-25T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -220,6 +230,23 @@ export default function BlogPost() {
             — free, instant, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "10 Signs Your Password Isn't Strong Enough",
+            description: "Is your password really protecting you? Learn 10 warning signs that your passwords need an upgrade.",
+            image: "https://krynntools.online/images/blog/password-generator.svg",
+            datePublished: "2026-01-25T00:00:00Z",
+            dateModified: "2026-01-25T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/10-signs-your-password-isnt-strong-enough" },
+          }),
+        }}
+      />
       </article>
     </div>
   );

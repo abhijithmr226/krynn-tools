@@ -4,7 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How to Compress a PDF Without Losing Quality",
   description: "Learn how to compress a PDF file without losing quality. Free client-side tool for fast, secure PDF optimization.",
-  keywords: ["compress pdf without losing quality", "pdf compressor", "reduce pdf size", "pdf optimization", "compress pdf online free"],
+  keywords: ["compress pdf without losing quality","pdf compressor","reduce pdf size","pdf optimization","compress pdf online free"],
+  alternates: { canonical: "https://krynntools.online/blog/how-to-compress-pdf-without-losing-quality" },
+  openGraph: {
+    title: "How to Compress a PDF Without Losing Quality",
+    description: "Learn how to compress a PDF file without losing quality. Free client-side tool for fast, secure PDF optimization.",
+    type: "article",
+    url: "https://krynntools.online/blog/how-to-compress-pdf-without-losing-quality",
+    images: [{ url: "https://krynntools.online/images/blog/compress-pdf.svg", width: 1200, height: 630 }],
+    publishedTime: "2026-01-15T00:00:00Z",
+    authors: ["Krynn Tools"],
+  },
 };
 
 export default function BlogPost() {
@@ -268,6 +278,23 @@ export default function BlogPost() {
             — free, fast, and completely private.
           </p>
         </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "How to Compress a PDF Without Losing Quality",
+            description: "Learn how to compress a PDF file without losing quality. Free client-side tool for fast, secure PDF optimization.",
+            image: "https://krynntools.online/images/blog/compress-pdf.svg",
+            datePublished: "2026-01-15T00:00:00Z",
+            dateModified: "2026-01-15T00:00:00Z",
+            author: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online" },
+            publisher: { "@type": "Organization", name: "Krynn Tools", url: "https://krynntools.online", logo: { "@type": "ImageObject", url: "https://krynntools.online/logo.png" } },
+            mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/how-to-compress-pdf-without-losing-quality" },
+          }),
+        }}
+      />
       </article>
     </div>
   );
