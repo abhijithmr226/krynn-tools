@@ -51,6 +51,8 @@ const SIZE_PRESETS: SizePreset[] = [
   { label: "LinkedIn Banner", width: 1584, height: 396, category: "Social Media" },
 ];
 
+type DragHandle = "move" | "nw" | "ne" | "sw" | "se" | "n" | "s" | "e" | "w";
+
 export default function CropImageTool({
   relatedTools,
   schema,
@@ -65,8 +67,10 @@ export default function CropImageTool({
   const [error, setError] = useState("");
   const [resultBlob, setResultBlob] = useState<Blob | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const displayRef = useRef({ w: 0, h: 0, offsetX: 0, offsetY: 0 });
+  const dragRef = useRef<{ active: boolean; handle: DragHandle; startX: number; startY: number; startCrop: CropArea } | null>(null);
 
   const handleFile = useCallback((f: File) => {
     if (!f.type.match(/^image\/(jpeg|png|webp)$/)) {
@@ -109,6 +113,248 @@ export default function CropImageTool({
     reader.readAsDataURL(f);
   }, []);
 
+  // Convert display coords to natural image coords
+  const displayToNatural = useCallback((dx: number, dy: number) => {
+    const { w, h, offsetX, offsetY } = displayRef.current;
+    const nx = ((dx - offsetX) / w) * imgNatural.w;
+    const ny = ((dy - offsetY) / h) * imgNatural.h;
+    return { x: Math.max(0, Math.min(imgNatural.w, nx)), y: Math.max(0, Math.min(imgNatural.h, ny)) };
+  }, [imgNatural]);
+
+  // Get mouse position relative to canvas in display coords
+  const getCanvasPos = useCallback((e: React.MouseEvent | MouseEvent) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return { dx: 0, dy: 0 };
+    const rect = canvas.getBoundingClientRect();
+    return { dx: e.clientX - rect.left, dy: e.clientY - rect.top };
+  }, []);
+
+  // Determine which handle the mouse is near
+  const getHandle = useCallback((dx: number, dy: number): DragHandle | null => {
+    const { w, h, offsetX, offsetY } = displayRef.current;
+    const sx = (crop.x / imgNatural.w) * w + offsetX;
+    const sy = (crop.y / imgNatural.h) * h + offsetY;
+    const sw = (crop.width / imgNatural.w) * w;
+    const sh = (crop.height / imgNatural.h) * h;
+    const margin = 10;
+
+    // Check corners first (larger hit area)
+    if (Math.abs(dx - sx) < margin && Math.abs(dy - sy) < margin) return "nw";
+    if (Math.abs(dx - (sx + sw)) < margin && Math.abs(dy - sy) < margin) return "ne";
+    if (Math.abs(dx - sx) < margin && Math.abs(dy - (sy + sh)) < margin) return "sw";
+    if (Math.abs(dx - (sx + sw)) < margin && Math.abs(dy - (sy + sh)) < margin) return "se";
+
+    // Check edges
+    if (Math.abs(dy - sy) < margin && dx > sx + margin && dx < sx + sw - margin) return "n";
+    if (Math.abs(dy - (sy + sh)) < margin && dx > sx + margin && dx < sx + sw - margin) return "s";
+    if (Math.abs(dx - sx) < margin && dy > sy + margin && dy < sy + sh - margin) return "w";
+    if (Math.abs(dx - (sx + sw)) < margin && dy > sy + margin && dy < sy + sh - margin) return "e";
+
+    // Check if inside crop area (for move)
+    if (dx >= sx && dx <= sx + sw && dy >= sy && dy <= sy + sh) return "move";
+
+    return null;
+  }, [crop, imgNatural]);
+
+  // Set cursor based on handle
+  const getCursor = useCallback((handle: DragHandle | null) => {
+    switch (handle) {
+      case "nw": return "nwse-resize";
+      case "se": return "nwse-resize";
+      case "ne": return "nesw-resize";
+      case "sw": return "nesw-resize";
+      case "n": return "ns-resize";
+      case "s": return "ns-resize";
+      case "e": return "ew-resize";
+      case "w": return "ew-resize";
+      case "move": return "move";
+      default: return "crosshair";
+    }
+  }, []);
+
+  // Mouse down on canvas
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    const { dx, dy } = getCanvasPos(e);
+    const handle = getHandle(dx, dy);
+    if (!handle) return;
+
+    e.preventDefault();
+    dragRef.current = {
+      active: true,
+      handle,
+      startX: dx,
+      startY: dy,
+      startCrop: { ...crop },
+    };
+  }, [crop, getCanvasPos, getHandle]);
+
+  // Mouse move
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    const { dx, dy } = getCanvasPos(e);
+
+    if (!dragRef.current) {
+      // Just hovering — update cursor
+      const handle = getHandle(dx, dy);
+      const canvas = canvasRef.current;
+      if (canvas) canvas.style.cursor = getCursor(handle);
+      return;
+    }
+
+    const { handle, startX, startY, startCrop } = dragRef.current;
+    const { w, h } = displayRef.current;
+    const scaleX = imgNatural.w / w;
+    const scaleY = imgNatural.h / h;
+    const deltaX = (dx - startX) * scaleX;
+    const deltaY = (dy - startY) * scaleY;
+
+    let newCrop = { ...startCrop };
+
+    if (handle === "move") {
+      newCrop.x = Math.max(0, Math.min(imgNatural.w - startCrop.width, startCrop.x + deltaX));
+      newCrop.y = Math.max(0, Math.min(imgNatural.h - startCrop.height, startCrop.y + deltaY));
+    } else {
+      // Resize handles
+      let newX = startCrop.x;
+      let newY = startCrop.y;
+      let newW = startCrop.width;
+      let newH = startCrop.height;
+
+      if (handle.includes("e")) {
+        newW = Math.max(20, Math.min(imgNatural.w - startCrop.x, startCrop.width + deltaX));
+      }
+      if (handle.includes("w")) {
+        const maxDelta = startCrop.width - 20;
+        const clampedDelta = Math.max(-startCrop.x, Math.min(maxDelta, deltaX));
+        newX = startCrop.x + clampedDelta;
+        newW = startCrop.width - clampedDelta;
+      }
+      if (handle.includes("s")) {
+        newH = Math.max(20, Math.min(imgNatural.h - startCrop.y, startCrop.height + deltaY));
+      }
+      if (handle.includes("n")) {
+        const maxDelta = startCrop.height - 20;
+        const clampedDelta = Math.max(-startCrop.y, Math.min(maxDelta, deltaY));
+        newY = startCrop.y + clampedDelta;
+        newH = startCrop.height - clampedDelta;
+      }
+
+      // Enforce aspect ratio if set
+      if (aspectPreset) {
+        if (handle === "n" || handle === "s") {
+          newW = newH * aspectPreset;
+        } else if (handle === "e" || handle === "w") {
+          newH = newW / aspectPreset;
+        } else {
+          // Corner: use the larger delta to determine size
+          const ratioW = newW;
+          const ratioH = newW / aspectPreset;
+          if (ratioH <= imgNatural.h) {
+            newH = ratioH;
+          } else {
+            newH = Math.min(newH, imgNatural.h);
+            newW = newH * aspectPreset;
+          }
+        }
+        // Clamp to image bounds
+        if (newX + newW > imgNatural.w) newW = imgNatural.w - newX;
+        if (newY + newH > imgNatural.h) newH = imgNatural.h - newY;
+        if (handle.includes("w")) newX = startCrop.x + startCrop.width - newW;
+        if (handle.includes("n")) newY = startCrop.y + startCrop.height - newH;
+      }
+
+      newCrop = { x: newX, y: newY, width: newW, height: newH };
+    }
+
+    setCrop(newCrop);
+  }, [imgNatural, aspectPreset, getCanvasPos, getHandle, getCursor]);
+
+  // Mouse up
+  const handleMouseUp = useCallback(() => {
+    dragRef.current = null;
+  }, []);
+
+  // Attach global mouse events for drag
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (!dragRef.current) return;
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const dx = e.clientX - rect.left;
+      const dy = e.clientY - rect.top;
+      const { handle, startX, startY, startCrop } = dragRef.current;
+      const { w, h } = displayRef.current;
+      const scaleX = imgNatural.w / w;
+      const scaleY = imgNatural.h / h;
+      const deltaX = (dx - startX) * scaleX;
+      const deltaY = (dy - startY) * scaleY;
+
+      let newCrop = { ...startCrop };
+
+      if (handle === "move") {
+        newCrop.x = Math.max(0, Math.min(imgNatural.w - startCrop.width, startCrop.x + deltaX));
+        newCrop.y = Math.max(0, Math.min(imgNatural.h - startCrop.height, startCrop.y + deltaY));
+      } else {
+        let newX = startCrop.x;
+        let newY = startCrop.y;
+        let newW = startCrop.width;
+        let newH = startCrop.height;
+
+        if (handle.includes("e")) {
+          newW = Math.max(20, Math.min(imgNatural.w - startCrop.x, startCrop.width + deltaX));
+        }
+        if (handle.includes("w")) {
+          const maxDelta = startCrop.width - 20;
+          const clampedDelta = Math.max(-startCrop.x, Math.min(maxDelta, deltaX));
+          newX = startCrop.x + clampedDelta;
+          newW = startCrop.width - clampedDelta;
+        }
+        if (handle.includes("s")) {
+          newH = Math.max(20, Math.min(imgNatural.h - startCrop.y, startCrop.height + deltaY));
+        }
+        if (handle.includes("n")) {
+          const maxDelta = startCrop.height - 20;
+          const clampedDelta = Math.max(-startCrop.y, Math.min(maxDelta, deltaY));
+          newY = startCrop.y + clampedDelta;
+          newH = startCrop.height - clampedDelta;
+        }
+
+        if (aspectPreset) {
+          if (handle === "n" || handle === "s") {
+            newW = newH * aspectPreset;
+          } else if (handle === "e" || handle === "w") {
+            newH = newW / aspectPreset;
+          } else {
+            const ratioH = newW / aspectPreset;
+            if (ratioH <= imgNatural.h) {
+              newH = ratioH;
+            } else {
+              newH = Math.min(newH, imgNatural.h);
+              newW = newH * aspectPreset;
+            }
+          }
+          if (newX + newW > imgNatural.w) newW = imgNatural.w - newX;
+          if (newY + newH > imgNatural.h) newH = imgNatural.h - newY;
+          if (handle.includes("w")) newX = startCrop.x + startCrop.width - newW;
+          if (handle.includes("n")) newY = startCrop.y + startCrop.height - newH;
+        }
+
+        newCrop = { x: newX, y: newY, width: newW, height: newH };
+      }
+
+      setCrop(newCrop);
+    };
+
+    const onUp = () => { dragRef.current = null; };
+
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  }, [imgNatural, aspectPreset]);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !imgRef.current) return;
@@ -125,22 +371,60 @@ export default function CropImageTool({
     const sy = crop.y / imgNatural.h;
     const sw = crop.width / imgNatural.w;
     const sh = crop.height / imgNatural.h;
+
+    // Dark overlay outside crop
     ctx.fillStyle = "rgba(0,0,0,0.5)";
     ctx.fillRect(offsetX, offsetY, w, h);
-    ctx.drawImage(
-      img,
-      sx * w + offsetX,
-      sy * h + offsetY,
-      sw * w,
-      sh * h,
-      sx * w + offsetX,
-      sy * h + offsetY,
-      sw * w,
-      sh * h
-    );
+
+    // Clear the crop area (show original)
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(sx * w + offsetX, sy * h + offsetY, sw * w, sh * h);
+    ctx.clip();
+    ctx.drawImage(img, offsetX, offsetY, w, h);
+    ctx.restore();
+
+    // Crop border
     ctx.strokeStyle = "#fff";
     ctx.lineWidth = 2;
     ctx.strokeRect(sx * w + offsetX, sy * h + offsetY, sw * w, sh * h);
+
+    // Grid lines (rule of thirds)
+    ctx.strokeStyle = "rgba(255,255,255,0.3)";
+    ctx.lineWidth = 1;
+    for (let i = 1; i < 3; i++) {
+      const lx = sx * w + offsetX + (sw * w * i) / 3;
+      ctx.beginPath();
+      ctx.moveTo(lx, sy * h + offsetY);
+      ctx.lineTo(lx, sy * h + offsetY + sh * h);
+      ctx.stroke();
+      const ly = sy * h + offsetY + (sh * h * i) / 3;
+      ctx.beginPath();
+      ctx.moveTo(sx * w + offsetX, ly);
+      ctx.lineTo(sx * w + offsetX + sw * w, ly);
+      ctx.stroke();
+    }
+
+    // Resize handles
+    const handles: [number, number][] = [
+      [sx * w + offsetX, sy * h + offsetY],
+      [sx * w + offsetX + sw * w, sy * h + offsetY],
+      [sx * w + offsetX, sy * h + offsetY + sh * h],
+      [sx * w + offsetX + sw * w, sy * h + offsetY + sh * h],
+      [sx * w + offsetX + sw * w / 2, sy * h + offsetY],
+      [sx * w + offsetX + sw * w / 2, sy * h + offsetY + sh * h],
+      [sx * w + offsetX, sy * h + offsetY + sh * h / 2],
+      [sx * w + offsetX + sw * w, sy * h + offsetY + sh * h / 2],
+    ];
+    ctx.fillStyle = "#fff";
+    ctx.strokeStyle = "rgba(0,0,0,0.3)";
+    ctx.lineWidth = 1;
+    for (const [hx, hy] of handles) {
+      ctx.beginPath();
+      ctx.arc(hx, hy, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    }
   }, [crop, imgNatural, preview]);
 
   const handleAspectChange = useCallback(
@@ -288,13 +572,20 @@ export default function CropImageTool({
                 Remove
               </button>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center" ref={containerRef}>
               <canvas
                 ref={canvasRef}
                 className="max-w-full rounded-md"
-                style={{ maxHeight: 400 }}
+                style={{ maxHeight: 400, cursor: "crosshair" }}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
               />
             </div>
+            <p className="mt-2 text-center text-xs text-[var(--color-muted-foreground)]">
+              Drag the crop area to move it. Drag the corner/edge handles to resize.
+            </p>
           </div>
         )}
 
