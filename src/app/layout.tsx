@@ -1,0 +1,94 @@
+import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import { ThemeProvider } from "@/lib/theme-provider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
+import "./globals.css";
+import { cn } from "@/lib/utils";
+
+/* ── Plus Jakarta Sans — loaded via next/font for optimal performance ── */
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+    metadataBase: new URL("https://krynntools.online"),
+  title: {
+    default: "Krynn Tools – 100+ Free Online Tools | PDF, Image, Text, Dev & More",
+    template: "%s | Krynn Tools",
+  },
+  description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, works in your browser. No signup required.",
+  keywords: ["free online tools", "pdf tools", "image compressor", "text tools", "developer tools", "online calculator", "no signup tools", "browser tools"],
+  authors: [{ name: "Krynn Tools" }],
+  creator: "Krynn Tools",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    other: [{ rel: "manifest", url: "/site.webmanifest" }],
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://krynntools.online",
+    siteName: "Krynn Tools",
+    title: "Krynn Tools – 100+ Free Online Tools",
+    description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, works in your browser.",
+    images: [{ url: "/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Krynn Tools – 100+ Free Online Tools",
+    description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security.",
+    images: ["/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", plusJakarta.variable)}>
+      <head>
+        <meta name="theme-color" content="#E8100A" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body>
+        <ThemeProvider>
+          <Header />
+          <main className="min-h-[calc(100vh-4rem)] pb-20 md:pb-0">{children}</main>
+          <Footer />
+          <CookieConsent />
+        </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Krynn Tools",
+    url: "https://krynntools.online",
+              logo: "https://krynntools.online/logo.png",
+              description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security.",
+              sameAs: [
+                "https://linkedin.com/in/abhijithmr226",
+                "https://instagram.com/krynnlabs",
+              ],
+            }),
+          }}
+        />
+      </body>
+    </html>
+  );
+}

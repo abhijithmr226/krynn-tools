@@ -1,0 +1,174 @@
+export interface Tool {
+  slug: string;
+  name: string;
+  description: string;
+  category: string;
+  categorySlug: string;
+  icon: string;
+  keywords: string[];
+  popular?: boolean;
+}
+
+export interface Category {
+  name: string;
+  slug: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+export const categories: Category[] = [
+  { name: "PDF Tools", slug: "pdf", description: "Compress, merge, split, convert, and edit PDF files online for free.", icon: "FileText", color: "#EF4444" },
+  { name: "Image Tools", slug: "image", description: "Compress, resize, convert, and edit images without uploading to a server.", icon: "Image", color: "#3B82F6" },
+  { name: "Text Tools", slug: "text", description: "Count words, convert case, sort text, generate content, and more.", icon: "Type", color: "#10B981" },
+  { name: "Developer Tools", slug: "dev", description: "Format JSON, encode Base64, generate UUIDs, test regex, and more.", icon: "Code", color: "#8B5CF6" },
+  { name: "Web Design Tools", slug: "design", description: "Generate CSS gradients, box shadows, color palettes, and more.", icon: "Palette", color: "#F59E0B" },
+  { name: "Calculators", slug: "calculators", description: "BMI, age, percentage, EMI, unit converters, and more free calculators.", icon: "Calculator", color: "#06B6D4" },
+  { name: "Security Tools", slug: "security", description: "Generate passwords, hashes, QR codes, and check password strength.", icon: "Shield", color: "#EC4899" },
+  { name: "Misc Tools", slug: "misc", description: "Random numbers, dice roller, coin flip, barcode generator, and more.", icon: "Sparkles", color: "#6366F1" },
+];
+
+export const tools: Tool[] = [
+  // PDF Tools (15)
+  { slug: "compress-pdf", name: "Compress PDF", description: "Reduce PDF file size online free without losing quality. 100% client-side processing.", category: "PDF Tools", categorySlug: "pdf", icon: "FileDown", keywords: ["compress pdf online", "reduce pdf file size", "pdf compressor free", "shrink pdf"], popular: true },
+  { slug: "pdf-to-word", name: "PDF to Word", description: "Convert PDF to Word DOCX documents online free while preserving formatting.", category: "PDF Tools", categorySlug: "pdf", icon: "FileText", keywords: ["pdf to word converter", "pdf to docx online", "convert pdf to word free"] },
+  { slug: "word-to-pdf", name: "Word to PDF", description: "Convert Word documents to PDF format with perfect layout retention.", category: "PDF Tools", categorySlug: "pdf", icon: "FileType", keywords: ["word to pdf converter", "docx to pdf online", "convert word to pdf free"] },
+  { slug: "merge-pdf", name: "Merge PDF", description: "Combine multiple PDF files into a single document in any order you choose.", category: "PDF Tools", categorySlug: "pdf", icon: "Merge", keywords: ["merge pdf online", "combine pdf files", "join pdf documents"], popular: true },
+  { slug: "split-pdf", name: "Split PDF", description: "Extract specific pages or ranges from a PDF into separate files instantly.", category: "PDF Tools", categorySlug: "pdf", icon: "Scissors", keywords: ["split pdf online", "extract pdf pages", "separate pdf pages"] },
+  { slug: "rotate-pdf", name: "Rotate PDF", description: "Rotate all or selected PDF pages by 90, 180, or 270 degrees.", category: "PDF Tools", categorySlug: "pdf", icon: "RotateCw", keywords: ["rotate pdf online", "flip pdf pages", "rotate pdf pages"] },
+  { slug: "delete-pdf-pages", name: "Delete PDF Pages", description: "Remove unwanted pages from a PDF file with a simple page selector.", category: "PDF Tools", categorySlug: "pdf", icon: "Trash2", keywords: ["delete pdf pages", "remove pdf pages", "remove pages from pdf"] },
+  { slug: "protect-pdf", name: "Protect PDF", description: "Encrypt your PDF with a strong password to prevent unauthorized access.", category: "PDF Tools", categorySlug: "pdf", icon: "Shield", keywords: ["protect pdf with password", "add password to pdf", "encrypt pdf"] },
+  { slug: "unlock-pdf", name: "Unlock PDF", description: "Remove password protection from a locked PDF file for unrestricted viewing.", category: "PDF Tools", categorySlug: "pdf", icon: "Unlock", keywords: ["unlock pdf", "remove pdf password", "decrypt pdf"] },
+  { slug: "pdf-to-jpg", name: "PDF to JPG", description: "Convert each PDF page into a high-resolution JPG image for easy sharing.", category: "PDF Tools", categorySlug: "pdf", icon: "Image", keywords: ["pdf to jpg converter", "pdf to image online", "pdf to jpeg free"], popular: true },
+  { slug: "jpg-to-pdf", name: "JPG to PDF", description: "Turn JPG photos into a polished PDF document with adjustable page size.", category: "PDF Tools", categorySlug: "pdf", icon: "FileImage", keywords: ["jpg to pdf converter", "image to pdf online", "jpeg to pdf free"] },
+  { slug: "excel-to-pdf", name: "Excel to PDF", description: "Export Excel spreadsheets to PDF with accurate table and chart rendering.", category: "PDF Tools", categorySlug: "pdf", icon: "Table", keywords: ["excel to pdf converter", "xlsx to pdf online", "spreadsheet to pdf"] },
+  { slug: "ppt-to-pdf", name: "PowerPoint to PDF", description: "Convert PowerPoint presentations to PDF while keeping slides intact.", category: "PDF Tools", categorySlug: "pdf", icon: "Presentation", keywords: ["ppt to pdf converter", "powerpoint to pdf online", "slides to pdf"] },
+  { slug: "extract-images-from-pdf", name: "Extract Images from PDF", description: "Pull out every embedded image from a PDF as individual files instantly.", category: "PDF Tools", categorySlug: "pdf", icon: "Images", keywords: ["extract images from pdf", "pdf image extractor", "get images from pdf"] },
+  { slug: "ocr-pdf", name: "OCR PDF", description: "Recognize and extract text from scanned PDFs and image-based documents.", category: "PDF Tools", categorySlug: "pdf", icon: "ScanText", keywords: ["ocr pdf", "text from scanned pdf", "pdf ocr online"] },
+
+  // Image Tools (15)
+  { slug: "compress-image", name: "Compress Image", description: "Shrink JPEG, PNG, and WebP file sizes while keeping visual quality high.", category: "Image Tools", categorySlug: "image", icon: "Minimize2", keywords: ["compress image online", "reduce image size", "image compressor free"], popular: true },
+  { slug: "resize-image", name: "Resize Image", description: "Scale images to exact pixel dimensions or percentage with aspect ratio lock.", category: "Image Tools", categorySlug: "image", icon: "Maximize2", keywords: ["resize image online", "change image size", "image resizer free"] },
+  { slug: "crop-image", name: "Crop Image", description: "Trim unwanted areas from photos using preset or custom crop dimensions.", category: "Image Tools", categorySlug: "image", icon: "Crop", keywords: ["crop image online", "image cropper free", "photo crop tool"] },
+  { slug: "rotate-image", name: "Rotate Image", description: "Spin images to any angle or flip them horizontally and vertically.", category: "Image Tools", categorySlug: "image", icon: "RotateCw", keywords: ["rotate image online", "rotate photo free", "image rotator"] },
+  { slug: "flip-image", name: "Flip Image", description: "Mirror images horizontally or vertically to correct orientation issues.", category: "Image Tools", categorySlug: "image", icon: "FlipHorizontal", keywords: ["flip image online", "mirror image", "flip photo horizontally"] },
+  { slug: "png-to-jpg", name: "PNG to JPG", description: "Convert PNG images to lightweight JPG format with adjustable quality slider.", category: "Image Tools", categorySlug: "image", icon: "Minimize2", keywords: ["png to jpg converter", "convert png to jpeg online", "png to jpeg free"] },
+  { slug: "jpg-to-png", name: "JPG to PNG", description: "Transform JPG photos into lossless PNG files with optional transparency.", category: "Image Tools", categorySlug: "image", icon: "Maximize2", keywords: ["jpg to png converter", "convert jpeg to png online", "jpg to png free"] },
+  { slug: "webp-converter", name: "WEBP Converter", description: "Convert images to or from modern WebP format for faster web loading.", category: "Image Tools", categorySlug: "image", icon: "RefreshCw", keywords: ["webp converter", "convert to webp online", "image to webp"] },
+  { slug: "svg-to-png", name: "SVG to PNG", description: "Rasterize vector SVG graphics into pixel-perfect PNG images at any resolution.", category: "Image Tools", categorySlug: "image", icon: "SvgToImg", keywords: ["svg to png converter", "convert svg to png", "svg to image"] },
+  { slug: "remove-background", name: "Remove Background", description: "Automatically strip backgrounds from photos to get clean transparent cutouts.", category: "Image Tools", categorySlug: "image", icon: "Eraser", keywords: ["remove background", "bg remover", "remove image background"], popular: true },
+  { slug: "blur-image", name: "Blur Image", description: "Apply adjustable Gaussian blur to images for privacy or artistic effect.", category: "Image Tools", categorySlug: "image", icon: "Circle", keywords: ["blur image online", "image blur tool", "blur photo free"] },
+  { slug: "sharpen-image", name: "Sharpen Image", description: "Enhance blurry or soft images by boosting edge contrast and detail.", category: "Image Tools", categorySlug: "image", icon: "Focus", keywords: ["sharpen image online", "image sharpening tool", "unblur image"] },
+  { slug: "watermark-image", name: "Watermark Image", description: "Overlay custom text or logo watermarks on photos to protect ownership.", category: "Image Tools", categorySlug: "image", icon: "Droplets", keywords: ["add watermark to image", "image watermark tool", "watermark photo online"] },
+  { slug: "add-text-to-image", name: "Add Text to Image", description: "Place styled text overlays on any image with font, color, and size controls.", category: "Image Tools", categorySlug: "image", icon: "Type", keywords: ["add text to image", "text overlay tool", "image text editor"] },
+  { slug: "color-picker", name: "Image Color Picker", description: "Click anywhere on an image to extract its exact HEX, RGB, and HSL values.", category: "Image Tools", categorySlug: "image", icon: "Pipette", keywords: ["color picker from image", "eyedropper tool", "extract color from image"] },
+
+  // Text Tools (15)
+  { slug: "word-counter", name: "Word Counter", description: "Instantly count words, characters, sentences, and paragraphs in any text.", category: "Text Tools", categorySlug: "text", icon: "Hash", keywords: ["word counter online", "character counter", "word count tool"], popular: true },
+  { slug: "character-counter", name: "Character Counter", description: "Get detailed character stats including letters, digits, and whitespace counts.", category: "Text Tools", categorySlug: "text", icon: "Alphabet", keywords: ["character counter online", "text character count", "letter counter"] },
+  { slug: "case-converter", name: "Case Converter", description: "Switch text between UPPERCASE, lowercase, Title Case, and Sentence case.", category: "Text Tools", categorySlug: "text", icon: "CaseSensitive", keywords: ["case converter online", "text case changer", "uppercase lowercase converter"] },
+  { slug: "remove-duplicate-lines", name: "Remove Duplicate Lines", description: "Strip out repeated lines from text while preserving original order.", category: "Text Tools", categorySlug: "text", icon: "ListMinus", keywords: ["remove duplicate lines", "delete duplicate text", "dedupe text online"] },
+  { slug: "text-sorter", name: "Text Sorter", description: "Arrange lines alphabetically, reverse order, or numerically in one click.", category: "Text Tools", categorySlug: "text", icon: "ArrowUpDown", keywords: ["sort text online", "alphabetical sort tool", "sort lines of text"] },
+  { slug: "reverse-text", name: "Reverse Text", description: "Reverse entire text strings, individual words, or character sequences.", category: "Text Tools", categorySlug: "text", icon: "RotateCcw", keywords: ["reverse text online", "backwards text generator", "text reverser"] },
+  { slug: "remove-extra-spaces", name: "Remove Extra Spaces", description: "Clean up double spaces, tabs, and trailing whitespace from any text.", category: "Text Tools", categorySlug: "text", icon: "Space", keywords: ["remove extra spaces", "trim whitespace", "clean text spaces"] },
+  { slug: "line-number-generator", name: "Line Number Generator", description: "Prepend sequential line numbers to every line of your pasted text.", category: "Text Tools", categorySlug: "text", icon: "ListOrdered", keywords: ["line number generator", "add line numbers", "number text lines"] },
+  { slug: "slug-generator", name: "Slug Generator", description: "Transform any text into a URL-safe slug with hyphens and lowercase letters.", category: "Text Tools", categorySlug: "text", icon: "Link", keywords: ["slug generator online", "url slug maker", "seo slug tool"] },
+  { slug: "lorem-ipsum-generator", name: "Lorem Ipsum Generator", description: "Generate realistic placeholder text with custom paragraph and word counts.", category: "Text Tools", categorySlug: "text", icon: "AlignLeft", keywords: ["lorem ipsum generator", "placeholder text generator", "dummy text"] },
+  { slug: "random-text-generator", name: "Random Text Generator", description: "Produce random words, sentences, or paragraphs for testing and mockups.", category: "Text Tools", categorySlug: "text", icon: "Shuffle", keywords: ["random text generator", "random words generator", "random sentence generator"] },
+  { slug: "text-diff-checker", name: "Text Diff Checker", description: "Compare two text blocks side by side with highlighted additions and removals.", category: "Text Tools", categorySlug: "text", icon: "GitCompare", keywords: ["text diff checker", "compare texts online", "diff tool"] },
+  { slug: "html-encoder", name: "HTML Encoder", description: "Convert special characters to HTML entity codes for safe web embedding.", category: "Text Tools", categorySlug: "text", icon: "Code", keywords: ["html encoder online", "html entity encoder", "encode html entities"] },
+  { slug: "html-decoder", name: "HTML Decoder", description: "Translate HTML entity codes back into readable plain text characters.", category: "Text Tools", categorySlug: "text", icon: "CodeXml", keywords: ["html decoder online", "html entity decoder", "decode html entities"] },
+  { slug: "markdown-previewer", name: "Markdown Previewer", description: "Render Markdown to a live HTML preview with split-pane editing view.", category: "Text Tools", categorySlug: "text", icon: "Eye", keywords: ["markdown preview online", "markdown viewer", "markdown editor free"] },
+
+  // Developer Tools (15)
+  { slug: "json-formatter", name: "JSON Formatter", description: "Prettify minified JSON with syntax highlighting and error detection.", category: "Developer Tools", categorySlug: "dev", icon: "Braces", keywords: ["json formatter online", "prettify json", "json beautifier"], popular: true },
+  { slug: "json-validator", name: "JSON Validator", description: "Check JSON syntax and pinpoint exact error locations with line numbers.", category: "Developer Tools", categorySlug: "dev", icon: "CheckCircle", keywords: ["json validator online", "check json syntax", "json error finder"] },
+  { slug: "json-to-csv", name: "JSON to CSV", description: "Flatten nested JSON arrays into downloadable CSV spreadsheets instantly.", category: "Developer Tools", categorySlug: "dev", icon: "Table", keywords: ["json to csv converter", "json to csv online", "export json to csv"] },
+  { slug: "csv-to-json", name: "CSV to JSON", description: "Parse CSV data into structured JSON arrays with proper type inference.", category: "Developer Tools", categorySlug: "dev", icon: "ArrowsClockwise", keywords: ["csv to json converter", "csv to json online", "parse csv to json"] },
+  { slug: "xml-formatter", name: "XML Formatter", description: "Pretty-print minified XML with correct indentation and syntax coloring.", category: "Developer Tools", categorySlug: "dev", icon: "FileCode", keywords: ["xml formatter online", "prettify xml", "xml beautifier"] },
+  { slug: "base64-encode", name: "Base64 Encoder & Decoder", description: "Encode text or files to Base64 and decode Base64 strings back to plain text.", category: "Developer Tools", categorySlug: "dev", icon: "Lock", keywords: ["base64 encoder online", "base64 decode", "base64 converter"], popular: true },
+  { slug: "base64-decode", name: "Base64 Decoder", description: "Paste a Base64 string and instantly get the original text or binary data.", category: "Developer Tools", categorySlug: "dev", icon: "Unlock", keywords: ["base64 decoder online", "decode base64", "base64 to text"] },
+  { slug: "url-encode", name: "URL Encoder", description: "Encode special characters in URLs to make them safe for web transmission.", category: "Developer Tools", categorySlug: "dev", icon: "Link", keywords: ["url encoder online", "encode url", "percent encoding"] },
+  { slug: "url-decode", name: "URL Decoder", description: "Decode percent-encoded URL strings back to their original readable form.", category: "Developer Tools", categorySlug: "dev", icon: "RotateCcw", keywords: ["url decoder online", "decode url", "percent decoding"] },
+  { slug: "regex-tester", name: "Regex Tester", description: "Test regular expressions with live match highlighting and capture groups.", category: "Developer Tools", categorySlug: "dev", icon: "Terminal", keywords: ["regex tester online", "regular expression tester", "regex previewer"], popular: true },
+  { slug: "uuid-generator", name: "UUID Generator", description: "Generate UUID v4 identifiers one at a time or in batches up to 1000.", category: "Developer Tools", categorySlug: "dev", icon: "Fingerprint", keywords: ["uuid generator online", "random uuid", "uuid v4 generator"] },
+  { slug: "hash-generator", name: "Hash Generator", description: "Compute MD5, SHA1, SHA256, and SHA512 hashes from any input text.", category: "Developer Tools", categorySlug: "dev", icon: "Key", keywords: ["hash generator online", "md5 hash", "sha256 generator"] },
+  { slug: "jwt-decoder", name: "JWT Decoder", description: "Decode JSON Web Tokens to view the header, payload, and signature clearly.", category: "Developer Tools", categorySlug: "dev", icon: "Ticket", keywords: ["jwt decoder online", "json web token decoder", "jwt viewer"] },
+  { slug: "sql-formatter", name: "SQL Formatter", description: "Beautify and indent messy SQL queries with keyword-aware formatting.", category: "Developer Tools", categorySlug: "dev", icon: "Database", keywords: ["sql formatter online", "sql beautifier", "format sql query"] },
+  { slug: "css-minifier", name: "CSS Minifier", description: "Strip whitespace and comments from CSS to produce compact production code.", category: "Developer Tools", categorySlug: "dev", icon: "Minimize", keywords: ["css minifier online", "minify css", "compress css code"] },
+
+  // Design Tools (10)
+  { slug: "css-gradient-generator", name: "CSS Gradient Generator", description: "Build linear, radial, and conic CSS gradients with a live visual editor.", category: "Web Design Tools", categorySlug: "design", icon: "Rainbow", keywords: ["css gradient generator", "gradient maker", "linear gradient tool"], popular: true },
+  { slug: "box-shadow-generator", name: "Box Shadow Generator", description: "Design CSS box shadows with interactive controls for blur, spread, and color.", category: "Web Design Tools", categorySlug: "design", icon: "SquaresFour", keywords: ["box shadow generator", "css shadow maker", "drop shadow tool"] },
+  { slug: "border-radius-generator", name: "Border Radius Generator", description: "Create complex CSS border-radius values with a visual corner editor.", category: "Web Design Tools", categorySlug: "design", icon: "Eyedropper", keywords: ["border radius generator", "css border radius", "rounded corners tool"] },
+  { slug: "clip-path-generator", name: "CSS Clip Path Generator", description: "Shape element clipping paths using circles, polygons, and custom points.", category: "Web Design Tools", categorySlug: "design", icon: "Scissors", keywords: ["clip path generator", "css clip path", "shape clip tool"] },
+  { slug: "color-palette-generator", name: "Color Palette Generator", description: "Generate harmonious color schemes from a base color using color theory rules.", category: "Web Design Tools", categorySlug: "design", icon: "Palette", keywords: ["color palette generator", "color scheme tool", "color harmony"], popular: true },
+  { slug: "hex-rgb-converter", name: "HEX to RGB Converter", description: "Convert between HEX, RGB, HSL, and CSS color formats with one click.", category: "Web Design Tools", categorySlug: "design", icon: "Droplets", keywords: ["hex to rgb converter", "color code converter", "rgb to hex online"] },
+  { slug: "tailwind-color-generator", name: "Tailwind Color Generator", description: "Find the closest Tailwind CSS class for any custom HEX or RGB color value.", category: "Web Design Tools", categorySlug: "design", icon: "Paintbrush", keywords: ["tailwind color generator", "tailwind color picker", "tailwind color classes"] },
+  { slug: "font-pairing-tool", name: "Font Pairing Tool", description: "Discover complementary Google Font combinations for headings and body text.", category: "Web Design Tools", categorySlug: "design", icon: "Type", keywords: ["font pairing tool", "font combination finder", "google fonts pairing"] },
+  { slug: "svg-wave-generator", name: "SVG Wave Generator", description: "Design smooth SVG wave dividers with customizable amplitude and segments.", category: "Web Design Tools", categorySlug: "design", icon: "Waves", keywords: ["svg wave generator", "wave shape creator", "svg divider tool"] },
+  { slug: "css-animation-generator", name: "CSS Animation Generator", description: "Craft CSS keyframe animations with a timeline editor and live preview.", category: "Web Design Tools", categorySlug: "design", icon: "Play", keywords: ["css animation generator", "keyframe animation tool", "css animation maker"] },
+
+  // Calculators (15)
+  { slug: "bmi-calculator", name: "BMI Calculator", description: "Compute your Body Mass Index from height and weight with WHO category labels.", category: "Calculators", categorySlug: "calculators", icon: "Heart", keywords: ["bmi calculator online", "body mass index calculator", "bmi calculator free"], popular: true },
+  { slug: "age-calculator", name: "Age Calculator", description: "Find your exact age in years, months, days, hours, and total days lived.", category: "Calculators", categorySlug: "calculators", icon: "Calendar", keywords: ["age calculator online", "calculate age", "age calculator free"], popular: true },
+  { slug: "percentage-calculator", name: "Percentage Calculator", description: "Solve percentage problems including increase, decrease, and difference formulas.", category: "Calculators", categorySlug: "calculators", icon: "Percent", keywords: ["percentage calculator online", "calculate percentage", "percent calculator free"], popular: true },
+  { slug: "loan-emi-calculator", name: "Loan EMI Calculator", description: "Calculate monthly EMI payments with a full amortization schedule breakdown.", category: "Calculators", categorySlug: "calculators", icon: "Landmark", keywords: ["loan emi calculator", "emi calculator online", "home loan calculator"], popular: true },
+  { slug: "compound-interest-calculator", name: "Compound Interest Calculator", description: "Project investment growth with compounding frequency and time period options.", category: "Calculators", categorySlug: "calculators", icon: "TrendingUp", keywords: ["compound interest calculator", "interest calculator online", "investment growth calculator"] },
+  { slug: "discount-calculator", name: "Discount Calculator", description: "Determine the final sale price and total savings after applying a discount.", category: "Calculators", categorySlug: "calculators", icon: "Tag", keywords: ["discount calculator online", "calculate discount", "sale price calculator"] },
+  { slug: "gst-vat-calculator", name: "GST/VAT Calculator", description: "Add GST or VAT to any amount or reverse-calculate tax from a total price.", category: "Calculators", categorySlug: "calculators", icon: "Receipt", keywords: ["gst calculator", "vat calculator", "tax calculator online"] },
+  { slug: "tip-calculator", name: "Tip Calculator", description: "Split restaurant bills and calculate tip amounts with per-person breakdowns.", category: "Calculators", categorySlug: "calculators", icon: "DollarSign", keywords: ["tip calculator online", "gratuity calculator", "tip split calculator"] },
+  { slug: "time-difference-calculator", name: "Time Difference Calculator", description: "Find the exact duration between two dates including days, hours, and minutes.", category: "Calculators", categorySlug: "calculators", icon: "Calendar", keywords: ["time difference calculator", "date difference calculator", "days between dates"] },
+  { slug: "date-calculator", name: "Date Calculator", description: "Add or subtract days, weeks, months, or years from any starting date.", category: "Calculators", categorySlug: "calculators", icon: "CalendarBlank", keywords: ["date calculator", "add days to date", "subtract days from date"] },
+  { slug: "unit-converter", name: "Unit Converter", description: "Convert units for length, weight, temperature, volume, and area instantly.", category: "Calculators", categorySlug: "calculators", icon: "Scales", keywords: ["unit converter online", "measurement converter", "convert units free"], popular: true },
+  { slug: "currency-converter", name: "Currency Converter", description: "Convert between world currencies using up-to-date exchange rate data.", category: "Calculators", categorySlug: "calculators", icon: "Money", keywords: ["currency converter online", "exchange rate calculator", "money converter"] },
+  { slug: "scientific-calculator", name: "Scientific Calculator", description: "Perform trigonometry, logarithms, exponents, and other advanced math operations.", category: "Calculators", categorySlug: "calculators", icon: "Calculator", keywords: ["scientific calculator online", "free scientific calculator", "trigonometry calculator"] },
+  { slug: "fuel-cost-calculator", name: "Fuel Cost Calculator", description: "Estimate total fuel expenses for a trip using distance, mileage, and fuel price.", category: "Calculators", categorySlug: "calculators", icon: "Receipt", keywords: ["fuel cost calculator", "gas cost calculator", "trip fuel cost"] },
+  { slug: "calorie-calculator", name: "Calorie Calculator", description: "Calculate daily calorie needs based on age, weight, height, and activity level.", category: "Calculators", categorySlug: "calculators", icon: "Thermometer", keywords: ["calorie calculator", "bmr calculator", "tdee calculator online"] },
+
+  // Security Tools (7)
+  { slug: "password-generator", name: "Password Generator", description: "Create strong random passwords with customizable length and character rules.", category: "Security Tools", categorySlug: "security", icon: "Password", keywords: ["password generator online", "random password generator", "strong password maker"], popular: true },
+  { slug: "password-strength-checker", name: "Password Strength Checker", description: "Analyze password security with crack-time estimates and improvement tips.", category: "Security Tools", categorySlug: "security", icon: "Shield", keywords: ["password strength checker", "password security test", "is my password strong"] },
+  { slug: "md5-generator", name: "MD5 Generator", description: "Generate MD5 hash digests from any text string for integrity verification.", category: "Security Tools", categorySlug: "security", icon: "Hash", keywords: ["md5 generator online", "md5 hash calculator", "md5 checksum"] },
+  { slug: "sha256-generator", name: "SHA256 Generator", description: "Compute SHA-256 cryptographic hashes for secure data fingerprinting.", category: "Security Tools", categorySlug: "security", icon: "Lock", keywords: ["sha256 generator online", "sha256 hash calculator", "sha256 checksum"] },
+  { slug: "qr-code-generator", name: "QR Code Generator", description: "Create QR codes for URLs, text, WiFi credentials, and contact details.", category: "Security Tools", categorySlug: "security", icon: "QrCode", keywords: ["qr code generator online", "create qr code free", "qr code maker"], popular: true },
+  { slug: "qr-code-scanner", name: "QR Code Scanner", description: "Decode QR codes by uploading an image file or using your device camera.", category: "Security Tools", categorySlug: "security", icon: "ScanText", keywords: ["qr code scanner online", "scan qr code", "read qr code"] },
+  { slug: "random-token-generator", name: "Random Token Generator", description: "Produce cryptographically secure tokens in hex, base64, or alphanumeric formats.", category: "Security Tools", categorySlug: "security", icon: "Key", keywords: ["random token generator", "secure token generator", "api key generator"] },
+
+  // Misc Tools (8)
+  { slug: "barcode-generator", name: "Barcode Generator", description: "Create scannable barcodes in CODE128, EAN, UPC, and other popular formats.", category: "Misc Tools", categorySlug: "misc", icon: "Barcode", keywords: ["barcode generator online", "create barcode free", "barcode maker"] },
+  { slug: "random-number-generator", name: "Random Number Generator", description: "Generate random integers or decimals within any minimum and maximum range.", category: "Misc Tools", categorySlug: "misc", icon: "Shuffle", keywords: ["random number generator online", "random number tool", "generate random numbers"], popular: true },
+  { slug: "dice-roller", name: "Dice Roller", description: "Roll virtual D4, D6, D8, D10, D12, and D20 dice with visible results.", category: "Misc Tools", categorySlug: "misc", icon: "DiceFive", keywords: ["dice roller online", "virtual dice", "roll dice online"], popular: true },
+  { slug: "coin-flip", name: "Coin Flip", description: "Flip a virtual coin for fair heads-or-tails random decision making.", category: "Misc Tools", categorySlug: "misc", icon: "Coin", keywords: ["coin flip online", "virtual coin flip", "heads or tails"] },
+  { slug: "uuid-batch-generator", name: "UUID Batch Generator", description: "Generate up to 1000 unique UUID v4 values at once for bulk data needs.", category: "Misc Tools", categorySlug: "misc", icon: "Barcode", keywords: ["uuid batch generator", "generate multiple uuids", "bulk uuid generator"] },
+  { slug: "time-zone-converter", name: "Time Zone Converter", description: "Convert a date and time between any two of the world's time zones.", category: "Misc Tools", categorySlug: "misc", icon: "Globe", keywords: ["time zone converter", "timezone converter online", "world clock converter"] },
+  { slug: "file-checksum-calculator", name: "File Checksum Calculator", description: "Compute MD5, SHA-256, and SHA-512 checksums for any uploaded file.", category: "Misc Tools", categorySlug: "misc", icon: "Fingerprint", keywords: ["file checksum calculator", "file hash calculator", "md5 file checksum"] },
+  { slug: "internet-speed-test", name: "Internet Speed Test", description: "Measure your download connection speed with a lightweight client-side test.", category: "Misc Tools", categorySlug: "misc", icon: "Lightning", keywords: ["internet speed test", "speed test online", "download speed test"] },
+];
+
+export function getToolsByCategory(categorySlug: string): Tool[] {
+  return tools.filter(t => t.categorySlug === categorySlug);
+}
+
+export function getTool(categorySlug: string, toolSlug: string): Tool | undefined {
+  return tools.find(t => t.categorySlug === categorySlug && t.slug === toolSlug);
+}
+
+export function getRelatedTools(tool: Tool, count = 4): Tool[] {
+  return tools
+    .filter(t => t.categorySlug === tool.categorySlug && t.slug !== tool.slug)
+    .slice(0, count);
+}
+
+export function getPopularTools(count = 8): Tool[] {
+  return tools.filter(t => t.popular).slice(0, count);
+}
+
+export function searchTools(query: string): Tool[] {
+  const q = query.toLowerCase();
+  return tools.filter(t =>
+    t.name.toLowerCase().includes(q) ||
+    t.description.toLowerCase().includes(q) ||
+    t.keywords.some(k => k.toLowerCase().includes(q))
+  );
+}
