@@ -30,6 +30,13 @@ async function callOpenRouter(body: object): Promise<Response> {
   });
 }
 
+export async function GET() {
+  return NextResponse.json({
+    configured: !!OPENROUTER_API_KEY,
+    keyPrefix: OPENROUTER_API_KEY ? OPENROUTER_API_KEY.slice(0, 10) + "..." : null,
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { prompt, systemInstruction } = await req.json();
@@ -39,7 +46,10 @@ export async function POST(req: NextRequest) {
     }
 
     if (!OPENROUTER_API_KEY) {
-      return NextResponse.json({ error: "API key not configured" }, { status: 500 });
+      return NextResponse.json(
+        { error: "API key not configured on server. OPENROUTER_API_KEY is missing." },
+        { status: 500 }
+      );
     }
 
     const messages = [];
@@ -102,7 +112,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("Generate API error:", err);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: `Internal server error: ${err instanceof Error ? err.message : "unknown"}` },
       { status: 500 }
     );
   }
