@@ -14,6 +14,7 @@ interface BlogPost {
   date: string;
   category: string;
   readingTime: string;
+  image: string;
 }
 
 const blogPosts: BlogPost[] = [
@@ -24,6 +25,7 @@ const blogPosts: BlogPost[] = [
     date: "January 15, 2026",
     category: "PDF",
     readingTime: "7 min",
+    image: "/images/home-dark.png",
   },
   {
     slug: "how-to-merge-multiple-pdfs",
@@ -32,6 +34,7 @@ const blogPosts: BlogPost[] = [
     date: "January 20, 2026",
     category: "PDF",
     readingTime: "6 min",
+    image: "/images/header-light.png",
   },
   {
     slug: "10-signs-your-password-isnt-strong-enough",
@@ -40,6 +43,7 @@ const blogPosts: BlogPost[] = [
     date: "January 25, 2026",
     category: "Security",
     readingTime: "8 min",
+    image: "/images/home-dark.png",
   },
   {
     slug: "qr-codes-explained-static-vs-dynamic",
@@ -48,6 +52,7 @@ const blogPosts: BlogPost[] = [
     date: "January 30, 2026",
     category: "Security",
     readingTime: "6 min",
+    image: "/images/header-light.png",
   },
   {
     slug: "how-to-shrink-image-file-size",
@@ -56,6 +61,7 @@ const blogPosts: BlogPost[] = [
     date: "February 1, 2026",
     category: "Image",
     readingTime: "7 min",
+    image: "/images/crop-tutorial.png",
   },
   {
     slug: "how-to-remove-background-from-photo",
@@ -64,6 +70,7 @@ const blogPosts: BlogPost[] = [
     date: "February 5, 2026",
     category: "Image",
     readingTime: "5 min",
+    image: "/images/crop-tutorial.png",
   },
   {
     slug: "json-formatting-best-practices",
@@ -72,6 +79,7 @@ const blogPosts: BlogPost[] = [
     date: "February 10, 2026",
     category: "Developer",
     readingTime: "8 min",
+    image: "/images/home-dark.png",
   },
   {
     slug: "what-is-base64-encoding",
@@ -80,6 +88,7 @@ const blogPosts: BlogPost[] = [
     date: "February 15, 2026",
     category: "Developer",
     readingTime: "7 min",
+    image: "/images/header-light.png",
   },
   {
     slug: "bmi-explained-what-numbers-mean",
@@ -88,6 +97,7 @@ const blogPosts: BlogPost[] = [
     date: "February 20, 2026",
     category: "Health",
     readingTime: "6 min",
+    image: "/images/home-dark.png",
   },
   {
     slug: "how-emi-is-calculated-on-loan",
@@ -96,6 +106,7 @@ const blogPosts: BlogPost[] = [
     date: "February 25, 2026",
     category: "Finance",
     readingTime: "8 min",
+    image: "/images/header-light.png",
   },
 ];
 
@@ -104,7 +115,7 @@ export default function BlogPage() {
     <div className="mx-auto max-w-5xl px-4 py-12">
       <div className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold text-[var(--color-foreground)]">
-          Blog
+          Blog &amp; Tutorials
         </h1>
         <p className="text-lg text-[var(--color-muted-foreground)]">
           Tips, guides, and tutorials for getting the most out of free online tools.
@@ -116,8 +127,33 @@ export default function BlogPage() {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group block rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-6 transition-all duration-200 hover:border-[var(--color-primary)] hover:shadow-lg"
+            className="group block rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 transition-all duration-200 hover:border-[var(--color-primary)] hover:shadow-lg"
           >
+            {/* Visual Thumbnail Card using project screenshots */}
+            <div style={{
+              position: "relative",
+              height: "170px",
+              width: "100%",
+              overflow: "hidden",
+              borderRadius: "8px",
+              marginBottom: "16px",
+              border: "1px solid var(--color-border)",
+              background: "var(--color-muted)",
+            }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={post.image}
+                alt={post.title}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  transition: "transform 250ms ease",
+                }}
+                className="group-hover:scale-[1.03]"
+              />
+            </div>
+
             <div className="mb-3 flex items-center gap-3">
               <span className="rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-xs font-medium text-[var(--color-primary)]">
                 {post.category}
@@ -126,12 +162,15 @@ export default function BlogPage() {
                 {post.readingTime} read
               </span>
             </div>
-            <h2 className="mb-2 text-xl font-bold text-[var(--color-foreground)] group-hover:text-[var(--color-primary)] transition-colors duration-200">
+            
+            <h2 className="mb-2 text-lg font-bold text-[var(--color-foreground)] group-hover:text-[var(--color-primary)] transition-colors duration-200">
               {post.title}
             </h2>
+            
             <p className="mb-4 text-sm text-[var(--color-muted-foreground)] line-clamp-2">
               {post.description}
             </p>
+            
             <div className="flex items-center justify-between">
               <span className="text-xs text-[var(--color-muted-foreground)]">
                 {post.date}
