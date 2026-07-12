@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "index-site": "npx google-indexing-script krynntools.online --path ./service_account.json"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
