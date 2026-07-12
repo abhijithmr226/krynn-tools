@@ -25,7 +25,7 @@ export default function Footer() {
                 <li key={cat.slug}>
                   <Link
                     href={`/${cat.slug}`}
-                    className="text-sm hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer"
+                    className="text-sm text-slate-700 dark:text-slate-300 hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer"
                   >
                     {cat.name}
                   </Link>
@@ -38,9 +38,9 @@ export default function Footer() {
           <div>
             <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--color-muted-foreground)]">Company</h3>
             <ul className="space-y-2">
-              <li><Link href="/about"   className="text-sm hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">About Us</Link></li>
-              <li><Link href="/contact" className="text-sm hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Contact</Link></li>
-              <li><Link href="/blog"    className="text-sm hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Blog</Link></li>
+              <li><Link href="/about"   className="text-sm text-slate-700 dark:text-slate-300 hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">About Us</Link></li>
+              <li><Link href="/contact" className="text-sm text-slate-700 dark:text-slate-300 hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Contact</Link></li>
+              <li><Link href="/blog"    className="text-sm text-slate-700 dark:text-slate-300 hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Blog</Link></li>
             </ul>
           </div>
 
@@ -48,10 +48,10 @@ export default function Footer() {
           <div>
             <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--color-muted-foreground)]">Legal</h3>
             <ul className="space-y-2">
-              <li><Link href="/privacy-policy"  className="text-sm hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Privacy Policy</Link></li>
-              <li><Link href="/terms-of-service" className="text-sm hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Terms of Service</Link></li>
-              <li><Link href="/cookie-policy"   className="text-sm hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Cookie Policy</Link></li>
-              <li><Link href="/disclaimer"      className="text-sm hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Disclaimer</Link></li>
+              <li><Link href="/privacy-policy"  className="text-sm text-slate-700 dark:text-slate-300 hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Privacy Policy</Link></li>
+              <li><Link href="/terms-of-service" className="text-sm text-slate-700 dark:text-slate-300 hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Terms of Service</Link></li>
+              <li><Link href="/cookie-policy"   className="text-sm text-slate-700 dark:text-slate-300 hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Cookie Policy</Link></li>
+              <li><Link href="/disclaimer"      className="text-sm text-slate-700 dark:text-slate-300 hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Disclaimer</Link></li>
             </ul>
           </div>
         </div>

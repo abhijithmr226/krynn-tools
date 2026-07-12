@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/lib/theme-provider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import Script from "next/script";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -66,10 +67,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="theme-color" content="#E8100A" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script
+        {/* Preconnect to critical third-party domains to accelerate connection setup */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Lazy load Google AdSense script to remove it from the critical render path */}
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6232926894418612"
           crossOrigin="anonymous"
+          strategy="lazyOnload"
         />
       </head>
       <body>
