@@ -3,7 +3,7 @@ import { tools, categories } from "@/lib/tools";
 import fs from "fs";
 import path from "path";
 
-const BASE_URL = "https://krynntools.online";
+const BASE_URL = "https://www.krynntools.online";
 
 function getBlogSlugs(): string[] {
   const blogDir = path.join(process.cwd(), "src/app/blog");

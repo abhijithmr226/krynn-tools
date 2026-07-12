@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   title: "How to Crop Passport Size Photos Online",
   description: "Learn how to crop passport size photos online for free. Includes US, UK, India, and other country-specific photo dimensions.",
   keywords: ["passport photo crop","passport size photo","crop photo online","passport photo dimensions"],
-  alternates: { canonical: "https://krynntools.online/blog/how-to-crop-passport-size-photos-online" },
+  alternates: { canonical: "https://www.krynntools.online/blog/how-to-crop-passport-size-photos-online" },
   openGraph: {
     title: "How to Crop Passport Size Photos Online",
     description: "Learn how to crop passport size photos online for free. Includes US, UK, India, and other country-specific photo dimensions.",
     type: "article",
-    url: "https://krynntools.online/blog/how-to-crop-passport-size-photos-online",
-    images: [{ url: "https://krynntools.online/images/blog/compress-image.svg", width: 1200, height: 630 }],
+    url: "https://www.krynntools.online/blog/how-to-crop-passport-size-photos-online",
+    images: [{ url: "https://www.krynntools.online/images/blog/compress-image.svg", width: 1200, height: 630 }],
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
@@ -40,7 +40,7 @@ export default function BlogPost() {
               datePublished: "2026-07-12",
               author: { "@type": "Organization", name: "Krynn Tools" },
               publisher: { "@type": "Organization", name: "Krynn Tools", logo: { "@type": "ImageObject", url: "/logo.png" } },
-              mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/how-to-crop-passport-size-photos-online" },
+              mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.krynntools.online/blog/how-to-crop-passport-size-photos-online" },
             }),
           }}
         />

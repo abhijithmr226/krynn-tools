@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   title: "How to Extract Text from Scanned PDFs",
   description: "Learn how to extract text from scanned PDFs using free client-side OCR. Step-by-step guide with privacy-first processing.",
   keywords: ["extract text from pdf","ocr pdf","scanned pdf to text","pdf text extraction"],
-  alternates: { canonical: "https://krynntools.online/blog/how-to-extract-text-from-scanned-pdfs" },
+  alternates: { canonical: "https://www.krynntools.online/blog/how-to-extract-text-from-scanned-pdfs" },
   openGraph: {
     title: "How to Extract Text from Scanned PDFs",
     description: "Learn how to extract text from scanned PDFs using free client-side OCR. Step-by-step guide with privacy-first processing.",
     type: "article",
-    url: "https://krynntools.online/blog/how-to-extract-text-from-scanned-pdfs",
-    images: [{ url: "https://krynntools.online/images/blog/compress-pdf.svg", width: 1200, height: 630 }],
+    url: "https://www.krynntools.online/blog/how-to-extract-text-from-scanned-pdfs",
+    images: [{ url: "https://www.krynntools.online/images/blog/compress-pdf.svg", width: 1200, height: 630 }],
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
@@ -40,7 +40,7 @@ export default function BlogPost() {
               datePublished: "2026-07-12",
               author: { "@type": "Organization", name: "Krynn Tools" },
               publisher: { "@type": "Organization", name: "Krynn Tools", logo: { "@type": "ImageObject", url: "/logo.png" } },
-              mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/how-to-extract-text-from-scanned-pdfs" },
+              mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.krynntools.online/blog/how-to-extract-text-from-scanned-pdfs" },
             }),
           }}
         />

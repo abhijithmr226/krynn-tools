@@ -18,9 +18,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://krynntools.online"),
+  metadataBase: new URL("https://www.krynntools.online"),
   title: {
-    default: "Krynn Tools – 100+ Free Online Tools | PDF, Image, Text, Dev & More",
+    default: "Krynn Tools - 100+ Free Online Tools | PDF, Image, Text, Dev & More",
     template: "%s | Krynn Tools",
   },
   description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, works in your browser. No signup required.",
@@ -39,17 +39,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://krynntools.online",
+    url: "https://www.krynntools.online",
     siteName: "Krynn Tools",
-    title: "Krynn Tools – 100+ Free Online Tools",
+    title: "Krynn Tools - 100+ Free Online Tools",
     description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, works in your browser.",
-    images: [{ url: "https://krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
+    images: [{ url: "https://www.krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Krynn Tools – 100+ Free Online Tools",
+    site: "@krynnlabs",
+    creator: "@krynnlabs",
+    title: "Krynn Tools - 100+ Free Online Tools",
     description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security.",
-    images: ["https://krynntools.online/logo.png"],
+    images: ["https://www.krynntools.online/logo.png"],
   },
   robots: {
     index: true,
@@ -66,7 +68,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={cn("font-sans", plusJakarta.variable)}>
       <head>
         <meta name="theme-color" content="#E8100A" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Preconnect to critical third-party domains to accelerate connection setup */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
@@ -94,12 +95,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Krynn Tools",
-    url: "https://krynntools.online",
-              logo: "https://krynntools.online/logo.png",
+              url: "https://www.krynntools.online",
+              logo: "https://www.krynntools.online/logo.png",
               description: "100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security.",
               sameAs: [
-                "https://linkedin.com/in/abhijithmr226",
-                "https://instagram.com/krynnlabs",
+                "https://www.linkedin.com/in/abhijithmr226",
+                "https://www.instagram.com/krynnlabs",
               ],
             }),
           }}

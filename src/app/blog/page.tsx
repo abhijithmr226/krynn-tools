@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Blog & Tutorials",
   description: "Tips, guides, and tutorials for using free online tools. Learn about PDF compression, image optimization, JSON formatting, and more.",
   keywords: ["online tools blog", "PDF tips", "image compression guide", "developer tools", "free online utilities"],
-  alternates: { canonical: "https://krynntools.online/blog" },
+  alternates: { canonical: "https://www.krynntools.online/blog" },
 };
 
 interface BlogPost {

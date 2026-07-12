@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us",
   description: "About Krynn Tools. Learn about our free online tools collection.",
-  alternates: { canonical: "https://krynntools.online/about" },
+  alternates: { canonical: "https://www.krynntools.online/about" },
 };
 
 export default function AboutPage() {

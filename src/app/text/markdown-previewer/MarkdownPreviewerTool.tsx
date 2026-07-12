@@ -81,7 +81,7 @@ const testSpeed = (mbps) => {
 };
 \`\`\`
 
-Created by [Krynn Tools](https://krynntools.online).
+Created by [Krynn Tools](https://www.krynntools.online).
 `;
 
 export default function MarkdownPreviewerTool({ relatedTools, schema }: Props) {

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms of Service for Krynn Tools. Read our terms and conditions.",
-  alternates: { canonical: "https://krynntools.online/terms-of-service" },
+  alternates: { canonical: "https://www.krynntools.online/terms-of-service" },
 };
 
 export default function TermsOfService() {

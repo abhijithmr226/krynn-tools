@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Tool } from "./tools";
 
-const BASE_URL = "https://krynntools.online";
+const BASE_URL = "https://www.krynntools.online";
 const SITE_NAME = "Krynn Tools";
 
 export function generateToolMetadata(tool: Tool): Metadata {

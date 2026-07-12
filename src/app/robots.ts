@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/admin/"],
       },
     ],
-    sitemap: "https://krynntools.online/sitemap.xml",
+    sitemap: "https://www.krynntools.online/sitemap.xml",
   };
 }

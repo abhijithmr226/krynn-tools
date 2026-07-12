@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   title: "Best Free Dice Roller for Board Games",
   description: "Find the best free online dice roller for board games and tabletop RPGs. Roll D4, D6, D8, D10, D12, D20 with realistic animations.",
   keywords: ["dice roller","online dice roller","virtual dice","board game dice"],
-  alternates: { canonical: "https://krynntools.online/blog/best-free-dice-roller-for-board-games" },
+  alternates: { canonical: "https://www.krynntools.online/blog/best-free-dice-roller-for-board-games" },
   openGraph: {
     title: "Best Free Dice Roller for Board Games",
     description: "Find the best free online dice roller for board games and tabletop RPGs. Roll D4, D6, D8, D10, D12, D20 with realistic animations.",
     type: "article",
-    url: "https://krynntools.online/blog/best-free-dice-roller-for-board-games",
-    images: [{ url: "https://krynntools.online/images/blog/base64-encoder.svg", width: 1200, height: 630 }],
+    url: "https://www.krynntools.online/blog/best-free-dice-roller-for-board-games",
+    images: [{ url: "https://www.krynntools.online/images/blog/base64-encoder.svg", width: 1200, height: 630 }],
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
@@ -40,7 +40,7 @@ export default function BlogPost() {
               datePublished: "2026-07-12",
               author: { "@type": "Organization", name: "Krynn Tools" },
               publisher: { "@type": "Organization", name: "Krynn Tools", logo: { "@type": "ImageObject", url: "/logo.png" } },
-              mainEntityOfPage: { "@type": "WebPage", "@id": "https://krynntools.online/blog/best-free-dice-roller-for-board-games" },
+              mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.krynntools.online/blog/best-free-dice-roller-for-board-games" },
             }),
           }}
         />
