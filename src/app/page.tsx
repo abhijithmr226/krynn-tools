@@ -441,7 +441,7 @@ export default function HomePage() {
           <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", marginBottom: "14px" }}>
             Ready to Get Started?
           </h2>
-          <p style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)", color: "rgba(255,255,255,0.82)", lineHeight: 1.7, marginBottom: "32px" }}>
+          <p style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)", color: "#fff", lineHeight: 1.7, marginBottom: "32px" }}>
             Join thousands of users who rely on Krynn Tools every day. Free, fast, and no account required.
           </p>
           <Link

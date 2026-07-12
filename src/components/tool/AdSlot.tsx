@@ -31,15 +31,14 @@ const ADS = {
 function AdUnit({ size }: { size: keyof typeof ADS }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const config = ADS[size];
+  const [loadError, setLoadError] = useState(false);
 
   const loadAd = useCallback(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || loadError) return;
     const container = containerRef.current;
 
-    // Clear previous attempt
     container.innerHTML = "";
 
-    // 1. Create and inject the atOptions inline script FIRST (synchronous)
     const optScript = document.createElement("script");
     optScript.textContent = `atOptions = ${JSON.stringify({
       key: config.key,
@@ -50,16 +49,37 @@ function AdUnit({ size }: { size: keyof typeof ADS }) {
     })};`;
     container.appendChild(optScript);
 
-    // 2. Then load the invoke script (reads atOptions and creates iframe)
     const invokeScript = document.createElement("script");
     invokeScript.src = config.src;
     invokeScript.async = true;
+    invokeScript.onerror = () => setLoadError(true);
     container.appendChild(invokeScript);
-  }, [config]);
+  }, [config, loadError]);
 
   useEffect(() => {
-    loadAd();
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if ("requestIdleCallback" in window) {
+              (window as any).requestIdleCallback(loadAd, { timeout: 2000 });
+            } else {
+              setTimeout(loadAd, 0);
+            }
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
   }, [loadAd]);
+
+  if (loadError) return null;
 
   return (
     <div
@@ -86,7 +106,6 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
 
   if (!visible || dismissed) return null;
 
-  // Mobile anchor ad
   if (position === "mobile-anchor") {
     if (!isMobile) return null;
     return (
