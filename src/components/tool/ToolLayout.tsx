@@ -447,18 +447,20 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
           <p className="text-sm text-[var(--color-muted-foreground)]">Real-time comments from our global community of users.</p>
         </div>
         
-        {/* Rating summary block */}
-        <div className="flex items-center gap-4 bg-[var(--color-muted)] p-4 rounded-xl border border-[var(--color-border)] self-start">
-          <div className="text-center">
-            <span className="block text-3xl font-extrabold text-[var(--color-foreground)] leading-none">{averageRating}</span>
-            <span className="text-[10px] uppercase font-bold text-[var(--color-muted-foreground)] tracking-wider mt-1 block">out of 5</span>
+        {/* Rating summary — only shown when there are real reviews */}
+        {reviews.length > 0 && (
+          <div className="flex items-center gap-4 bg-[var(--color-muted)] p-4 rounded-xl border border-[var(--color-border)] self-start">
+            <div className="text-center">
+              <span className="block text-3xl font-extrabold text-[var(--color-foreground)] leading-none">{averageRating}</span>
+              <span className="text-[10px] uppercase font-bold text-[var(--color-muted-foreground)] tracking-wider mt-1 block">out of 5</span>
+            </div>
+            <div className="h-10 w-[1.5px] bg-[var(--color-border)]" />
+            <div>
+              {renderStars(Math.round(parseFloat(averageRating)), 18)}
+              <span className="text-xs font-semibold text-[var(--color-muted-foreground)] mt-1 block">{reviews.length} {reviews.length === 1 ? "review" : "reviews"}</span>
+            </div>
           </div>
-          <div className="h-10 w-[1.5px] bg-[var(--color-border)]" />
-          <div>
-            {renderStars(Math.round(parseFloat(averageRating)), 18)}
-            <span className="text-xs font-semibold text-[var(--color-muted-foreground)] mt-1 block">{reviews.length} reviews submitted</span>
-          </div>
-        </div>
+        )}
       </div>
 
       {/* Review list */}

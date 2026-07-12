@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-01-20T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Merge Multiple PDFs Into One File for Free",
+    description: "Learn how to merge multiple PDF files into a single document for free. Client-side processing keeps your files private.",
+    images: ["https://www.krynntools.online/images/blog/merge-pdf.svg"],
+  },
 };
 
 export default function BlogPost() {

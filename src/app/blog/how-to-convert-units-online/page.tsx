@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Convert Units Online (Length, Weight, Temperature)",
+    description: "Convert between metric and imperial units for length, weight, temperature, volume, and area. Free online unit converter.",
+    images: ["https://www.krynntools.online/images/blog/unit-converter.svg"],
+  },
 };
 
 export default function BlogPost() {

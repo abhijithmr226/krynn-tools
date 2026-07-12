@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-02-05T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Remove a Background From a Photo in 10 Seconds",
+    description: "Remove photo backgrounds instantly with a free browser-based tool. No software install, no upload required.",
+    images: ["https://www.krynntools.online/images/blog/remove-background.svg"],
+  },
 };
 
 export default function BlogPost() {

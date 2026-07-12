@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-02-25T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How EMI Is Calculated on a Loan (With Formula)",
+    description: "Understand how loan EMI is calculated with the reducing balance formula. Includes examples and a free calculator.",
+    images: ["https://www.krynntools.online/images/blog/loan-emi-calculator.svg"],
+  },
 };
 
 export default function BlogPost() {

@@ -4,6 +4,20 @@ export const metadata: Metadata = {
   title: "Disclaimer",
   description: "Disclaimer for Krynn Tools.",
   alternates: { canonical: "https://www.krynntools.online/disclaimer" },
+  openGraph: {
+    title: "Disclaimer | Krynn Tools",
+    description: "Disclaimer for Krynn Tools.",
+    url: "https://www.krynntools.online/disclaimer",
+    siteName: "Krynn Tools",
+    type: "website",
+    images: [{ url: "https://www.krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Disclaimer | Krynn Tools",
+    description: "Disclaimer for Krynn Tools.",
+    images: ["https://www.krynntools.online/logo.png"],
+  },
 };
 
 export default function DisclaimerPage() {

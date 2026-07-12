@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-02-10T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "JSON Formatting Best Practices for Developers",
+    description: "Master JSON formatting with best practices for indentation, naming, validation, and tooling.",
+    images: ["https://www.krynntools.online/images/blog/json-formatter.svg"],
+  },
 };
 
 export default function BlogPost() {

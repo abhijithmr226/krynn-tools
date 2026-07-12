@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Best Free Dice Roller for Board Games",
+    description: "Find the best free online dice roller for board games and tabletop RPGs. Roll D4, D6, D8, D10, D12, D20 with realistic animations.",
+    images: ["https://www.krynntools.online/images/blog/base64-encoder.svg"],
+  },
 };
 
 export default function BlogPost() {

@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-03-01T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Best Practices for QR Code Design",
+    description: "Learn QR code design best practices for print and digital. Ensure scannability with size, contrast, error correction, and branding tips.",
+    images: ["https://www.krynntools.online/images/blog/qr-code-generator.svg"],
+  },
 };
 
 export default function BlogPost() {

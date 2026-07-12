@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Checksum a File (MD5, SHA-256, SHA-512)",
+    description: "Verify file integrity by computing MD5, SHA-256, and SHA-512 checksums. Free online file checksum calculator.",
+    images: ["https://www.krynntools.online/images/blog/file-checksum-calculator.svg"],
+  },
 };
 
 export default function BlogPost() {

@@ -4,6 +4,20 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Terms of Service for Krynn Tools. Read our terms and conditions.",
   alternates: { canonical: "https://www.krynntools.online/terms-of-service" },
+  openGraph: {
+    title: "Terms of Service | Krynn Tools",
+    description: "Terms of Service for Krynn Tools. Read our terms and conditions.",
+    url: "https://www.krynntools.online/terms-of-service",
+    siteName: "Krynn Tools",
+    type: "website",
+    images: [{ url: "https://www.krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | Krynn Tools",
+    description: "Terms of Service for Krynn Tools. Read our terms and conditions.",
+    images: ["https://www.krynntools.online/logo.png"],
+  },
 };
 
 export default function TermsOfService() {

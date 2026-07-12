@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-02-15T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "What Is Base64 Encoding and When Do You Need It?",
+    description: "Understand Base64 encoding, how it works, and when you actually need to use it. Practical examples for developers.",
+    images: ["https://www.krynntools.online/images/blog/base64-encoder.svg"],
+  },
 };
 
 export default function BlogPost() {

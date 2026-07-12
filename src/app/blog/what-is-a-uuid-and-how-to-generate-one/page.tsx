@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "What Is a UUID and How to Generate One",
+    description: "Understand UUID v4 identifiers, when to use them, and how to generate unique IDs for your applications. Free UUID generator tool.",
+    images: ["https://www.krynntools.online/images/blog/uuid-generator.svg"],
+  },
 };
 
 export default function BlogPost() {

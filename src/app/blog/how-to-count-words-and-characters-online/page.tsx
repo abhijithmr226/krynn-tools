@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Count Words and Characters Online",
+    description: "Count words, characters, sentences, and paragraphs in any text instantly. Free online word counter and character counter tool.",
+    images: ["https://www.krynntools.online/images/blog/word-counter.svg"],
+  },
 };
 
 export default function BlogPost() {

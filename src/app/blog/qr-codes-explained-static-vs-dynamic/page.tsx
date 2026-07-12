@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-01-30T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "QR Codes Explained: Static vs Dynamic",
+    description: "Understand the difference between static and dynamic QR codes, when to use each, and how to generate them for free.",
+    images: ["https://www.krynntools.online/images/blog/qr-code-generator.svg"],
+  },
 };
 
 export default function BlogPost() {

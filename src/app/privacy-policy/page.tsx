@@ -4,6 +4,20 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Privacy Policy for Krynn Tools. Learn how we handle your data and protect your privacy.",
   alternates: { canonical: "https://www.krynntools.online/privacy-policy" },
+  openGraph: {
+    title: "Privacy Policy | Krynn Tools",
+    description: "Privacy Policy for Krynn Tools. Learn how we handle your data and protect your privacy.",
+    url: "https://www.krynntools.online/privacy-policy",
+    siteName: "Krynn Tools",
+    type: "website",
+    images: [{ url: "https://www.krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Krynn Tools",
+    description: "Privacy Policy for Krynn Tools. Learn how we handle your data and protect your privacy.",
+    images: ["https://www.krynntools.online/logo.png"],
+  },
 };
 
 export default function PrivacyPolicy() {

@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Calculate Percentage Online (With Examples)",
+    description: "Learn how to calculate percentages, percentage increase, decrease, and difference. Free online percentage calculator with step-by-step examples.",
+    images: ["https://www.krynntools.online/images/blog/percentage-calculator.svg"],
+  },
 };
 
 export default function BlogPost() {

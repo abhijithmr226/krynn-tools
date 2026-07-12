@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-01-15T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Compress a PDF Without Losing Quality",
+    description: "Learn how to compress a PDF file without losing quality. Free client-side tool for fast, secure PDF optimization.",
+    images: ["https://www.krynntools.online/images/blog/compress-pdf.svg"],
+  },
 };
 
 export default function BlogPost() {

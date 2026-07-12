@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Resize Images for Every Social Media Platform",
+    description: "Resize images for Instagram, Facebook, Twitter, YouTube, and LinkedIn with correct dimensions. Free social media image resizer.",
+    images: ["https://www.krynntools.online/images/blog/social-image-resizer.svg"],
+  },
 };
 
 export default function BlogPost() {

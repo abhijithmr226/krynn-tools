@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-03-05T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Generate QR Codes for Business",
+    description: "Create QR codes for menus, events, payments, and marketing. Step-by-step guide for business owners.",
+    images: ["https://www.krynntools.online/images/blog/qr-code-generator.svg"],
+  },
 };
 
 export default function BlogPost() {

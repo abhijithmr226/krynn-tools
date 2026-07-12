@@ -4,6 +4,20 @@ export const metadata: Metadata = {
   title: "About Us",
   description: "About Krynn Tools. Learn about our free online tools collection.",
   alternates: { canonical: "https://www.krynntools.online/about" },
+  openGraph: {
+    title: "About Us | Krynn Tools",
+    description: "About Krynn Tools. Learn about our free online tools collection.",
+    url: "https://www.krynntools.online/about",
+    siteName: "Krynn Tools",
+    type: "website",
+    images: [{ url: "https://www.krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | Krynn Tools",
+    description: "About Krynn Tools. Learn about our free online tools collection.",
+    images: ["https://www.krynntools.online/logo.png"],
+  },
 };
 
 export default function AboutPage() {
@@ -28,7 +42,7 @@ export default function AboutPage() {
         </p>
 
         <h2 className="text-xl font-bold text-[var(--color-foreground)]">Our Tools</h2>
-        <p>We offer tools across 8 categories:</p>
+        <p>We offer tools across 10 categories:</p>
         <ul className="list-disc pl-6 space-y-2">
           <li><strong>PDF Tools</strong> – Compress, merge, split, convert PDF files</li>
           <li><strong>Image Tools</strong> – Compress, resize, convert images</li>
@@ -37,6 +51,8 @@ export default function AboutPage() {
           <li><strong>Web Design Tools</strong> – CSS gradient generator, color palette generator</li>
           <li><strong>Calculators</strong> – BMI, age, percentage, and unit converters</li>
           <li><strong>Security Tools</strong> – Password generator, hash generator</li>
+          <li><strong>Social Media Tools</strong> – Hashtag counter, bio counter, image resizer</li>
+          <li><strong>AI Writing Tools</strong> – Essay writer, blog generator, content improver</li>
           <li><strong>Misc Tools</strong> – Barcode generator, dice roller, coin flip, and more</li>
         </ul>
 

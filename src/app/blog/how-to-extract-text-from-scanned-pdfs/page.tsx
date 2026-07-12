@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Extract Text from Scanned PDFs",
+    description: "Learn how to extract text from scanned PDFs using free client-side OCR. Step-by-step guide with privacy-first processing.",
+    images: ["https://www.krynntools.online/images/blog/compress-pdf.svg"],
+  },
 };
 
 export default function BlogPost() {

@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Generate a Strong Password Online",
+    description: "Learn how to generate strong, random passwords online. Free tool creates secure passwords with customizable length and character rules.",
+    images: ["https://www.krynntools.online/images/blog/password-generator.svg"],
+  },
 };
 
 export default function BlogPost() {

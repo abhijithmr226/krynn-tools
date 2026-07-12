@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Crop Passport Size Photos Online",
+    description: "Learn how to crop passport size photos online for free. Includes US, UK, India, and other country-specific photo dimensions.",
+    images: ["https://www.krynntools.online/images/blog/compress-image.svg"],
+  },
 };
 
 export default function BlogPost() {

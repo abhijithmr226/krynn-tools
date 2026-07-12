@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-07-12T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Convert Text Case Online (UPPERCASE, lowercase, Title Case)",
+    description: "Convert text between UPPERCASE, lowercase, Title Case, and Sentence case instantly. Free online case converter tool.",
+    images: ["https://www.krynntools.online/images/blog/case-converter.svg"],
+  },
 };
 
 export default function BlogPost() {

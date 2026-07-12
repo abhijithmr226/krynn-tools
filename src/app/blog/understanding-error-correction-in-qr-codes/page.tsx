@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-03-10T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Understanding Error Correction in QR Codes",
+    description: "Learn how QR code error correction works (L, M, Q, H levels) and why it matters for durability and design.",
+    images: ["https://www.krynntools.online/images/blog/qr-code-generator.svg"],
+  },
 };
 
 export default function BlogPost() {

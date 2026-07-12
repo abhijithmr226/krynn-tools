@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-02-01T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Shrink Image File Size Without Losing Quality",
+    description: "Learn how to shrink image file sizes for web, email, and social media without losing visible quality.",
+    images: ["https://www.krynntools.online/images/blog/compress-image.svg"],
+  },
 };
 
 export default function BlogPost() {

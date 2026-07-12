@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-01-25T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "10 Signs Your Password Isn't Strong Enough",
+    description: "Is your password really protecting you? Learn 10 warning signs that your passwords need an upgrade.",
+    images: ["https://www.krynntools.online/images/blog/password-generator.svg"],
+  },
 };
 
 export default function BlogPost() {

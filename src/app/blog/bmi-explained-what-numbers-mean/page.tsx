@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     publishedTime: "2026-02-20T00:00:00Z",
     authors: ["Krynn Tools"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "BMI Explained: What the Numbers Actually Mean",
+    description: "Understand BMI categories, how to calculate yours, and what the numbers really tell you about your health.",
+    images: ["https://www.krynntools.online/images/blog/bmi-calculator.svg"],
+  },
 };
 
 export default function BlogPost() {

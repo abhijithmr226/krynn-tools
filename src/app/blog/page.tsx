@@ -7,6 +7,20 @@ export const metadata: Metadata = {
   description: "Tips, guides, and tutorials for using free online tools. Learn about PDF compression, image optimization, JSON formatting, and more.",
   keywords: ["online tools blog", "PDF tips", "image compression guide", "developer tools", "free online utilities"],
   alternates: { canonical: "https://www.krynntools.online/blog" },
+  openGraph: {
+    title: "Blog & Tutorials | Krynn Tools",
+    description: "Tips, guides, and tutorials for using free online tools. Learn about PDF compression, image optimization, JSON formatting, and more.",
+    url: "https://www.krynntools.online/blog",
+    siteName: "Krynn Tools",
+    type: "website",
+    images: [{ url: "https://www.krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools Blog" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog & Tutorials | Krynn Tools",
+    description: "Tips, guides, and tutorials for using free online tools.",
+    images: ["https://www.krynntools.online/logo.png"],
+  },
 };
 
 interface BlogPost {

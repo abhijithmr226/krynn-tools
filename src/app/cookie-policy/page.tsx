@@ -4,6 +4,20 @@ export const metadata: Metadata = {
   title: "Cookie Policy",
   description: "Cookie Policy for Krynn Tools. Learn about how we use cookies.",
   alternates: { canonical: "https://www.krynntools.online/cookie-policy" },
+  openGraph: {
+    title: "Cookie Policy | Krynn Tools",
+    description: "Cookie Policy for Krynn Tools. Learn about how we use cookies.",
+    url: "https://www.krynntools.online/cookie-policy",
+    siteName: "Krynn Tools",
+    type: "website",
+    images: [{ url: "https://www.krynntools.online/logo.png", width: 1200, height: 630, alt: "Krynn Tools" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cookie Policy | Krynn Tools",
+    description: "Cookie Policy for Krynn Tools. Learn about how we use cookies.",
+    images: ["https://www.krynntools.online/logo.png"],
+  },
 };
 
 export default function CookiePolicy() {
