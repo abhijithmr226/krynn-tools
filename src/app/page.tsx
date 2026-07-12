@@ -68,7 +68,7 @@ export default function HomePage() {
     const rotateX = ((y - centerY) / centerY) * -6;
     const rotateY = ((x - centerX) / centerX) * 6;
     card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.01)`;
-    card.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 24px rgba(232,16,10,0.08), var(--shadow-lg)`;
+    card.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 24px rgba(213,13,9,0.08), var(--shadow-lg)`;
   }, []);
 
   const handleCardMouseLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -195,7 +195,7 @@ export default function HomePage() {
                 onFocus={(e) => {
                   e.target.style.borderColor = "var(--color-primary)";
                   e.target.style.background = "var(--color-card)";
-                  e.target.style.boxShadow = "0 0 0 3px rgba(232,16,10,0.08)";
+                  e.target.style.boxShadow = "0 0 0 3px rgba(213,13,9,0.08)";
                 }}
                 onBlur={(e) => {
                   e.target.style.borderColor = "var(--color-border)";

@@ -252,7 +252,7 @@ export default function Header() {
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = "var(--color-primary)";
-                  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(232,16,10,0.10)";
+                  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(213,13,9,0.10)";
                 }}
                 onBlur={(e) => {
                   e.currentTarget.style.borderColor = "var(--color-border)";

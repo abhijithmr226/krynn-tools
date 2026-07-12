@@ -79,6 +79,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
           strategy="lazyOnload"
         />
+
+        {/* Convert render-blocking CSS to async after first paint */}
+        <Script
+          id="async-css-loader"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                var links = document.querySelectorAll('link[rel="stylesheet"]');
+                for(var i=0;i<links.length;i++){
+                  var l=links[i];
+                  if(l.getAttribute('href') && l.getAttribute('href').indexOf('_next/static')>-1){
+                    var s=document.createElement('link');
+                    s.rel='preload';
+                    s.as='style';
+                    s.href=l.href;
+                    s.onload=function(){this.rel='stylesheet';};
+                    l.parentNode.insertBefore(s,l);
+                    l.parentNode.removeChild(l);
+                  }
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         <ThemeProvider>

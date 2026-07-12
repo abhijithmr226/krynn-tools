@@ -4,7 +4,7 @@
  * perfectly in both light and dark mode.
  *
  * "KRYNN" — uses `color: var(--color-foreground)` → dark in light mode, white in dark mode
- * "TOOLS" — always brand-red #E8100A
+ * "TOOLS" — always brand-red via CSS variable
  */
 "use client";
 
@@ -80,7 +80,7 @@ export default function KrynnLogo({ height = 38, className }: KrynnLogoProps) {
             fontSize: Math.round(height * 0.38) + "px",
             fontWeight: 800,
             letterSpacing: "0.18em",
-            color: "#E8100A",
+            color: "var(--color-primary)",
             fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
             lineHeight: 1,
           }}
