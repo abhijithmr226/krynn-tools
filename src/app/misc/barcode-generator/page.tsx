@@ -1,7 +1,9 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { getRelatedTools, getTool } from "@/lib/tools";
-import BarcodeGeneratorTool from "./BarcodeGeneratorTool";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
+
+const BarcodeGeneratorTool = dynamic(() => import("./BarcodeGeneratorTool"));
 
 
 const tool = getTool("misc", "barcode-generator")!;

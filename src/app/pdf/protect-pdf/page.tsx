@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import ProtectPdfTool from "./ProtectPdfTool";
+import dynamic from "next/dynamic";
+
+const ProtectPdfTool = dynamic(() => import("./ProtectPdfTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

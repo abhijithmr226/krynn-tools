@@ -68,9 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={cn("font-sans", plusJakarta.variable)}>
       <head>
         <meta name="theme-color" content="#E8100A" />
-        {/* Preconnect to critical third-party domains to accelerate connection setup */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preconnect to AdSense domains (fonts self-hosted via next/font) */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
 

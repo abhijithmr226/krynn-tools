@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import OcrPdfTool from "./OcrPdfTool";
+import dynamic from "next/dynamic";
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
+
+const OcrPdfTool = dynamic(() => import("./OcrPdfTool"));
 
 const tool = getTool("pdf", "ocr-pdf")!;
 const relatedTools = getRelatedTools(tool, 4).map((t) => ({

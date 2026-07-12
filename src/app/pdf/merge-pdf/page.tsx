@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { ToolLayout } from "@/components/ToolLayout";
-import MergePdfTool from "./MergePdfTool";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
+
+const MergePdfTool = dynamic(() => import("./MergePdfTool"));
 
 const tool = getTool("pdf", "merge-pdf")!;
 const related = getRelatedTools(tool);

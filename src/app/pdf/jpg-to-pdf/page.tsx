@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { ToolLayout } from "@/components/ToolLayout";
-import JpgToPdfTool from "./JpgToPdfTool";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
+
+const JpgToPdfTool = dynamic(() => import("./JpgToPdfTool"));
 
 const tool = getTool("pdf", "jpg-to-pdf")!;
 const related = getRelatedTools(tool);

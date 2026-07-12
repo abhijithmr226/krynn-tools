@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import CropPdfTool from "./CropPdfTool";
+import dynamic from "next/dynamic";
+
+const CropPdfTool = dynamic(() => import("./CropPdfTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import SignPdfTool from "./SignPdfTool";
+import dynamic from "next/dynamic";
+
+const SignPdfTool = dynamic(() => import("./SignPdfTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import AddPageNumbersTool from "./AddPageNumbersTool";
+import dynamic from "next/dynamic";
+
+const AddPageNumbersTool = dynamic(() => import("./AddPageNumbersTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

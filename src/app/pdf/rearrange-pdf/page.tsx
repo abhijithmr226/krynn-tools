@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import RearrangePdfTool from "./RearrangePdfTool";
+import dynamic from "next/dynamic";
+
+const RearrangePdfTool = dynamic(() => import("./RearrangePdfTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

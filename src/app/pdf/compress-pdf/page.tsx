@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { ToolLayout } from "@/components/ToolLayout";
-import CompressPdfTool from "./CompressPdfTool";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
+
+const CompressPdfTool = dynamic(() => import("./CompressPdfTool"));
 
 const tool = getTool("pdf", "compress-pdf")!;
 const related = getRelatedTools(tool);

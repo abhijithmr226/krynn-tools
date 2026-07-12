@@ -1,7 +1,9 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { getRelatedTools, getTool } from "@/lib/tools";
-import QrCodeGeneratorTool from "./QrCodeGeneratorTool";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
+
+const QrCodeGeneratorTool = dynamic(() => import("./QrCodeGeneratorTool"));
 
 
 const tool = getTool("security", "qr-code-generator")!;

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import DeletePdfPagesTool from "./DeletePdfPagesTool";
+import dynamic from "next/dynamic";
+
+const DeletePdfPagesTool = dynamic(() => import("./DeletePdfPagesTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

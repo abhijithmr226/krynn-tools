@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import UnlockPdfTool from "./UnlockPdfTool";
+import dynamic from "next/dynamic";
+
+const UnlockPdfTool = dynamic(() => import("./UnlockPdfTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

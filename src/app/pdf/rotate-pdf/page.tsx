@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import RotatePdfTool from "./RotatePdfTool";
+import dynamic from "next/dynamic";
+
+const RotatePdfTool = dynamic(() => import("./RotatePdfTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

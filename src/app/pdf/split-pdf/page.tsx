@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { ToolLayout } from "@/components/ToolLayout";
-import SplitPdfTool from "./SplitPdfTool";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
+
+const SplitPdfTool = dynamic(() => import("./SplitPdfTool"));
 
 const tool = getTool("pdf", "split-pdf")!;
 const related = getRelatedTools(tool);

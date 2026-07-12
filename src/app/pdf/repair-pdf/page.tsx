@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import RepairPdfTool from "./RepairPdfTool";
+import dynamic from "next/dynamic";
+
+const RepairPdfTool = dynamic(() => import("./RepairPdfTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

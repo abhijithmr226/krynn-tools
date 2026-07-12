@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import AddWatermarkTool from "./AddWatermarkTool";
+import dynamic from "next/dynamic";
+
+const AddWatermarkTool = dynamic(() => import("./AddWatermarkTool"));
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
 

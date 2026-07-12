@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { getTool, getRelatedTools } from "@/lib/tools";
 import { ToolLayout } from "@/components/ToolLayout";
-import PdfToWordTool from "./PdfToWordTool";
 import { generateToolMetadata, generateToolSchema } from "@/lib/seo";
+
+const PdfToWordTool = dynamic(() => import("./PdfToWordTool"));
 
 const tool = getTool("pdf", "pdf-to-word")!;
 const related = getRelatedTools(tool);

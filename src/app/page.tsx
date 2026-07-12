@@ -190,7 +190,7 @@ export default function HomePage() {
                   outline: "none",
                   fontFamily: "inherit",
                   color: "var(--color-foreground)",
-                  transition: "all 180ms ease",
+                  transition: "border-color 180ms ease, background 180ms ease, box-shadow 180ms ease",
                 }}
                 onFocus={(e) => {
                   e.target.style.borderColor = "var(--color-primary)";
