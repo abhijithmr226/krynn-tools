@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef, useId } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 interface AdSlotProps {
   position: "below-tool" | "in-content" | "sidebar" | "mobile-anchor";
   className?: string;
 }
 
-const AD_CONFIGS = {
+const ADS = {
   "728x90": {
     key: "1741459308f28a4cad58a3a4e25a6895",
     width: 728,
@@ -28,47 +28,48 @@ const AD_CONFIGS = {
   },
 };
 
-function AdUnit({ adKey }: { adKey: keyof typeof AD_CONFIGS }) {
-  const id = useId();
+function AdUnit({ size }: { size: keyof typeof ADS }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const config = AD_CONFIGS[adKey];
+  const config = ADS[size];
 
-  useEffect(() => {
+  const loadAd = useCallback(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
 
-    // Set atOptions for THIS specific ad
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).atOptions = {
+    // Clear previous attempt
+    container.innerHTML = "";
+
+    // 1. Create and inject the atOptions inline script FIRST (synchronous)
+    const optScript = document.createElement("script");
+    optScript.textContent = `atOptions = ${JSON.stringify({
       key: config.key,
       format: "iframe",
       height: config.height,
       width: config.width,
       params: {},
-    };
+    })};`;
+    container.appendChild(optScript);
 
-    // Load the invoke script — it reads atOptions and injects an iframe
-    const script = document.createElement("script");
-    script.src = config.src;
-    script.async = true;
-    container.appendChild(script);
+    // 2. Then load the invoke script (reads atOptions and creates iframe)
+    const invokeScript = document.createElement("script");
+    invokeScript.src = config.src;
+    invokeScript.async = true;
+    container.appendChild(invokeScript);
+  }, [config]);
 
-    return () => {
-      // Cleanup: remove script and any injected iframes
-      if (container.contains(script)) {
-        container.removeChild(script);
-      }
-      const iframes = container.querySelectorAll("iframe");
-      iframes.forEach((f) => f.remove());
-    };
-  }, [config.key, config.height, config.width, config.src]);
+  useEffect(() => {
+    loadAd();
+  }, [loadAd]);
 
   return (
     <div
       ref={containerRef}
-      id={`ad-${id}`}
-      className="flex items-center justify-center overflow-hidden"
-      style={{ width: config.width, height: config.height, minHeight: config.height }}
+      style={{
+        width: config.width,
+        height: config.height,
+        maxWidth: "100%",
+        overflow: "hidden",
+      }}
     />
   );
 }
@@ -85,7 +86,7 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
 
   if (!visible || dismissed) return null;
 
-  // Mobile anchor ad (320x50 fixed at bottom)
+  // Mobile anchor ad
   if (position === "mobile-anchor") {
     if (!isMobile) return null;
     return (
@@ -100,26 +101,23 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          <AdUnit adKey="320x50" />
+          <AdUnit size="320x50" />
         </div>
       </div>
     );
   }
 
-  // Map positions to ad sizes
-  const adKey: keyof typeof AD_CONFIGS = position === "sidebar" ? "728x90"
+  const adSize: keyof typeof ADS = position === "sidebar" ? "728x90"
     : position === "in-content" ? "728x90"
     : "468x60";
-
-  const config = AD_CONFIGS[adKey];
 
   return (
     <div className={`my-6 ${className}`}>
       <div className="text-center text-[10px] font-medium text-[var(--color-muted-foreground)] mb-1 uppercase tracking-wider">
         Advertisement
       </div>
-      <div className="flex justify-center overflow-hidden rounded-md">
-        <AdUnit adKey={adKey} />
+      <div className="flex justify-center">
+        <AdUnit size={adSize} />
       </div>
     </div>
   );
