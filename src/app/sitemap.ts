@@ -1,7 +1,17 @@
 import { MetadataRoute } from "next";
 import { tools, categories } from "@/lib/tools";
+import fs from "fs";
+import path from "path";
 
 const BASE_URL = "https://krynntools.online";
+
+function getBlogSlugs(): string[] {
+  const blogDir = path.join(process.cwd(), "src/app/blog");
+  return fs
+    .readdirSync(blogDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && fs.existsSync(path.join(blogDir, d.name, "page.tsx")))
+    .map((d) => d.name);
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
@@ -28,25 +38,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const blogPages = [
+  const blogPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.7 },
-    { url: `${BASE_URL}/blog/how-to-compress-pdf-without-losing-quality`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/how-to-merge-multiple-pdfs`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/10-signs-your-password-isnt-strong-enough`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/qr-codes-explained-static-vs-dynamic`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/how-to-shrink-image-file-size`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/how-to-remove-background-from-photo`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/json-formatting-best-practices`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/what-is-base64-encoding`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/bmi-explained-what-numbers-mean`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/how-emi-is-calculated-on-loan`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/how-to-generate-qr-codes-for-business`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/best-practices-for-qr-code-design`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/understanding-error-correction-in-qr-codes`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/how-to-extract-text-from-scanned-pdfs`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/best-free-dice-roller-for-board-games`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
-    { url: `${BASE_URL}/blog/how-to-crop-passport-size-photos-online`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.6 },
   ];
+
+  for (const slug of getBlogSlugs()) {
+    blogPages.push({
+      url: `${BASE_URL}/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    });
+  }
 
   return [...staticPages, ...categoryPages, ...toolPages, ...blogPages];
 }
