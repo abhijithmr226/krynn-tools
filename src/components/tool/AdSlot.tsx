@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useId } from "react";
 
 interface AdSlotProps {
   position: "below-tool" | "in-content" | "sidebar" | "mobile-anchor";
@@ -28,61 +28,47 @@ const AD_CONFIGS = {
   },
 };
 
-function loadAdScript(src: string, key: string): Promise<void> {
-  return new Promise((resolve) => {
-    // Check if script already exists
-    if (document.querySelector(`script[src="${src}"]`)) {
-      resolve();
-      return;
-    }
-    // Set atOptions globally
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).atOptions = { key, format: "iframe", params: {} };
-
-    const script = document.createElement("script");
-    script.src = src;
-    script.async = true;
-    script.onload = () => resolve();
-    script.onerror = () => resolve();
-    document.head.appendChild(script);
-  });
-}
-
-function AdUnit({ configKey, width, height }: { configKey: string; width: number; height: number }) {
+function AdUnit({ adKey }: { adKey: keyof typeof AD_CONFIGS }) {
+  const id = useId();
   const containerRef = useRef<HTMLDivElement>(null);
-  const loaded = useRef(false);
+  const config = AD_CONFIGS[adKey];
 
   useEffect(() => {
-    if (loaded.current || !containerRef.current) return;
-    loaded.current = true;
+    if (!containerRef.current) return;
+    const container = containerRef.current;
 
-    const config = AD_CONFIGS[configKey as keyof typeof AD_CONFIGS];
-    if (!config) return;
+    // Set atOptions for THIS specific ad
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).atOptions = {
+      key: config.key,
+      format: "iframe",
+      height: config.height,
+      width: config.width,
+      params: {},
+    };
 
-    loadAdScript(config.src, config.key).then(() => {
-      if (!containerRef.current) return;
-      // Create iframe container for the ad
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (window as any).atOptions = {
-        key: config.key,
-        format: "iframe",
-        height: config.height,
-        width: config.width,
-        params: {},
-      };
-      // Invoke the ad
-      const invokeScript = document.createElement("script");
-      invokeScript.src = config.src;
-      invokeScript.async = true;
-      containerRef.current.appendChild(invokeScript);
-    });
-  }, [configKey]);
+    // Load the invoke script — it reads atOptions and injects an iframe
+    const script = document.createElement("script");
+    script.src = config.src;
+    script.async = true;
+    container.appendChild(script);
+
+    return () => {
+      // Cleanup: remove script and any injected iframes
+      if (container.contains(script)) {
+        container.removeChild(script);
+      }
+      const iframes = container.querySelectorAll("iframe");
+      iframes.forEach((f) => f.remove());
+    };
+  }, [config.key, config.height, config.width, config.src]);
 
   return (
     <div
       ref={containerRef}
-      className="flex items-center justify-center"
-      style={{ width, height, minHeight: height }}
+      id={`ad-${id}`}
+      className="flex items-center justify-center overflow-hidden"
+      style={{ width: config.width, height: config.height, minHeight: config.height }}
     />
   );
 }
@@ -90,14 +76,12 @@ function AdUnit({ configKey, width, height }: { configKey: string; width: number
 export default function AdSlot({ position, className = "" }: AdSlotProps) {
   const [visible, setVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
     setVisible(true);
   }, []);
-
-  const [dismissed, setDismissed] = useState(false);
-  const handleClose = useCallback(() => setDismissed(true), []);
 
   if (!visible || dismissed) return null;
 
@@ -108,7 +92,7 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
       <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--color-border)] bg-[var(--color-card)] p-2 shadow-lg">
         <div className="relative flex flex-col items-center">
           <button
-            onClick={handleClose}
+            onClick={() => setDismissed(true)}
             className="absolute -top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-muted)] text-[var(--color-muted-foreground)] hover:bg-[var(--color-border)] transition-colors duration-200 cursor-pointer z-10"
             aria-label="Close ad"
           >
@@ -116,18 +100,18 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          <AdUnit configKey="320x50" width={320} height={50} />
+          <AdUnit adKey="320x50" />
         </div>
       </div>
     );
   }
 
   // Map positions to ad sizes
-  const adSize = position === "sidebar" ? "728x90"
+  const adKey: keyof typeof AD_CONFIGS = position === "sidebar" ? "728x90"
     : position === "in-content" ? "728x90"
-    : "468x60"; // below-tool
+    : "468x60";
 
-  const config = AD_CONFIGS[adSize];
+  const config = AD_CONFIGS[adKey];
 
   return (
     <div className={`my-6 ${className}`}>
@@ -135,7 +119,7 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
         Advertisement
       </div>
       <div className="flex justify-center overflow-hidden rounded-md">
-        <AdUnit configKey={adSize} width={config.width} height={config.height} />
+        <AdUnit adKey={adKey} />
       </div>
     </div>
   );
