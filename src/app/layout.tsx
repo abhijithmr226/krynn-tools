@@ -63,6 +63,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <meta name="theme-color" content="#E8100A" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6232926894418612"
+          crossOrigin="anonymous"
+        />
       </head>
       <body>
         <ThemeProvider>
