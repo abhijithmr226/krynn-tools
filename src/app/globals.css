@@ -28,7 +28,7 @@
   --color-card:             #FFFFFF;
   --color-card-foreground:  #0F172A;
   --color-muted:            #FDF5F5;
-  --color-muted-foreground: #475569;
+  --color-muted-foreground: #374151;
   --color-border:           #EDE0E0;
   --color-input:            #EDE0E0;
   --color-ring:             #E8100A;
@@ -105,7 +105,7 @@
   --color-card:             #150F0F;
   --color-card-foreground:  #F1F5F9;
   --color-muted:            #181010;
-  --color-muted-foreground: #94A3B8;
+  --color-muted-foreground: #B0B8C4;
   --color-border:           #2D1A1A;
   --color-input:            #2D1A1A;
   --color-ring:             #FF3B30;
@@ -620,8 +620,8 @@ textarea:focus, input:focus, select:focus {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(232,16,10,0.08) 0%, transparent 70%);
   pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: left 0.1s linear, top 0.1s linear;
+  will-change: transform;
+  transition: transform 0.1s linear;
   z-index: 0;
   mix-blend-mode: multiply;
 }

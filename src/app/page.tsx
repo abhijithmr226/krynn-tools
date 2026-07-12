@@ -49,8 +49,7 @@ export default function HomePage() {
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!glowRef.current) return;
-    glowRef.current.style.left = `${e.clientX}px`;
-    glowRef.current.style.top = `${e.clientY}px`;
+    glowRef.current.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
   }, []);
 
   useEffect(() => {
@@ -123,13 +122,12 @@ export default function HomePage() {
           </div>
 
           {/* H1 */}
-          <h1 className="animate-fade-up" style={{
+          <h1 style={{
             fontSize: "clamp(2rem, 5.5vw, 3.75rem)",
             fontWeight: 800,
             lineHeight: 1.1,
             letterSpacing: "-0.03em",
             marginBottom: "18px",
-            animationDelay: "60ms",
           }}>
             All The Tools You Need,{" "}
             <span style={{
