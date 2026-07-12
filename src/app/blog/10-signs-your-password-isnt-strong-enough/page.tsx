@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import BlogAd from "../BlogAd";
 
 export const metadata: Metadata = {
   title: "10 Signs Your Password Isn't Strong Enough",
@@ -47,6 +48,8 @@ export default function BlogPost() {
             className="w-full"
           />
         </div>
+
+        <BlogAd />
 
         <div className="prose max-w-none space-y-6 text-[var(--color-muted-foreground)] leading-relaxed">
           <p>

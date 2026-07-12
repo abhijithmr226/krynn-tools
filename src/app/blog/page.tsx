@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import BlogAd from "./BlogAd";
 
 export const metadata: Metadata = {
   title: "Blog & Tutorials",
@@ -149,6 +150,8 @@ export default function BlogPage() {
           Tips, guides, and tutorials for getting the most out of free online tools.
         </p>
       </div>
+
+      <BlogAd />
 
       <div className="grid gap-6 sm:grid-cols-2">
         {blogPosts.map((post) => (

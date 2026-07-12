@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { categories, getPopularTools, searchTools } from "@/lib/tools";
 import KrynnIcon from "@/components/KrynnIcon";
+import AdSlot from "@/components/AdSlot";
 import {
   MagnifyingGlass, Star, Lightning, CheckCircle,
   LockSimple, DeviceMobile, CaretRight, X,
@@ -320,6 +321,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <AdSlot position="in-content" className="max-w-4xl mx-auto" />
+
       {/* ══════════════════════════════════════════════
           POPULAR TOOLS
       ══════════════════════════════════════════════ */}
@@ -370,6 +373,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <AdSlot position="below-tool" className="max-w-4xl mx-auto" />
 
       {/* ══════════════════════════════════════════════
           FEATURES

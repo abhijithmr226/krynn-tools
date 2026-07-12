@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import BlogAd from "../BlogAd";
 
 export const metadata: Metadata = {
   title: "How to Extract Text from Scanned PDFs",
@@ -54,6 +55,8 @@ export default function BlogPost() {
           <span>·</span>
           <span>6 min read</span>
         </div>
+
+        <BlogAd />
 
         <div className="prose max-w-none space-y-6 text-[var(--color-muted-foreground)] leading-relaxed">
           <p>
