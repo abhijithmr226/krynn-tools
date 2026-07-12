@@ -29,6 +29,15 @@ export default function BlogPost() {
           <span>6 min read</span>
         </div>
 
+        <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/blog/merge-pdf.svg"
+            alt="PDF Merger Tool Interface"
+            className="w-full"
+          />
+        </div>
+
         <div className="prose max-w-none space-y-6 text-[var(--color-muted-foreground)] leading-relaxed">
           <p>
             Whether you are compiling a report from multiple sources, assembling a proposal from 

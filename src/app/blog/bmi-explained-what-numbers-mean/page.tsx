@@ -29,6 +29,15 @@ export default function BlogPost() {
           <span>6 min read</span>
         </div>
 
+        <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/blog/bmi-calculator.svg"
+            alt="BMI Calculator Tool Interface"
+            className="w-full"
+          />
+        </div>
+
         <div className="prose max-w-none space-y-6 text-[var(--color-muted-foreground)] leading-relaxed">
           <p>
             Body Mass Index (BMI) is one of the most widely used health metrics in the 

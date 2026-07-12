@@ -25,7 +25,7 @@ const blogPosts: BlogPost[] = [
     date: "January 15, 2026",
     category: "PDF",
     readingTime: "7 min",
-    image: "/images/home-dark.png",
+    image: "/images/blog/compress-pdf.svg",
   },
   {
     slug: "how-to-merge-multiple-pdfs",
@@ -34,7 +34,7 @@ const blogPosts: BlogPost[] = [
     date: "January 20, 2026",
     category: "PDF",
     readingTime: "6 min",
-    image: "/images/header-light.png",
+    image: "/images/blog/merge-pdf.svg",
   },
   {
     slug: "10-signs-your-password-isnt-strong-enough",
@@ -43,7 +43,7 @@ const blogPosts: BlogPost[] = [
     date: "January 25, 2026",
     category: "Security",
     readingTime: "8 min",
-    image: "/images/home-dark.png",
+    image: "/images/blog/password-generator.svg",
   },
   {
     slug: "qr-codes-explained-static-vs-dynamic",
@@ -52,7 +52,7 @@ const blogPosts: BlogPost[] = [
     date: "January 30, 2026",
     category: "Security",
     readingTime: "6 min",
-    image: "/images/header-light.png",
+    image: "/images/blog/qr-code-generator.svg",
   },
   {
     slug: "how-to-shrink-image-file-size",
@@ -61,7 +61,7 @@ const blogPosts: BlogPost[] = [
     date: "February 1, 2026",
     category: "Image",
     readingTime: "7 min",
-    image: "/images/crop-tutorial.png",
+    image: "/images/blog/compress-image.svg",
   },
   {
     slug: "how-to-remove-background-from-photo",
@@ -70,7 +70,7 @@ const blogPosts: BlogPost[] = [
     date: "February 5, 2026",
     category: "Image",
     readingTime: "5 min",
-    image: "/images/crop-tutorial.png",
+    image: "/images/blog/remove-background.svg",
   },
   {
     slug: "json-formatting-best-practices",
@@ -79,7 +79,7 @@ const blogPosts: BlogPost[] = [
     date: "February 10, 2026",
     category: "Developer",
     readingTime: "8 min",
-    image: "/images/home-dark.png",
+    image: "/images/blog/json-formatter.svg",
   },
   {
     slug: "what-is-base64-encoding",
@@ -88,7 +88,7 @@ const blogPosts: BlogPost[] = [
     date: "February 15, 2026",
     category: "Developer",
     readingTime: "7 min",
-    image: "/images/header-light.png",
+    image: "/images/blog/base64-encoder.svg",
   },
   {
     slug: "bmi-explained-what-numbers-mean",
@@ -97,7 +97,7 @@ const blogPosts: BlogPost[] = [
     date: "February 20, 2026",
     category: "Health",
     readingTime: "6 min",
-    image: "/images/home-dark.png",
+    image: "/images/blog/bmi-calculator.svg",
   },
   {
     slug: "how-emi-is-calculated-on-loan",
@@ -106,7 +106,7 @@ const blogPosts: BlogPost[] = [
     date: "February 25, 2026",
     category: "Finance",
     readingTime: "8 min",
-    image: "/images/header-light.png",
+    image: "/images/blog/loan-emi-calculator.svg",
   },
 ];
 
