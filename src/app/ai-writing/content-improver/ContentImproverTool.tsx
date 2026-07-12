@@ -20,17 +20,17 @@ export default function ContentImproverTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1500));
-      const sampleOutput = {
-        improved: `Your improved content will appear here once the API is connected. This placeholder demonstrates the tool's layout with the improved version and suggestions panel.`,
-        suggestions: [
-          "Consider adding specific data points or statistics to strengthen your arguments.",
-          "Break long sentences into shorter ones for better readability.",
-          "Add transition words between paragraphs to improve flow.",
-          "Include a clear call-to-action at the end of your content.",
-        ],
-      };
-      setOutput(JSON.stringify(sampleOutput));
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Improve the following content for better readability, engagement, clarity, and flow. Then provide 3-5 specific improvement suggestions. Format your response as:\n\nIMPROVED CONTENT:\n[the improved text]\n\nSUGGESTIONS:\n- [suggestion 1]\n- [suggestion 2]\n- [suggestion 3]\n\nOriginal content:\n${input}`,
+          systemInstruction: "You are an expert content editor. Enhance writing for readability, engagement, and clarity while preserving the author's voice. Provide specific, actionable improvement suggestions.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

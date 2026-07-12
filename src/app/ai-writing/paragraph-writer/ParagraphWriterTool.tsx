@@ -23,10 +23,17 @@ export default function ParagraphWriterTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1200));
-      setOutput(
-        `AI-generated ${tone.toLowerCase()} paragraph on "${topic}" will appear here once the API is connected. This placeholder demonstrates the tool's layout and copy functionality.`
-      );
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Write a ${tone.toLowerCase()} paragraph about the following topic:\n\n${topic}\n\nMake it well-structured, coherent, and approximately 150-200 words.`,
+          systemInstruction: "You are a skilled paragraph writer. Craft well-structured, focused paragraphs that clearly convey the requested topic in the specified tone.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

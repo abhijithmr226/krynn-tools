@@ -25,10 +25,17 @@ export default function StoryGeneratorTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 2000));
-      setOutput(
-        `AI-generated ${genre} story based on "${prompt}" (${length}) will appear here once the API is connected. This placeholder demonstrates the tool's layout and copy functionality.`
-      );
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Write a ${length.toLowerCase()} ${genre} story based on this idea:\n\n${prompt}\n\nInclude vivid descriptions, compelling characters, and an engaging narrative arc.`,
+          systemInstruction: "You are a creative fiction writer. Craft engaging, original stories with vivid imagery, well-developed characters, and compelling narratives in the requested genre.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

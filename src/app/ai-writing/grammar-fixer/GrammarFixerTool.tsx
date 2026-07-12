@@ -20,14 +20,17 @@ export default function GrammarFixerTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1200));
-      const sampleOutput = {
-        corrected: `The corrected version of your text will appear here once the API is connected. This placeholder demonstrates the tool's layout with diff-style highlighting.`,
-        changes: [
-          { type: "info", text: "Paste your text with errors and click Fix Grammar to see corrections highlighted below." },
-        ],
-      };
-      setOutput(JSON.stringify(sampleOutput));
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Fix all grammar, spelling, punctuation, and syntax errors in the following text. Return ONLY the corrected text, with no explanations or commentary:\n\n${input}`,
+          systemInstruction: "You are an expert grammar checker. Fix all errors in the text while preserving the original meaning, tone, and style. Return only the corrected text.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

@@ -26,9 +26,17 @@ export default function InstagramCaptionGeneratorTool({
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1500));
-      const sampleCaption = `Your photo tells a story, and we've got the perfect caption for it! Here's your AI-generated Instagram caption:\n\nWhen words fail, photos speak louder. Every moment captured is a memory preserved forever. Keep creating, keep inspiring! ✨📸\n\n#Instagram #Photography #InstaGood #PhotoOfTheDay #CaptureTheMoment #VisualStorytelling #CreativeContent #SocialMediaTips #ContentCreator #Inspiration`;
-      setOutput(sampleCaption);
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Write an ${style.toLowerCase()} Instagram caption for:\n\n${description}\n\nInclude:\n- An engaging opening line\n- The main caption text\n- 10-15 relevant hashtags\n- Contextually relevant emojis\n\nKeep it concise but impactful.`,
+          systemInstruction: "You are a social media copywriter. Write engaging Instagram captions that drive engagement, with relevant emojis and trending hashtags. Match the requested style perfectly.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

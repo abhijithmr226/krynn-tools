@@ -26,21 +26,17 @@ export default function LinkedinPostGeneratorTool({
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1500));
-      const samplePost = `I've been thinking a lot about ${topic} lately, and here's what I've learned:
-
-The key is to focus on delivering value consistently. Most people overcomplicate things when the answer is simpler than they think.
-
-Here are 3 things that changed my perspective:
-
-1. Start with empathy - understand what your audience truly needs
-2. Be authentic - people connect with real stories, not corporate speak
-3. Take action daily - small consistent steps beat occasional leaps
-
-What's your experience with ${topic}? I'd love to hear your thoughts in the comments.
-
-#${topic.replace(/\s+/g, "")} #Growth #ProfessionalDevelopment #Leadership #Innovation`;
-      setOutput(samplePost);
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Write a ${tone} LinkedIn post about:\n\n${topic}\n\nInclude:\n- A compelling hook in the first line\n- 3 key insights or lessons\n- A call-to-action or question for engagement\n- 5-8 relevant hashtags\n\nKeep it between 150-300 words with natural line breaks.`,
+          systemInstruction: "You are a LinkedIn content strategist. Write engaging, professional posts that drive meaningful engagement. Use a conversational yet authoritative tone with clear formatting for mobile readability.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

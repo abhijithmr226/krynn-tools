@@ -20,27 +20,17 @@ export default function FaqGeneratorTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1500));
-      const sampleFaq = `# Frequently Asked Questions
-
-### Q1: What is the main purpose of this service?
-A: This service provides a comprehensive solution designed to streamline your workflow and improve efficiency through automated processes.
-
-### Q2: How much does it cost to get started?
-A: There is a free tier available for new users. Premium plans start at $9.99/month with additional features and higher usage limits.
-
-### Q3: Is my data secure and private?
-A: Yes. All data is encrypted in transit and at rest. We follow industry-standard security practices and never share your data with third parties.
-
-### Q4: Can I integrate this with my existing tools?
-A: Absolutely. We support integrations with popular platforms including Slack, Notion, Google Workspace, and many more through our API.
-
-### Q5: What kind of support is available?
-A: Free users have access to community forums and documentation. Premium users get priority email support with a 24-hour response time.
-
-### Q6: How do I cancel my subscription?
-A: You can cancel anytime from your account settings. There are no cancellation fees, and you'll retain access until the end of your billing period.`;
-      setOutput(sampleFaq);
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Generate 6-8 relevant FAQ questions and detailed answers based on this content:\n\n${content}\n\nFormat each as:\n### Q: [question]\nA: [answer]`,
+          systemInstruction: "You are a FAQ specialist. Generate clear, comprehensive, and helpful FAQ questions and answers that address the most important user concerns about the given content.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

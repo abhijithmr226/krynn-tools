@@ -39,19 +39,17 @@ export default function BusinessNameGeneratorTool({
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1500));
-      setOutput([
-        "NexaFlow",
-        "Zenithly",
-        "CloudPulse",
-        "SynthWave Labs",
-        "VeloTech",
-        "BrightNode",
-        "StrataSync",
-        "PulseGrid",
-        "OrbitKey",
-        "LuminoTech",
-      ]);
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Generate 10 creative ${style.toLowerCase()} business name ideas for a ${industry} company.\n\nKeywords to incorporate: ${keywords}\n\nReturn ONLY the business names, one per line. No explanations, no numbering, no bullets.`,
+          systemInstruction: "You are a creative brand naming expert. Generate memorable, unique, and meaningful business names that are catchy, easy to pronounce, and relevant to the industry and keywords provided.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text.split("\n").filter((line: string) => line.trim()));
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

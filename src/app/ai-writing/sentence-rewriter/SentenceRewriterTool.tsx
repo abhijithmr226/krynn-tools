@@ -23,10 +23,17 @@ export default function SentenceRewriterTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1200));
-      setOutput(
-        `AI-rewritten text (${style.toLowerCase()} version) will appear here once the API is connected. This placeholder demonstrates the tool's layout and copy functionality.`
-      );
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Rewrite the following text in a ${style.toLowerCase()} style. Preserve the original meaning completely but improve the expression and clarity:\n\n${input}`,
+          systemInstruction: "You are a professional text rewriter. Rewrite content to match the requested style while perfectly preserving the original meaning and key information.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

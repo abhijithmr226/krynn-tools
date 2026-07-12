@@ -23,40 +23,17 @@ export default function BlogOutlineTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1200));
-      const sampleOutline = `# Blog Outline: ${topic}
-## Target Audience: ${audience}
-
-## I. Introduction
-- Hook statement to grab reader attention
-- Brief context on the topic
-- Thesis statement / main argument
-
-## II. Background & Context
-- Key definitions and concepts
-- Current state of the topic
-- Why this matters to ${audience.toLowerCase()} readers
-
-## III. Main Point 1
-- Supporting evidence and examples
-- Data or statistics (if applicable)
-- Transition to next section
-
-## IV. Main Point 2
-- Detailed explanation
-- Real-world examples
-- Expert insights
-
-## V. Main Point 3
-- Additional perspectives
-- Common misconceptions
-- Practical applications
-
-## VI. Conclusion
-- Summary of key takeaways
-- Call to action
-- Final thought to leave readers thinking`;
-      setOutput(sampleOutline);
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Create a detailed blog outline for the following topic:\n\n${topic}\n\nTarget audience: ${audience}\n\nInclude main headings, subheadings under each, and 3-5 key points under each subheading.`,
+          systemInstruction: "You are a content strategist. Create detailed, well-organized blog outlines with clear headings, subheadings, and actionable key points tailored to the specified audience.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

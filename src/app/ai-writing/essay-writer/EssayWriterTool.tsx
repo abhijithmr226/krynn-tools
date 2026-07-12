@@ -21,10 +21,17 @@ export default function EssayWriterTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 1500));
-      setOutput(
-        `AI-generated essay on "${topic}" (${wordCount} words) will appear here once the API is connected. This placeholder demonstrates the tool's layout and copy functionality.`
-      );
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Write a well-structured essay of approximately ${wordCount} words on the following topic:\n\n${topic}\n\nInclude an engaging introduction, detailed body paragraphs with supporting evidence, and a strong conclusion.`,
+          systemInstruction: "You are an expert essay writer. Write well-structured, insightful essays with clear thesis statements, supporting evidence, and compelling conclusions. Use academic but accessible language.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {

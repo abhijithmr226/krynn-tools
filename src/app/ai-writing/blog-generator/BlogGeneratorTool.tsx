@@ -25,10 +25,17 @@ export default function BlogGeneratorTool({ relatedTools, schema }: Props) {
     setLoading(true);
     setError("");
     try {
-      await new Promise((r) => setTimeout(r, 2000));
-      setOutput(
-        `AI-generated ${tone.toLowerCase()} blog post on "${topic}" (${wordCount} words) will appear here once the API is connected. This placeholder demonstrates the tool's layout and copy functionality.`
-      );
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Write a ${wordCount}-word ${tone.toLowerCase()} blog post about:\n\n${topic}\n\nInclude an engaging introduction, structured sections with subheadings, practical insights, and a conclusion with a call-to-action.`,
+          systemInstruction: "You are a professional blog writer. Create SEO-friendly, engaging blog posts with clear structure, practical value, and compelling writing that keeps readers interested.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
     } catch {
       setError("Generation failed. Please try again.");
     } finally {
