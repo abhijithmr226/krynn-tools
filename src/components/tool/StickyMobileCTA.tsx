@@ -18,7 +18,7 @@ export default function StickyMobileCTA({ label, onClick, href }: StickyMobileCT
     return () => clearTimeout(timer);
   }, []);
 
-  const classes = `fixed bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-8 py-4 text-base font-semibold text-white shadow-[var(--shadow-lg)] transition-transform duration-200 hover:scale-105 ${pulse ? "animate-pulse" : ""}`;
+  const classes = `fixed bottom-20 left-1/2 -translate-x-1/2 z-40 md:hidden inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-8 py-4 text-base font-semibold text-white shadow-[var(--shadow-lg)] transition-transform duration-200 hover:scale-105 ${pulse ? "animate-pulse" : ""}`;
 
   if (href) {
     return (

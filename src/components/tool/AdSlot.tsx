@@ -90,7 +90,7 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
   if (position === "mobile-anchor") {
     if (!isMobile) return null;
     return (
-      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--color-border)] bg-[var(--color-card)] p-2 shadow-lg">
+      <div className="fixed bottom-16 left-0 right-0 z-50 border-t border-[var(--color-border)] bg-[var(--color-card)] p-2 shadow-lg">
         <div className="relative flex flex-col items-center">
           <button
             onClick={() => setDismissed(true)}

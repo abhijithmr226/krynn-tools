@@ -462,7 +462,7 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
       </div>
 
       {/* Review list */}
-      <div className="space-y-4 mb-8 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
+      <div className="space-y-4 mb-8 max-h-[240px] md:max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
         {reviews.map((review) => (
           <div 
             key={review.id} 
@@ -500,7 +500,7 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
                 value={name} 
                 onChange={(e) => setName(e.target.value)} 
                 required
-                className="w-full text-sm rounded-lg px-3 py-2 border border-[var(--color-border)] bg-white/70 dark:bg-black/40 backdrop-blur-md outline-none text-[var(--color-foreground)] focus:border-[var(--color-primary)] transition-colors"
+                className="w-full text-base rounded-lg px-3 py-2 border border-[var(--color-border)] bg-white/70 dark:bg-black/40 backdrop-blur-md outline-none text-[var(--color-foreground)] focus:border-[var(--color-primary)] transition-colors"
               />
             </div>
             <div>
@@ -538,7 +538,7 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
               onChange={(e) => setContent(e.target.value)}
               required
               rows={3}
-              className="w-full text-sm rounded-lg px-3 py-2 border border-[var(--color-border)] bg-white/70 dark:bg-black/40 backdrop-blur-md outline-none text-[var(--color-foreground)] focus:border-[var(--color-primary)] transition-colors resize-none"
+              className="w-full text-base rounded-lg px-3 py-2 border border-[var(--color-border)] bg-white/70 dark:bg-black/40 backdrop-blur-md outline-none text-[var(--color-foreground)] focus:border-[var(--color-primary)] transition-colors resize-none"
             />
           </div>
           

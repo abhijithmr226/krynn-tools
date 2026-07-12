@@ -25,6 +25,8 @@ import {
   Lock,
   LockOpen,
   LockSimple,
+  Wrench,
+  Pen,
   // ── Table / Office ────────────────────────────────────────────
   Table,
   Presentation,
@@ -94,6 +96,13 @@ import {
   // ── Social Media ──────────────────────────────────────────────
   ShareNetwork,
   TextAa,
+  // ── AI Writing ────────────────────────────────────────────────
+  BookOpen,
+  Article,
+  Question,
+  Lightbulb,
+  Smiley,
+  Camera,
   // ── Navigation & UI ──────────────────────────────────────────
   House,
   MagnifyingGlass,
@@ -149,6 +158,8 @@ const ICON_MAP: Record<string, Icon> = {
   Presentation,
   Images,
   ScanText:    Scan,
+  Wrench,
+  Pen,
 
   // ── Image Tools ──────────────────────────────────────────────
   Minimize2:       ArrowsIn,
@@ -256,6 +267,15 @@ const ICON_MAP: Record<string, Icon> = {
   // ── Social Media ──────────────────────────────────────────────
   ShareNetwork,
   TextAa,
+
+  // ── AI Writing ────────────────────────────────────────────────
+  BookOpen,
+  Article,
+  Question,
+  Lightbulb,
+  ListDashes,
+  Smiley,
+  Camera,
 
   // ── Navigation ───────────────────────────────────────────────
   House,

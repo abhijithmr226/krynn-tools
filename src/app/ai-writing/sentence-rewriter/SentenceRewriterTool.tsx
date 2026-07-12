@@ -1,0 +1,152 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { ToolLayout } from "@/components/ToolLayout";
+
+interface Props {
+  relatedTools: Array<{ name: string; slug: string; categorySlug: string }>;
+  schema: object;
+}
+
+const styles = ["Simpler", "More Formal", "More Casual", "More Professional"];
+
+export default function SentenceRewriterTool({ relatedTools, schema }: Props) {
+  const [input, setInput] = useState("");
+  const [style, setStyle] = useState("Simpler");
+  const [output, setOutput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const handleGenerate = useCallback(async () => {
+    if (!input.trim()) return;
+    setLoading(true);
+    setError("");
+    try {
+      await new Promise((r) => setTimeout(r, 1200));
+      setOutput(
+        `AI-rewritten text (${style.toLowerCase()} version) will appear here once the API is connected. This placeholder demonstrates the tool's layout and copy functionality.`
+      );
+    } catch {
+      setError("Generation failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }, [input, style]);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(output);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [output]);
+
+  return (
+    <ToolLayout
+      title="AI Sentence Rewriter"
+      subtitle="Rewrite sentences to improve clarity, tone, or style while preserving meaning."
+      howToUse={[
+        "Enter the sentence or text you want to rewrite.",
+        "Select a rewriting style from the options below.",
+        "Click Rewrite and review the improved version.",
+        "Copy the output to use in your writing.",
+      ]}
+      faq={[
+        {
+          question: "Does it preserve the original meaning?",
+          answer:
+            "Yes. The rewriter changes the expression while keeping the core meaning intact. It improves how something is said, not what is said.",
+        },
+        {
+          question: "When should I use each style?",
+          answer:
+            "Use Simpler for plain language, More Formal for academic or business writing, More Casual for friendly communication, and More Professional for corporate contexts.",
+        },
+        {
+          question: "Can I rewrite entire paragraphs?",
+          answer:
+            "Yes. Paste a full paragraph and the tool will rewrite it sentence by sentence while maintaining coherence.",
+        },
+        {
+          question: "Will it fix grammar errors too?",
+          answer:
+            "The rewriter primarily focuses on improving style and clarity. For dedicated grammar fixing, use our Grammar Fixer tool.",
+        },
+      ]}
+      relatedTools={relatedTools}
+      schema={schema}
+    >
+      <div className="space-y-6">
+        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
+          <label className="mb-2 block text-sm font-semibold text-[var(--color-foreground)]">
+            Original Text
+          </label>
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="e.g. The implementation of the aforementioned methodology resulted in a significant augmentation of overall operational efficiency..."
+            rows={4}
+            className="w-full resize-none rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] p-3 text-[var(--color-foreground)] outline-none focus:border-[var(--color-primary)] transition-colors"
+          />
+        </div>
+
+        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
+          <label className="mb-3 block text-sm font-semibold text-[var(--color-foreground)]">
+            Rewriting Style
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {styles.map((s) => (
+              <button
+                key={s}
+                onClick={() => setStyle(s)}
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                  style === s
+                    ? "bg-[var(--color-primary)] text-white"
+                    : "border border-[var(--color-border)] bg-[var(--color-muted)] text-[var(--color-foreground)] hover:border-[var(--color-primary)]"
+                }`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button
+          onClick={handleGenerate}
+          disabled={!input.trim() || loading}
+          className="btn-primary w-full rounded-lg py-3 text-sm font-semibold disabled:opacity-50"
+        >
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="spinner" /> Rewriting...
+            </span>
+          ) : (
+            "Rewrite Text"
+          )}
+        </button>
+
+        {error && (
+          <p className="text-sm text-red-500">{error}</p>
+        )}
+
+        {output && (
+          <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-[var(--color-foreground)]">
+                Rewritten Text
+              </h3>
+              <button
+                onClick={handleCopy}
+                className="btn-secondary rounded-lg px-3 py-1.5 text-xs font-medium"
+              >
+                {copied ? "Copied!" : "Copy to clipboard"}
+              </button>
+            </div>
+            <div className="whitespace-pre-wrap text-sm leading-relaxed text-[var(--color-foreground)]">
+              {output}
+            </div>
+          </div>
+        )}
+      </div>
+    </ToolLayout>
+  );
+}

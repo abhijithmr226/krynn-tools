@@ -72,6 +72,8 @@ function getCategoryApplicationType(categorySlug: string): string {
     calculators: "UtilitiesApplication",
     security: "SecurityApplication",
     misc: "UtilitiesApplication",
+    "social-media": "UtilitiesApplication",
+    "ai-writing": "UtilitiesApplication",
   };
   return mapping[categorySlug] || "UtilitiesApplication";
 }

@@ -83,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>
           <Header />
-          <main className="min-h-[calc(100vh-4rem)] pb-20 md:pb-0">{children}</main>
+          <main className="min-h-[calc(100vh-4rem)] pb-28 md:pb-0">{children}</main>
           <Footer />
           <CookieConsent />
         </ThemeProvider>
