@@ -415,7 +415,7 @@ export default function Header() {
           <div style={{ flex: 1, overflowY: "auto", padding: "8px 16px" }}>
             {results.length > 0 ? results.map((tool, idx) => {
               const cat = categories.find(c => c.slug === tool.categorySlug);
-              const colour = cat?.color ?? "#E8100A";
+              const colour = cat?.color ?? "#D50D09";
               return (
                 <Link
                   key={tool.slug}

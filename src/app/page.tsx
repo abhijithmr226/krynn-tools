@@ -16,7 +16,7 @@ const FEATURES = [
     icon: "Lightning",
     title: "Instant Results",
     desc: "Processing happens right in your browser — no server uploads, no waiting.",
-    color: "#E8100A",
+    color: "#D50D09",
     bg: "var(--color-primary-xlight)",
     darkBg: "#2D1110",
   },
@@ -131,7 +131,7 @@ export default function HomePage() {
           }}>
             All The Tools You Need,{" "}
             <span style={{
-              background: "linear-gradient(135deg, #E8100A 0%, #C20000 100%)",
+              background: "linear-gradient(135deg, #D50D09 0%, #B00A07 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -230,7 +230,7 @@ export default function HomePage() {
               }}>
                 {results.slice(0, 8).map((tool, idx) => {
                   const cat = categories.find(c => c.slug === tool.categorySlug);
-                  const colour = cat?.color ?? "#E8100A";
+                  const colour = cat?.color ?? "#D50D09";
                   return (
                     <Link
                       key={tool.slug}
@@ -342,7 +342,7 @@ export default function HomePage() {
           <div className="tools-grid stagger-children">
             {popularTools.map((tool) => {
               const cat = categories.find((c) => c.slug === tool.categorySlug);
-              const colour = cat?.color ?? "#E8100A";
+              const colour = cat?.color ?? "#D50D09";
               return (
                 <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} className="tool-card animate-card animate-on-scroll tilt-card" style={{ display: "flex", flexDirection: "column" }} onMouseMove={handleCardMouseMove as any} onMouseLeave={handleCardMouseLeave as any}>
                   <div style={{
@@ -423,7 +423,7 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section style={{
         padding: "clamp(56px,8vw,80px) clamp(16px,4vw,24px)",
-        background: "linear-gradient(135deg, #E8100A 0%, #C20000 100%)",
+        background: "linear-gradient(135deg, #D50D09 0%, #B00A07 100%)",
         textAlign: "center",
         position: "relative",
         overflow: "hidden",
@@ -447,7 +447,7 @@ export default function HomePage() {
             style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
               padding: "14px 32px", borderRadius: "10px",
-              background: "#fff", color: "#E8100A",
+              background: "#fff", color: "#D50D09",
               fontWeight: 700, fontSize: "0.9375rem",
               boxShadow: "0 8px 24px rgba(0,0,0,0.20)",
               transition: "transform 200ms ease, box-shadow 200ms ease",
