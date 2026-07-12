@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { categories, getToolsByCategory } from "@/lib/tools";
+import KrynnIcon from "@/components/KrynnIcon";
 
 export function generateStaticParams() {
   return categories.map((cat) => ({ slug: cat.slug }));
@@ -64,9 +65,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             className="tool-card group"
           >
             <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg" style={{ backgroundColor: cat.color + "15" }}>
-              <svg className="h-6 w-6" style={{ color: cat.color }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-              </svg>
+              <KrynnIcon name={tool.icon} size={24} weight="duotone" color={cat.color} />
             </div>
             <h3 className="mb-2 font-bold text-[var(--color-foreground)] group-hover:text-[var(--color-primary)] transition-colors duration-200">
               {tool.name}
@@ -90,9 +89,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               className="flex items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4 hover:border-[var(--color-primary)] transition-colors duration-200"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-lg" style={{ backgroundColor: c.color + "15" }}>
-                <svg className="h-5 w-5" style={{ color: c.color }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                </svg>
+                <KrynnIcon name={c.icon} size={20} weight="duotone" color={c.color} />
               </div>
               <span className="font-semibold text-sm text-[var(--color-foreground)]">{c.name}</span>
             </Link>
