@@ -100,8 +100,8 @@
   --color-card-foreground:  #F5F5F5;
   --color-muted:            #141414;
   --color-muted-foreground: #A3A3A3;
-  --color-border:           #2A2A2A;
-  --color-input:            #2A2A2A;
+  --color-border:           #3A3A3A;
+  --color-input:            #3A3A3A;
   --color-ring:             #FF3B30;
   --color-destructive:      #EF4444;
   --color-success:          #10B981;
@@ -524,15 +524,18 @@ textarea:focus, input:focus, select:focus {
   background: rgba(255,255,255,0.07);
 }
 
-/* ── Drop Zone ───────────────────────────────────────────────── */
 .drop-zone {
-  border: 2px dashed var(--color-border);
+  border: 2.5px dashed rgba(232, 16, 10, 0.25);
   border-radius: var(--radius-xl);
   padding: var(--space-8) var(--space-4);
   text-align: center;
   cursor: pointer;
-  transition: border-color 200ms ease, background 200ms ease;
-  background: var(--color-muted);
+  background: var(--color-primary-tint);
+  transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+.dark .drop-zone {
+  background: rgba(255, 59, 48, 0.07);
+  border-color: rgba(255, 59, 48, 0.42);
 }
 @media (min-width: 640px) {
   .drop-zone { padding: var(--space-12) var(--space-6); }
@@ -540,9 +543,11 @@ textarea:focus, input:focus, select:focus {
 .drop-zone:hover, .drop-zone.active {
   border-color: var(--color-primary);
   background: var(--color-primary-tint);
+  box-shadow: 0 0 0 4px rgba(232, 16, 10, 0.08);
 }
-.dark .drop-zone.active {
-  background: var(--color-primary-tint);
+.dark .drop-zone:hover, .dark .drop-zone.active {
+  background: rgba(255, 59, 48, 0.08);
+  box-shadow: 0 0 0 4px rgba(255, 59, 48, 0.12);
 }
 
 /* ── Badge ───────────────────────────────────────────────────── */

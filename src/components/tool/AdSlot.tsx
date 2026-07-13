@@ -32,6 +32,7 @@ function AdUnit({ size }: { size: keyof typeof ADS }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const config = ADS[size];
   const [loadError, setLoadError] = useState(false);
+  const [adLoaded, setAdLoaded] = useState(false);
 
   const loadAd = useCallback(() => {
     if (!containerRef.current || loadError) return;
@@ -79,18 +80,53 @@ function AdUnit({ size }: { size: keyof typeof ADS }) {
     return () => observer.disconnect();
   }, [loadAd]);
 
-  if (loadError) return null;
+  useEffect(() => {
+    if (loadError || !containerRef.current) return;
+
+    const checkForAd = () => {
+      if (containerRef.current && containerRef.current.querySelector("iframe")) {
+        setAdLoaded(true);
+        return true;
+      }
+      return false;
+    };
+
+    if (checkForAd()) return;
+
+    const observer = new MutationObserver(() => {
+      if (checkForAd()) observer.disconnect();
+    });
+
+    observer.observe(containerRef.current, { childList: true, subtree: true });
+
+    const timer = setTimeout(() => {
+      checkForAd();
+      observer.disconnect();
+    }, 6000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, [loadError]);
+
+  if (loadError || !adLoaded) return null;
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        width: config.width,
-        height: config.height,
-        maxWidth: "100%",
-        overflow: "hidden",
-      }}
-    />
+    <div className="flex flex-col items-center w-full">
+      <div className="text-center text-[10px] font-medium text-[var(--color-muted-foreground)] mb-1.5 uppercase tracking-wider">
+        Advertisement
+      </div>
+      <div
+        ref={containerRef}
+        style={{
+          width: config.width,
+          height: config.height,
+          maxWidth: "100%",
+          overflow: "hidden",
+        }}
+      />
+    </div>
   );
 }
 
@@ -133,9 +169,6 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
 
   return (
     <div className={`my-6 ${className}`}>
-      <div className="text-center text-[10px] font-medium text-[var(--color-muted-foreground)] mb-1 uppercase tracking-wider">
-        Advertisement
-      </div>
       <div className="flex justify-center">
         <AdUnit size={adSize} />
       </div>

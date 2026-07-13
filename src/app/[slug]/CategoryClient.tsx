@@ -25,7 +25,7 @@ export default function CategoryClient({ cat, catTools, currentSlug }: CategoryC
         <p className="text-lg text-[var(--color-muted-foreground)] max-w-2xl mx-auto">{cat.description}</p>
       </div>
 
-      <div className="centered-flex-grid">
+      <div className="centered-flex-grid google-anno-skip">
         {visibleTools.map((tool) => {
           const toolColor = getToolColor(tool.slug, cat.color);
           return (
@@ -64,7 +64,7 @@ export default function CategoryClient({ cat, catTools, currentSlug }: CategoryC
         <h2 className="mb-6 text-2xl font-bold text-center text-[var(--color-foreground)]">
           All Categories
         </h2>
-        <div className="centered-flex-grid-4">
+        <div className="centered-flex-grid-4 google-anno-skip">
           {categories.filter(c => c.slug !== currentSlug).map((c) => (
             <Link
               key={c.slug}

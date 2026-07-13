@@ -487,7 +487,7 @@ export default function Header() {
 
       {/* Mobile Bottom Navigation Bar */}
       <nav
-        className="fixed bottom-0 left-0 right-0 z-40 md:hidden"
+        className="fixed bottom-0 left-0 right-0 z-40 flex md:hidden"
         style={{
           height: "64px",
           background: "var(--glass-bg)",
@@ -495,7 +495,6 @@ export default function Header() {
           WebkitBackdropFilter: "var(--glass-blur)",
           borderTop: "1px solid var(--color-border)",
           boxShadow: "0 -4px 16px rgba(0,0,0,0.06)",
-          display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
           paddingBottom: "env(safe-area-inset-bottom, 0px)",

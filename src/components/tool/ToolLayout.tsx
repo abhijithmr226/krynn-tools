@@ -78,22 +78,22 @@ interface TrustStripProps {}
 
 export function TrustStrip({}: TrustStripProps) {
   const items = [
-    { icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z", text: "Files never uploaded" },
-    { icon: "M13 10V3L4 14h7v7l9-11h-7z", text: "Instant results" },
-    { icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z", text: "100% free" },
+    { icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z", text: "Files processed locally" },
+    { icon: "M13 10V3L4 14h7v7l9-11h-7z", text: "Instant processing" },
+    { icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z", text: "100% free forever" },
     { icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z", text: "Works on mobile" },
   ];
 
   return (
-    <div className="flex flex-col gap-2.5">
+    <div className="flex flex-wrap items-center justify-center gap-3">
       {items.map((item) => (
         <span 
           key={item.text} 
-          className="badge badge-primary px-3 py-2 text-xs w-full"
-          style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+          className="badge badge-primary px-3 py-2 text-[11px]"
+          style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}
         >
-          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-[var(--color-primary)]/10">
-            <svg className="h-3.5 w-3.5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-[var(--color-primary)]/10">
+            <svg className="h-3 w-3 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
             </svg>
           </div>
@@ -111,7 +111,7 @@ interface HowToUseProps {
 export function HowToUse({ steps }: HowToUseProps) {
   return (
     <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-8 shadow-sm">
-      <h2 className="mb-6 text-xl font-bold text-[var(--color-foreground)] flex items-center gap-2">
+      <h2 className="mb-6 text-lg font-bold text-[var(--color-foreground)] flex items-center gap-2">
         <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-xs">
           <KrynnIcon name="ListNumbers" size={16} color="var(--color-primary)" weight="duotone" />
         </span>
@@ -123,7 +123,7 @@ export function HowToUse({ steps }: HowToUseProps) {
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-white shadow-sm">
               {i + 1}
             </span>
-            <span className="pt-0.5 text-[var(--color-muted-foreground)] text-sm leading-relaxed">{step}</span>
+            <span className="pt-0.5 text-[var(--color-muted-foreground)] text-[13px] leading-relaxed">{step}</span>
           </li>
         ))}
       </ol>
@@ -142,12 +142,12 @@ interface FAQProps {
 
 export function FAQ({ items }: FAQProps) {
   return (
-    <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
-      <h2 className="mb-6 text-xl font-bold text-[var(--color-foreground)] flex items-center gap-2">
+    <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 className="mb-6 text-lg font-bold text-[var(--color-foreground)] flex items-center gap-2">
         <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-xs">
           <KrynnIcon name="Question" size={16} color="var(--color-primary)" weight="duotone" />
         </span>
-        FAQ
+        Frequently Asked Questions
       </h2>
       <div className="space-y-3">
         {items.map((item, i) => (
@@ -172,14 +172,14 @@ interface RelatedToolsProps {
 
 export function RelatedTools({ tools: relatedTools }: RelatedToolsProps) {
   return (
-    <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
-      <h2 className="mb-6 text-xl font-bold text-[var(--color-foreground)] flex items-center gap-2">
+    <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 className="mb-6 text-lg font-bold text-[var(--color-foreground)] flex items-center gap-2">
         <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-xs">
           <KrynnIcon name="Link" size={16} color="var(--color-primary)" weight="duotone" />
         </span>
         Related Tools
       </h2>
-      <div className="grid gap-3 grid-cols-1">
+      <div className="grid gap-4 sm:grid-cols-2">
         {relatedTools.map((t) => {
           const fullTool = tools.find((x) => x.slug === t.slug && x.categorySlug === t.categorySlug);
           const cat = categories.find((c) => c.slug === t.categorySlug);
@@ -239,21 +239,21 @@ export function ToolLayout({ title, subtitle, children, howToUse, faq, relatedTo
 
   return (
     <>
-      {/* Dynamic Header Section with category-accented ambient glow */}
-      <div className="relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-muted)] px-4 py-8 sm:py-12 mb-8">
+      {/* Header Section with subtle category glow */}
+      <div className="relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-muted)] px-4 py-8 sm:py-10 mb-8">
         <div 
-          className="absolute pointer-events-none opacity-20 dark:opacity-30 blur-[100px]"
+          className="absolute pointer-events-none opacity-20 dark:opacity-35 blur-[90px]"
           style={{
             top: "-30%",
             right: "-10%",
-            width: "380px",
-            height: "380px",
+            width: "360px",
+            height: "360px",
             borderRadius: "50%",
             background: `radial-gradient(circle, ${category?.color ?? "var(--color-primary)"} 0%, transparent 70%)`
           }}
         />
         
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-4xl mx-auto">
           {breadcrumbItems.length > 0 && (
             <Breadcrumbs items={breadcrumbItems} />
           )}
@@ -272,45 +272,41 @@ export function ToolLayout({ title, subtitle, children, howToUse, faq, relatedTo
                 {category.name}
               </span>
             )}
-            <h1 className="text-3xl font-extrabold sm:text-4xl text-[var(--color-foreground)] tracking-tight mb-3">
+            <h1 className="text-2xl font-extrabold sm:text-3xl text-[var(--color-foreground)] tracking-tight mb-2">
               {title}
             </h1>
-            <p className="text-base text-[var(--color-muted-foreground)] max-w-2xl leading-relaxed">
+            <p className="text-sm sm:text-base text-[var(--color-muted-foreground)] leading-relaxed">
               {subtitle}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Main Multi-Column Interface */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      {/* Fluid Centered Container (Issue 1 Resolved) */}
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="space-y-6">
           
-          {/* Workspace Area (Main Content) */}
-          <div className="col-span-1 lg:col-span-2 space-y-8">
-            <div className="workspace-card">
-              {children}
-            </div>
-            
-            <AdSlot position="in-content" />
-            
-            <HowToUse steps={howToUse} />
-            
-            <UserReviews toolTitle={title} />
+          {/* Main Workspace Card — primary action area */}
+          <div className="workspace-card">
+            {children}
+          </div>
+          
+          {/* Trust badges directly below the tool */}
+          <div className="py-2">
+            <TrustStrip />
           </div>
 
-          {/* Utility Sidebar Area */}
-          <div className="col-span-1 space-y-6 lg:sticky lg:top-20">
-            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
-              <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[var(--color-muted-foreground)]">Security &amp; Performance</h3>
-              <TrustStrip />
-            </div>
+          <AdSlot position="in-content" />
+          
+          {/* Secondary sections — clearly demoted below the primary action */}
+          <div className="pt-6 sm:pt-8 space-y-8 sm:space-y-12 border-t border-[var(--color-border)]">
+            {howToUse.length > 0 && <HowToUse steps={howToUse} />}
 
-            <AdSlot position="sidebar" />
-            
             {faq.length > 0 && <FAQ items={faq} />}
-            
+
             {relatedTools.length > 0 && <RelatedTools tools={relatedTools} />}
+            
+            <UserReviews toolTitle={title} />
           </div>
           
         </div>
@@ -515,7 +511,7 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
     <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-8 shadow-sm">
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
         <div>
-          <h2 className="text-xl font-bold text-[var(--color-foreground)] mb-1 flex items-center gap-2">
+          <h2 className="text-lg font-bold text-[var(--color-foreground)] mb-1 flex items-center gap-2">
             <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-xs">
               <KrynnIcon name="Chat" size={16} color="var(--color-primary)" weight="duotone" />
             </span>
