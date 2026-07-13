@@ -79,9 +79,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", plusJakarta.variable)}>
       <head>
-        {/* Google Analytics */}
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-H68ZRX13X7" />
-        <Script id="gtag-init" dangerouslySetInnerHTML={{
+        {/* Google Analytics — lazy-loaded to avoid blocking first paint */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-H68ZRX13X7" strategy="lazyOnload" />
+        <Script id="gtag-init" strategy="lazyOnload" dangerouslySetInnerHTML={{
           __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H68ZRX13X7');`,
         }} />
 

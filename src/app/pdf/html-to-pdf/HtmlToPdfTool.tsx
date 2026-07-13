@@ -92,7 +92,7 @@ export default function HtmlToPdfTool({ relatedTools, schema }: Props) {
             <div className="border-b border-[var(--color-border)] px-4 py-2">
               <label className="text-sm font-semibold text-[var(--color-foreground)]">Live Preview</label>
             </div>
-            <div className="h-[400px] overflow-auto bg-white lg:h-[500px]">
+            <div className="h-[400px] overflow-auto bg-white dark:ring-1 dark:ring-[var(--color-border)] dark:shadow-lg lg:h-[500px]">
               <iframe
                 ref={iframeRef}
                 srcDoc={html}

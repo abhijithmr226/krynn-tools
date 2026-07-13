@@ -175,7 +175,7 @@ export default function SignPdfTool({ relatedTools, schema }: Props) {
                       Remove
                     </button>
                   </div>
-                  <div className="flex justify-center rounded-md border border-[var(--color-border)] bg-white p-4">
+                  <div className="flex justify-center rounded-md border border-[var(--color-border)] bg-white p-4 dark:shadow-lg">
                     <img src={signatureImage} alt="Signature preview" className="max-h-24 object-contain" />
                   </div>
                 </div>

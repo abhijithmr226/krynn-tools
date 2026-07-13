@@ -328,7 +328,7 @@ export default function CoinFlipTool({ relatedTools, schema }: Props) {
                   className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-bold transition-all duration-200 ${
                     side === "heads"
                       ? "bg-[var(--color-primary-xlight)] text-[var(--color-primary)] border border-[var(--color-primary)]/10"
-                      : "bg-[#FFFCEF] text-[#B08D25] border border-[#D4AF37]/15"
+                      : "bg-[#FFFCEF] text-[#B08D25] border border-[#D4AF37]/15 dark:bg-[#2a2000] dark:text-[#D4AF37] dark:border-[#D4AF37]/25"
                   }`}
                   style={{ animation: "fadeUp 0.25s ease both" }}
                 >

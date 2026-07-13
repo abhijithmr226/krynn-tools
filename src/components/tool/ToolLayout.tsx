@@ -516,6 +516,7 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
                     onMouseEnter={() => setHoverRating(star)}
                     onMouseLeave={() => setHoverRating(0)}
                     className="p-0.5 outline-none focus:scale-110 transition-transform"
+                    aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
                   >
                     <svg
                       className="h-6 w-6 cursor-pointer text-amber-400"

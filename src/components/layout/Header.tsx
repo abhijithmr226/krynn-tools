@@ -412,7 +412,7 @@ export default function Header() {
               )}
             </div>
           </div>
-          <div style={{ flex: 1, overflowY: "auto", padding: "8px 16px" }}>
+          <div style={{ flex: 1, overflowY: "auto", padding: "8px 16px", paddingBottom: "calc(8px + env(safe-area-inset-bottom, 0px))" }}>
             {results.length > 0 ? results.map((tool, idx) => {
               const cat = categories.find(c => c.slug === tool.categorySlug);
               const colour = cat?.color ?? "#D50D09";

@@ -169,7 +169,7 @@ export default function CssAnimationGeneratorTool({ relatedTools, schema }: Prop
             <div className="flex h-32 w-32 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-primary)]">
               <div
                 id="animation-preview"
-                className="h-16 w-16 rounded-lg bg-white"
+                className="h-16 w-16 rounded-lg bg-white dark:ring-1 dark:ring-[var(--color-border)] dark:shadow-lg"
                 style={{ animation: customAnimation }}
               />
             </div>

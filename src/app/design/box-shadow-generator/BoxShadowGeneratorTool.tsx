@@ -97,7 +97,7 @@ export default function BoxShadowGeneratorTool({ relatedTools, schema }: Props) 
               Live Preview
             </label>
             <div
-              className="h-48 w-48 rounded-xl border border-[var(--color-border)] bg-white"
+              className="h-48 w-48 rounded-xl border border-[var(--color-border)] bg-white dark:ring-1 dark:ring-[var(--color-border)] dark:shadow-lg"
               style={{ boxShadow: shadowValue }}
             />
           </div>

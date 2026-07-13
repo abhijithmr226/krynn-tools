@@ -156,7 +156,7 @@ export default function SvgToPngTool({ relatedTools, schema }: Props) {
                   Remove
                 </button>
               </div>
-              <div className="flex justify-center rounded-md bg-white p-4">
+              <div className="flex justify-center rounded-md bg-white p-4 dark:ring-1 dark:ring-[var(--color-border)] dark:shadow-lg">
                 <div dangerouslySetInnerHTML={{ __html: svgContent }} className="max-h-48" />
               </div>
             </div>

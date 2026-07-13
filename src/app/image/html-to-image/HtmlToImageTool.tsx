@@ -168,7 +168,7 @@ export default function HtmlToImageTool({ relatedTools, schema }: Props) {
 
         <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
           <label className="mb-2 block text-sm font-semibold text-[var(--color-foreground)]">Preview</label>
-          <div className="flex justify-center overflow-auto rounded-md border border-[var(--color-border)] bg-white p-4">
+          <div className="flex justify-center overflow-auto rounded-md border border-[var(--color-border)] bg-white p-4 dark:shadow-lg">
             <div ref={previewRef} dangerouslySetInnerHTML={{ __html: html }} />
           </div>
         </div>
