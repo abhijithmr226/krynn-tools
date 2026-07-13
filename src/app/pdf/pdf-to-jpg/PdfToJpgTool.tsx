@@ -127,7 +127,7 @@ export default function PdfToJpgTool({
         )}
 
         {loading && (
-          <div className="flex flex-col items-center gap-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-12">
+          <div className="flex flex-col items-center gap-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-6 sm:p-12">
             <span className="spinner" />
             <p className="text-sm text-[var(--color-muted-foreground)]">Processing PDF pages...</p>
           </div>
@@ -141,11 +141,11 @@ export default function PdfToJpgTool({
 
         {pages.length > 0 && (
           <>
-            <div className="flex items-center justify-between rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
-              <p className="font-semibold text-[var(--color-foreground)]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
+              <p className="font-semibold text-[var(--color-foreground)] break-all">
                 {fileName}.pdf — {pages.length} page{pages.length > 1 ? "s" : ""} converted
               </p>
-              <button onClick={handleReset} className="cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium text-[var(--color-muted-foreground)] transition-colors duration-200 hover:bg-[var(--color-muted)]">
+              <button onClick={handleReset} className="cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium text-[var(--color-muted-foreground)] transition-colors duration-200 hover:bg-[var(--color-muted)] self-end sm:self-auto">
                 Remove
               </button>
             </div>

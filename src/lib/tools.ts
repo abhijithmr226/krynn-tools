@@ -209,3 +209,33 @@ export function searchTools(query: string): Tool[] {
     t.keywords.some(k => k.toLowerCase().includes(q))
   );
 }
+
+export function getToolColor(slug: string, defaultColor: string): string {
+  const s = slug.toLowerCase();
+  if (
+    s.includes("protect") ||
+    s.includes("unlock") ||
+    s.includes("sign") ||
+    s.includes("watermark") ||
+    s.includes("password") ||
+    s.includes("hash") ||
+    s.includes("md5") ||
+    s.includes("sha") ||
+    s.includes("validator") ||
+    s.includes("checker")
+  ) {
+    return "#EC4899"; // Pink for Security/Verification tools
+  }
+  if (
+    s.includes("to") ||
+    s.includes("extract") ||
+    s.includes("ocr") ||
+    s.includes("converter") ||
+    s.includes("encoder") ||
+    s.includes("decoder") ||
+    s.includes("picker")
+  ) {
+    return "#3B82F6"; // Blue for Conversion/Extraction tools
+  }
+  return defaultColor; // Fallback to current category color
+}

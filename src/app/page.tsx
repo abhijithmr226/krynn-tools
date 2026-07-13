@@ -16,9 +16,10 @@ const FEATURES = [
     icon: "Lightning",
     title: "Instant Results",
     desc: "Processing happens right in your browser — no server uploads, no waiting.",
-    color: "#D50D09",
-    bg: "var(--color-primary-xlight)",
-    darkBg: "#2D1110",
+    color: "#E8100A",
+    bg: "#FFF0EF",
+    darkBg: "#2A0A09",
+    borderColor: "rgba(232,16,10,0.18)",
   },
   {
     icon: "Lock",
@@ -26,7 +27,8 @@ const FEATURES = [
     desc: "Your files never leave your device. We never see, store, or share your data.",
     color: "#059669",
     bg: "#F0FDF4",
-    darkBg: "#052e16",
+    darkBg: "#0A2E1C",
+    borderColor: "rgba(5,150,105,0.18)",
   },
   {
     icon: "Money",
@@ -34,14 +36,24 @@ const FEATURES = [
     desc: "100+ tools at zero cost, forever. No paywalls, no plans, no hidden limits.",
     color: "#7C3AED",
     bg: "#F5F3FF",
-    darkBg: "#2e1065",
+    darkBg: "#1E1040",
+    borderColor: "rgba(124,58,237,0.18)",
   },
 ];
 
 export default function HomePage() {
   const [query, setQuery] = useState("");
+  const [isDark, setIsDark] = useState(false);
   const results = useMemo(() => (query.length > 0 ? searchTools(query) : []), [query]);
   const popularTools = getPopularTools(8);
+
+  useEffect(() => {
+    const check = () => setIsDark(document.documentElement.classList.contains("dark"));
+    check();
+    const obs = new MutationObserver(check);
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
 
   // ── Cursor glow ────────────────────────────────────────────
   const glowRef = useRef<HTMLDivElement>(null);
@@ -131,7 +143,7 @@ export default function HomePage() {
           }}>
             All The Tools You Need,{" "}
             <span style={{
-              background: "linear-gradient(135deg, #D50D09 0%, #B00A07 100%)",
+              background: "linear-gradient(135deg, #E8100A 0%, #C20000 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -195,7 +207,7 @@ export default function HomePage() {
                 onFocus={(e) => {
                   e.target.style.borderColor = "var(--color-primary)";
                   e.target.style.background = "var(--color-card)";
-                  e.target.style.boxShadow = "0 0 0 3px rgba(213,13,9,0.08)";
+                  e.target.style.boxShadow = "0 0 0 3px rgba(232,16,10,0.14)";
                 }}
                 onBlur={(e) => {
                   e.target.style.borderColor = "var(--color-border)";
@@ -265,21 +277,32 @@ export default function HomePage() {
             )}
           </div>
 
-          {/* Trust row */}
+          {/* Trust row — icon chips */}
           <div className="animate-fade-up" style={{
-            display: "flex", flexWrap: "wrap", gap: "16px",
+            display: "flex", flexWrap: "wrap", gap: "10px",
             justifyContent: "center", marginTop: "28px",
-            fontSize: "0.8125rem", fontWeight: 500, color: "var(--color-muted-foreground)",
             animationDelay: "300ms",
           }}>
             {[
               { Icon: CheckCircle, label: "100% Free" },
-              { Icon: LockSimple, label: "No Signup" },
-              { Icon: LockSimple, label: "Private & Secure" },
+              { Icon: LockSimple,   label: "No Signup" },
+              { Icon: LockSimple,   label: "Private & Secure" },
               { Icon: DeviceMobile, label: "Mobile Friendly" },
             ].map(({ Icon, label }) => (
-              <span key={label} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                <Icon size={15} weight="fill" color="var(--color-primary)" />
+              <span
+                key={label}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: "6px",
+                  padding: "5px 12px",
+                  background: "var(--color-primary-tint)",
+                  border: "1px solid rgba(232,16,10,0.18)",
+                  borderRadius: "9999px",
+                  fontSize: "0.78125rem", fontWeight: 600,
+                  color: "var(--color-primary)",
+                  letterSpacing: "0.01em",
+                }}
+              >
+                <Icon size={14} weight="fill" />
                 {label}
               </span>
             ))}
@@ -300,9 +323,9 @@ export default function HomePage() {
             Pick a category and get started instantly.
           </p>
 
-          <div className="tools-grid stagger-children">
+          <div className="centered-flex-grid-4 stagger-children">
             {categories.map((cat) => (
-              <Link key={cat.slug} href={`/${cat.slug}`} className="category-card glow-card animate-card animate-on-scroll" style={{ display: "block" }} onMouseMove={handleCardMouseMove as any} onMouseLeave={handleCardMouseLeave as any}>
+              <Link key={cat.slug} href={`/${cat.slug}`} className="category-card glow-card animate-card animate-on-scroll centered-flex-item-4" style={{ display: "block" }} onMouseMove={handleCardMouseMove as any} onMouseLeave={handleCardMouseLeave as any}>
                 <div style={{
                   width: "52px", height: "52px", borderRadius: "14px",
                   background: `${cat.color}18`,
@@ -318,9 +341,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
+ 
       <AdSlot position="in-content" className="max-w-4xl mx-auto" />
-
+ 
       {/* ══════════════════════════════════════════════
           POPULAR TOOLS
       ══════════════════════════════════════════════ */}
@@ -329,7 +352,7 @@ export default function HomePage() {
         <div className="dot-pattern" style={{
           position: "absolute", inset: 0, opacity: 0.5, pointerEvents: "none",
         }} aria-hidden="true" />
-
+ 
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(16px,4vw,24px)", position: "relative" }}>
           <span className="section-label">Popular Tools</span>
           <h2 style={{ textAlign: "center", fontSize: "clamp(1.6rem, 3vw, 2.25rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "10px" }}>
@@ -338,13 +361,13 @@ export default function HomePage() {
           <p style={{ textAlign: "center", color: "var(--color-muted-foreground)", marginBottom: "40px" }}>
             Explore our most popular tools, used by thousands every day.
           </p>
-
-          <div className="tools-grid stagger-children">
+ 
+          <div className="centered-flex-grid stagger-children">
             {popularTools.map((tool) => {
               const cat = categories.find((c) => c.slug === tool.categorySlug);
-              const colour = cat?.color ?? "#D50D09";
+              const colour = cat?.color ?? "#E8100A";
               return (
-                <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} className="tool-card animate-card animate-on-scroll tilt-card" style={{ display: "flex", flexDirection: "column" }} onMouseMove={handleCardMouseMove as any} onMouseLeave={handleCardMouseLeave as any}>
+                <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} className="tool-card animate-card animate-on-scroll tilt-card centered-flex-item-3" style={{ display: "flex", flexDirection: "column" }} onMouseMove={handleCardMouseMove as any} onMouseLeave={handleCardMouseLeave as any}>
                   <div style={{
                     width: "46px", height: "46px", borderRadius: "12px",
                     background: `${colour}18`,
@@ -355,8 +378,8 @@ export default function HomePage() {
                   </div>
                   <h3 style={{ fontWeight: 700, marginBottom: "7px", fontSize: "0.9375rem" }}>{tool.name}</h3>
                   <p style={{ fontSize: "0.8125rem", color: "var(--color-muted-foreground)", lineHeight: 1.65, flex: 1, marginBottom: "14px" }}>{tool.description}</p>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "4px", fontSize: "0.8125rem", fontWeight: 700, color: "var(--color-primary)" }}>
-                    Use Tool <CaretRight size={13} weight="bold" />
+                  <span className="use-tool-link">
+                    Use Tool <CaretRight size={13} weight="bold" className="arrow-icon" />
                   </span>
                 </Link>
               );
@@ -391,8 +414,8 @@ export default function HomePage() {
             {FEATURES.map((f) => (
               <div key={f.title} className="animate-card animate-on-scroll" style={{
                 borderRadius: "16px", padding: "28px 24px", textAlign: "center",
-                background: `${f.color}0d`,
-                border: `1px solid ${f.color}22`,
+                background: isDark ? f.darkBg : f.bg,
+                border: `1px solid ${f.borderColor}`,
                 transition: "transform 240ms ease, box-shadow 240ms ease",
               }}
               onMouseEnter={(e) => {
@@ -421,14 +444,13 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════
           CTA BANNER
       ══════════════════════════════════════════════ */}
-      <section style={{
+      <section className="band-brand" style={{
         padding: "clamp(56px,8vw,80px) clamp(16px,4vw,24px)",
-        background: "linear-gradient(135deg, #D50D09 0%, #B00A07 100%)",
         textAlign: "center",
         position: "relative",
         overflow: "hidden",
       }}>
-        {/* Blob in CTA */}
+        {/* Ambient blob in CTA */}
         <div style={{
           position: "absolute", width: "400px", height: "400px", borderRadius: "50%",
           background: "rgba(255,255,255,0.06)", top: "-100px", right: "-80px",
@@ -439,30 +461,10 @@ export default function HomePage() {
           <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", marginBottom: "14px" }}>
             Ready to Get Started?
           </h2>
-          <p style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)", color: "#fff", lineHeight: 1.7, marginBottom: "32px" }}>
+          <p style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)", color: "rgba(255,255,255,0.88)", lineHeight: 1.7, marginBottom: "32px" }}>
             Join thousands of users who rely on Krynn Tools every day. Free, fast, and no account required.
           </p>
-          <Link
-            href={`/${categories[0]?.slug ?? ""}`}
-            style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              padding: "14px 32px", borderRadius: "10px",
-              background: "#fff", color: "#D50D09",
-              fontWeight: 700, fontSize: "0.9375rem",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.20)",
-              transition: "transform 200ms ease, box-shadow 200ms ease",
-              textDecoration: "none",
-              position: "relative", overflow: "hidden",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.28)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.20)";
-            }}
-          >
+          <Link href={`/${categories[0]?.slug ?? ""}`} className="btn-inverse">
             <Lightning size={18} weight="fill" />
             Explore All Tools — It&apos;s Free
           </Link>
@@ -472,13 +474,51 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════
           SEO TEXT
       ══════════════════════════════════════════════ */}
-      <section style={{ padding: "clamp(40px,6vw,64px) 0", background: "var(--color-muted)" }}>
-        <div style={{ maxWidth: "740px", margin: "0 auto", padding: "0 clamp(16px,4vw,24px)" }}>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "18px" }}>Why Krynn Tools?</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "14px", color: "var(--color-muted-foreground)", lineHeight: 1.8 }}>
-            <p>Krynn Tools is a free collection of 100+ online utilities designed to make your everyday tasks easier. Whether you need to compress a PDF, resize an image, format JSON, or calculate your BMI — we have the right tool.</p>
-            <p>Every tool runs entirely in your browser. Your files never leave your device, ensuring complete privacy and instant results. No uploads, no waiting, no signups required.</p>
-            <p>Built with modern web technologies, Krynn Tools works on any device — desktop, tablet, or mobile. All tools are free to use with no restrictions.</p>
+      <section className="band-muted" style={{ padding: "clamp(48px,6vw,72px) 0" }}>
+        <div style={{ maxWidth: "960px", margin: "0 auto", padding: "0 clamp(16px,4vw,24px)" }}>
+          <h2 style={{ fontSize: "clamp(1.25rem,2.5vw,1.75rem)", fontWeight: 700, marginBottom: "36px", textAlign: "center", letterSpacing: "-0.02em" }}>Why Krynn Tools?</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "20px" }}>
+            {[
+              {
+                icon: "BracketsCurly",
+                title: "Browser-first processing",
+                text: "Every tool runs entirely in your browser. Your files never leave your device — no uploads, no servers, no waiting.",
+              },
+              {
+                icon: "ShieldCheck",
+                title: "Complete privacy",
+                text: "We never see, store, or share your data. Compress PDFs, resize images, or format code — all locally, all private.",
+              },
+              {
+                icon: "Devices",
+                title: "Works everywhere",
+                text: "100+ tools with no paywalls, no account required, on any device — desktop, tablet, or mobile.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                style={{
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border)",
+                  borderRadius: "12px",
+                  padding: "24px 20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
+                <div style={{
+                  width: "44px", height: "44px", borderRadius: "10px",
+                  background: "var(--color-muted)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  marginBottom: "4px",
+                }}>
+                  <KrynnIcon name={item.icon} size={22} weight="duotone" color="var(--color-muted-foreground)" />
+                </div>
+                <h3 style={{ fontSize: "0.9375rem", fontWeight: 700 }}>{item.title}</h3>
+                <p style={{ fontSize: "0.875rem", color: "var(--color-muted-foreground)", lineHeight: 1.75 }}>{item.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

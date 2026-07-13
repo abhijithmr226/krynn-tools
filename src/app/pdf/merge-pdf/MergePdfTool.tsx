@@ -84,7 +84,7 @@ export default function MergePdfTool() {
   };
 
   return (
-    <div className="tool-card">
+    <div className="space-y-6">
       <div
         onDragEnter={(e) => { e.preventDefault(); e.stopPropagation(); }}
         onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}

@@ -6,6 +6,7 @@ import AdSlot from "./AdSlot";
 import StickyMobileCTA from "./StickyMobileCTA";
 import { categories, tools } from "@/lib/tools";
 import KrynnIcon from "../common/KrynnIcon";
+import { CaretRight } from "@phosphor-icons/react";
 
 interface FileDropZoneProps {
   accept?: string;
@@ -51,8 +52,8 @@ export function FileDropZone({ accept = ".pdf,.jpg,.jpeg,.png,.webp", onFile, la
       />
       <label htmlFor="file-upload" className="cursor-pointer">
         <div className="flex flex-col items-center gap-3">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-muted)]">
-            <svg className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-primary-tint)]">
+            <svg className="h-7 w-7 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
           </div>
@@ -84,13 +85,19 @@ export function TrustStrip({}: TrustStripProps) {
   ];
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-6 rounded-lg bg-[var(--color-muted)] px-6 py-4">
+    <div className="flex flex-col gap-2.5">
       {items.map((item) => (
-        <span key={item.text} className="flex items-center gap-2 text-sm font-medium text-[var(--color-foreground)]">
-          <svg className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
-          </svg>
-          {item.text}
+        <span 
+          key={item.text} 
+          className="badge badge-primary px-3 py-2 text-xs w-full"
+          style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+        >
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-[var(--color-primary)]/10">
+            <svg className="h-3.5 w-3.5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+            </svg>
+          </div>
+          <span className="font-semibold text-[var(--color-foreground)]">{item.text}</span>
         </span>
       ))}
     </div>
@@ -103,15 +110,20 @@ interface HowToUseProps {
 
 export function HowToUse({ steps }: HowToUseProps) {
   return (
-    <section>
-      <h2 className="mb-6 text-2xl font-bold text-[var(--color-foreground)]">How to Use</h2>
+    <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-8 shadow-sm">
+      <h2 className="mb-6 text-xl font-bold text-[var(--color-foreground)] flex items-center gap-2">
+        <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-xs">
+          <KrynnIcon name="ListNumbers" size={16} color="var(--color-primary)" weight="duotone" />
+        </span>
+        How to Use
+      </h2>
       <ol className="space-y-4">
         {steps.map((step, i) => (
           <li key={i} className="flex gap-4">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-white">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-white shadow-sm">
               {i + 1}
             </span>
-            <span className="pt-1 text-[var(--color-foreground)] leading-relaxed">{step}</span>
+            <span className="pt-0.5 text-[var(--color-muted-foreground)] text-sm leading-relaxed">{step}</span>
           </li>
         ))}
       </ol>
@@ -130,15 +142,23 @@ interface FAQProps {
 
 export function FAQ({ items }: FAQProps) {
   return (
-    <section>
-      <h2 className="mb-6 text-2xl font-bold text-[var(--color-foreground)]">Frequently Asked Questions</h2>
+    <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
+      <h2 className="mb-6 text-xl font-bold text-[var(--color-foreground)] flex items-center gap-2">
+        <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-xs">
+          <KrynnIcon name="Question" size={16} color="var(--color-primary)" weight="duotone" />
+        </span>
+        FAQ
+      </h2>
       <div className="space-y-3">
         {items.map((item, i) => (
-          <details key={i} className="group rounded-lg border border-[var(--color-border)] p-4">
-            <summary className="cursor-pointer font-semibold text-[var(--color-foreground)] group-open:text-[var(--color-primary)]">
-              {item.question}
+          <details key={i} className="group rounded-xl border border-[var(--color-border)] bg-[var(--color-muted)] p-4 transition-colors duration-200">
+            <summary className="cursor-pointer font-semibold text-sm text-[var(--color-foreground)] group-open:text-[var(--color-primary)] flex items-center justify-between outline-none">
+              <span>{item.question}</span>
+              <span className="transition-transform duration-200 group-open:rotate-180 flex shrink-0 ml-2">
+                <KrynnIcon name="CaretDown" size={16} weight="bold" />
+              </span>
             </summary>
-            <p className="mt-3 text-[var(--color-muted-foreground)] leading-relaxed">{item.answer}</p>
+            <p className="mt-3 text-[13px] text-[var(--color-muted-foreground)] leading-relaxed border-t border-[var(--color-border)] pt-3">{item.answer}</p>
           </details>
         ))}
       </div>
@@ -152,11 +172,15 @@ interface RelatedToolsProps {
 
 export function RelatedTools({ tools: relatedTools }: RelatedToolsProps) {
   return (
-    <section>
-      <h2 className="mb-6 text-2xl font-bold text-[var(--color-foreground)]">Related Tools</h2>
-      <div className="grid gap-4 sm:grid-cols-2">
+    <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
+      <h2 className="mb-6 text-xl font-bold text-[var(--color-foreground)] flex items-center gap-2">
+        <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-xs">
+          <KrynnIcon name="Link" size={16} color="var(--color-primary)" weight="duotone" />
+        </span>
+        Related Tools
+      </h2>
+      <div className="grid gap-3 grid-cols-1">
         {relatedTools.map((t) => {
-          // Find full tool details to get its custom icon and category color
           const fullTool = tools.find((x) => x.slug === t.slug && x.categorySlug === t.categorySlug);
           const cat = categories.find((c) => c.slug === t.categorySlug);
           const color = cat?.color ?? "var(--color-primary)";
@@ -166,18 +190,19 @@ export function RelatedTools({ tools: relatedTools }: RelatedToolsProps) {
             <a
               key={t.slug}
               href={`/${t.categorySlug}/${t.slug}`}
-              className="tool-card flex items-center gap-4"
+              className="group flex items-center gap-3 p-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-muted)] hover:border-[var(--color-primary)] transition-all duration-200"
             >
               <div 
-                className="flex h-12 w-12 items-center justify-center rounded-lg"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg group-hover:scale-105 transition-transform"
                 style={{ background: `${color}18` }}
               >
-                <KrynnIcon name={iconName} size={22} weight="duotone" color={color} />
+                <KrynnIcon name={iconName} size={20} weight="duotone" color={color} />
               </div>
-              <div>
-                <div className="font-semibold text-[var(--color-foreground)]">{t.name}</div>
-                <div className="text-sm text-[var(--color-muted-foreground)]">Free online tool</div>
+              <div className="min-w-0 flex-1">
+                <div className="font-semibold text-sm text-[var(--color-foreground)] truncate group-hover:text-[var(--color-primary)] transition-colors">{t.name}</div>
+                <div className="text-xs text-[var(--color-muted-foreground)]">Free Browser Tool</div>
               </div>
+              <CaretRight size={14} className="text-[var(--color-muted-foreground)] group-hover:translate-x-0.5 transition-transform" />
             </a>
           );
         })}
@@ -199,9 +224,11 @@ interface ToolLayoutProps {
 }
 
 export function ToolLayout({ title, subtitle, children, howToUse, faq, relatedTools, schema, categorySlug, toolSlug }: ToolLayoutProps) {
-  const categoryName = categorySlug
-    ? categories.find((c) => c.slug === categorySlug)?.name ?? categorySlug
+  const category = categorySlug
+    ? categories.find((c) => c.slug === categorySlug)
     : undefined;
+
+  const categoryName = category?.name ?? categorySlug;
 
   const breadcrumbItems = [
     ...(categoryName
@@ -212,61 +239,106 @@ export function ToolLayout({ title, subtitle, children, howToUse, faq, relatedTo
 
   return (
     <>
-      <div className="mx-auto max-w-4xl px-4 py-8 sm:py-12">
-        {breadcrumbItems.length > 0 && (
-          <Breadcrumbs items={breadcrumbItems} />
-        )}
-
-        <div className="mb-8 text-center">
-          <h1 className="mb-3 text-3xl font-bold sm:text-4xl text-[var(--color-foreground)]">{title}</h1>
-          <p className="text-lg text-[var(--color-muted-foreground)]">{subtitle}</p>
-        </div>
-
-        <div className="mb-10">{children}</div>
-
-        <AdSlot position="in-content" />
-
-        <div className="mb-12">
-          <TrustStrip />
-        </div>
-
-        <AdSlot position="below-tool" />
-
-        <div className="space-y-12">
-          <HowToUse steps={howToUse} />
-          <FAQ items={faq} />
-          <RelatedTools tools={relatedTools} />
-          <UserReviews toolTitle={title} />
-        </div>
-
-        {schema && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
-        )}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: faq.map((item) => ({
-                "@type": "Question",
-                name: item.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: item.answer,
-                },
-              })),
-            }),
+      {/* Dynamic Header Section with category-accented ambient glow */}
+      <div className="relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-muted)] px-4 py-8 sm:py-12 mb-8">
+        <div 
+          className="absolute pointer-events-none opacity-20 dark:opacity-30 blur-[100px]"
+          style={{
+            top: "-30%",
+            right: "-10%",
+            width: "380px",
+            height: "380px",
+            borderRadius: "50%",
+            background: `radial-gradient(circle, ${category?.color ?? "var(--color-primary)"} 0%, transparent 70%)`
           }}
         />
+        
+        <div className="relative z-10 max-w-7xl mx-auto">
+          {breadcrumbItems.length > 0 && (
+            <Breadcrumbs items={breadcrumbItems} />
+          )}
+
+          <div className="flex flex-col items-start">
+            {category && (
+              <span 
+                className="badge badge-primary px-3 py-1 mb-4 flex items-center gap-1.5 text-xs font-semibold"
+                style={{
+                  backgroundColor: `${category.color}15`,
+                  color: category.color,
+                  borderColor: `${category.color}25`
+                }}
+              >
+                <KrynnIcon name={category.icon} size={14} weight="duotone" color={category.color} />
+                {category.name}
+              </span>
+            )}
+            <h1 className="text-3xl font-extrabold sm:text-4xl text-[var(--color-foreground)] tracking-tight mb-3">
+              {title}
+            </h1>
+            <p className="text-base text-[var(--color-muted-foreground)] max-w-2xl leading-relaxed">
+              {subtitle}
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="hidden md:block">
-        <AdSlot position="sidebar" />
+      {/* Main Multi-Column Interface */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          
+          {/* Workspace Area (Main Content) */}
+          <div className="col-span-1 lg:col-span-2 space-y-8">
+            <div className="workspace-card">
+              {children}
+            </div>
+            
+            <AdSlot position="in-content" />
+            
+            <HowToUse steps={howToUse} />
+            
+            <UserReviews toolTitle={title} />
+          </div>
+
+          {/* Utility Sidebar Area */}
+          <div className="col-span-1 space-y-6 lg:sticky lg:top-20">
+            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 shadow-sm">
+              <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[var(--color-muted-foreground)]">Security &amp; Performance</h3>
+              <TrustStrip />
+            </div>
+
+            <AdSlot position="sidebar" />
+            
+            {faq.length > 0 && <FAQ items={faq} />}
+            
+            {relatedTools.length > 0 && <RelatedTools tools={relatedTools} />}
+          </div>
+          
+        </div>
       </div>
+
+      {schema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
+          }),
+        }}
+      />
 
       <StickyMobileCTA label="Use This Tool" />
     </>
@@ -440,39 +512,43 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
   };
 
   return (
-    <section className="border-t border-[var(--color-border)] pt-8 mt-12">
-      <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-8">
+    <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-8 shadow-sm">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-[var(--color-foreground)] mb-2">User Reviews &amp; Feedback</h2>
-          <p className="text-sm text-[var(--color-muted-foreground)]">Real-time comments from our global community of users.</p>
+          <h2 className="text-xl font-bold text-[var(--color-foreground)] mb-1 flex items-center gap-2">
+            <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--color-primary)]/10 text-xs">
+              <KrynnIcon name="Chat" size={16} color="var(--color-primary)" weight="duotone" />
+            </span>
+            Feedback &amp; Reviews
+          </h2>
+          <p className="text-xs text-[var(--color-muted-foreground)]">Real-time comments from our global community.</p>
         </div>
         
-        {/* Rating summary — only shown when there are real reviews */}
         {reviews.length > 0 && (
-          <div className="flex items-center gap-4 bg-[var(--color-muted)] p-4 rounded-xl border border-[var(--color-border)] self-start">
+          <div className="flex items-center gap-4 bg-[var(--color-muted)] px-4 py-2.5 rounded-xl border border-[var(--color-border)] self-start">
             <div className="text-center">
-              <span className="block text-3xl font-extrabold text-[var(--color-foreground)] leading-none">{averageRating}</span>
-              <span className="text-[10px] uppercase font-bold text-[var(--color-muted-foreground)] tracking-wider mt-1 block">out of 5</span>
+              <span className="block text-2xl font-extrabold text-[var(--color-foreground)] leading-none">{averageRating}</span>
+              <span className="text-[9px] uppercase font-bold text-[var(--color-muted-foreground)] tracking-wider mt-1 block">out of 5</span>
             </div>
-            <div className="h-10 w-[1.5px] bg-[var(--color-border)]" />
+            <div className="h-8 w-[1px] bg-[var(--color-border)]" />
             <div>
-              {renderStars(Math.round(parseFloat(averageRating)), 18)}
-              <span className="text-xs font-semibold text-[var(--color-muted-foreground)] mt-1 block">{reviews.length} {reviews.length === 1 ? "review" : "reviews"}</span>
+              {renderStars(Math.round(parseFloat(averageRating)), 15)}
+              <span className="text-[10px] font-semibold text-[var(--color-muted-foreground)] mt-0.5 block">{reviews.length} reviews</span>
             </div>
           </div>
         )}
       </div>
 
       {/* Review list */}
-      <div className="space-y-4 mb-8 max-h-[240px] md:max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
+      <div className="space-y-3 mb-6 max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
         {reviews.map((review) => (
           <div 
             key={review.id} 
-            className="p-4 rounded-xl border border-[var(--color-border)] bg-white/40 dark:bg-black/10 backdrop-blur-sm"
+            className="p-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-muted)] shadow-xs"
           >
             <div className="flex justify-between items-center mb-2">
               <div className="flex items-center gap-2">
-                <span className="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center font-bold text-xs">
+                <span className="w-8 h-8 rounded-full bg-[var(--color-primary-tint)] text-[var(--color-primary)] flex items-center justify-center font-bold text-xs border border-[var(--color-border)]">
                   {review.author[0].toUpperCase()}
                 </span>
                 <div>
@@ -480,33 +556,32 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
                   <span className="block text-[10px] text-[var(--color-muted-foreground)]">{review.date}</span>
                 </div>
               </div>
-              <div>{renderStars(review.rating, 13)}</div>
+              <div>{renderStars(review.rating, 12)}</div>
             </div>
-            <p className="text-sm text-[var(--color-foreground)] leading-relaxed">{review.content}</p>
+            <p className="text-[13px] text-[var(--color-foreground)] leading-relaxed">{review.content}</p>
           </div>
         ))}
       </div>
 
       {/* Write a review form */}
-      <div className="bg-[var(--color-muted)] p-5 rounded-2xl border border-[var(--color-border)]">
-        <h3 className="text-base font-bold text-[var(--color-foreground)] mb-1">Share your experience</h3>
-        <p className="text-xs text-[var(--color-muted-foreground)] mb-4">No signup needed. Your feedback runs client-side and updates instantly.</p>
+      <div className="bg-[var(--color-muted)] p-5 rounded-xl border border-[var(--color-border)]">
+        <h3 className="text-sm font-bold text-[var(--color-foreground)] mb-1">Share your experience</h3>
+        <p className="text-xs text-[var(--color-muted-foreground)] mb-4">No signup needed. Updates instantly client-side.</p>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="flex-1">
-              <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-muted-foreground)] mb-1">Your Name</label>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--color-muted-foreground)] mb-1">Your Name</label>
               <input 
                 type="text" 
                 placeholder="e.g. John Doe"
                 value={name} 
                 onChange={(e) => setName(e.target.value)} 
                 required
-                className="w-full text-base rounded-lg px-3 py-2 border border-[var(--color-border)] bg-white/70 dark:bg-black/40 backdrop-blur-md outline-none text-[var(--color-foreground)] focus:border-[var(--color-primary)] transition-colors"
               />
             </div>
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-muted-foreground)] mb-1">Rating</label>
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--color-muted-foreground)] mb-1">Rating</label>
               <div className="py-2 flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
@@ -519,7 +594,7 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
                     aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
                   >
                     <svg
-                      className="h-6 w-6 cursor-pointer text-amber-400"
+                      className="h-5 w-5 cursor-pointer text-amber-400"
                       viewBox="0 0 24 24"
                       fill={star <= (hoverRating || rating) ? "#FBBF24" : "none"}
                       stroke={star <= (hoverRating || rating) ? "#D97706" : "currentColor"}
@@ -534,31 +609,31 @@ export function UserReviews({ toolTitle }: { toolTitle: string }) {
           </div>
           
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-[var(--color-muted-foreground)] mb-1">Comment</label>
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--color-muted-foreground)] mb-1">Comment</label>
             <textarea 
               placeholder="What did you use this tool for? Any feedback or improvements?"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               required
               rows={3}
-              className="w-full text-base rounded-lg px-3 py-2 border border-[var(--color-border)] bg-white/70 dark:bg-black/40 backdrop-blur-md outline-none text-[var(--color-foreground)] focus:border-[var(--color-primary)] transition-colors resize-none"
+              className="resize-none"
             />
           </div>
           
           <div className="flex items-center justify-between">
             <button 
               type="submit" 
-              className="btn-primary py-2 px-6 text-sm font-semibold rounded-lg"
+              className="btn-primary py-2 px-6 text-xs font-semibold rounded-lg"
             >
               Submit Feedback
             </button>
             
             {submitted && (
-              <span className="text-xs text-[var(--color-success)] font-bold flex items-center gap-1 animate-fade-in">
+              <span className="text-xs text-[var(--color-success)] font-bold flex items-center gap-1">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                Feedback posted successfully!
+                Posted!
               </span>
             )}
           </div>

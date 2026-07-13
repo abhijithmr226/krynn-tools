@@ -96,7 +96,7 @@ export default function CompressPdfTool() {
   const reduction = result ? Math.round(((result.originalSize - result.compressedSize) / result.originalSize) * 100) : 0;
 
   return (
-    <div className="tool-card">
+    <div className="space-y-6">
       <FileDropZone accept=".pdf" onFile={handleFile} />
 
       {file && !result && (

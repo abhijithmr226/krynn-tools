@@ -65,7 +65,7 @@ export default function PdfToWordTool() {
   };
 
   return (
-    <div className="tool-card">
+    <div className="space-y-6">
       <FileDropZone accept=".pdf" onFile={handleFile} />
 
       {loading && (

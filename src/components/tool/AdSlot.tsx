@@ -126,7 +126,8 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
     );
   }
 
-  const adSize: keyof typeof ADS = position === "sidebar" ? "728x90"
+  const adSize: keyof typeof ADS = isMobile ? "320x50"
+    : position === "sidebar" ? "728x90"
     : position === "in-content" ? "728x90"
     : "468x60";
 

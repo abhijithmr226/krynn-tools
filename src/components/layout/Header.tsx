@@ -18,8 +18,13 @@ export default function Header() {
   const [catOpen, setCatOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [mounted, setMounted] = useState(false);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
   const catInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const results = query.length >= 1 ? searchTools(query).slice(0, 8) : [];
 
@@ -116,7 +121,7 @@ export default function Header() {
             onClick={focusSearch}
             style={{
               display: "flex", alignItems: "center", justifyContent: "center",
-              width: "40px", height: "40px", borderRadius: "8px",
+              width: "44px", height: "44px", borderRadius: "8px",
               background: "none", border: "none", cursor: "pointer",
               color: "var(--color-muted-foreground)",
               transition: "background 200ms, color 200ms",
@@ -140,13 +145,13 @@ export default function Header() {
             onClick={toggle}
             style={{
               display: "flex", alignItems: "center", justifyContent: "center",
-              width: "40px", height: "40px", borderRadius: "8px",
+              width: "44px", height: "44px", borderRadius: "8px",
               background: "none", border: "none", cursor: "pointer",
               color: "var(--color-muted-foreground)",
               transition: "background 200ms, color 200ms",
               flexShrink: 0,
             }}
-            aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+            aria-label={mounted && dark ? "Switch to light mode" : "Switch to dark mode"}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "var(--color-muted)";
               e.currentTarget.style.color = "var(--color-foreground)";
@@ -156,7 +161,26 @@ export default function Header() {
               e.currentTarget.style.color = "var(--color-muted-foreground)";
             }}
           >
-            {dark ? <Sun size={20} weight="bold" /> : <Moon size={20} weight="bold" />}
+            <div style={{ position: "relative", width: "20px", height: "20px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{
+                position: "absolute",
+                opacity: mounted && dark ? 1 : 0,
+                transform: mounted && dark ? "rotate(0deg) scale(1)" : "rotate(90deg) scale(0.8)",
+                transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+                display: "flex",
+              }}>
+                <Sun size={20} weight="bold" />
+              </span>
+              <span style={{
+                position: "absolute",
+                opacity: mounted && !dark ? 1 : (mounted ? 0 : 1),
+                transform: mounted && !dark ? "rotate(0deg) scale(1)" : (mounted ? "rotate(-90deg) scale(0.8)" : "rotate(0deg) scale(1)"),
+                transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+                display: "flex",
+              }}>
+                <Moon size={20} weight="bold" />
+              </span>
+            </div>
           </button>
         </div>
       </header>
@@ -241,7 +265,7 @@ export default function Header() {
                   padding: "11px 12px 11px 38px",
                   borderRadius: "12px",
                   border: "1.5px solid var(--color-border)",
-                  background: "rgba(255,255,255,0.70)",
+                  background: dark ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.70)",
                   backdropFilter: "blur(8px)",
                   WebkitBackdropFilter: "blur(8px)",
                   fontSize: "0.875rem",
@@ -252,7 +276,7 @@ export default function Header() {
                 }}
                 onFocus={(e) => {
                   e.currentTarget.style.borderColor = "var(--color-primary)";
-                  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(213,13,9,0.10)";
+                  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(232,16,10,0.14)";
                 }}
                 onBlur={(e) => {
                   e.currentTarget.style.borderColor = "var(--color-border)";
@@ -415,7 +439,7 @@ export default function Header() {
           <div style={{ flex: 1, overflowY: "auto", padding: "8px 16px", paddingBottom: "calc(8px + env(safe-area-inset-bottom, 0px))" }}>
             {results.length > 0 ? results.map((tool, idx) => {
               const cat = categories.find(c => c.slug === tool.categorySlug);
-              const colour = cat?.color ?? "#D50D09";
+              const colour = cat?.color ?? "#E8100A";
               return (
                 <Link
                   key={tool.slug}
@@ -480,11 +504,13 @@ export default function Header() {
         <Link
           href="/"
           style={{
-            display: "flex", flexDirection: "column", alignItems: "center", gap: "3px",
+            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "3px",
             textDecoration: "none",
             color: isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)",
             fontSize: "0.6875rem", fontWeight: 600,
             transition: "color 200ms",
+            width: "25%",
+            height: "100%",
           }}
         >
           <KrynnIcon name="House" size={20} weight={isActive("/") ? "fill" : "duotone"} color={isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)"} />
@@ -494,10 +520,12 @@ export default function Header() {
           onClick={() => setCatOpen(true)}
           style={{
             background: "none", border: "none", display: "flex", flexDirection: "column",
-            alignItems: "center", gap: "3px", cursor: "pointer",
+            alignItems: "center", justifyContent: "center", gap: "3px", cursor: "pointer",
             color: catOpen ? "var(--color-primary)" : "var(--color-muted-foreground)", 
             fontSize: "0.6875rem", fontWeight: 600,
             transition: "color 200ms",
+            width: "25%",
+            height: "100%",
           }}
         >
           <KrynnIcon name="GridFour" size={20} weight={catOpen ? "fill" : "duotone"} color={catOpen ? "var(--color-primary)" : "var(--color-muted-foreground)"} />
@@ -507,10 +535,12 @@ export default function Header() {
           onClick={focusSearch}
           style={{
             background: "none", border: "none", display: "flex", flexDirection: "column",
-            alignItems: "center", gap: "3px", cursor: "pointer",
+            alignItems: "center", justifyContent: "center", gap: "3px", cursor: "pointer",
             color: "var(--color-muted-foreground)", 
             fontSize: "0.6875rem", fontWeight: 600,
             transition: "color 200ms",
+            width: "25%",
+            height: "100%",
           }}
         >
           <KrynnIcon name="MagnifyingGlass" size={20} weight="duotone" color="var(--color-muted-foreground)" />
@@ -520,13 +550,34 @@ export default function Header() {
           onClick={toggle}
           style={{
             background: "none", border: "none", display: "flex", flexDirection: "column",
-            alignItems: "center", gap: "3px", cursor: "pointer",
+            alignItems: "center", justifyContent: "center", gap: "3px", cursor: "pointer",
             color: "var(--color-muted-foreground)",
             fontSize: "0.6875rem", fontWeight: 600,
             transition: "color 200ms",
+            width: "25%",
+            height: "100%",
           }}
         >
-          <KrynnIcon name={dark ? "Sun" : "Moon"} size={20} weight="duotone" color="var(--color-muted-foreground)" />
+          <div style={{ position: "relative", width: "20px", height: "20px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "2px" }}>
+            <span style={{
+              position: "absolute",
+              opacity: mounted && dark ? 1 : 0,
+              transform: mounted && dark ? "rotate(0deg) scale(1)" : "rotate(90deg) scale(0.8)",
+              transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+              display: "flex",
+            }}>
+              <KrynnIcon name="Sun" size={20} weight="fill" color={isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)"} />
+            </span>
+            <span style={{
+              position: "absolute",
+              opacity: mounted && !dark ? 1 : (mounted ? 0 : 1),
+              transform: mounted && !dark ? "rotate(0deg) scale(1)" : (mounted ? "rotate(-90deg) scale(0.8)" : "rotate(0deg) scale(1)"),
+              transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+              display: "flex",
+            }}>
+              <KrynnIcon name="Moon" size={20} weight="duotone" color={isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)"} />
+            </span>
+          </div>
           Theme
         </button>
       </nav>

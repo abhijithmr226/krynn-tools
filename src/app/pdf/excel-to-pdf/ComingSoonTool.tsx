@@ -33,7 +33,7 @@ export default function ComingSoonTool({ toolName, description, relatedTools, sc
       relatedTools={relatedTools}
       schema={schema}
     >
-      <div className="rounded-lg border-2 border-dashed border-[var(--color-border)] bg-[var(--color-card)] p-12 text-center">
+      <div className="rounded-lg border-2 border-dashed border-[var(--color-border)] bg-[var(--color-card)] p-6 sm:p-12 text-center">
         <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[var(--color-muted)]">
           <svg className="h-10 w-10 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
