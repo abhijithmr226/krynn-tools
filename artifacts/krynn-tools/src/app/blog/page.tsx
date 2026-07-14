@@ -339,6 +339,10 @@ export default function BlogPage() {
               <img
                 src={post.image}
                 alt={post.title}
+                width={400}
+                height={170}
+                loading="lazy"
+                decoding="async"
                 style={{
                   width: "100%",
                   height: "100%",

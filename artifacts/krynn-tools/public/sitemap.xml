@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.krynntools.online/</loc>
     <lastmod>2026-07-14</lastmod>
@@ -44,18 +45,6 @@
   </url>
   <url>
     <loc>https://www.krynntools.online/disclaimer</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.krynntools.online/search</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.krynntools.online/settings</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -935,203 +924,339 @@
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/password-generator.svg</image:loc>
+      <image:title>10 signs your password isnt strong enough</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/best-free-dice-roller-for-board-games</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/base64-encoder.svg</image:loc>
+      <image:title>best free dice roller for board games</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/best-free-image-upscaler-2026</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-image.svg</image:loc>
+      <image:title>best free image upscaler 2026</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/best-free-online-tools-2026</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-pdf.svg</image:loc>
+      <image:title>best free online tools 2026</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/best-free-pdf-compressor-2026</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-pdf.svg</image:loc>
+      <image:title>best free pdf compressor 2026</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/best-free-qr-code-generator-2026</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/qr-code-generator.svg</image:loc>
+      <image:title>best free qr code generator 2026</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/best-free-resume-builder-2026</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-pdf.svg</image:loc>
+      <image:title>best free resume builder 2026</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/best-practices-for-qr-code-design</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/qr-code-generator.svg</image:loc>
+      <image:title>best practices for qr code design</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/bmi-explained-what-numbers-mean</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/bmi-calculator.svg</image:loc>
+      <image:title>bmi explained what numbers mean</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/convert-png-to-jpg-free</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-image.svg</image:loc>
+      <image:title>convert png to jpg free</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/free-grammarly-alternative-offline</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/json-formatter.svg</image:loc>
+      <image:title>free grammarly alternative offline</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-emi-is-calculated-on-loan</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/loan-emi-calculator.svg</image:loc>
+      <image:title>how emi is calculated on loan</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-calculate-percentage-online</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/bmi-calculator.svg</image:loc>
+      <image:title>how to calculate percentage online</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-checksum-a-file</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/base64-encoder.svg</image:loc>
+      <image:title>how to checksum a file</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-compress-pdf-without-losing-quality</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-pdf.svg</image:loc>
+      <image:title>how to compress pdf without losing quality</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-convert-png-to-jpg-without-uploading</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-pdf.svg</image:loc>
+      <image:title>how to convert png to jpg without uploading</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-convert-text-case-online</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/json-formatter.svg</image:loc>
+      <image:title>how to convert text case online</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-convert-units-online</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/loan-emi-calculator.svg</image:loc>
+      <image:title>how to convert units online</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-count-words-and-characters-online</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/json-formatter.svg</image:loc>
+      <image:title>how to count words and characters online</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-crop-passport-size-photos-online</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-image.svg</image:loc>
+      <image:title>how to crop passport size photos online</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-extract-text-from-scanned-pdfs</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-pdf.svg</image:loc>
+      <image:title>how to extract text from scanned pdfs</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-generate-qr-codes-for-business</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/qr-code-generator.svg</image:loc>
+      <image:title>how to generate qr codes for business</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-generate-strong-passwords-online</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/password-generator.svg</image:loc>
+      <image:title>how to generate strong passwords online</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-merge-multiple-pdfs</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/merge-pdf.svg</image:loc>
+      <image:title>how to merge multiple pdfs</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-remove-background-from-photo</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/remove-background.svg</image:loc>
+      <image:title>how to remove background from photo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-resize-images-for-social-media</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-image.svg</image:loc>
+      <image:title>how to resize images for social media</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/how-to-shrink-image-file-size</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-image.svg</image:loc>
+      <image:title>how to shrink image file size</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/json-formatting-best-practices</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/json-formatter.svg</image:loc>
+      <image:title>json formatting best practices</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/qr-codes-explained-static-vs-dynamic</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/qr-code-generator.svg</image:loc>
+      <image:title>qr codes explained static vs dynamic</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/remove-background-image-free-2026</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/remove-background.svg</image:loc>
+      <image:title>remove background image free 2026</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/smallpdf-vs-ilovepdf-vs-krynn-tools</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-pdf.svg</image:loc>
+      <image:title>smallpdf vs ilovepdf vs krynn tools</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/understanding-error-correction-in-qr-codes</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/qr-code-generator.svg</image:loc>
+      <image:title>understanding error correction in qr codes</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/what-is-a-uuid-and-how-to-generate-one</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/base64-encoder.svg</image:loc>
+      <image:title>what is a uuid and how to generate one</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.krynntools.online/blog/what-is-base64-encoding</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/base64-encoder.svg</image:loc>
+      <image:title>what is base64 encoding</image:title>
+    </image:image>
   </url>
 </urlset>

@@ -209,6 +209,7 @@ export default function HomePage() {
                 alt="Krynn Tools Platform Overview"
                 width={998}
                 height={544}
+                fetchPriority="high"
                 className="w-[110%] sm:w-[100%] max-w-none lg:max-w-none lg:w-[130%] object-cover lg:object-contain object-right h-full max-h-[480px] select-none pointer-events-none transition-opacity duration-300 lg:-ml-24 xl:-ml-36"
                 loading="eager"
               />

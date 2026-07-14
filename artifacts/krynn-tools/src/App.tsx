@@ -137,6 +137,16 @@ function SeoUpdater() {
       document.head.appendChild(hrefLang);
     }
     hrefLang.setAttribute('href', `https://www.krynntools.online${pathname}`);
+
+    // Update hreflang x-default
+    let hrefLangDefault = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
+    if (!hrefLangDefault) {
+      hrefLangDefault = document.createElement('link');
+      hrefLangDefault.setAttribute('rel', 'alternate');
+      hrefLangDefault.setAttribute('hreflang', 'x-default');
+      document.head.appendChild(hrefLangDefault);
+    }
+    hrefLangDefault.setAttribute('href', `https://www.krynntools.online${pathname}`);
   }, [pathname]);
 
   return null;
