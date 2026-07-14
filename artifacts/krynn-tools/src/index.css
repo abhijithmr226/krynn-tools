@@ -160,7 +160,7 @@
   }
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 88px;
     font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   }
   body {
@@ -591,8 +591,8 @@ h3 { font-size: 1.125rem; line-height: 1.4; font-weight: 600; }
 
 /* ── Section Spacing ── */
 .section-spacing {
-  padding-top: clamp(64px, 8vw, 120px);
-  padding-bottom: clamp(64px, 8vw, 120px);
+  padding-top: clamp(48px, 6vw, 96px);
+  padding-bottom: clamp(48px, 6vw, 96px);
 }
 
 @layer utilities {
