@@ -28,6 +28,24 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, 'dist/public'),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('wouter') || id.includes('@tanstack')) {
+              return 'vendor-core';
+            }
+            if (id.includes('@phosphor-icons')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('pdf-lib') || id.includes('pdfjs-dist') || id.includes('tesseract.js')) {
+              return 'vendor-heavy-libs';
+            }
+            return 'vendor-others';
+          }
+        }
+      }
+    }
   },
   server: {
     port,
