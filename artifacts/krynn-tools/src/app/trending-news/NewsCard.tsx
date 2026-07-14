@@ -125,7 +125,21 @@ function NewsCardInner({ article }: NewsCardProps) {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              navigator.clipboard.writeText(`${window.location.origin}/trending-news/${article.slug}`);
+              const url = `${window.location.origin}/trending-news/${article.slug}`;
+              try {
+                if (navigator.clipboard && window.isSecureContext) {
+                  navigator.clipboard.writeText(url);
+                } else {
+                  const ta = document.createElement('textarea');
+                  ta.value = url;
+                  ta.style.position = 'fixed';
+                  ta.style.left = '-9999px';
+                  document.body.appendChild(ta);
+                  ta.select();
+                  document.execCommand('copy');
+                  document.body.removeChild(ta);
+                }
+              } catch { /* silent */ }
             }}
             className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-muted)] px-3 py-2 text-xs font-medium text-[var(--color-muted-foreground)] transition-all duration-200 hover:border-[var(--color-primary)]/30 hover:text-[var(--color-primary)]"
           >
