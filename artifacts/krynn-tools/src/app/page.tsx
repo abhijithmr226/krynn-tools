@@ -205,8 +205,10 @@ export default function HomePage() {
             {/* Right column 45% — High-Fidelity Hero Graphic */}
             <div className="flex-1 w-full lg:max-w-none flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
               <img
-                src={dark ? "/images/hero_dark.png" : "/images/hero_light.png"}
+                src={dark ? "/images/hero_dark.webp" : "/images/hero_light.webp"}
                 alt="Krynn Tools Platform Overview"
+                width={998}
+                height={544}
                 className="w-[110%] sm:w-[100%] max-w-none lg:max-w-none lg:w-[130%] object-cover lg:object-contain object-right h-full max-h-[480px] select-none pointer-events-none transition-opacity duration-300 lg:-ml-24 xl:-ml-36"
                 loading="eager"
               />
