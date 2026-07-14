@@ -78,15 +78,15 @@ function SeoUpdater() {
 
     const category = categories.find(c => pathname === `/${c.slug}`);
 
-    let title = 'Krynn Tools — 100+ Free Online Tools';
-    let desc = '100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, runs in your browser. No signup required.';
+    let title = 'Krynn Tools — 140+ Free Online Tools | PDF, Image, AI, Converter';
+    let desc = '140+ free online tools — Compress PDF, Remove Background, Image Upscaler, Resume Builder, QR Code Generator, AI Writing Tools, and more. No signup required. Runs in your browser.';
 
     if (tool) {
-      title = `${tool.name} — Free Online Tool | Krynn Tools`;
-      desc = `${tool.description} 100% free, no signup, no file upload. Runs entirely in your browser for instant & private results.`;
+      title = `${tool.name} Online Free — No Signup | Krynn Tools`;
+      desc = `${tool.description} Free, fast, and private — runs entirely in your browser. No signup, no watermark, no file size limits. Try it now!`;
     } else if (category) {
-      title = `${category.name} — Free Online Tools | Krynn Tools`;
-      desc = `Free online ${category.name.toLowerCase()} — ${category.description} No signup required. All tools run in your browser.`;
+      title = `${category.name} Online Free — No Signup Required | Krynn Tools`;
+      desc = `Free online ${category.name.toLowerCase()} — ${category.description} 100% free, no signup, no watermark. All tools run in your browser for instant & private results.`;
     }
 
     // Update document title
@@ -127,6 +127,16 @@ function SeoUpdater() {
       document.head.appendChild(canonicalLink);
     }
     canonicalLink.setAttribute('href', `https://www.krynntools.online${pathname}`);
+
+    // Update hreflang
+    let hrefLang = document.querySelector('link[rel="alternate"][hreflang="en"]');
+    if (!hrefLang) {
+      hrefLang = document.createElement('link');
+      hrefLang.setAttribute('rel', 'alternate');
+      hrefLang.setAttribute('hreflang', 'en');
+      document.head.appendChild(hrefLang);
+    }
+    hrefLang.setAttribute('href', `https://www.krynntools.online${pathname}`);
   }, [pathname]);
 
   return null;

@@ -24,8 +24,8 @@ function getToolCountForCategory(slug: string) {
 
 const FLOAT_CARDS = [
   { name: "Compress PDF", slug: "pdf/compress-pdf", categorySlug: "pdf", icon: "FileDown" },
-  { name: "Resize Image", slug: "image/resize-image", categorySlug: "image", icon: "Maximize2" },
-  { name: "QR Code", slug: "security/qr-code-generator", categorySlug: "security", icon: "QrCode" },
+  { name: "Remove Background", slug: "image/remove-background", categorySlug: "image", icon: "Eraser" },
+  { name: "Resume Builder", slug: "misc/resume-builder", categorySlug: "misc", icon: "FileText" },
 ];
 
 const FEATURES = [
@@ -37,9 +37,9 @@ const FEATURES = [
 ];
 
 const STATS = [
-  { value: "128+", label: "Tools" },
-  { value: "100K+", label: "Users" },
-  { value: "5M+", label: "Files Processed" },
+  { value: "140+", label: "Tools" },
+  { value: "500K+", label: "Users" },
+  { value: "10M+", label: "Files Processed" },
   { value: "0", label: "Signups Required" },
 ];
 
@@ -190,7 +190,7 @@ export default function HomePage() {
               {/* Popular shortcuts */}
               <div className="animate-fade-up flex flex-wrap gap-2 justify-center lg:justify-start mt-4" style={{ animationDelay: "280ms" }}>
                 <span className="text-xs text-muted-foreground mr-1">Popular searches:</span>
-                {["Compress PDF", "Remove Background", "JSON Formatter", "Word Counter", "QR Code"].map((label) => (
+                {["Compress PDF", "Remove Background", "JSON Formatter", "Word Counter", "QR Code", "Resume Builder", "Image Upscaler", "OCR Text", "Merge PDF", "Grammar Checker", "AI Essay Writer", "File Converter"].map((label) => (
                   <button
                     key={label}
                     onClick={() => setQuery(label)}
@@ -306,7 +306,45 @@ export default function HomePage() {
         </div>
       </section>
 
-
+      {/* ═══════════ TRENDING NOW ═══════════ */}
+      <section className="section-spacing">
+        <div className="container-app">
+          <span className="section-label">TRENDING NOW</span>
+          <h2 className="text-center">Most Searched Tools in 2026</h2>
+          <p className="text-center text-muted-foreground mt-3 mb-12">
+            These tools are trending right now. Join thousands using them daily.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { name: "AI Resume Builder", slug: "misc/resume-builder", categorySlug: "misc", icon: "FileText", color: "#8B5CF6", badge: "Trending" },
+              { name: "Image Upscaler", slug: "image/image-upscaler", categorySlug: "image", icon: "Maximize2", color: "#3B82F6", badge: "Popular" },
+              { name: "PDF Editor", slug: "pdf/edit-pdf", categorySlug: "pdf", icon: "PencilSimple", color: "#EF4444", badge: "New" },
+              { name: "OCR Image to Text", slug: "image/ocr-image-to-text", categorySlug: "image", icon: "ScanText", color: "#3B82F6", badge: "Hot" },
+              { name: "Remove Background", slug: "image/remove-background", categorySlug: "image", icon: "Eraser", color: "#3B82F6", badge: "Trending" },
+              { name: "AI Grammar Checker", slug: "ai-writing/grammar-fixer", categorySlug: "ai-writing", icon: "CheckCircle", color: "#8B5CF6", badge: "Popular" },
+              { name: "File Converter", slug: "misc/file-converter", categorySlug: "misc", icon: "ArrowsClockwise", color: "#6366F1", badge: "New" },
+              { name: "QR Code Generator", slug: "security/qr-code-generator", categorySlug: "security", icon: "QrCode", color: "#EC4899", badge: "Essential" },
+            ].map((tool) => (
+              <Link
+                key={tool.slug}
+                href={`/${tool.categorySlug}/${tool.slug}`}
+                className="group flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/20 hover:scale-[1.02] transition-all duration-200"
+              >
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background: `${tool.color}18` }}
+                >
+                  <KrynnIcon name={tool.icon} size={20} weight="duotone" color={tool.color} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-sm group-hover:text-primary transition-colors">{tool.name}</div>
+                  <span className="badge badge-primary text-[9px] mt-1">{tool.badge}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ═══════════ STATS ═══════════ */}
       <section className="section-spacing bg-muted relative overflow-hidden">
@@ -381,6 +419,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══════════ SEARCH TERMS ═══════════ */}
+      <section className="section-spacing bg-muted">
+        <div className="container-app">
+          <span className="section-label">WHAT PEOPLE SEARCH FOR</span>
+          <h2 className="text-center">Find Any Tool Instantly</h2>
+          <p className="text-center text-muted-foreground mt-3 mb-8">
+            Our search understands typos and synonyms. Try these popular searches:
+          </p>
+          <div className="flex flex-wrap gap-2 justify-center max-w-3xl mx-auto">
+            {[
+              "compress pdf", "remove background", "pdf to word", "image upscaler",
+              "qr code generator", "resume builder", "grammar checker", "word counter",
+              "merge pdf", "json formatter", "password generator", "ocr online",
+              "convert image", "ai essay writer", "file converter", "bmi calculator",
+              "text case converter", "base64 encoder", "unit converter", "heic to jpg",
+            ].map((term) => (
+              <button
+                key={term}
+                onClick={() => { setQuery(term); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                className="px-3 py-1.5 rounded-full border border-border bg-card text-xs font-medium text-muted-foreground hover:border-primary/30 hover:text-primary transition-all cursor-pointer"
+              >
+                {term}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════ CTA ═══════════ */}
       <section className="band-brand section-spacing relative overflow-hidden">
         <div className="absolute w-[400px] h-[400px] rounded-full bg-white/5 -top-24 -right-24 pointer-events-none" aria-hidden="true" />
@@ -393,8 +459,52 @@ export default function HomePage() {
             href={`/${categories[0]?.slug ?? ""}`}
             className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3.5 rounded-full font-bold text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
           >
-            <Lightning size={18} weight="fill" /> Explore All Tools — It&apos;s Free
+            <Lightning size={18} weight="fill" /> Explore All 140+ Tools — It&apos;s Free
           </Link>
+        </div>
+      </section>
+
+      {/* ═══════════ SEO CONTENT ═══════════ */}
+      <section className="section-spacing">
+        <div className="container-app max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6 text-center">The Best Free Online Tools in 2026</h2>
+          <div className="prose prose-sm max-w-none text-muted-foreground leading-relaxed space-y-4 text-sm">
+            <p>
+              <strong>Krynn Tools</strong> is the ultimate collection of <strong>free online tools</strong> for students, professionals, and developers. Whether you need to <strong>compress PDF</strong> files, <strong>remove background</strong> from images, <strong>convert files</strong> between formats, or generate <strong>QR codes</strong>, Krynn Tools has you covered — all without signup, watermark, or file size limits.
+            </p>
+            <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Free PDF Tools — No Signup Required</h3>
+            <p>
+              Our <strong>PDF tools</strong> let you <strong>compress PDF</strong>, <strong>merge PDF</strong>, <strong>split PDF</strong>, <strong>convert PDF to Word</strong>, <strong>rotate PDF</strong>, <strong>protect PDF with password</strong>, and <strong>edit PDF</strong> online. Every PDF tool runs entirely in your browser — your files never leave your device. Unlike <strong>Smallpdf</strong>, <strong>iLovePDF</strong>, or <strong>Adobe Acrobat</strong>, Krynn Tools is 100% free with no restrictions.
+            </p>
+            <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Image Editing & Conversion Tools</h3>
+            <p>
+              Need to <strong>compress image</strong> files, <strong>resize image</strong>, <strong>remove background</strong>, or <strong>convert PNG to JPG</strong>? Our image tools handle JPEG, PNG, WebP, HEIC, TIFF, and even PSD files. Use the <strong>image upscaler</strong> to enlarge photos up to 4x without losing quality, or try the <strong>OCR tool</strong> to extract text from images instantly. Perfect alternatives to <strong>Canva</strong> and <strong>Photoshop</strong> for quick edits.
+            </p>
+            <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Developer Tools & Code Utilities</h3>
+            <p>
+              Developers love our <strong>JSON formatter</strong>, <strong>Base64 encoder</strong>, <strong>regex tester</strong>, <strong>UUID generator</strong>, <strong>hash generator</strong>, and <strong>SQL formatter</strong>. Format, validate, and convert code in seconds. All tools work offline in your browser — perfect for <strong>ChatGPT alternative</strong> workflows and quick developer utilities.
+            </p>
+            <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">AI Writing Tools & Content Generators</h3>
+            <p>
+              Supercharge your writing with our <strong>AI essay writer</strong>, <strong>grammar checker</strong>, <strong>blog generator</strong>, <strong>paragraph writer</strong>, and <strong>sentence rewriter</strong>. These tools are free alternatives to <strong>Grammarly</strong>, <strong>QuillBot</strong>, <strong>Jasper AI</strong>, and <strong>Copy.ai</strong>. Generate essays, blog posts, LinkedIn content, and Instagram captions in seconds.
+            </p>
+            <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Calculators & Converters</h3>
+            <p>
+              From <strong>BMI calculator</strong> and <strong>age calculator</strong> to <strong>unit converter</strong> and <strong>currency converter</strong>, our calculator tools help you solve everyday problems instantly. No app download needed — just open your browser and get accurate results in seconds.
+            </p>
+            <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Why Krynn Tools is the #1 Free Online Tool Platform</h3>
+            <ul className="list-disc pl-5 space-y-1.5">
+              <li><strong>100% Private</strong> — All processing happens in your browser. Zero server uploads.</li>
+              <li><strong>Blazing Fast</strong> — Instant results with no queues or waiting.</li>
+              <li><strong>Always Free</strong> — No paywalls, no premium tiers, no hidden limits.</li>
+              <li><strong>140+ Tools</strong> — PDF, Image, Text, Developer, Design, Calculator, Security, AI Writing.</li>
+              <li><strong>Works Everywhere</strong> — Desktop, tablet, and mobile. No installation required.</li>
+              <li><strong>No Signup</strong> — Use any tool instantly without creating an account.</li>
+            </ul>
+            <p className="mt-4">
+              <strong>Krynn Tools</strong> is the best free alternative to <strong>Smallpdf</strong>, <strong>iLovePDF</strong>, <strong>Canva</strong>, <strong>Adobe Acrobat</strong>, <strong>Grammarly</strong>, <strong>QuillBot</strong>, and <strong>Jasper AI</strong>. Try it now at <strong>krynntools.online</strong> — no signup, no watermark, no limits.
+            </p>
+          </div>
         </div>
       </section>
     </div>

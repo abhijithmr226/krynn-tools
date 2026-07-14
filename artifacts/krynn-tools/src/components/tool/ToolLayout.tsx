@@ -316,6 +316,52 @@ export function ToolLayout({
           }),
         }}
       />
+      {/* BreadcrumbList Schema */}
+      {breadcrumbItems.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://www.krynntools.online",
+                },
+                ...breadcrumbItems.map((item, i) => ({
+                  "@type": "ListItem",
+                  position: i + 2,
+                  name: item.label,
+                  ...(item.href ? { item: `https://www.krynntools.online${item.href}` } : {}),
+                })),
+              ],
+            }),
+          }}
+        />
+      )}
+      {/* HowTo Schema */}
+      {howToUse.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "HowTo",
+              name: title,
+              description: subtitle,
+              step: howToUse.map((step, i) => ({
+                "@type": "HowToStep",
+                position: i + 1,
+                name: `Step ${i + 1}`,
+                text: step,
+              })),
+            }),
+          }}
+        />
+      )}
 
       <StickyMobileCTA label="Use This Tool" />
     </>
