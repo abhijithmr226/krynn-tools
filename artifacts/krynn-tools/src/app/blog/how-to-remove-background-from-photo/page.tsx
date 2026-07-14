@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import BlogAd from "../BlogAd";
+import BlogMidAd from "../BlogMidAd";
 import FaqSection from "../FaqSection";
 
 
@@ -35,6 +36,9 @@ export default function BlogPost() {
         </div>
 
         <BlogAd />
+
+
+        <BlogMidAd />
 
         <div className="prose max-w-none space-y-6 text-[var(--color-muted-foreground)] leading-relaxed">
           <p>

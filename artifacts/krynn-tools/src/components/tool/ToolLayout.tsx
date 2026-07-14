@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import Breadcrumbs from "../layout/Breadcrumbs";
 import StickyMobileCTA from "./StickyMobileCTA";
+import AdSlot from "../AdSlot";
 import { categories, tools } from "@/lib/tools";
 import KrynnIcon from "../common/KrynnIcon";
 import { CaretRight, Upload, CheckCircle, Shield, Lightning, DeviceMobile, Star } from "@phosphor-icons/react";
@@ -284,6 +285,7 @@ export function ToolLayout({
       <section className="container-app py-8 sm:py-10 lg:py-12">
         <div className="max-w-3xl mx-auto space-y-6">
           <div className="workspace-card">{children}</div>
+          <AdSlot position="below-tool" />
           <TrustStrip items={trustBadges} />
         </div>
       </section>
@@ -364,6 +366,7 @@ export function ToolLayout({
       )}
 
       <StickyMobileCTA label="Use This Tool" />
+      <AdSlot position="mobile-anchor" />
     </>
   );
 }
