@@ -4,7 +4,7 @@ import { categories } from "@/lib/tools";
 
 export default function Footer() {
   return (
-    <footer className="footer-band google-anno-skip">
+    <footer className="footer-band google-anno-skip pb-[calc(64px+env(safe-area-inset-bottom,0px))] md:pb-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 py-6 sm:py-8 lg:py-16">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 items-start">
           {/* Brand */}

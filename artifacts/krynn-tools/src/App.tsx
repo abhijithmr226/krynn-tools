@@ -154,18 +154,7 @@ function AppLayout({ children }: { children: ReactNode }) {
         pb-safe-nav: On mobile, the bottom nav is 64px + safe-area-inset-bottom.
         On md+ screens the bottom nav is hidden (md:hidden) so no padding needed.
       */}
-      <main
-        className="min-h-[calc(100vh-4rem)]"
-        style={{
-          paddingBottom:
-            'calc(env(safe-area-inset-bottom, 0px) + 72px)',
-        }}
-      >
-        <style>{`
-          @media (min-width: 768px) {
-            main { padding-bottom: 0 !important; }
-          }
-        `}</style>
+      <main className="min-h-[calc(100vh-4rem)] pb-[calc(72px+env(safe-area-inset-bottom,0px))] md:pb-0">
         {children}
       </main>
       <Footer />

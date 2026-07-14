@@ -202,7 +202,7 @@ export default function Header() {
           style={{
             position: "absolute",
             bottom: 0, left: 0, right: 0,
-            height: "78vh",
+            height: "min(78vh, calc(100dvh - 80px))",
             background: "var(--color-card)",
             borderTopLeftRadius: "24px",
             borderTopRightRadius: "24px",
@@ -298,7 +298,7 @@ export default function Header() {
           </div>
 
           {/* Category list */}
-          <div style={{ flex: 1, overflowY: "auto", padding: "8px 12px 32px" }}>
+          <div style={{ flex: 1, overflowY: "auto", padding: "8px 12px calc(32px + env(safe-area-inset-bottom, 0px))" }}>
             {filteredCategories.length > 0 ? (
               filteredCategories.map((cat, idx) => {
                 const count = toolCounts[cat.slug] || 0;

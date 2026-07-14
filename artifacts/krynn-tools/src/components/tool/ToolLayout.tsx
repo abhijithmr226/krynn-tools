@@ -281,7 +281,7 @@ export function ToolLayout({ title, subtitle, children, howToUse, faq, relatedTo
       </div>
 
       {/* Fluid Centered Container (Issue 1 Resolved) */}
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-16">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-32 md:pb-16">
         <div className="space-y-6">
           
           {/* Main Workspace Card — primary action area */}
