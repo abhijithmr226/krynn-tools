@@ -108,13 +108,15 @@ function AdUnit({ size }: { size: keyof typeof ADS }) {
     };
   }, [loadError]);
 
-  if (loadError || !adLoaded) return null;
+  if (loadError) return null;
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="text-center text-[10px] font-medium text-[var(--color-muted-foreground)] mb-1.5 uppercase tracking-wider">
-        Advertisement
-      </div>
+      {adLoaded && (
+        <div className="text-center text-[10px] font-medium text-[var(--color-muted-foreground)] mb-1.5 uppercase tracking-wider">
+          Advertisement
+        </div>
+      )}
       <div
         ref={containerRef}
         style={{
@@ -122,6 +124,7 @@ function AdUnit({ size }: { size: keyof typeof ADS }) {
           height: config.height,
           maxWidth: "100%",
           overflow: "hidden",
+          minHeight: adLoaded ? undefined : 0,
         }}
       />
     </div>
