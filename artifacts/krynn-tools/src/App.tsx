@@ -104,12 +104,18 @@ function SeoUpdater() {
     const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) ogUrl.setAttribute('content', `https://www.krynntools.online${pathname}`);
 
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) ogImage.setAttribute('content', `https://www.krynntools.online/logo.png`);
+
     // Update Twitter meta tags
     const twTitle = document.querySelector('meta[name="twitter:title"]');
     if (twTitle) twTitle.setAttribute('content', title);
 
     const twDesc = document.querySelector('meta[name="twitter:description"]');
     if (twDesc) twDesc.setAttribute('content', desc);
+
+    const twImage = document.querySelector('meta[name="twitter:image"]');
+    if (twImage) twImage.setAttribute('content', `https://www.krynntools.online/logo.png`);
 
     // Dynamically insert/update Canonical link tag
     let canonicalLink = document.querySelector('link[rel="canonical"]');
