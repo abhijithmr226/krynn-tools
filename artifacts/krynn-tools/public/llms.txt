@@ -1,0 +1,198 @@
+# Krynn Tools
+
+> 130+ free online tools for PDF, Image, Text, Developer, Design, Calculators, Security, AI Writing & more. Fast, private, runs in your browser. No signup required.
+
+## About
+
+Krynn Tools is a free collection of 130+ browser-based utilities. All tools run entirely client-side — files never leave your device. Built with Next.js and React. No accounts, no uploads, no limits.
+
+## Tool Categories
+
+### [PDF Tools](https://krynntools.online/pdf)
+Compress, merge, split, convert, crop, watermark, and edit PDF files.
+- [Compress PDF](https://krynntools.online/pdf/compress-pdf): Reduce PDF file size without losing quality
+- [PDF to Word](https://krynntools.online/pdf/pdf-to-word): Convert PDF to Word DOCX documents
+- [Word to PDF](https://krynntools.online/pdf/word-to-pdf): Convert Word documents to PDF
+- [Merge PDF](https://krynntools.online/pdf/merge-pdf): Combine multiple PDF files into one
+- [Split PDF](https://krynntools.online/pdf/split-pdf): Extract pages or ranges from a PDF
+- [Rotate PDF](https://krynntools.online/pdf/rotate-pdf): Rotate PDF pages by 90, 180, or 270 degrees
+- [Delete PDF Pages](https://krynntools.online/pdf/delete-pdf-pages): Remove unwanted pages from a PDF
+- [Protect PDF](https://krynntools.online/pdf/protect-pdf): Encrypt PDF with a password
+- [Unlock PDF](https://krynntools.online/pdf/unlock-pdf): Remove password protection from a PDF
+- [PDF to JPG](https://krynntools.online/pdf/pdf-to-jpg): Convert PDF pages to JPG images
+- [JPG to PDF](https://krynntools.online/pdf/jpg-to-pdf): Turn JPG photos into PDF documents
+- [Excel to PDF](https://krynntools.online/pdf/excel-to-pdf): Export Excel spreadsheets to PDF
+- [PowerPoint to PDF](https://krynntools.online/pdf/ppt-to-pdf): Convert PowerPoint presentations to PDF
+- [Extract Images from PDF](https://krynntools.online/pdf/extract-images-from-pdf): Pull embedded images from PDFs
+- [OCR PDF](https://krynntools.online/pdf/ocr-pdf): Extract text from scanned PDFs
+- [Rearrange PDF Pages](https://krynntools.online/pdf/rearrange-pdf): Reorder PDF pages by drag and drop
+- [Crop PDF](https://krynntools.online/pdf/crop-pdf): Trim PDF page margins
+- [Add Page Numbers](https://krynntools.online/pdf/add-page-numbers): Number every page of your PDF
+- [Add Watermark to PDF](https://krynntools.online/pdf/add-watermark): Overlay text watermarks on PDF pages
+- [Repair PDF](https://krynntools.online/pdf/repair-pdf): Fix corrupted or damaged PDF files
+- [Sign PDF](https://krynntools.online/pdf/sign-pdf): Add a signature image to your PDF
+- [HTML to PDF](https://krynntools.online/pdf/html-to-pdf): Convert HTML code into a PDF document
+
+### [Image Tools](https://krynntools.online/image)
+Compress, resize, convert, and edit images without uploading to a server.
+- [Compress Image](https://krynntools.online/image/compress-image): Shrink JPEG, PNG, WebP file sizes
+- [Resize Image](https://krynntools.online/image/resize-image): Scale images to exact dimensions
+- [Crop Image](https://krynntools.online/image/crop-image): Trim unwanted areas from photos
+- [Rotate Image](https://krynntools.online/image/rotate-image): Spin images to any angle
+- [Flip Image](https://krynntools.online/image/flip-image): Mirror images horizontally or vertically
+- [PNG to JPG](https://krynntools.online/image/png-to-jpg): Convert PNG to lightweight JPG
+- [JPG to PNG](https://krynntools.online/image/jpg-to-png): Transform JPG into lossless PNG
+- [WEBP Converter](https://krynntools.online/image/webp-converter): Convert images to/from WebP format
+- [SVG to PNG](https://krynntools.online/image/svg-to-png): Rasterize SVG graphics into PNG
+- [Remove Background](https://krynntools.online/image/remove-background): Strip backgrounds from photos
+- [Blur Image](https://krynntools.online/image/blur-image): Apply Gaussian blur to images
+- [Sharpen Image](https://krynntools.online/image/sharpen-image): Enhance blurry images
+- [Watermark Image](https://krynntools.online/image/watermark-image): Overlay text or logo watermarks
+- [Add Text to Image](https://krynntools.online/image/add-text-to-image): Place styled text overlays on images
+- [Image Color Picker](https://krynntools.online/image/color-picker): Extract HEX, RGB, HSL from images
+- [GIF to JPG](https://krynntools.online/image/gif-to-jpg): Convert GIF images to JPG
+- [HEIC Converter](https://krynntools.online/image/heic-converter): Convert Apple HEIC photos to JPG/PNG
+- [TIFF Converter](https://krynntools.online/image/tiff-converter): Convert TIFF to JPG, PNG, or WebP
+- [PSD Converter](https://krynntools.online/image/psd-converter): Convert Photoshop files without Photoshop
+- [RAW Converter](https://krynntools.online/image/raw-converter): Convert camera RAW files to JPG/PNG
+- [HTML to Image](https://krynntools.online/image/html-to-image): Convert HTML code into PNG/JPG images
+- [Meme Generator](https://krynntools.online/image/meme-generator): Create custom memes with text overlays
+
+### [Text Tools](https://krynntools.online/text)
+Count words, convert case, sort text, generate content, and more.
+- [Word Counter](https://krynntools.online/text/word-counter): Count words, characters, sentences
+- [Character Counter](https://krynntools.online/text/character-counter): Detailed character statistics
+- [Case Converter](https://krynntools.online/text/case-converter): Switch between UPPERCASE, lowercase, Title Case
+- [Remove Duplicate Lines](https://krynntools.online/text/remove-duplicate-lines): Strip repeated lines from text
+- [Text Sorter](https://krynntools.online/text/text-sorter): Arrange lines alphabetically or numerically
+- [Reverse Text](https://krynntools.online/text/reverse-text): Reverse text strings or words
+- [Remove Extra Spaces](https://krynntools.online/text/remove-extra-spaces): Clean up whitespace
+- [Line Number Generator](https://krynntools.online/text/line-number-generator): Add line numbers to text
+- [Slug Generator](https://krynntools.online/text/slug-generator): Create URL-safe slugs from text
+- [Lorem Ipsum Generator](https://krynntools.online/text/lorem-ipsum-generator): Generate placeholder text
+- [Random Text Generator](https://krynntools.online/text/random-text-generator): Produce random text for testing
+- [Text Diff Checker](https://krynntools.online/text/text-diff-checker): Compare two text blocks side by side
+- [HTML Encoder](https://krynntools.online/text/html-encoder): Convert characters to HTML entities
+- [HTML Decoder](https://krynntools.online/text/html-decoder): Decode HTML entities to plain text
+- [Markdown Previewer](https://krynntools.online/text/markdown-previewer): Render Markdown with live preview
+
+### [Developer Tools](https://krynntools.online/dev)
+Format JSON, encode Base64, generate UUIDs, test regex, and more.
+- [JSON Formatter](https://krynntools.online/dev/json-formatter): Prettify minified JSON
+- [JSON Validator](https://krynntools.online/dev/json-validator): Check JSON syntax with error locations
+- [JSON to CSV](https://krynntools.online/dev/json-to-csv): Flatten JSON into CSV spreadsheets
+- [CSV to JSON](https://krynntools.online/dev/csv-to-json): Parse CSV into structured JSON
+- [XML Formatter](https://krynntools.online/dev/xml-formatter): Pretty-print minified XML
+- [Base64 Encoder](https://krynntools.online/dev/base64-encode): Encode text or files to Base64
+- [Base64 Decoder](https://krynntools.online/dev/base64-decode): Decode Base64 strings
+- [URL Encoder](https://krynntools.online/dev/url-encode): Encode special characters in URLs
+- [URL Decoder](https://krynntools.online/dev/url-decode): Decode percent-encoded URLs
+- [Regex Tester](https://krynntools.online/dev/regex-tester): Test regular expressions with live matching
+- [UUID Generator](https://krynntools.online/dev/uuid-generator): Generate UUID v4 identifiers
+- [Hash Generator](https://krynntools.online/dev/hash-generator): Compute MD5, SHA1, SHA256, SHA512 hashes
+- [JWT Decoder](https://krynntools.online/dev/jwt-decoder): Decode JSON Web Tokens
+- [SQL Formatter](https://krynntools.online/dev/sql-formatter): Beautify and indent SQL queries
+- [CSS Minifier](https://krynntools.online/dev/css-minifier): Strip whitespace from CSS code
+
+### [Web Design Tools](https://krynntools.online/design)
+Generate CSS gradients, box shadows, color palettes, and more.
+- [CSS Gradient Generator](https://krynntools.online/design/css-gradient-generator): Build linear, radial, conic gradients
+- [Box Shadow Generator](https://krynntools.online/design/box-shadow-generator): Design CSS box shadows
+- [Border Radius Generator](https://krynntools.online/design/border-radius-generator): Create complex border-radius values
+- [CSS Clip Path Generator](https://krynntools.online/design/clip-path-generator): Shape element clipping paths
+- [Color Palette Generator](https://krynntools.online/design/color-palette-generator): Generate harmonious color schemes
+- [HEX to RGB Converter](https://krynntools.online/design/hex-rgb-converter): Convert between color formats
+- [Tailwind Color Generator](https://krynntools.online/design/tailwind-color-generator): Find Tailwind CSS classes for colors
+- [Font Pairing Tool](https://krynntools.online/design/font-pairing-tool): Discover Google Font combinations
+- [SVG Wave Generator](https://krynntools.online/design/svg-wave-generator): Design SVG wave dividers
+- [CSS Animation Generator](https://krynntools.online/design/css-animation-generator): Craft CSS keyframe animations
+
+### [Calculators](https://krynntools.online/calculators)
+BMI, age, percentage, EMI, unit converters, and more free calculators.
+- [BMI Calculator](https://krynntools.online/calculators/bmi-calculator): Compute Body Mass Index
+- [Age Calculator](https://krynntools.online/calculators/age-calculator): Find exact age in years, months, days
+- [Percentage Calculator](https://krynntools.online/calculators/percentage-calculator): Solve percentage problems
+- [Loan EMI Calculator](https://krynntools.online/calculators/loan-emi-calculator): Calculate monthly EMI payments
+- [Compound Interest Calculator](https://krynntools.online/calculators/compound-interest-calculator): Project investment growth
+- [Discount Calculator](https://krynntools.online/calculators/discount-calculator): Determine sale prices and savings
+- [GST/VAT Calculator](https://krynntools.online/calculators/gst-vat-calculator): Add or reverse-calculate tax
+- [Tip Calculator](https://krynntools.online/calculators/tip-calculator): Split bills and calculate tips
+- [Time Difference Calculator](https://krynntools.online/calculators/time-difference-calculator): Find duration between dates
+- [Date Calculator](https://krynntools.online/calculators/date-calculator): Add or subtract days from dates
+- [Unit Converter](https://krynntools.online/calculators/unit-converter): Convert length, weight, temperature
+- [Currency Converter](https://krynntools.online/calculators/currency-converter): Convert between world currencies
+- [Scientific Calculator](https://krynntools.online/calculators/scientific-calculator): Trig, logs, exponents
+- [Fuel Cost Calculator](https://krynntools.online/calculators/fuel-cost-calculator): Estimate trip fuel expenses
+- [Calorie Calculator](https://krynntools.online/calculators/calorie-calculator): Calculate daily calorie needs
+
+### [Security Tools](https://krynntools.online/security)
+Generate passwords, hashes, QR codes, and check password strength.
+- [Password Generator](https://krynntools.online/security/password-generator): Create strong random passwords
+- [Password Strength Checker](https://krynntools.online/security/password-strength-checker): Analyze password security
+- [MD5 Generator](https://krynntools.online/security/md5-generator): Generate MD5 hash digests
+- [SHA256 Generator](https://krynntools.online/security/sha256-generator): Compute SHA-256 hashes
+- [QR Code Generator](https://krynntools.online/security/qr-code-generator): Create QR codes for URLs, text, WiFi
+- [QR Code Scanner](https://krynntools.online/security/qr-code-scanner): Decode QR codes from images
+- [Random Token Generator](https://krynntools.online/security/random-token-generator): Produce secure tokens
+
+### [Misc Tools](https://krynntools.online/misc)
+Random numbers, dice roller, coin flip, barcode generator, and more.
+- [Barcode Generator](https://krynntools.online/misc/barcode-generator): Create CODE128, EAN, UPC barcodes
+- [Random Number Generator](https://krynntools.online/misc/random-number-generator): Generate random integers or decimals
+- [Dice Roller](https://krynntools.online/misc/dice-roller): Roll virtual D4, D6, D8, D10, D12, D20
+- [Coin Flip](https://krynntools.online/misc/coin-flip): Flip a virtual coin
+- [UUID Batch Generator](https://krynntools.online/misc/uuid-batch-generator): Generate up to 1000 UUIDs at once
+- [Time Zone Converter](https://krynntools.online/misc/time-zone-converter): Convert between time zones
+- [File Checksum Calculator](https://krynntools.online/misc/file-checksum-calculator): Compute MD5, SHA-256, SHA-512 for files
+- [Internet Speed Test](https://krynntools.online/misc/internet-speed-test): Measure download connection speed
+- [Spinner Wheel](https://krynntools.online/misc/spinner-wheel): Spin the wheel for random picking
+
+### [Social Media Tools](https://krynntools.online/social-media)
+Character counters, image resizers, hashtag tools, and more for social media.
+- [Instagram Bio Counter](https://krynntools.online/social-media/instagram-bio-counter): Count characters for Instagram bios
+- [Username Validator](https://krynntools.online/social-media/username-validator): Check username format requirements
+- [Social Media Image Resizer](https://krynntools.online/social-media/social-image-resizer): Resize images for platforms
+- [Hashtag Counter](https://krynntools.online/social-media/hashtag-counter): Count hashtags and platform limits
+
+### [AI Writing Tools](https://krynntools.online/ai-writing)
+AI-powered writing assistants for essays, blogs, social posts, and more.
+- [AI Essay Writer](https://krynntools.online/ai-writing/essay-writer): Generate well-structured essays
+- [AI Paragraph Writer](https://krynntools.online/ai-writing/paragraph-writer): Generate coherent paragraphs
+- [AI Story Generator](https://krynntools.online/ai-writing/story-generator): Create engaging short stories
+- [AI Blog Generator](https://krynntools.online/ai-writing/blog-generator): Generate complete blog posts
+- [AI Blog Outline](https://krynntools.online/ai-writing/blog-outline): Generate structured blog outlines
+- [AI FAQ Generator](https://krynntools.online/ai-writing/faq-generator): Generate FAQ sections from content
+- [AI Grammar Fixer](https://krynntools.online/ai-writing/grammar-fixer): Fix grammar, spelling, punctuation
+- [AI Sentence Rewriter](https://krynntools.online/ai-writing/sentence-rewriter): Rewrite sentences for clarity or tone
+- [AI Content Improver](https://krynntools.online/ai-writing/content-improver): Enhance writing for readability
+- [AI Business Name Generator](https://krynntools.online/ai-writing/business-name-generator): Generate startup name ideas
+- [AI LinkedIn Post Generator](https://krynntools.online/ai-writing/linkedin-post-generator): Create professional LinkedIn posts
+- [AI Instagram Caption Generator](https://krynntools.online/ai-writing/instagram-caption-generator): Generate captions with hashtags
+
+## Key Features
+
+- 100% client-side processing — files never leave your device
+- No signup or account required
+- Works on desktop, tablet, and mobile
+- Free forever with no limits
+- AI writing tools powered by Gemini (server-side, your content is not stored)
+
+## Technical Details
+
+- Built with Next.js 16, React 19, TypeScript, Tailwind CSS
+- AI writing tools use server-side Gemini API proxy (content is processed and discarded)
+- All other tools run entirely in the browser using Canvas, Web APIs, and WebAssembly
+- PDF processing via pdf-lib and pdf.js
+- Image processing via Canvas API and browser-image-compression
+
+## Website
+
+https://krynntools.online
+
+## Contact
+
+contact@krynntools.online
+
+## License
+
+Free for personal and commercial use. No attribution required.

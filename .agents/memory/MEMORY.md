@@ -1,0 +1,1 @@
+- [Krynn Tools port](krynn-tools-port.md) — Next.js→Vite conversion patterns: lazy, wouter, glob routing, async component fixes.

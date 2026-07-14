@@ -1,0 +1,157 @@
+import { useState, useCallback } from "react";
+import { ToolLayout } from "@/components/ToolLayout";
+
+interface Props {
+  relatedTools: Array<{ name: string; slug: string; categorySlug: string }>;
+  schema: object;
+}
+
+const audiences = ["General", "Technical", "Business", "Students"];
+
+export default function BlogOutlineTool({ relatedTools, schema }: Props) {
+  const [topic, setTopic] = useState("");
+  const [audience, setAudience] = useState("General");
+  const [output, setOutput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const handleGenerate = useCallback(async () => {
+    if (!topic.trim()) return;
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Create a detailed blog outline for the following topic:\n\n${topic}\n\nTarget audience: ${audience}\n\nInclude main headings, subheadings under each, and 3-5 key points under each subheading.`,
+          systemInstruction: "You are a content strategist. Create detailed, well-organized blog outlines with clear headings, subheadings, and actionable key points tailored to the specified audience.",
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setOutput(data.text);
+    } catch {
+      setError("Generation failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }, [topic, audience]);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(output);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [output]);
+
+  return (
+    <ToolLayout
+      title="AI Blog Outline"
+      subtitle="Generate structured blog outlines with headings, subheadings, and key points."
+      howToUse={[
+        "Enter your blog topic in the text area below.",
+        "Select your target audience for tailored structure.",
+        "Click Generate to get a complete blog outline.",
+        "Use the outline as a framework for your full blog post.",
+      ]}
+      faq={[
+        {
+          question: "How many headings does the outline include?",
+          answer:
+            "The outline typically includes 5-7 main sections with sub-points under each, giving you a comprehensive framework for a full blog post.",
+        },
+        {
+          question: "Can I edit the generated outline?",
+          answer:
+            "Yes. The outline is a starting framework. Add, remove, or reorder sections to match your content strategy.",
+        },
+        {
+          question: "What does the audience selector do?",
+          answer:
+            "It adjusts the structure, vocabulary level, and depth of sections to suit your target readers — from general audiences to technical professionals.",
+        },
+        {
+          question: "How is this different from the blog generator?",
+          answer:
+            "The outline tool creates a structural framework only, while the blog generator writes the full content. Use the outline first for planning.",
+        },
+      ]}
+      relatedTools={relatedTools}
+      schema={schema}
+    >
+      <div className="space-y-6">
+        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
+          <label className="mb-2 block text-sm font-semibold text-[var(--color-foreground)]">
+            Blog Topic
+          </label>
+          <textarea
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            placeholder="e.g. How to build a successful SaaS product from scratch..."
+            rows={3}
+            className="w-full resize-none rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] p-3 text-[var(--color-foreground)] outline-none focus:border-[var(--color-primary)] transition-colors"
+          />
+        </div>
+
+        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
+          <label className="mb-3 block text-sm font-semibold text-[var(--color-foreground)]">
+            Target Audience
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {audiences.map((a) => (
+              <button
+                key={a}
+                onClick={() => setAudience(a)}
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                  audience === a
+                    ? "bg-[var(--color-primary)] text-white"
+                    : "border border-[var(--color-border)] bg-[var(--color-muted)] text-[var(--color-foreground)] hover:border-[var(--color-primary)]"
+                }`}
+              >
+                {a}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button
+          onClick={handleGenerate}
+          disabled={!topic.trim() || loading}
+          className="btn-primary w-full rounded-lg py-3 text-sm font-semibold disabled:opacity-50"
+        >
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="spinner" /> Generating outline...
+            </span>
+          ) : (
+            "Generate Outline"
+          )}
+        </button>
+
+        {error && (
+          <p className="text-sm text-red-500">{error}</p>
+        )}
+
+        {output && (
+          <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-[var(--color-foreground)]">
+                Blog Outline
+              </h3>
+              <button
+                onClick={handleCopy}
+                className="btn-secondary rounded-lg px-3 py-1.5 text-xs font-medium"
+              >
+                {copied ? "Copied!" : "Copy to clipboard"}
+              </button>
+            </div>
+            <div className="whitespace-pre-wrap text-sm leading-relaxed text-[var(--color-foreground)]">
+              {output}
+            </div>
+          </div>
+        )}
+      </div>
+    </ToolLayout>
+  );
+}
