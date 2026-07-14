@@ -15,6 +15,7 @@ import {
   Star,
   CaretDown,
   Gear,
+  TrendUp,
 } from "@phosphor-icons/react";
 
 const navCategories = [
@@ -171,6 +172,15 @@ export default function Header() {
                 )}
               </div>
             ))}
+
+            {/* Trending News */}
+            <Link
+              href="/trending-news"
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
+            >
+              <TrendUp size={14} />
+              Trending
+            </Link>
 
             {/* More dropdown */}
             <div
@@ -584,6 +594,18 @@ export default function Header() {
           <GridFour size={20} weight={catOpen ? "fill" : "duotone"} />
           Categories
         </button>
+        <Link
+          href="/trending-news"
+          className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold transition-colors"
+          style={{
+            color: isActive("/trending-news")
+              ? "var(--color-primary)"
+              : "var(--color-muted-foreground)",
+          }}
+        >
+          <TrendUp size={20} weight={isActive("/trending-news") ? "fill" : "duotone"} />
+          Trending
+        </Link>
         <button
           onClick={focusSearch}
           className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold text-muted-foreground transition-colors"
@@ -591,18 +613,6 @@ export default function Header() {
           <MagnifyingGlass size={20} weight="duotone" />
           Search
         </button>
-        <Link
-          href="/settings"
-          className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold transition-colors"
-          style={{
-            color: isActive("/settings")
-              ? "var(--color-primary)"
-              : "var(--color-muted-foreground)",
-          }}
-        >
-          <Gear size={20} weight={isActive("/settings") ? "fill" : "duotone"} />
-          Settings
-        </Link>
         <button
           onClick={toggle}
           className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold text-muted-foreground transition-colors"

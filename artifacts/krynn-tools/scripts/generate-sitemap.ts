@@ -15,6 +15,7 @@ async function generateSitemap() {
     "about",
     "contact",
     "blog",
+    "trending-news",
     "privacy-policy",
     "terms-of-service",
     "cookie-policy",
@@ -97,6 +98,11 @@ ${urls
         "how-to-convert-units-online": "/images/blog/loan-emi-calculator.svg",
         "how-to-checksum-a-file": "/images/blog/base64-encoder.svg",
         "how-to-count-words-and-characters-online": "/images/blog/json-formatter.svg",
+        "how-to-convert-heic-to-jpg": "/images/blog/compress-image.svg",
+        "best-free-json-formatter-online": "/images/blog/json-formatter.svg",
+        "best-free-password-generator-2026": "/images/blog/password-generator.svg",
+        "how-to-ocr-text-from-image": "/images/blog/compress-image.svg",
+        "base64-encoder-decoder-explained": "/images/blog/base64-encoder.svg",
       };
       const imgPath = imageMap[blogSlug] || "/images/blog/compress-pdf.svg";
       imageTag = `

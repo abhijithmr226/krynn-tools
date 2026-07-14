@@ -26,6 +26,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.krynntools.online/trending-news</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.krynntools.online/privacy-policy</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -930,6 +936,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.krynntools.online/blog/base64-encoder-decoder-explained</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/base64-encoder.svg</image:loc>
+      <image:title>base64 encoder decoder explained</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.krynntools.online/blog/best-free-dice-roller-for-board-games</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -950,6 +966,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.krynntools.online/blog/best-free-json-formatter-online</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/json-formatter.svg</image:loc>
+      <image:title>best free json formatter online</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.krynntools.online/blog/best-free-online-tools-2026</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -957,6 +983,16 @@
     <image:image>
       <image:loc>https://www.krynntools.online/images/blog/compress-pdf.svg</image:loc>
       <image:title>best free online tools 2026</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.krynntools.online/blog/best-free-password-generator-2026</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/password-generator.svg</image:loc>
+      <image:title>best free password generator 2026</image:title>
     </image:image>
   </url>
   <url>
@@ -1070,6 +1106,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.krynntools.online/blog/how-to-convert-heic-to-jpg</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-image.svg</image:loc>
+      <image:title>how to convert heic to jpg</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.krynntools.online/blog/how-to-convert-png-to-jpg-without-uploading</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -1157,6 +1203,16 @@
     <image:image>
       <image:loc>https://www.krynntools.online/images/blog/merge-pdf.svg</image:loc>
       <image:title>how to merge multiple pdfs</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.krynntools.online/blog/how-to-ocr-text-from-image</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.krynntools.online/images/blog/compress-image.svg</image:loc>
+      <image:title>how to ocr text from image</image:title>
     </image:image>
   </url>
   <url>
