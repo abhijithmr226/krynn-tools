@@ -160,8 +160,10 @@ export default function UsernameValidatorTool({ relatedTools, schema }: Props) {
       ]}
       faq={[
         { question: "What characters are allowed in Instagram usernames?", answer: "Instagram usernames can only contain letters, numbers, periods, and underscores. They must be 1-30 characters long, cannot start or end with a period, and cannot have consecutive periods." },
+        { question: "What are TikTok username rules?", answer: "TikTok usernames must be 2-24 characters long and can only contain letters, numbers, periods, underscores, and dashes. Usernames are case-insensitive and cannot start with a period." },
+        { question: "What are Twitter/X username rules?", answer: "Twitter/X usernames (handles) must be 1-15 characters long and can only contain letters, numbers, and underscores. No periods, dashes, or other special characters are allowed." },
         { question: "Can I change my username?", answer: "Yes, most platforms allow you to change your username. However, your old username may not be immediately available for someone else to claim." },
-        { question: "Is this tool affiliated with Instagram?", answer: "No. This is an independent tool. We validate against publicly known username rules, but always check the platform's official guidelines." },
+        { question: "Is this tool affiliated with Instagram, TikTok, or Twitter?", answer: "No. This is an independent tool. We validate against publicly known username rules, but always check the platform's official guidelines." },
       ]}
       relatedTools={relatedTools}
       schema={schema}

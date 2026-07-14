@@ -233,7 +233,7 @@ const blogPosts: BlogPost[] = [
 
 export default function BlogPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12">
+    <div className="container-app py-12">
       <div className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold text-[var(--color-foreground)]">
           Blog &amp; Tutorials

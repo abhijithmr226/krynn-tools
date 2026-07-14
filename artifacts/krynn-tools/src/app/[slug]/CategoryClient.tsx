@@ -15,12 +15,20 @@ export default function CategoryClient({ cat, catTools, currentSlug }: CategoryC
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const visibleTools = catTools.slice(0, visibleCount);
   const hasMore = visibleCount < catTools.length;
+  const toolCount = catTools.length;
 
   return (
     <div className="container-app py-8 sm:py-12 lg:py-16">
       <div className="mb-12 text-center">
-        <h1 className="mb-4">{cat.name}</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{cat.description}</p>
+        <h1 className="mb-3">{cat.name}</h1>
+        <span
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold mb-4"
+          style={{ backgroundColor: `${cat.color}15`, color: cat.color, border: `1px solid ${cat.color}25` }}
+        >
+          <KrynnIcon name={cat.icon} size={12} weight="fill" color={cat.color} />
+          {toolCount} {toolCount === 1 ? "Tool" : "Tools"}
+        </span>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mt-2">{cat.description}</p>
       </div>
 
       <div className="grid-3">

@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { ToolLayout } from "@/components/ToolLayout";
 import KrynnIcon from "@/components/KrynnIcon";
+import { Shield, Lightning, CheckCircle, DeviceMobile } from "@phosphor-icons/react";
 
 interface Props {
   title: string;
@@ -215,6 +216,12 @@ export default function InternetSpeedTestTool({
       faq={faq}
       relatedTools={relatedTools}
       schema={schema}
+      trustBadges={[
+        { icon: Shield, label: "No signup required" },
+        { icon: Lightning, label: "Download test via Cloudflare" },
+        { icon: CheckCircle, label: "100% free forever" },
+        { icon: DeviceMobile, label: "Works on mobile" },
+      ]}
     >
       <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] p-6 md:p-8 shadow-sm">
         
