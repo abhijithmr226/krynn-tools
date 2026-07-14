@@ -5,7 +5,7 @@ interface TrendingSidebarProps {
   articles: NewsArticle[];
 }
 
-const TABS = ["Technology", "AI", "Cybersecurity"];
+const TABS = ["Technology", "AI", "Cybersecurity", "Open Source"];
 
 export default function TrendingSidebar({ articles }: TrendingSidebarProps) {
   const [activeTab, setActiveTab] = useState(TABS[0]);
@@ -21,6 +21,7 @@ export default function TrendingSidebar({ articles }: TrendingSidebarProps) {
     Technology: "#3b82f6",
     AI: "#a855f7",
     Cybersecurity: "#ef4444",
+    "Open Source": "#22c55e",
   };
 
   return (

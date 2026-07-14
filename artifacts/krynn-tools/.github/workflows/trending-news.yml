@@ -27,7 +27,7 @@ jobs:
       - name: Fetch and process RSS feeds
         run: node scripts/fetch-trending-news.mjs
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
 
       - name: Commit updates
         run: |

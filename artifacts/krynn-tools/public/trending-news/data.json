@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-07-14T12:00:00Z",
-  "totalArticles": 24,
+  "totalArticles": 30,
   "articles": [
     {
       "id": "a1b2c3d4e5f6",
@@ -325,6 +325,71 @@
       "category": "AI",
       "tags": ["ai", "coding", "developer-tools", "automation"],
       "readTime": 4,
+      "image": ""
+    },
+    {
+      "id": "gh001",
+      "slug": "github-trending-shadcn-ui",
+      "title": "GitHub Trending: shadcn/ui",
+      "summary": "Beautifully designed components built with Radix UI and Tailwind CSS. Accessible and customizable UI components for modern web applications.",
+      "source": "GitHub Trending",
+      "sourceUrl": "https://github.com/shadcn-ui/ui",
+      "publishedAt": "2026-07-14T11:00:00Z",
+      "category": "Open Source",
+      "tags": ["open-source", "github-trending", "ui", "react", "tailwind"],
+      "readTime": 3,
+      "image": ""
+    },
+    {
+      "id": "gh002",
+      "slug": "github-trending-ollama",
+      "title": "GitHub Trending: ollama",
+      "summary": "Get up and running with large language models locally. Ollama makes it easy to run open-source models like Llama 3, Mistral, and Gemma on your own hardware.",
+      "source": "GitHub Trending",
+      "sourceUrl": "https://github.com/ollama/ollama",
+      "publishedAt": "2026-07-14T10:30:00Z",
+      "category": "Open Source",
+      "tags": ["open-source", "github-trending", "ai", "llm", "local-ai"],
+      "readTime": 3,
+      "image": ""
+    },
+    {
+      "id": "gh003",
+      "slug": "github-trending-excalidraw",
+      "title": "GitHub Trending: Excalidraw",
+      "summary": "A virtual whiteboard for sketching hand-drawn like diagrams. Collaborative and end-to-end encrypted. Perfect for wireframing and brainstorming sessions.",
+      "source": "GitHub Trending",
+      "sourceUrl": "https://github.com/excalidraw/excalidraw",
+      "publishedAt": "2026-07-14T09:00:00Z",
+      "category": "Open Source",
+      "tags": ["open-source", "github-trending", "diagrams", "whiteboard", "collaboration"],
+      "readTime": 3,
+      "image": ""
+    },
+    {
+      "id": "gh004",
+      "slug": "github-trending-deno",
+      "title": "GitHub Trending: Deno",
+      "summary": "A modern runtime for JavaScript and TypeScript with built-in security, tooling, and TypeScript support out of the box. Gaining traction as a Node.js alternative.",
+      "source": "GitHub Trending",
+      "sourceUrl": "https://github.com/denoland/deno",
+      "publishedAt": "2026-07-14T08:00:00Z",
+      "category": "Open Source",
+      "tags": ["open-source", "github-trending", "javascript", "typescript", "runtime"],
+      "readTime": 3,
+      "image": ""
+    },
+    {
+      "id": "gh005",
+      "slug": "github-trending-open-webui",
+      "title": "GitHub Trending: Open WebUI",
+      "summary": "A feature-rich, user-friendly web interface for running AI models locally or remotely. Supports Ollama, OpenAI API, and multiple AI providers with a ChatGPT-like experience.",
+      "source": "GitHub Trending",
+      "sourceUrl": "https://github.com/open-webui/open-webui",
+      "publishedAt": "2026-07-14T07:00:00Z",
+      "category": "Open Source",
+      "tags": ["open-source", "github-trending", "ai", "web-ui", "chatgpt"],
+      "readTime": 3,
       "image": ""
     }
   ]
