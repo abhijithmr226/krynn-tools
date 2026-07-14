@@ -68,6 +68,7 @@ function SeoUpdater() {
   const [pathname] = useLocation();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const tool = tools.find(t => {
       const cat = categories.find(c => c.slug === t.categorySlug);
       return cat && pathname === `/${t.categorySlug}/${t.slug}`;
