@@ -63,7 +63,7 @@ function LazyPage({ Page }: { Page: ComponentType<unknown> | null }) {
   );
 }
 
-// ── SEO: Update document title on route change ──
+// ── SEO: Update document title, meta tags, and canonical tags on route change ──
 function SeoUpdater() {
   const [pathname] = useLocation();
 
@@ -76,21 +76,49 @@ function SeoUpdater() {
 
     const category = categories.find(c => pathname === `/${c.slug}`);
 
+    let title = 'Krynn Tools — 100+ Free Online Tools';
+    let desc = '100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, runs in your browser. No signup required.';
+
     if (tool) {
-      document.title = `${tool.name} — Free Online Tool | Krynn Tools`;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute('content', tool.description);
+      title = `${tool.name} — Free Online Tool | Krynn Tools`;
+      desc = `${tool.description} 100% client-side, instant & secure.`;
     } else if (category) {
-      document.title = `${category.name} Tools — Free Online | Krynn Tools`;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute('content', `${category.description} Free, fast, runs in your browser.`);
-    } else if (pathname === '/') {
-      document.title = 'Krynn Tools — 100+ Free Online Tools';
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute('content', '100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, runs in your browser.');
-    } else {
-      document.title = 'Krynn Tools — 100+ Free Online Tools';
+      title = `${category.name} Tools — Free Online | Krynn Tools`;
+      desc = `${category.description} Free, fast, runs in your browser.`;
     }
+
+    // Update document title
+    document.title = title;
+
+    // Update standard meta description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', desc);
+
+    // Update OpenGraph meta tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', title);
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', desc);
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute('content', `https://www.krynntools.online${pathname}`);
+
+    // Update Twitter meta tags
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute('content', title);
+
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.setAttribute('content', desc);
+
+    // Dynamically insert/update Canonical link tag
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', `https://www.krynntools.online${pathname}`);
   }, [pathname]);
 
   return null;
