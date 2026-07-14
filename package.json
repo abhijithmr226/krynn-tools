@@ -9,6 +9,7 @@
   },
   "private": true,
   "devDependencies": {
+    "@vercel/node": "^3.0.0",
     "prettier": "^3.9.4",
     "typescript": "~5.9.3"
   }

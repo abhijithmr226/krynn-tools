@@ -1,7 +1,7 @@
 {
-  "buildCommand": "cd artifacts/krynn-tools && pnpm run build",
+  "buildCommand": "cd artifacts/krynn-tools && npm run build",
   "outputDirectory": "artifacts/krynn-tools/dist/public",
-  "installCommand": "pnpm install",
+  "installCommand": "npm install -g pnpm && pnpm install",
   "rewrites": [
     {
       "source": "/api/(.*)",
