@@ -1,6 +1,7 @@
 import { Suspense, lazy, ComponentType, ReactNode } from 'react';
 import { Switch, Route, useParams, Router as WouterRouter } from 'wouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from '@/lib/theme-provider';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -195,6 +196,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <AppRouter />
+        <Analytics />
       </WouterRouter>
     </QueryClientProvider>
   );
