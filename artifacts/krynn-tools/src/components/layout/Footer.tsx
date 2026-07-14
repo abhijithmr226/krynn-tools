@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import KrynnLogo from "../common/KrynnLogo";
+import TrustpilotBadge from "../TrustpilotBadge";
 import { categories } from "@/lib/tools";
 
 export default function Footer() {
@@ -15,6 +16,9 @@ export default function Footer() {
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
               100+ free online tools. PDF, Image, Text, Dev, Design, Calculators & More. Everything runs in your browser.
             </p>
+            <div className="mt-4">
+              <TrustpilotBadge height={20} />
+            </div>
           </div>
 
           {/* Tools */}

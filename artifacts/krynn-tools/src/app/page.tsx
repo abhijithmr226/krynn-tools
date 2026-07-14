@@ -4,6 +4,7 @@ import { categories, getPopularTools, searchTools, tools } from "@/lib/tools";
 import { useTheme } from "@/lib/theme-provider";
 import KrynnIcon from "@/components/KrynnIcon";
 import AdSlot from "@/components/AdSlot";
+import TrustpilotBadge from "@/components/TrustpilotBadge";
 import {
   MagnifyingGlass,
   Star,
@@ -443,6 +444,9 @@ export default function HomePage() {
                 <div className="text-xs text-muted-foreground">Web Developer</div>
               </div>
             </div>
+          </div>
+          <div className="mt-8">
+            <TrustpilotBadge className="justify-center" />
           </div>
         </div>
       </section>
