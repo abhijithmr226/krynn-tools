@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import BlogAd from "../BlogAd";
+import FaqSection from "../FaqSection";
 
 
 export default function BlogPost() {
@@ -214,6 +215,26 @@ export default function BlogPost() {
             mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.krynntools.online/blog/how-to-merge-multiple-pdfs" },
           }),
         }}
+      />
+      <FaqSection
+        items={[
+          {
+            question: "Is there a limit to how many PDFs I can merge?",
+            answer: "With Krynn Tools, there's no hard limit on the number of files. The practical limit is your browser's memory — you can typically merge 20-50 PDFs without issues. Very large PDFs (100+ pages each) may need to be merged in smaller batches.",
+          },
+          {
+            question: "Will merging PDFs reduce their quality?",
+            answer: "No. Merging PDFs simply combines the pages into a single file without re-encoding or compressing the content. The text, images, and layout remain exactly as they were in the original files.",
+          },
+          {
+            question: "Can I merge password-protected PDFs?",
+            answer: "You can merge password-protected PDFs if you know the password and unlock them first. Krynn Tools has a separate Unlock PDF tool that can remove password protection before merging.",
+          },
+          {
+            question: "What is the maximum file size for merging PDFs?",
+            answer: "Since Krynn Tools processes files in your browser, the limit depends on your device's available memory. Most modern devices can handle PDFs up to 200MB each. For very large files, consider compressing them first with our PDF compressor.",
+          },
+        ]}
       />
       </article>
     </div>

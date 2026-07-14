@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import BlogAd from "../BlogAd";
+import FaqSection from "../FaqSection";
 
 
 export default function BlogPost() {
@@ -226,6 +227,32 @@ export default function BlogPost() {
             — free, instant, and completely private.
           </p>
         </div>
+
+        <FaqSection
+          items={[
+            {
+              question: "How accurate is browser-based background removal?",
+              answer: "Modern AI algorithms achieve 95%+ accuracy on clear subjects with good contrast against the background. Results are best with well-lit photos where the subject has clear edges. Complex hair or fur may need minor touch-ups.",
+            },
+            {
+              question: "Is my photo uploaded to a server when I remove the background?",
+              answer: "Not with Krynn Tools. Our background remover runs entirely in your browser using AI models loaded locally. Your photo never leaves your device — no upload, no server processing, no storage. It's completely private.",
+            },
+            {
+              question: "What image formats are supported for background removal?",
+              answer: "Krynn Tools supports JPG, PNG, WebP, and GIF input formats. The output is typically PNG with a transparent background, which preserves the cutout quality and supports transparency.",
+            },
+            {
+              question: "Can I remove the background from multiple photos at once?",
+              answer: "Currently, Krynn Tools processes one image at a time for maximum quality. Each image gets individual AI analysis for the best cutout. For batch processing, you can quickly process multiple images one after another.",
+            },
+            {
+              question: "What makes a good photo for background removal?",
+              answer: "Photos with clear subject-background contrast, good lighting, and defined edges produce the best results. Avoid photos where the subject blends into the background (e.g., white shirt on white wall). High-resolution images generally give cleaner cutouts.",
+            },
+          ]}
+        />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

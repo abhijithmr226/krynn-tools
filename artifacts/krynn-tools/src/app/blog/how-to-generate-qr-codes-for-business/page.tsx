@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import BlogAd from "../BlogAd";
+import FaqSection from "../FaqSection";
 
 
 export default function BlogPost() {
@@ -215,6 +216,26 @@ export default function BlogPost() {
             mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.krynntools.online/blog/how-to-generate-qr-codes-for-business" },
           }),
         }}
+      />
+      <FaqSection
+        items={[
+          {
+            question: "What information can I put in a QR code?",
+            answer: "QR codes can store URLs, plain text, phone numbers, email addresses, WiFi credentials, contact cards (vCard), and more. For business use, URLs to your website, menu, or landing page are most common. Keep the data concise for faster scanning.",
+          },
+          {
+            question: "How do I make sure my QR code is scannable?",
+            answer: "Use high contrast (dark code on light background), ensure adequate size (at least 2cm x 2cm for print), avoid low-resolution images, and test with multiple phones before printing. The Krynn Tools QR generator creates high-resolution codes by default.",
+          },
+          {
+            question: "Can I track how many times my QR code is scanned?",
+            answer: "Static QR codes (like those from Krynn Tools) cannot track scans because they encode the data directly. For scan tracking, you'd need a dynamic QR code service that uses a redirect URL. However, you can use URL shorteners with analytics as the QR code destination.",
+          },
+          {
+            question: "Are QR codes free to generate and use?",
+            answer: "Yes, QR codes are an open standard free for anyone to generate and use. Krynn Tools generates QR codes completely free with no signup, no watermarks, and no usage limits. The codes never expire.",
+          },
+        ]}
       />
       </article>
     </div>

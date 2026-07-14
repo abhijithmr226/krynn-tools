@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import BlogAd from "../BlogAd";
+import FaqSection from "../FaqSection";
 
 
 export default function BlogPost() {
@@ -281,6 +282,31 @@ export default function BlogPost() {
             mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.krynntools.online/blog/how-to-compress-pdf-without-losing-quality" },
           }),
         }}
+      />
+
+      <FaqSection
+        items={[
+          {
+            question: "How much can I compress a PDF without losing quality?",
+            answer: "Most PDFs can be reduced by 40-70% without visible quality loss. The exact reduction depends on the content — image-heavy PDFs compress more than text-only documents. Use medium compression for the best balance of size and quality.",
+          },
+          {
+            question: "Is it safe to compress confidential PDFs online?",
+            answer: "With Krynn Tools, yes. Our PDF compressor runs entirely in your browser — your file is never uploaded to any server. This makes it safe for confidential documents like contracts, financial records, and medical files. No data leaves your device.",
+          },
+          {
+            question: "What is the difference between PDF compression and PDF optimization?",
+            answer: "PDF compression reduces file size by applying algorithms to data streams. PDF optimization is broader — it includes compression plus removing redundant objects, down-sampling images, and stripping unused elements. Krynn Tools performs both automatically.",
+          },
+          {
+            question: "Can I compress a scanned PDF document?",
+            answer: "Yes. Scanned PDFs are essentially images wrapped in a PDF container, so they benefit enormously from compression. A 10MB scan can often be compressed to 1-2MB with medium compression while maintaining readability.",
+          },
+          {
+            question: "Does compressing a PDF reduce print quality?",
+            answer: "It depends on the compression level. Light compression has zero impact on print quality. Medium compression may slightly reduce resolution in photos but keeps text sharp. Heavy compression is best for screen viewing only — use light or medium if you plan to print.",
+          },
+        ]}
       />
       </article>
     </div>

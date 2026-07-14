@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import BlogAd from "../BlogAd";
+import FaqSection from "../FaqSection";
 
 
 export default function BlogPost() {
@@ -400,6 +401,26 @@ export default function BlogPost() {
             mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.krynntools.online/blog/how-to-count-words-and-characters-online" },
           }),
         }}
+      />
+      <FaqSection
+        items={[
+          {
+            question: "What is the difference between word count and character count?",
+            answer: "Word count measures the number of words (separated by spaces), while character count includes every letter, number, punctuation mark, and space. Character count matters for social media limits (Twitter: 280, Instagram bio: 150), while word count matters for essays and articles.",
+          },
+          {
+            question: "Does the word counter include spaces in the character count?",
+            answer: "Most word counters show two character counts: one with spaces and one without. Both are useful — 'characters with spaces' is what you see in most text editors, while 'characters without spaces' is what platforms like Twitter use for their limits.",
+          },
+          {
+            question: "Can I count words in a PDF or Word document?",
+            answer: "Krynn Tools' word counter works with plain text. To count words in a PDF or Word document, open the file, select all text (Ctrl+A), copy it (Ctrl+C), and paste it into the counter. For direct PDF word counting, try our PDF tools.",
+          },
+          {
+            question: "How accurate are online word counters?",
+            answer: "Online word counters are extremely accurate for standard text. They count words by splitting on whitespace and characters by iterating through the string. Edge cases like em-dashes or special Unicode characters may vary slightly between tools.",
+          },
+        ]}
       />
       </article>
     </div>

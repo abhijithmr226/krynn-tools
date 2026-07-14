@@ -81,10 +81,10 @@ function SeoUpdater() {
 
     if (tool) {
       title = `${tool.name} — Free Online Tool | Krynn Tools`;
-      desc = `${tool.description} 100% client-side, instant & secure.`;
+      desc = `${tool.description} 100% free, no signup, no file upload. Runs entirely in your browser for instant & private results.`;
     } else if (category) {
-      title = `${category.name} Tools — Free Online | Krynn Tools`;
-      desc = `${category.description} Free, fast, runs in your browser.`;
+      title = `${category.name} — Free Online Tools | Krynn Tools`;
+      desc = `Free online ${category.name.toLowerCase()} — ${category.description} No signup required. All tools run in your browser.`;
     }
 
     // Update document title
