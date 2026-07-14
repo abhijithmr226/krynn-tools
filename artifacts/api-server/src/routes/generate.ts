@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response as ExpressResponse } from "express";
 import { logger } from "../lib/logger";
 
 const router = Router();
@@ -15,11 +15,14 @@ const MODELS = [
 const MAX_RETRIES = 2;
 const RETRY_DELAY_MS = 3000;
 
+// Alias the global fetch Response so it doesn't collide with Express Response.
+type FetchResponse = globalThis.Response;
+
 function delay(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-async function callOpenRouter(body: object, apiKey: string): Promise<Response> {
+async function callOpenRouter(body: object, apiKey: string): Promise<FetchResponse> {
   return fetch(OPENROUTER_URL, {
     method: "POST",
     headers: {
@@ -29,17 +32,17 @@ async function callOpenRouter(body: object, apiKey: string): Promise<Response> {
       "X-Title": "Krynn Tools",
     },
     body: JSON.stringify(body),
-  }) as unknown as Response;
+  });
 }
 
 // GET /api/generate — health check only, no key exposure
-router.get("/generate", (_req: Request, res: Response) => {
+router.get("/generate", (_req: Request, res: ExpressResponse) => {
   const apiKey = process.env["OPENROUTER_API_KEY"];
   res.json({ configured: !!apiKey });
 });
 
-// POST /api/generate — call OpenRouter AI
-router.post("/generate", async (req: Request, res: Response) => {
+// POST /api/generate — call OpenRouter AI with model fallback + retry
+router.post("/generate", async (req: Request, res: ExpressResponse) => {
   const apiKey = process.env["OPENROUTER_API_KEY"];
 
   if (!apiKey) {
@@ -76,21 +79,20 @@ router.post("/generate", async (req: Request, res: Response) => {
       max_tokens: 8192,
     };
 
-    let openRouterRes = await callOpenRouter(body, apiKey);
+    let fetchRes: FetchResponse = await callOpenRouter(body, apiKey);
 
     for (
       let attempt = 0;
-      attempt < MAX_RETRIES &&
-      (openRouterRes.status === 429 || openRouterRes.status === 503);
+      attempt < MAX_RETRIES && (fetchRes.status === 429 || fetchRes.status === 503);
       attempt++
     ) {
-      logger.warn(`${model} returned ${openRouterRes.status}, retrying…`);
+      logger.warn(`${model} returned ${fetchRes.status}, retrying in ${RETRY_DELAY_MS * (attempt + 1)}ms`);
       await delay(RETRY_DELAY_MS * (attempt + 1));
-      openRouterRes = await callOpenRouter(body, apiKey);
+      fetchRes = await callOpenRouter(body, apiKey);
     }
 
-    if (openRouterRes.ok) {
-      const data = (await openRouterRes.json()) as {
+    if (fetchRes.ok) {
+      const data = (await fetchRes.json()) as {
         choices?: Array<{ message?: { content?: string } }>;
       };
       const text = data?.choices?.[0]?.message?.content;
@@ -100,25 +102,22 @@ router.post("/generate", async (req: Request, res: Response) => {
       }
     }
 
-    const errBody = await openRouterRes.json().catch(() => null);
-    lastError = { status: openRouterRes.status, body: errBody };
-    logger.warn(
-      { model, status: openRouterRes.status, errBody },
-      "OpenRouter model failed",
-    );
+    const errBody = await fetchRes.json().catch(() => null);
+    lastError = { status: fetchRes.status, body: errBody };
+    logger.warn({ model, status: fetchRes.status, errBody }, "OpenRouter model failed");
   }
 
   const status = lastError?.status ?? 500;
   if (status === 429) {
-    res
-      .status(429)
-      .json({ error: "AI service is temporarily at capacity. Please try again in a minute." });
+    res.status(429).json({
+      error: "AI service is temporarily at capacity. Please try again in a minute.",
+    });
     return;
   }
   if (status === 402) {
-    res
-      .status(402)
-      .json({ error: "AI service credits exhausted. Please contact support." });
+    res.status(402).json({
+      error: "AI service credits exhausted. Please contact support.",
+    });
     return;
   }
 
