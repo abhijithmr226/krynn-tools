@@ -28,7 +28,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/compress-pdf.svg"
+            src="/images/blog/compress-pdf.png"
             alt="Best Free PDF Compressor Tool"
             className="w-full"
           />
@@ -307,7 +307,7 @@ export default function BlogPost() {
               "@type": "Article",
               headline: "Best Free PDF Compressor 2026: No Upload, 100% Private",
               description: "Compare the best free PDF compressors in 2026. Learn why client-side processing is safer than server-based tools for your sensitive documents.",
-              image: "https://www.krynntools.online/images/blog/compress-pdf.svg",
+              image: "https://www.krynntools.online/images/blog/compress-pdf.png",
               datePublished: "2026-01-20T00:00:00Z",
               dateModified: "2026-01-20T00:00:00Z",
               author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

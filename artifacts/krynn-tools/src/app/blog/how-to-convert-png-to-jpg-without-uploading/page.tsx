@@ -28,7 +28,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/png-to-jpg.svg"
+            src="/images/blog/png-to-jpg.png"
             alt="PNG to JPG Converter Tool"
             className="w-full"
           />
@@ -315,7 +315,7 @@ export default function BlogPost() {
               "@type": "Article",
               headline: "How to Convert PNG to JPG Without Uploading Your Photos",
               description: "Learn how to convert PNG images to JPG format without uploading your photos to any server. Free client-side tool for instant, private image conversion.",
-              image: "https://www.krynntools.online/images/blog/png-to-jpg.svg",
+              image: "https://www.krynntools.online/images/blog/png-to-jpg.png",
               datePublished: "2026-01-18T00:00:00Z",
               dateModified: "2026-01-18T00:00:00Z",
               author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

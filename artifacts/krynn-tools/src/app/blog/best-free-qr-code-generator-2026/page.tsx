@@ -25,8 +25,13 @@ export default function BlogPost() {
           <span>8 min read</span>
         </div>
 
-        <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-muted)] p-8 text-center">
-          <p className="text-sm text-[var(--color-muted-foreground)]">QR Code Tools</p>
+        <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/blog/qr-code-generator.png"
+            alt="QR Code Generator Screenshot"
+            className="w-full"
+          />
         </div>
 
         <BlogAd />

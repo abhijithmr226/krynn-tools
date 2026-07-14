@@ -25,8 +25,13 @@ export default function BlogPost() {
           <span>15 min read</span>
         </div>
 
-        <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-muted)] p-8 text-center">
-          <p className="text-sm text-[var(--color-muted-foreground)]">Complete Guide</p>
+        <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/blog/home.png"
+            alt="Krynn Tools Home Page"
+            className="w-full"
+          />
         </div>
 
         <BlogAd />

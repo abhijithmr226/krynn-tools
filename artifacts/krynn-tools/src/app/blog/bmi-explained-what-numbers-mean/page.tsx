@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/bmi-calculator.svg"
+            src="/images/blog/bmi-calculator.png"
             alt="BMI Calculator Tool Interface"
             className="w-full"
           />
@@ -239,7 +239,7 @@ Example: 70 kg ÷ (1.75 m)² = 22.9`}</pre>
             "@type": "Article",
             headline: "BMI Explained: What the Numbers Actually Mean",
             description: "Understand BMI categories, how to calculate yours, and what the numbers really tell you.",
-            image: "https://www.krynntools.online/images/blog/bmi-calculator.svg",
+            image: "https://www.krynntools.online/images/blog/bmi-calculator.png",
             datePublished: "2026-02-20T00:00:00Z",
             dateModified: "2026-02-20T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

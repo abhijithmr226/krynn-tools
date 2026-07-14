@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/json-formatter.svg"
+            src="/images/blog/json-formatter.png"
             alt="JSON Formatter Tool Interface"
             className="w-full"
           />
@@ -283,7 +283,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "JSON Formatting Best Practices for Developers",
             description: "Master JSON formatting with best practices for indentation, naming, validation, and tooling.",
-            image: "https://www.krynntools.online/images/blog/json-formatter.svg",
+            image: "https://www.krynntools.online/images/blog/json-formatter.png",
             datePublished: "2026-02-10T00:00:00Z",
             dateModified: "2026-02-10T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

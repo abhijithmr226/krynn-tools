@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/qr-error-correction.svg"
+            src="/images/blog/qr-code-generator.png"
             alt="QR Code Error Correction Levels"
             className="w-full"
           />
@@ -194,7 +194,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "Understanding Error Correction in QR Codes",
             description: "Learn how QR code error correction works and why it matters.",
-            image: "https://www.krynntools.online/images/blog/qr-code-generator.svg",
+            image: "https://www.krynntools.online/images/blog/qr-code-generator.png",
             datePublished: "2026-03-10T00:00:00Z",
             dateModified: "2026-03-10T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

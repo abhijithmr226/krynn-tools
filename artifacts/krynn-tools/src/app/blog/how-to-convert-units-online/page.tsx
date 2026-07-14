@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/unit-converter.svg"
+            src="/images/blog/unit-converter.png"
             alt="Unit Converter Tool Interface"
             className="w-full"
           />
@@ -394,7 +394,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Convert Units Online (Length, Weight, Temperature)",
             description: "Convert between metric and imperial units for length, weight, temperature, volume, and area. Free online unit converter.",
-            image: "https://www.krynntools.online/images/blog/unit-converter.svg",
+            image: "https://www.krynntools.online/images/blog/unit-converter.png",
             datePublished: "2026-07-12T00:00:00Z",
             dateModified: "2026-07-12T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

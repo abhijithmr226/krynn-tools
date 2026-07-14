@@ -20,7 +20,7 @@ const blogPosts: BlogPost[] = [
     date: "July 14, 2026",
     category: "Guide",
     readingTime: "15 min",
-    image: "/images/blog/compress-pdf.svg",
+    image: "/images/blog/home.png",
   },
   {
     slug: "free-grammarly-alternative-offline",
@@ -29,7 +29,7 @@ const blogPosts: BlogPost[] = [
     date: "July 14, 2026",
     category: "AI Writing",
     readingTime: "10 min",
-    image: "/images/blog/json-formatter.svg",
+    image: "/images/blog/grammar-fixer.png",
   },
   {
     slug: "smallpdf-vs-ilovepdf-vs-krynn-tools",
@@ -38,7 +38,7 @@ const blogPosts: BlogPost[] = [
     date: "July 14, 2026",
     category: "PDF",
     readingTime: "12 min",
-    image: "/images/blog/compress-pdf.svg",
+    image: "/images/blog/compress-pdf.png",
   },
   {
     slug: "remove-background-image-free-2026",
@@ -47,7 +47,7 @@ const blogPosts: BlogPost[] = [
     date: "July 14, 2026",
     category: "Image",
     readingTime: "8 min",
-    image: "/images/blog/remove-background.svg",
+    image: "/images/blog/remove-background.png",
   },
   {
     slug: "best-free-image-upscaler-2026",
@@ -56,7 +56,7 @@ const blogPosts: BlogPost[] = [
     date: "July 14, 2026",
     category: "Image",
     readingTime: "9 min",
-    image: "/images/blog/compress-image.svg",
+    image: "/images/blog/image-upscaler.png",
   },
   {
     slug: "best-free-qr-code-generator-2026",
@@ -65,7 +65,7 @@ const blogPosts: BlogPost[] = [
     date: "July 14, 2026",
     category: "Security",
     readingTime: "8 min",
-    image: "/images/blog/qr-code-generator.svg",
+    image: "/images/blog/qr-code-generator.png",
   },
   {
     slug: "convert-png-to-jpg-free",
@@ -74,7 +74,7 @@ const blogPosts: BlogPost[] = [
     date: "July 14, 2026",
     category: "Image",
     readingTime: "6 min",
-    image: "/images/blog/compress-image.svg",
+    image: "/images/blog/png-to-jpg.png",
   },
   {
     slug: "best-free-resume-builder-2026",
@@ -83,7 +83,7 @@ const blogPosts: BlogPost[] = [
     date: "July 14, 2026",
     category: "Career",
     readingTime: "10 min",
-    image: "/images/blog/compress-pdf.svg",
+    image: "/images/blog/resume-builder.png",
   },
   {
     slug: "how-to-compress-pdf-without-losing-quality",
@@ -92,7 +92,7 @@ const blogPosts: BlogPost[] = [
     date: "January 15, 2026",
     category: "PDF",
     readingTime: "7 min",
-    image: "/images/blog/compress-pdf.svg",
+    image: "/images/blog/compress-pdf.png",
   },
   {
     slug: "how-to-merge-multiple-pdfs",
@@ -101,7 +101,7 @@ const blogPosts: BlogPost[] = [
     date: "January 20, 2026",
     category: "PDF",
     readingTime: "6 min",
-    image: "/images/blog/merge-pdf.svg",
+    image: "/images/blog/merge-pdf.png",
   },
   {
     slug: "10-signs-your-password-isnt-strong-enough",
@@ -110,7 +110,7 @@ const blogPosts: BlogPost[] = [
     date: "January 25, 2026",
     category: "Security",
     readingTime: "8 min",
-    image: "/images/blog/password-generator.svg",
+    image: "/images/blog/password-generator.png",
   },
   {
     slug: "qr-codes-explained-static-vs-dynamic",
@@ -119,7 +119,7 @@ const blogPosts: BlogPost[] = [
     date: "January 30, 2026",
     category: "Security",
     readingTime: "6 min",
-    image: "/images/blog/qr-code-generator.svg",
+    image: "/images/blog/qr-code-generator.png",
   },
   {
     slug: "best-practices-for-qr-code-design",
@@ -128,7 +128,7 @@ const blogPosts: BlogPost[] = [
     date: "March 1, 2026",
     category: "Security",
     readingTime: "7 min",
-    image: "/images/blog/qr-code-generator.svg",
+    image: "/images/blog/qr-code-generator.png",
   },
   {
     slug: "how-to-generate-qr-codes-for-business",
@@ -137,7 +137,7 @@ const blogPosts: BlogPost[] = [
     date: "March 5, 2026",
     category: "Security",
     readingTime: "6 min",
-    image: "/images/blog/qr-code-generator.svg",
+    image: "/images/blog/qr-code-generator.png",
   },
   {
     slug: "understanding-error-correction-in-qr-codes",
@@ -146,7 +146,7 @@ const blogPosts: BlogPost[] = [
     date: "March 10, 2026",
     category: "Security",
     readingTime: "7 min",
-    image: "/images/blog/qr-code-generator.svg",
+    image: "/images/blog/qr-code-generator.png",
   },
   {
     slug: "how-to-shrink-image-file-size",
@@ -155,7 +155,7 @@ const blogPosts: BlogPost[] = [
     date: "February 1, 2026",
     category: "Image",
     readingTime: "7 min",
-    image: "/images/blog/compress-image.svg",
+    image: "/images/blog/compress-image.png",
   },
   {
     slug: "how-to-remove-background-from-photo",
@@ -164,7 +164,7 @@ const blogPosts: BlogPost[] = [
     date: "February 5, 2026",
     category: "Image",
     readingTime: "5 min",
-    image: "/images/blog/remove-background.svg",
+    image: "/images/blog/remove-background.png",
   },
   {
     slug: "json-formatting-best-practices",
@@ -173,7 +173,7 @@ const blogPosts: BlogPost[] = [
     date: "February 10, 2026",
     category: "Developer",
     readingTime: "8 min",
-    image: "/images/blog/json-formatter.svg",
+    image: "/images/blog/json-formatter.png",
   },
   {
     slug: "what-is-base64-encoding",
@@ -182,7 +182,7 @@ const blogPosts: BlogPost[] = [
     date: "February 15, 2026",
     category: "Developer",
     readingTime: "7 min",
-    image: "/images/blog/base64-encoder.svg",
+    image: "/images/blog/base64-encoder.png",
   },
   {
     slug: "bmi-explained-what-numbers-mean",
@@ -191,7 +191,7 @@ const blogPosts: BlogPost[] = [
     date: "February 20, 2026",
     category: "Health",
     readingTime: "6 min",
-    image: "/images/blog/bmi-calculator.svg",
+    image: "/images/blog/bmi-calculator.png",
   },
   {
     slug: "how-emi-is-calculated-on-loan",
@@ -200,7 +200,7 @@ const blogPosts: BlogPost[] = [
     date: "February 25, 2026",
     category: "Finance",
     readingTime: "8 min",
-    image: "/images/blog/loan-emi-calculator.svg",
+    image: "/images/blog/loan-emi-calculator.png",
   },
   {
     slug: "how-to-extract-text-from-scanned-pdfs",
@@ -209,7 +209,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "PDF",
     readingTime: "6 min",
-    image: "/images/blog/compress-pdf.svg",
+    image: "/images/blog/compress-pdf.png",
   },
   {
     slug: "best-free-dice-roller-for-board-games",
@@ -218,7 +218,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Misc",
     readingTime: "5 min",
-    image: "/images/blog/base64-encoder.svg",
+    image: "/images/blog/home.png",
   },
   {
     slug: "how-to-crop-passport-size-photos-online",
@@ -227,7 +227,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Image",
     readingTime: "6 min",
-    image: "/images/blog/compress-image.svg",
+    image: "/images/blog/compress-image.png",
   },
   {
     slug: "how-to-generate-strong-passwords-online",
@@ -236,7 +236,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Security",
     readingTime: "7 min",
-    image: "/images/blog/password-generator.svg",
+    image: "/images/blog/password-generator.png",
   },
   {
     slug: "how-to-convert-text-case-online",
@@ -245,7 +245,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Text",
     readingTime: "5 min",
-    image: "/images/blog/json-formatter.svg",
+    image: "/images/blog/case-converter.png",
   },
   {
     slug: "how-to-resize-images-for-social-media",
@@ -254,7 +254,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Social Media",
     readingTime: "7 min",
-    image: "/images/blog/compress-image.svg",
+    image: "/images/blog/social-image-resizer.png",
   },
   {
     slug: "what-is-a-uuid-and-how-to-generate-one",
@@ -263,7 +263,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Developer",
     readingTime: "6 min",
-    image: "/images/blog/base64-encoder.svg",
+    image: "/images/blog/uuid-generator.png",
   },
   {
     slug: "how-to-calculate-percentage-online",
@@ -272,7 +272,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Calculators",
     readingTime: "6 min",
-    image: "/images/blog/bmi-calculator.svg",
+    image: "/images/blog/percentage-calculator.png",
   },
   {
     slug: "how-to-convert-units-online",
@@ -281,7 +281,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Calculators",
     readingTime: "7 min",
-    image: "/images/blog/loan-emi-calculator.svg",
+    image: "/images/blog/unit-converter.png",
   },
   {
     slug: "how-to-checksum-a-file",
@@ -290,7 +290,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Misc",
     readingTime: "5 min",
-    image: "/images/blog/base64-encoder.svg",
+    image: "/images/blog/file-checksum-calculator.png",
   },
   {
     slug: "how-to-count-words-and-characters-online",
@@ -299,7 +299,7 @@ const blogPosts: BlogPost[] = [
     date: "July 12, 2026",
     category: "Text",
     readingTime: "5 min",
-    image: "/images/blog/json-formatter.svg",
+    image: "/images/blog/word-counter.png",
   },
 ];
 

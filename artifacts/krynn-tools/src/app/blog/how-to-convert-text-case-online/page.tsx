@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/case-converter.svg"
+            src="/images/blog/case-converter.png"
             alt="Case Converter Tool Interface"
             className="w-full"
           />
@@ -317,7 +317,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Convert Text Case Online (UPPERCASE, lowercase, Title Case)",
             description: "Convert text between UPPERCASE, lowercase, Title Case, and Sentence case instantly. Free online case converter tool.",
-            image: "https://www.krynntools.online/images/blog/case-converter.svg",
+            image: "https://www.krynntools.online/images/blog/case-converter.png",
             datePublished: "2026-07-12T00:00:00Z",
             dateModified: "2026-07-12T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

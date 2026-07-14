@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/social-image-resizer.svg"
+            src="/images/blog/social-image-resizer.png"
             alt="Social Media Image Resizer Tool"
             className="w-full"
           />
@@ -415,7 +415,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Resize Images for Every Social Media Platform",
             description: "Resize images for Instagram, Facebook, Twitter, YouTube, and LinkedIn with correct dimensions. Free social media image resizer.",
-            image: "https://www.krynntools.online/images/blog/social-image-resizer.svg",
+            image: "https://www.krynntools.online/images/blog/social-image-resizer.png",
             datePublished: "2026-07-12T00:00:00Z",
             dateModified: "2026-07-12T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

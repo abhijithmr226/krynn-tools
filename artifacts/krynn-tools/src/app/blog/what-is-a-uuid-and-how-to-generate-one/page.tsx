@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/uuid-generator.svg"
+            src="/images/blog/uuid-generator.png"
             alt="UUID Generator Tool Interface"
             className="w-full"
           />
@@ -369,7 +369,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "What Is a UUID and How to Generate One",
             description: "Understand UUID v4 identifiers, when to use them, and how to generate unique IDs for your applications. Free UUID generator tool.",
-            image: "https://www.krynntools.online/images/blog/uuid-generator.svg",
+            image: "https://www.krynntools.online/images/blog/uuid-generator.png",
             datePublished: "2026-07-12T00:00:00Z",
             dateModified: "2026-07-12T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

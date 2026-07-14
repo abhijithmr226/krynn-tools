@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/password-generator.svg"
+            src="/images/blog/password-generator.png"
             alt="Password Generator Tool Interface"
             className="w-full"
           />
@@ -349,7 +349,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Generate a Strong Password Online",
             description: "Learn how to generate strong, random passwords online. Free tool creates secure passwords with customizable length and character rules.",
-            image: "https://www.krynntools.online/images/blog/password-generator.svg",
+            image: "https://www.krynntools.online/images/blog/password-generator.png",
             datePublished: "2026-07-12T00:00:00Z",
             dateModified: "2026-07-12T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

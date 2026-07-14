@@ -28,7 +28,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/merge-pdf.svg"
+            src="/images/blog/merge-pdf.png"
             alt="PDF Merger Tool Interface"
             className="w-full"
           />
@@ -207,7 +207,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Merge Multiple PDFs Into One File for Free",
             description: "Learn how to merge multiple PDF files into a single document for free. Client-side processing keeps your files private.",
-            image: "https://www.krynntools.online/images/blog/merge-pdf.svg",
+            image: "https://www.krynntools.online/images/blog/merge-pdf.png",
             datePublished: "2026-01-20T00:00:00Z",
             dateModified: "2026-01-20T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

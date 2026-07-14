@@ -28,7 +28,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/compress-pdf.svg"
+            src="/images/blog/compress-pdf.png"
             alt="PDF Compressor Tool Interface"
             className="w-full"
           />
@@ -274,7 +274,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Compress a PDF Without Losing Quality",
             description: "Learn how to compress a PDF file without losing quality. Free client-side tool for fast, secure PDF optimization.",
-            image: "https://www.krynntools.online/images/blog/compress-pdf.svg",
+            image: "https://www.krynntools.online/images/blog/compress-pdf.png",
             datePublished: "2026-01-15T00:00:00Z",
             dateModified: "2026-01-15T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

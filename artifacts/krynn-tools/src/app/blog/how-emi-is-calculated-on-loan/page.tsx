@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/loan-emi-calculator.svg"
+            src="/images/blog/loan-emi-calculator.png"
             alt="Loan EMI Calculator Tool Interface"
             className="w-full"
           />
@@ -248,7 +248,7 @@ EMI ≈ ₹8,678 per month`}</pre>
             "@type": "Article",
             headline: "How EMI Is Calculated on a Loan (With Formula)",
             description: "Understand how loan EMI is calculated with the reducing balance formula.",
-            image: "https://www.krynntools.online/images/blog/loan-emi-calculator.svg",
+            image: "https://www.krynntools.online/images/blog/loan-emi-calculator.png",
             datePublished: "2026-02-25T00:00:00Z",
             dateModified: "2026-02-25T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/password-generator.svg"
+            src="/images/blog/password-generator.png"
             alt="Password Generator Tool Interface"
             className="w-full"
           />
@@ -225,7 +225,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "10 Signs Your Password Isn't Strong Enough",
             description: "Is your password really protecting you? Learn 10 warning signs that your passwords need an upgrade.",
-            image: "https://www.krynntools.online/images/blog/password-generator.svg",
+            image: "https://www.krynntools.online/images/blog/password-generator.png",
             datePublished: "2026-01-25T00:00:00Z",
             dateModified: "2026-01-25T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

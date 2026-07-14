@@ -28,7 +28,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/remove-background.svg"
+            src="/images/blog/remove-background.png"
             alt="Background Remover Tool Interface"
             className="w-full"
           />
@@ -261,7 +261,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Remove a Background From a Photo in 10 Seconds",
             description: "Remove photo backgrounds instantly with a free browser-based tool. No software install, no upload required.",
-            image: "https://www.krynntools.online/images/blog/remove-background.svg",
+            image: "https://www.krynntools.online/images/blog/remove-background.png",
             datePublished: "2026-02-05T00:00:00Z",
             dateModified: "2026-02-05T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

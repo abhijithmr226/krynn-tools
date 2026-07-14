@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/qr-code-design.svg"
+            src="/images/blog/qr-code-generator.png"
             alt="QR Code Design Best Practices"
             className="w-full"
           />
@@ -230,7 +230,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "Best Practices for QR Code Design",
             description: "Learn QR code design best practices for print and digital.",
-            image: "https://www.krynntools.online/images/blog/qr-code-generator.svg",
+            image: "https://www.krynntools.online/images/blog/qr-code-generator.png",
             datePublished: "2026-03-01T00:00:00Z",
             dateModified: "2026-03-01T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

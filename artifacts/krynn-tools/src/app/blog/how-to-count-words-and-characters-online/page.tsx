@@ -28,7 +28,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/word-counter.svg"
+            src="/images/blog/word-counter.png"
             alt="Word Counter Tool Interface"
             className="w-full"
           />
@@ -393,7 +393,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Count Words and Characters Online",
             description: "Count words, characters, sentences, and paragraphs in any text instantly. Free online word counter and character counter tool.",
-            image: "https://www.krynntools.online/images/blog/word-counter.svg",
+            image: "https://www.krynntools.online/images/blog/word-counter.png",
             datePublished: "2026-07-12T00:00:00Z",
             dateModified: "2026-07-12T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

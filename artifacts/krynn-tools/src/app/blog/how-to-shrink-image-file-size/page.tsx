@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/compress-image.svg"
+            src="/images/blog/compress-image.png"
             alt="Image Compressor Tool Interface"
             className="w-full"
           />
@@ -253,7 +253,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Shrink Image File Size Without Losing Quality",
             description: "Learn how to shrink image file sizes for web, email, and social media without losing visible quality.",
-            image: "https://www.krynntools.online/images/blog/compress-image.svg",
+            image: "https://www.krynntools.online/images/blog/compress-image.png",
             datePublished: "2026-02-01T00:00:00Z",
             dateModified: "2026-02-01T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

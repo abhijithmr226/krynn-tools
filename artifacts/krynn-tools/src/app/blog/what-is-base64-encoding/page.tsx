@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/base64-encoder.svg"
+            src="/images/blog/base64-encoder.png"
             alt="Base64 Encoder Tool Interface"
             className="w-full"
           />
@@ -240,7 +240,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "What Is Base64 Encoding and When Do You Need It?",
             description: "Understand Base64 encoding, how it works, and when you actually need to use it.",
-            image: "https://www.krynntools.online/images/blog/base64-encoder.svg",
+            image: "https://www.krynntools.online/images/blog/base64-encoder.png",
             datePublished: "2026-02-15T00:00:00Z",
             dateModified: "2026-02-15T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

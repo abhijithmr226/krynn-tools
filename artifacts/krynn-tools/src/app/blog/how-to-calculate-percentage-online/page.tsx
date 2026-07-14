@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/percentage-calculator.svg"
+            src="/images/blog/percentage-calculator.png"
             alt="Percentage Calculator Tool Interface"
             className="w-full"
           />
@@ -380,7 +380,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Calculate Percentage Online (With Examples)",
             description: "Learn how to calculate percentages, percentage increase, decrease, and difference. Free online percentage calculator with step-by-step examples.",
-            image: "https://www.krynntools.online/images/blog/percentage-calculator.svg",
+            image: "https://www.krynntools.online/images/blog/percentage-calculator.png",
             datePublished: "2026-07-12T00:00:00Z",
             dateModified: "2026-07-12T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },

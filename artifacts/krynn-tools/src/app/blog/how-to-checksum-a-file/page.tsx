@@ -27,7 +27,7 @@ export default function BlogPost() {
         <div className="mb-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/blog/file-checksum-calculator.svg"
+            src="/images/blog/file-checksum-calculator.png"
             alt="File Checksum Calculator Tool"
             className="w-full"
           />
@@ -374,7 +374,7 @@ export default function BlogPost() {
             "@type": "Article",
             headline: "How to Checksum a File (MD5, SHA-256, SHA-512)",
             description: "Verify file integrity by computing MD5, SHA-256, and SHA-512 checksums. Free online file checksum calculator.",
-            image: "https://www.krynntools.online/images/blog/file-checksum-calculator.svg",
+            image: "https://www.krynntools.online/images/blog/file-checksum-calculator.png",
             datePublished: "2026-07-12T00:00:00Z",
             dateModified: "2026-07-12T00:00:00Z",
             author: { "@type": "Organization", name: "Krynn Tools", url: "https://www.krynntools.online" },
