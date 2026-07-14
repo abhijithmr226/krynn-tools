@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "outputDirectory": "artifacts/krynn-tools/dist/public",
   "rewrites": [
     {
       "source": "/api/(.*)",
