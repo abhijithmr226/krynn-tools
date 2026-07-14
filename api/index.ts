@@ -1,4 +1,13 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
+interface VercelRequest {
+  method: string;
+  body?: unknown;
+}
+interface VercelResponse {
+  setHeader(name: string, value: string): void;
+  status(code: number): VercelResponse;
+  json(data: unknown): void;
+  end(): void;
+}
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 

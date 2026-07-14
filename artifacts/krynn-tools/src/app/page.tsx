@@ -72,9 +72,9 @@ export default function HomePage() {
 
           {/* CTAs */}
           <div className="animate-fade-up flex flex-wrap gap-3 justify-center mt-8" style={{ animationDelay: "180ms" }}>
-            <Link href={`/${categories[0]?.slug ?? ""}`} className="btn-primary">
+            <a href="#categories" className="btn-primary">
               <Lightning size={18} weight="fill" /> Explore All Tools
-            </Link>
+            </a>
             <a href="#popular" className="btn-secondary">
               <Star size={18} weight="fill" /> Popular Tools
             </a>
@@ -134,7 +134,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ CATEGORIES ═══════════ */}
-      <section className="section-spacing">
+      <section id="categories" className="section-spacing">
         <div className="container-app">
           <span className="section-label">Tool Categories</span>
           <h2 className="text-center">Browse by Category</h2>
@@ -181,9 +181,9 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href={`/${categories[0]?.slug ?? ""}`} className="btn-primary">
+            <a href="#categories" className="btn-primary">
               <Lightning size={18} weight="fill" /> View All Tools
-            </Link>
+            </a>
           </div>
         </div>
       </section>
