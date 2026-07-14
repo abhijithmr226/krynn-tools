@@ -76,6 +76,17 @@ export default function HomePage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter" && results.length > 0) {
+        e.preventDefault();
+        const first = results[0];
+        window.location.href = `/${first.categorySlug}/${first.slug}`;
+      }
+    },
+    [results]
+  );
+
   return (
     <div className="overflow-x-hidden relative">
       <div ref={glowRef} className="cursor-glow hidden md:block" aria-hidden="true" />
@@ -124,13 +135,14 @@ export default function HomePage() {
               </div>
 
               {/* Search bar */}
-              <div className="animate-fade-up relative max-w-lg mx-auto lg:mx-0 mt-8" style={{ animationDelay: "220ms" }} ref={searchRef}>
+              <div className="animate-fade-up relative max-w-lg mx-auto lg:mx-0 mt-8 z-30" style={{ animationDelay: "220ms" }} ref={searchRef}>
                 <MagnifyingGlass size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                 <input
                   type="text"
                   placeholder="Search any tool..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   className="w-full pl-12 pr-28 py-4 rounded-2xl bg-card border border-border text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all shadow-xl"
                 />
                 {query && (

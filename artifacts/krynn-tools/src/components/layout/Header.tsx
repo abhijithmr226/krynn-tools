@@ -135,39 +135,37 @@ export default function Header() {
                 </Link>
                 {hoveredNav === cat.slug && (
                   <div className="absolute top-full left-0 mt-1 w-56 rounded-xl border border-border bg-card shadow-xl z-50 py-2 overflow-hidden">
-                    {categories
-                      .filter((c) => c.slug === cat.slug)
-                      .map((c) => (
-                        <Link
-                          key={c.slug}
-                          href={`/${c.slug}`}
-                          className="flex items-center gap-3 px-4 py-2.5 hover:bg-muted transition-colors"
-                        >
-                          <div
-                            className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                            style={{ background: `${c.color}15` }}
+                    {tools
+                      .filter((t) => t.categorySlug === cat.slug)
+                      .slice(0, 6)
+                      .map((t) => {
+                        const catDetails = categories.find((c) => c.slug === cat.slug);
+                        const color = catDetails?.color ?? "#ef4444";
+                        return (
+                          <Link
+                            key={t.slug}
+                            href={`/${t.categorySlug}/${t.slug}`}
+                            className="flex items-center gap-3 px-4 py-2 hover:bg-muted transition-colors"
                           >
-                            <KrynnIcon
-                              name={c.icon}
-                              size={16}
-                              weight="duotone"
-                              color={c.color}
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-sm font-medium truncate">
-                              {c.name}
+                            <div
+                              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                              style={{ background: `${color}15` }}
+                            >
+                              <KrynnIcon
+                                name={t.icon}
+                                size={14}
+                                weight="duotone"
+                                color={color}
+                              />
                             </div>
-                            <div className="text-xs text-muted-foreground">
-                              {toolCounts[c.slug] || 0} tools
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-semibold truncate">
+                                {t.name}
+                              </div>
                             </div>
-                          </div>
-                          <CaretRight
-                            size={12}
-                            className="text-muted-foreground"
-                          />
-                        </Link>
-                      ))}
+                          </Link>
+                        );
+                      })}
                   </div>
                 )}
               </div>
