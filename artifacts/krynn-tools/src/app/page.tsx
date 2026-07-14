@@ -118,14 +118,14 @@ export default function HomePage() {
               </p>
 
               {/* Trust badges */}
-              <div className="animate-fade-up flex flex-wrap gap-3 justify-center lg:justify-start mt-7" style={{ animationDelay: "160ms" }}>
+              <div className="animate-fade-up grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 justify-center lg:justify-start mt-7 max-w-md sm:max-w-none mx-auto lg:mx-0" style={{ animationDelay: "160ms" }}>
                 {[
                   { Icon: Shield, label: "100% Private", sub: "No uploads" },
                   { Icon: Lightning, label: "Blazing Fast", sub: "Instant results" },
                   { Icon: CheckCircle, label: "Unlimited", sub: "No restrictions" },
                   { Icon: DeviceMobile, label: "Works Offline", sub: "Browser based" },
                 ].map(({ Icon, label, sub }) => (
-                  <span key={label} className="inline-flex flex-col items-center lg:items-start text-xs font-medium bg-muted/60 border border-border rounded-xl px-4 py-2.5 min-w-[120px]">
+                  <span key={label} className="inline-flex flex-col items-center lg:items-start text-xs font-medium bg-muted/60 border border-border rounded-xl px-4 py-2.5 w-full sm:w-auto sm:min-w-[120px]">
                     <span className="flex items-center gap-1.5 font-bold text-foreground">
                       <Icon size={14} weight="fill" className="text-primary" /> {label}
                     </span>
@@ -230,16 +230,25 @@ export default function HomePage() {
             {categories.map((cat) => {
               const count = getToolCountForCategory(cat.slug);
               return (
-                <Link key={cat.slug} href={`/${cat.slug}`} className="category-card animate-on-scroll text-center">
+                <Link
+                  key={cat.slug}
+                  href={`/${cat.slug}`}
+                  className="flex md:flex-col items-center md:justify-center gap-4 md:gap-0 p-4 md:p-6 rounded-2xl border border-border bg-card hover:border-primary/20 hover:scale-[1.01] md:hover:scale-100 transition-all duration-300 group"
+                >
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                    className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-4"
                     style={{ background: `${cat.color}15` }}
                   >
-                    <KrynnIcon name={cat.icon} size={26} weight="duotone" color={cat.color} />
+                    <KrynnIcon name={cat.icon} size={20} className="md:w-[26px] md:h-[26px]" weight="duotone" color={cat.color} />
                   </div>
-                  <h3 className="font-bold text-sm mb-1.5">{cat.name}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">{cat.description}</p>
-                  <span className="badge badge-muted text-xs">{count} Tools</span>
+                  <div className="flex-1 md:flex-none text-left md:text-center min-w-0">
+                    <h3 className="font-bold text-sm md:text-base mb-0.5 md:mb-1.5 truncate group-hover:text-primary transition-colors">{cat.name}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed hidden md:block">{cat.description}</p>
+                  </div>
+                  <div className="flex items-center gap-1.5 flex-shrink-0">
+                    <span className="badge badge-muted text-[10px] md:text-xs">{count} Tools</span>
+                    <CaretRight size={14} className="text-muted-foreground md:hidden" />
+                  </div>
                 </Link>
               );
             })}
@@ -256,12 +265,16 @@ export default function HomePage() {
             Explore our most popular tools, used by thousands every day.
           </p>
 
-          <div className="grid-3 stagger-children">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-4 px-4 sm:-mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 scrollbar-none stagger-children">
             {popularTools.map((tool) => {
               const cat = categories.find((c) => c.slug === tool.categorySlug);
               const color = cat?.color ?? "#ef4444";
               return (
-                <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} className="tool-card animate-on-scroll flex flex-col">
+                <Link
+                  key={tool.slug}
+                  href={`/${tool.categorySlug}/${tool.slug}`}
+                  className="tool-card animate-on-scroll flex flex-col w-[280px] sm:w-auto flex-shrink-0 snap-start"
+                >
                   <div className="flex items-center justify-between mb-4">
                     <div
                       className="w-11 h-11 rounded-xl flex items-center justify-center"
@@ -292,6 +305,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+
 
       {/* ═══════════ STATS ═══════════ */}
       <section className="section-spacing bg-muted relative overflow-hidden">

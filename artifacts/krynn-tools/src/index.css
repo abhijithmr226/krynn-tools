@@ -599,6 +599,8 @@ textarea:focus, input:focus, select:focus {
   background: var(--color-border);
   border-radius: var(--radius-full);
 }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ── Cookie Banner ── */
 body.has-cookie-banner {
