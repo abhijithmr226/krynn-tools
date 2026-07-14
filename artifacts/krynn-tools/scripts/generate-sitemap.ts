@@ -49,6 +49,21 @@ async function generateSitemap() {
     console.error("Failed to read blog directory:", err);
   }
 
+  // 6. Trending news articles (from data.json)
+  const newsSlugs: string[] = [];
+  try {
+    const newsDataPath = path.resolve(import.meta.dirname, "../public/trending-news/data.json");
+    const newsData = JSON.parse(await fs.readFile(newsDataPath, "utf-8"));
+    for (const article of newsData.articles || []) {
+      if (article.slug) {
+        newsSlugs.push(article.slug);
+        urls.push(`trending-news/${article.slug}`);
+      }
+    }
+  } catch (err) {
+    console.log("No trending news data found, skipping news article URLs");
+  }
+
   // Generate XML sitemap
   const dateStr = new Date().toISOString().split("T")[0];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -59,6 +74,7 @@ ${urls
     const loc = url ? `${BASE_URL}/${url}` : `${BASE_URL}/`;
     const isHomepage = url === "";
     const isBlog = url.startsWith("blog/");
+    const isNews = url.startsWith("trending-news/");
     
     // Add image sitemap entries for blog posts
     let imageTag = "";
@@ -115,8 +131,8 @@ ${urls
     return `  <url>
     <loc>${loc}</loc>
     <lastmod>${dateStr}</lastmod>
-    <changefreq>${isHomepage ? "daily" : "weekly"}</changefreq>
-    <priority>${isHomepage ? "1.0" : url.includes("/") ? "0.6" : "0.8"}</priority>${imageTag}
+    <changefreq>${isHomepage ? "daily" : isNews ? "daily" : "weekly"}</changefreq>
+    <priority>${isHomepage ? "1.0" : isNews ? "0.9" : url.includes("/") ? "0.6" : "0.8"}</priority>${imageTag}
   </url>`;
   })
   .join("\n")}

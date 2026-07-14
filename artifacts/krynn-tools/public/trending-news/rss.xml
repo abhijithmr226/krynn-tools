@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Trending Tech News - Krynn Tools</title>
+    <link>https://www.krynntools.online/trending-news</link>
+    <description>Latest trending news in technology, AI, and cybersecurity. Curated from trusted sources, updated automatically.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Jul 2026 14:11:18 GMT</lastBuildDate>
+    <atom:link href="https://www.krynntools.online/trending-news/rss.xml" rel="self" type="application/rss+xml" />
+    <generator>Krynn Tools News Aggregator</generator>
+    <image>
+      <url>https://www.krynntools.online/logo.png</url>
+      <title>Krynn Tools</title>
+      <link>https://www.krynntools.online</link>
+    </image>
+    <item>
+      <title>GitHub Trending: shadcn/ui</title>
+      <link>https://www.krynntools.online/trending-news/github-trending-shadcn-ui</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/github-trending-shadcn-ui</guid>
+      <description>Beautifully designed components built with Radix UI and Tailwind CSS. Accessible and customizable UI components for modern web applications.</description>
+      <dc:creator>GitHub Trending</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 11:00:00 GMT</pubDate>
+        <category>open-source</category>
+        <category>github-trending</category>
+        <category>ui</category>
+        <category>react</category>
+        <category>tailwind</category>
+      <category>Open Source</category>
+      <source url="https://github.com/shadcn-ui/ui">GitHub Trending</source>
+    </item>
+    <item>
+      <title>OpenAI Releases GPT-5 with Advanced Reasoning Capabilities</title>
+      <link>https://www.krynntools.online/trending-news/openai-releases-gpt-5-with-reasoning</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/openai-releases-gpt-5-with-reasoning</guid>
+      <description>OpenAI has announced the release of GPT-5, featuring significant improvements in multi-step reasoning, code generation, and multimodal understanding. The model demonstrates near-human performance on complex academic benchmarks.</description>
+      <dc:creator>TechCrunch</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 10:30:00 GMT</pubDate>
+        <category>ai</category>
+        <category>openai</category>
+        <category>gpt-5</category>
+        <category>machine-learning</category>
+      <category>AI</category>
+      <source url="https://techcrunch.com/2026/07/14/openai-gpt5">TechCrunch</source>
+    </item>
+    <item>
+      <title>GitHub Trending: ollama</title>
+      <link>https://www.krynntools.online/trending-news/github-trending-ollama</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/github-trending-ollama</guid>
+      <description>Get up and running with large language models locally. Ollama makes it easy to run open-source models like Llama 3, Mistral, and Gemma on your own hardware.</description>
+      <dc:creator>GitHub Trending</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 10:30:00 GMT</pubDate>
+        <category>open-source</category>
+        <category>github-trending</category>
+        <category>ai</category>
+        <category>llm</category>
+        <category>local-ai</category>
+      <category>Open Source</category>
+      <source url="https://github.com/ollama/ollama">GitHub Trending</source>
+    </item>
+    <item>
+      <title>Google Announces Android 16 with AI-First Interface Redesign</title>
+      <link>https://www.krynntools.online/trending-news/google-announces-android-16</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/google-announces-android-16</guid>
+      <description>Google has unveiled Android 16 at its latest developer conference, introducing a completely redesigned interface powered by on-device AI. The update brings smarter notifications, context-aware suggestions, and improved battery management.</description>
+      <dc:creator>The Verge</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 09:15:00 GMT</pubDate>
+        <category>technology</category>
+        <category>google</category>
+        <category>android</category>
+        <category>mobile</category>
+      <category>Technology</category>
+      <source url="https://www.theverge.com/2026/07/14/android-16">The Verge</source>
+    </item>
+    <item>
+      <title>GitHub Trending: Excalidraw</title>
+      <link>https://www.krynntools.online/trending-news/github-trending-excalidraw</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/github-trending-excalidraw</guid>
+      <description>A virtual whiteboard for sketching hand-drawn like diagrams. Collaborative and end-to-end encrypted. Perfect for wireframing and brainstorming sessions.</description>
+      <dc:creator>GitHub Trending</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 09:00:00 GMT</pubDate>
+        <category>open-source</category>
+        <category>github-trending</category>
+        <category>diagrams</category>
+        <category>whiteboard</category>
+        <category>collaboration</category>
+      <category>Open Source</category>
+      <source url="https://github.com/excalidraw/excalidraw">GitHub Trending</source>
+    </item>
+    <item>
+      <title>Critical Vulnerability Found in 12 Popular npm Packages</title>
+      <link>https://www.krynntools.online/trending-news/critical-vulnerability-found-in-popular-npm-packages</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/critical-vulnerability-found-in-popular-npm-packages</guid>
+      <description>Security researchers have discovered a critical supply chain vulnerability affecting 12 widely-used npm packages with over 50 million weekly downloads. The flaw allows remote code execution in affected applications.</description>
+      <dc:creator>BleepingComputer</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 08:45:00 GMT</pubDate>
+        <category>cybersecurity</category>
+        <category>npm</category>
+        <category>vulnerability</category>
+        <category>supply-chain</category>
+      <category>Cybersecurity</category>
+      <source url="https://www.bleepingcomputer.com/2026/07/14/npm-vulnerability">BleepingComputer</source>
+    </item>
+    <item>
+      <title>GitHub Trending: Deno</title>
+      <link>https://www.krynntools.online/trending-news/github-trending-deno</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/github-trending-deno</guid>
+      <description>A modern runtime for JavaScript and TypeScript with built-in security, tooling, and TypeScript support out of the box. Gaining traction as a Node.js alternative.</description>
+      <dc:creator>GitHub Trending</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 08:00:00 GMT</pubDate>
+        <category>open-source</category>
+        <category>github-trending</category>
+        <category>javascript</category>
+        <category>typescript</category>
+        <category>runtime</category>
+      <category>Open Source</category>
+      <source url="https://github.com/denoland/deno">GitHub Trending</source>
+    </item>
+    <item>
+      <title>Apple M5 Chip Benchmarks Leak Showing 40% Performance Gain</title>
+      <link>https://www.krynntools.online/trending-news/apple-m5-chip-benchmarks-leaked</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/apple-m5-chip-benchmarks-leaked</guid>
+      <description>Leaked benchmark results for Apple&apos;s upcoming M5 chip reveal a substantial 40% improvement in single-core performance and 55% gains in multi-core tasks compared to the M4, likely using TSMC&apos;s 2nm process.</description>
+      <dc:creator>Ars Technica</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 07:20:00 GMT</pubDate>
+        <category>technology</category>
+        <category>apple</category>
+        <category>m5</category>
+        <category>chips</category>
+        <category>performance</category>
+      <category>Technology</category>
+      <source url="https://arstechnica.com/2026/07/14/apple-m5-benchmarks">Ars Technica</source>
+    </item>
+    <item>
+      <title>GitHub Trending: Open WebUI</title>
+      <link>https://www.krynntools.online/trending-news/github-trending-open-webui</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/github-trending-open-webui</guid>
+      <description>A feature-rich, user-friendly web interface for running AI models locally or remotely. Supports Ollama, OpenAI API, and multiple AI providers with a ChatGPT-like experience.</description>
+      <dc:creator>GitHub Trending</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 07:00:00 GMT</pubDate>
+        <category>open-source</category>
+        <category>github-trending</category>
+        <category>ai</category>
+        <category>web-ui</category>
+        <category>chatgpt</category>
+      <category>Open Source</category>
+      <source url="https://github.com/open-webui/open-webui">GitHub Trending</source>
+    </item>
+    <item>
+      <title>Anthropic&apos;s Claude 4 Surpasses GPT-5 on Key Reasoning Benchmarks</title>
+      <link>https://www.krynntools.online/trending-news/anthropic-claude-4-beats-gpt5-benchmark</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/anthropic-claude-4-beats-gpt5-benchmark</guid>
+      <description>Anthropic has released Claude 4, its latest AI model that outperforms GPT-5 on several important reasoning and safety benchmarks. The model introduces a new constitutional AI approach that significantly reduces harmful outputs.</description>
+      <dc:creator>MIT Technology Review</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 06:00:00 GMT</pubDate>
+        <category>ai</category>
+        <category>anthropic</category>
+        <category>claude</category>
+        <category>machine-learning</category>
+      <category>AI</category>
+      <source url="https://technologyreview.com/2026/07/14/claude-4">MIT Technology Review</source>
+    </item>
+    <item>
+      <title>Massive DDoS Attack Targets Major European Banks</title>
+      <link>https://www.krynntools.online/trending-news/massive-ddos-attack-targets-european-banks</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/massive-ddos-attack-targets-european-banks</guid>
+      <description>A coordinated DDoS attack has disrupted online banking services across several major European financial institutions. The attack, attributed to a hacktivist group, peaked at 3.5 Tbps making it one of the largest recorded.</description>
+      <dc:creator>The Hacker News</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 05:30:00 GMT</pubDate>
+        <category>cybersecurity</category>
+        <category>ddos</category>
+        <category>banking</category>
+        <category>europe</category>
+      <category>Cybersecurity</category>
+      <source url="https://thehackernews.com/2026/07/14/european-banks-ddos">The Hacker News</source>
+    </item>
+    <item>
+      <title>Microsoft Makes Copilot the Default Experience in Office 365</title>
+      <link>https://www.krynntools.online/trending-news/microsoft-copilot-now-default-in-office</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/microsoft-copilot-now-default-in-office</guid>
+      <description>Microsoft has announced that Copilot AI will now be the default interface across all Office 365 applications. Users can expect AI-powered drafting, summarization, and data analysis built into Word, Excel, PowerPoint, and Outlook.</description>
+      <dc:creator>WIRED</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 04:15:00 GMT</pubDate>
+        <category>technology</category>
+        <category>microsoft</category>
+        <category>copilot</category>
+        <category>ai</category>
+        <category>office</category>
+      <category>Technology</category>
+      <source url="https://wired.com/2026/07/14/microsoft-copilot-office">WIRED</source>
+    </item>
+    <item>
+      <title>Major Ransomware Attack Hits US Hospital Chain Affecting 200 Facilities</title>
+      <link>https://www.krynntools.online/trending-news/ransomware-group-attacks-us-hospital-chain</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/ransomware-group-attacks-us-hospital-chain</guid>
+      <description>A ransomware attack on Ascension Health has disrupted operations at nearly 200 hospitals across the United States. Patient data including medical records and insurance information may have been compromised in the breach.</description>
+      <dc:creator>Krebs on Security</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 03:45:00 GMT</pubDate>
+        <category>cybersecurity</category>
+        <category>ransomware</category>
+        <category>healthcare</category>
+        <category>data-breach</category>
+      <category>Cybersecurity</category>
+      <source url="https://krebsonsecurity.com/2026/07/14/hospital-ransomware">Krebs on Security</source>
+    </item>
+    <item>
+      <title>Samsung Galaxy S26 Ultra Camera System Review: Best Smartphone Camera Yet</title>
+      <link>https://www.krynntools.online/trending-news/samsung-galaxy-s26-ultra-camera-review</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/samsung-galaxy-s26-ultra-camera-review</guid>
+      <description>Early reviews of the Samsung Galaxy S26 Ultra praise its revolutionary 200MP main sensor with AI-enhanced night mode. The new periscope telephoto lens delivers 10x optical zoom with minimal quality loss.</description>
+      <dc:creator>The Verge</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 02:30:00 GMT</pubDate>
+        <category>technology</category>
+        <category>samsung</category>
+        <category>galaxy</category>
+        <category>camera</category>
+        <category>smartphone</category>
+      <category>Technology</category>
+      <source url="https://www.theverge.com/2026/07/14/galaxy-s26-ultra-camera">The Verge</source>
+    </item>
+    <item>
+      <title>Google DeepMind&apos;s AlphaFold 4 Solves Protein-Drug Interaction Prediction</title>
+      <link>https://www.krynntools.online/trending-news/google-deepmind-solves-new-protein-folding</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/google-deepmind-solves-new-protein-folding</guid>
+      <description>Google DeepMind has unveiled AlphaFold 4, which can now predict not just protein structures but how drugs will interact with them. This breakthrough could dramatically accelerate pharmaceutical research and drug discovery timelines.</description>
+      <dc:creator>Google AI Blog</dc:creator>
+      <pubDate>Tue, 14 Jul 2026 01:00:00 GMT</pubDate>
+        <category>ai</category>
+        <category>deepmind</category>
+        <category>alphafold</category>
+        <category>science</category>
+        <category>drug-discovery</category>
+      <category>AI</category>
+      <source url="https://blog.google/technology/ai/alphafold-4">Google AI Blog</source>
+    </item>
+    <item>
+      <title>EU Fines Major Tech Company €13 Billion in Antitrust Ruling</title>
+      <link>https://www.krynntools.online/trending-news/eu-fines-tech-giant-13-billion-antitrust</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/eu-fines-tech-giant-13-billion-antitrust</guid>
+      <description>The European Commission has imposed a record €13 billion fine on a leading technology company for anti-competitive practices in the digital advertising market. The ruling requires the company to divest its ad-tech business within 12 months.</description>
+      <dc:creator>TechCrunch</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 22:00:00 GMT</pubDate>
+        <category>technology</category>
+        <category>eu</category>
+        <category>antitrust</category>
+        <category>regulation</category>
+      <category>Technology</category>
+      <source url="https://techcrunch.com/2026/07/14/eu-antitrust-fine">TechCrunch</source>
+    </item>
+    <item>
+      <title>Active Zero-Day Exploit Targets Google Chrome Users Worldwide</title>
+      <link>https://www.krynntools.online/trending-news/zero-day-exploit-targets-chrome-browser</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/zero-day-exploit-targets-chrome-browser</guid>
+      <description>Google has issued an emergency security update for Chrome after discovering an actively exploited zero-day vulnerability. The flaw allows remote code execution through specially crafted web pages and affects all Chrome versions prior to 128.0.6613.84.</description>
+      <dc:creator>SecurityWeek</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 20:30:00 GMT</pubDate>
+        <category>cybersecurity</category>
+        <category>chrome</category>
+        <category>zero-day</category>
+        <category>vulnerability</category>
+        <category>google</category>
+      <category>Cybersecurity</category>
+      <source url="https://securityweek.com/2026/07/14/chrome-zero-day">SecurityWeek</source>
+    </item>
+    <item>
+      <title>Meta Now Requires All AI-Generated Content to Be Labeled</title>
+      <link>https://www.krynntools.online/trending-news/meta-requires-ai-generated-content-labels</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/meta-requires-ai-generated-content-labels</guid>
+      <description>Meta has announced new policies requiring all AI-generated content on Facebook, Instagram, and Threads to carry visible labels. The company is deploying detection tools to automatically identify and tag synthetic media.</description>
+      <dc:creator>WIRED</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 18:00:00 GMT</pubDate>
+        <category>technology</category>
+        <category>meta</category>
+        <category>ai</category>
+        <category>regulation</category>
+        <category>content-labeling</category>
+      <category>Technology</category>
+      <source url="https://wired.com/2026/07/13/meta-ai-labels">WIRED</source>
+    </item>
+    <item>
+      <title>NVIDIA Announces Blackwell Ultra GPU with 2x AI Training Performance</title>
+      <link>https://www.krynntools.online/trending-news/nvidia-announces-blackwell-ultra-gpu</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/nvidia-announces-blackwell-ultra-gpu</guid>
+      <description>NVIDIA has unveiled its Blackwell Ultra architecture, promising double the AI training performance while reducing energy consumption by 30%. The new GPUs will be available to cloud providers starting Q4 2026.</description>
+      <dc:creator>Ars Technica</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 16:00:00 GMT</pubDate>
+        <category>technology</category>
+        <category>nvidia</category>
+        <category>gpu</category>
+        <category>ai</category>
+        <category>hardware</category>
+      <category>Technology</category>
+      <source url="https://arstechnica.com/2026/07/13/nvidia-blackwell-ultra">Ars Technica</source>
+    </item>
+    <item>
+      <title>New Open-Source AI Model Outperforms GPT-4 on Multiple Tasks</title>
+      <link>https://www.krynntools.online/trending-news/open-source-ai-model-beats-proprietary</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/open-source-ai-model-beats-proprietary</guid>
+      <description>A consortium of researchers has released an open-source language model that outperforms GPT-4 on coding, math, and reasoning benchmarks. The 70B parameter model is freely available under Apache 2.0 license.</description>
+      <dc:creator>OpenAI News</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 14:00:00 GMT</pubDate>
+        <category>ai</category>
+        <category>open-source</category>
+        <category>machine-learning</category>
+        <category>llm</category>
+      <category>AI</category>
+      <source url="https://openai.com/blog/2026/07/open-source-ai">OpenAI News</source>
+    </item>
+    <item>
+      <title>Tesla Issues Full Self-Driving Recall After 3 Accidents</title>
+      <link>https://www.krynntools.online/trending-news/tesla-full-self-driving-recall</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/tesla-full-self-driving-recall</guid>
+      <description>NHTSA has ordered Tesla to recall 500,000 vehicles equipped with Full Self-Driving software after three reported accidents. The recall addresses issues with the system&apos;s handling of edge cases in urban driving environments.</description>
+      <dc:creator>TechCrunch</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 12:00:00 GMT</pubDate>
+        <category>technology</category>
+        <category>tesla</category>
+        <category>self-driving</category>
+        <category>recall</category>
+        <category>automotive</category>
+      <category>Technology</category>
+      <source url="https://techcrunch.com/2026/07/13/tesla-fsd-recall">TechCrunch</source>
+    </item>
+    <item>
+      <title>Sophisticated Phishing Campaign Targets Microsoft 365 Users</title>
+      <link>https://www.krynntools.online/trending-news/phishing-campaign-targets-microsoft-365</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/phishing-campaign-targets-microsoft-365</guid>
+      <description>Security researchers have uncovered a highly sophisticated phishing campaign targeting Microsoft 365 users with realistic login page clones. The attack bypasses MFA through adversary-in-the-middle techniques and has compromised over 10,000 accounts.</description>
+      <dc:creator>The Hacker News</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 10:00:00 GMT</pubDate>
+        <category>cybersecurity</category>
+        <category>phishing</category>
+        <category>microsoft</category>
+        <category>mfa-bypass</category>
+      <category>Cybersecurity</category>
+      <source url="https://thehackernews.com/2026/07/13/microsoft365-phishing">The Hacker News</source>
+    </item>
+    <item>
+      <title>Apple Vision Pro 2 Leaked Specs Reveal Lighter Design and Lower Price</title>
+      <link>https://www.krynntools.online/trending-news/apple-vision-pro-2-leaked-specs</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/apple-vision-pro-2-leaked-specs</guid>
+      <description>Leaked supply chain documents reveal Apple&apos;s Vision Pro 2 will be 30% lighter, feature improved eye tracking, and launch at $2,499 — $1,000 less than the original. The device reportedly uses a new M5 chip for enhanced spatial computing.</description>
+      <dc:creator>The Verge</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 08:00:00 GMT</pubDate>
+        <category>technology</category>
+        <category>apple</category>
+        <category>vision-pro</category>
+        <category>vr</category>
+        <category>ar</category>
+      <category>Technology</category>
+      <source url="https://www.theverge.com/2026/07/13/vision-pro-2-leak">The Verge</source>
+    </item>
+    <item>
+      <title>Quantum Computing Breakthrough: First 1000-Qubit Processor Achieved</title>
+      <link>https://www.krynntools.online/trending-news/quantum-computing-breakthrough-1000-qubits</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/quantum-computing-breakthrough-1000-qubits</guid>
+      <description>IBM has announced the first quantum processor exceeding 1000 qubits, a milestone that brings practical quantum computing closer to reality. The new Condor processor demonstrates error rates low enough for useful quantum advantage in chemistry simulations.</description>
+      <dc:creator>MIT Technology Review</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 06:00:00 GMT</pubDate>
+        <category>technology</category>
+        <category>quantum-computing</category>
+        <category>ibm</category>
+        <category>hardware</category>
+      <category>Technology</category>
+      <source url="https://technologyreview.com/2026/07/13/quantum-1000-qubits">MIT Technology Review</source>
+    </item>
+    <item>
+      <title>New Deepfake Detection Tool Achieves 99.2% Accuracy</title>
+      <link>https://www.krynntools.online/trending-news/deepfake-detection-tool-99-accuracy</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/deepfake-detection-tool-99-accuracy</guid>
+      <description>Researchers at Stanford have developed a deepfake detection tool that achieves 99.2% accuracy across all known deepfake generation methods. The tool analyzes subtle physiological signals like blood flow patterns invisible to the human eye.</description>
+      <dc:creator>Google AI Blog</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 04:00:00 GMT</pubDate>
+        <category>ai</category>
+        <category>deepfake</category>
+        <category>detection</category>
+        <category>security</category>
+      <category>AI</category>
+      <source url="https://blog.google/technology/ai/deepfake-detection-2026">Google AI Blog</source>
+    </item>
+    <item>
+      <title>Major Data Breach Exposes 500 Million Hotel Guest Records</title>
+      <link>https://www.krynntools.online/trending-news/data-breach-exposes-500-million-records</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/data-breach-exposes-500-million-records</guid>
+      <description>Marriott International has confirmed a data breach affecting 500 million guest records including names, addresses, payment card details, and loyalty program information. The breach exploited a vulnerability in a third-party cloud service.</description>
+      <dc:creator>Krebs on Security</dc:creator>
+      <pubDate>Mon, 13 Jul 2026 02:00:00 GMT</pubDate>
+        <category>cybersecurity</category>
+        <category>data-breach</category>
+        <category>marriott</category>
+        <category>hospitality</category>
+      <category>Cybersecurity</category>
+      <source url="https://krebsonsecurity.com/2026/07/13/marriott-breach">Krebs on Security</source>
+    </item>
+    <item>
+      <title>WordPress 7.0 Released with Built-in AI Content Generation</title>
+      <link>https://www.krynntools.online/trending-news/wordpress-7-0-release-features</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/wordpress-7-0-release-features</guid>
+      <description>WordPress 7.0 introduces native AI content generation, a completely redesigned block editor, and automatic performance optimization. The release also adds built-in accessibility checking and enhanced security features for site administrators.</description>
+      <dc:creator>WIRED</dc:creator>
+      <pubDate>Sun, 12 Jul 2026 20:00:00 GMT</pubDate>
+        <category>technology</category>
+        <category>wordpress</category>
+        <category>ai</category>
+        <category>cms</category>
+        <category>web-development</category>
+      <category>Technology</category>
+      <source url="https://wired.com/2026/07/12/wordpress-7">WIRED</source>
+    </item>
+    <item>
+      <title>Google Releases Gemini 3 with Real-Time Video Understanding</title>
+      <link>https://www.krynntools.online/trending-news/google-gemini-3-released</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/google-gemini-3-released</guid>
+      <description>Google has launched Gemini 3, its most capable AI model yet, featuring real-time video understanding, enhanced code generation, and improved factual accuracy. The model integrates deeply across Google&apos;s product ecosystem.</description>
+      <dc:creator>Google AI Blog</dc:creator>
+      <pubDate>Sun, 12 Jul 2026 18:00:00 GMT</pubDate>
+        <category>ai</category>
+        <category>google</category>
+        <category>gemini</category>
+        <category>multimodal</category>
+      <category>AI</category>
+      <source url="https://blog.google/technology/ai/gemini-3">Google AI Blog</source>
+    </item>
+    <item>
+      <title>Linux Kernel 7.0 Released with Major Performance Improvements</title>
+      <link>https://www.krynntools.online/trending-news/linux-kernel-7-0-release</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/linux-kernel-7-0-release</guid>
+      <description>Linus Torvalds has released Linux Kernel 7.0, featuring significant improvements to the I/O scheduler, memory management, and hardware support. The release includes native support for RISC-V boards and improved containerization performance.</description>
+      <dc:creator>Ars Technica</dc:creator>
+      <pubDate>Sun, 12 Jul 2026 16:00:00 GMT</pubDate>
+        <category>technology</category>
+        <category>linux</category>
+        <category>kernel</category>
+        <category>open-source</category>
+      <category>Technology</category>
+      <source url="https://arstechnica.com/2026/07/12/linux-kernel-7">Ars Technica</source>
+    </item>
+    <item>
+      <title>New AI Coding Assistant Automates 90% of Boilerplate Code</title>
+      <link>https://www.krynntools.online/trending-news/ai-coding-assistant-automates-90-percent</link>
+      <guid isPermaLink="true">https://www.krynntools.online/trending-news/ai-coding-assistant-automates-90-percent</guid>
+      <description>A startup has released an AI coding assistant that can automate up to 90% of boilerplate code generation, database migrations, and API endpoint creation. Early adopters report 3x faster development cycles.</description>
+      <dc:creator>TechCrunch</dc:creator>
+      <pubDate>Sun, 12 Jul 2026 14:00:00 GMT</pubDate>
+        <category>ai</category>
+        <category>coding</category>
+        <category>developer-tools</category>
+        <category>automation</category>
+      <category>AI</category>
+      <source url="https://techcrunch.com/2026/07/12/ai-coding-assistant">TechCrunch</source>
+    </item>
+  </channel>
+</rss>

@@ -25,9 +25,11 @@ const _SearchPage       = lazy(() => import('./app/search/page'));
 const _SettingsPage     = lazy(() => import('./app/settings/page'));
 const _SlugPage         = lazy(() => import('./app/[slug]/page'));
 const _TrendingNewsPage = lazy(() => import('./app/trending-news/page'));
+const _NewsArticlePage = lazy(() => import('./app/trending-news/[slug]/page'));
 
 const toolModules = import.meta.glob('./app/*/*/page.tsx') as Record<string, () => Promise<{ default: ComponentType<unknown> }>>;
 const blogModules = import.meta.glob('./app/blog/*/page.tsx') as Record<string, () => Promise<{ default: ComponentType<unknown> }>>;
+const newsModules = import.meta.glob('./app/trending-news/*/page.tsx') as Record<string, () => Promise<{ default: ComponentType<unknown> }>>;
 const categoryModules = import.meta.glob('./app/*/page.tsx') as Record<string, () => Promise<{ default: ComponentType<unknown> }>>;
 
 const lazyCache = new Map<string, ComponentType<unknown>>();
@@ -82,7 +84,11 @@ function SeoUpdater() {
     let title = 'Krynn Tools — 140+ Free Online Tools | PDF, Image, AI, Converter';
     let desc = '140+ free online tools — Compress PDF, Remove Background, Image Upscaler, Resume Builder, QR Code Generator, AI Writing Tools, and more. No signup required. Runs in your browser.';
 
-    if (pathname.startsWith('/trending-news')) {
+    if (pathname.startsWith('/trending-news/')) {
+      const slug = pathname.replace('/trending-news/', '');
+      title = `${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} — Trending News | Krynn Tools`;
+      desc = `Read the latest trending tech news story. Stay updated with technology, AI, and cybersecurity news from trusted sources.`;
+    } else if (pathname === '/trending-news') {
       title = 'Trending Tech News — AI, Technology & Cybersecurity | Krynn Tools';
       desc = 'Stay ahead with the latest trending news in technology, AI, and cybersecurity. Curated from TechCrunch, The Verge, WIRED, and more. Updated every 30 minutes.';
     } else if (tool) {
@@ -168,6 +174,12 @@ function SettingsPage()    { return <LazyPage Page={_SettingsPage} />; }
 function SearchPage()     { return <LazyPage Page={_SearchPage} />; }
 function TrendingNewsPage(){ return <LazyPage Page={_TrendingNewsPage} />; }
 
+function NewsArticleRoute() {
+  const { slug } = useParams<{ slug: string }>();
+  const Page = getOrCreateLazy(`./app/trending-news/${slug}/page.tsx`, newsModules);
+  return <LazyPage Page={Page ?? _NewsArticlePage} />;
+}
+
 function BlogPostRoute() {
   const { slug } = useParams<{ slug: string }>();
   const Page = getOrCreateLazy(`./app/blog/${slug}/page.tsx`, blogModules);
@@ -218,7 +230,7 @@ function AppRouter() {
           <Route path="/settings"         component={SettingsPage} />
           <Route path="/search"          component={SearchPage} />
           <Route path="/trending-news"   component={TrendingNewsPage} />
-          <Route path="/trending-news/:category" component={TrendingNewsPage} />
+          <Route path="/trending-news/:slug" component={NewsArticleRoute} />
           <Route path="/:category/:tool"  component={ToolRoute} />
           <Route path="/:slug"            component={CategoryOrSlugRoute} />
           <Route component={NotFoundPage} />
