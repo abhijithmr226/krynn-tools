@@ -41,7 +41,7 @@ export default function CookieConsent() {
             We use cookies for analytics &amp; ads. Files stay in your browser.{" "}
           </span>
           <a href="/cookie-policy" className="underline text-[var(--color-primary)] whitespace-nowrap">
-            Learn more
+            Read our Cookie Policy
           </a>
         </p>
         <div className="flex shrink-0 gap-2">

@@ -48,6 +48,17 @@ export default function HomePage() {
   const [query, setQuery] = useState("");
   const searchRef = useRef<HTMLDivElement>(null);
 
+  // Preload hero image
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = dark ? '/images/hero_dark.webp' : '/images/hero_light.webp';
+    link.fetchPriority = 'high';
+    document.head.appendChild(link);
+    return () => { document.head.removeChild(link); };
+  }, [dark]);
+
   const results = useMemo(
     () => (query.length > 0 ? searchTools(query) : []),
     [query]

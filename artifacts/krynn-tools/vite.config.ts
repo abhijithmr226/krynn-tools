@@ -28,24 +28,34 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, 'dist/public'),
     emptyOutDir: true,
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
+            // Core React and routing
             if (id.includes('react') || id.includes('react-dom') || id.includes('wouter') || id.includes('@tanstack')) {
               return 'vendor-core';
             }
+            // Icons (large bundle)
             if (id.includes('@phosphor-icons')) {
               return 'vendor-icons';
             }
-            if (id.includes('pdf-lib') || id.includes('pdfjs-dist') || id.includes('tesseract.js')) {
-              return 'vendor-heavy-libs';
+            // PDF libraries (heavy, lazy loaded)
+            if (id.includes('pdf-lib') || id.includes('pdfjs-dist')) {
+              return 'vendor-pdf';
             }
+            // OCR library (heavy, lazy loaded)
+            if (id.includes('tesseract.js')) {
+              return 'vendor-ocr';
+            }
+            // Other utilities
             return 'vendor-others';
           }
         }
       }
-    }
+    },
+    chunkSizeWarningLimit: 500,
   },
   server: {
     port,

@@ -12,7 +12,7 @@ interface BlogPost {
   image: string;
 }
 
-const blogPosts: BlogPost[] = [
+export const blogPosts: BlogPost[] = [
   {
     slug: "best-free-online-tools-2026",
     title: "Best Free Online Tools 2026: 140+ Tools for Every Task",
