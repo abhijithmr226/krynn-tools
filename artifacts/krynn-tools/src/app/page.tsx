@@ -76,8 +76,6 @@ export default function HomePage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const pedestalImg = dark ? "/images/pedestal_dark.png" : "/images/pedestal_light.png";
-
   return (
     <div className="overflow-x-hidden relative">
       <div ref={glowRef} className="cursor-glow hidden md:block" aria-hidden="true" />
@@ -85,7 +83,7 @@ export default function HomePage() {
       {/* ═══════════ HERO ═══════════ */}
       <section
         className="section-spacing relative"
-        style={{ background: "linear-gradient(180deg, var(--color-background) 0%, var(--color-muted) 100%)" }}
+        style={{ background: dark ? "#000000" : "#ffffff" }}
       >
         <div className="container-app relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
@@ -186,42 +184,14 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right column 40% — Pedestal */}
-            <div className="flex-1 w-full max-w-md lg:max-w-none flex items-center justify-center relative min-h-[320px] md:min-h-[420px]">
-              <div className="pedestal-glow relative">
-                <img
-                  src={pedestalImg}
-                  alt="Krynn Tools"
-                  className="w-full max-w-[320px] md:max-w-[380px] mx-auto relative z-10"
-                  loading="eager"
-                />
-              </div>
-
-              {/* Floating cards */}
-              {FLOAT_CARDS.map((fc, i) => {
-                const cat = categories.find((c) => c.slug === fc.categorySlug);
-                const color = cat?.color ?? "#ef4444";
-                const positions = [
-                  "absolute top-4 left-0 md:-left-4",
-                  "absolute top-8 right-0 md:-right-6",
-                  "absolute bottom-10 left-2 md:-left-6",
-                ];
-                return (
-                  <Link
-                    key={fc.slug}
-                    href={`/${fc.slug}`}
-                    className={`glass-card ${i === 0 ? "float-card" : "float-card-delayed"} ${positions[i]} z-20 flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-xl hover:scale-105 transition-transform`}
-                  >
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: `${color}20` }}
-                    >
-                      <KrynnIcon name={fc.icon} size={16} weight="duotone" color={color} />
-                    </div>
-                    <span className="text-sm font-semibold whitespace-nowrap">{fc.name}</span>
-                  </Link>
-                );
-              })}
+            {/* Right column 50% — High-Fidelity Hero Graphic */}
+            <div className="flex-1 w-full lg:max-w-none flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
+              <img
+                src={dark ? "/images/hero_dark.png" : "/images/hero_light.png"}
+                alt="Krynn Tools Platform Overview"
+                className="w-[120%] sm:w-full max-w-none lg:max-w-full object-cover lg:object-contain object-right h-full max-h-[480px] select-none pointer-events-none transition-opacity duration-300"
+                loading="eager"
+              />
             </div>
           </div>
         </div>
