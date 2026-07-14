@@ -76,11 +76,11 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
+    "@vercel/analytics": "^2.0.1",
     "browser-image-compression": "^2.0.2",
     "chroma-js": "^3.2.0",
     "crypto-js": "^4.2.0",
     "jsbarcode": "^3.12.3",
-
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^6.1.200",
     "qrcode": "^1.5.4",
