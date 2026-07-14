@@ -1,22 +1,61 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { Link } from "wouter";
-import { categories, getPopularTools, searchTools } from "@/lib/tools";
+import { categories, getPopularTools, searchTools, tools } from "@/lib/tools";
+import { useTheme } from "@/lib/theme-provider";
 import KrynnIcon from "@/components/KrynnIcon";
-import { MagnifyingGlass, Star, Lightning, CheckCircle, Lock, Shield, DeviceMobile, CaretRight, X } from "@phosphor-icons/react";
+import {
+  MagnifyingGlass,
+  Star,
+  Lightning,
+  CheckCircle,
+  Lock,
+  Shield,
+  DeviceMobile,
+  CaretRight,
+  X,
+  ArrowRight,
+  Sparkle,
+  Quotes,
+} from "@phosphor-icons/react";
+
+function getToolCountForCategory(slug: string) {
+  return tools.filter((t) => t.categorySlug === slug).length;
+}
+
+const FLOAT_CARDS = [
+  { name: "Compress PDF", slug: "pdf/compress-pdf", categorySlug: "pdf", icon: "FileDown" },
+  { name: "Resize Image", slug: "image/resize-image", categorySlug: "image", icon: "Maximize2" },
+  { name: "QR Code", slug: "security/qr-code-generator", categorySlug: "security", icon: "QrCode" },
+];
 
 const FEATURES = [
-  { icon: "Lightning", title: "Instant Results", desc: "Processing happens right in your browser — no server uploads, no waiting.", color: "#ef4444" },
-  { icon: "Lock", title: "100% Private", desc: "Your files never leave your device. We never see, store, or share your data.", color: "#22c55e" },
-  { icon: "Money", title: "Always Free", desc: "100+ tools at zero cost, forever. No paywalls, no plans, no hidden limits.", color: "#a855f7" },
+  { icon: Shield, title: "100% Private", desc: "Your files never leave your device. Zero server uploads, zero data collection, zero worries.", color: "#22c55e" },
+  { icon: Lightning, title: "Blazing Fast", desc: "All processing happens in your browser. No queues, no servers — instant results every time.", color: "#ef4444" },
+  { icon: Lock, title: "Always Free", desc: "No paywalls, no premium tiers, no hidden limits. Every tool is completely free forever.", color: "#a855f7" },
+  { icon: CheckCircle, title: "Easy to Use", desc: "Clean interfaces designed for simplicity. Pick a tool, do your task, get your result.", color: "#3b82f6" },
+  { icon: Sparkle, title: "Regular Updates", desc: "We constantly add new tools and improve existing ones based on user feedback.", color: "#f59e0b" },
+];
+
+const STATS = [
+  { value: "128+", label: "Tools" },
+  { value: "100K+", label: "Users" },
+  { value: "5M+", label: "Files Processed" },
+  { value: "0", label: "Signups Required" },
 ];
 
 export default function HomePage() {
+  const { dark } = useTheme();
   const [query, setQuery] = useState("");
-  const results = useMemo(() => (query.length > 0 ? searchTools(query) : []), [query]);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  const results = useMemo(
+    () => (query.length > 0 ? searchTools(query) : []),
+    [query]
+  );
+
   const popularTools = getPopularTools(8);
 
   const glowRef = useRef<HTMLDivElement>(null);
-
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!glowRef.current) return;
     glowRef.current.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
@@ -28,107 +67,162 @@ export default function HomePage() {
   }, [handleMouseMove]);
 
   useEffect(() => {
-    const els = document.querySelectorAll(".animate-on-scroll");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.animationPlayState = "running";
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    els.forEach((el) => {
-      (el as HTMLElement).style.animationPlayState = "paused";
-      observer.observe(el);
-    });
-    return () => observer.disconnect();
+    function handleClickOutside(e: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setQuery("");
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const pedestalImg = dark ? "/images/pedestal_dark.png" : "/images/pedestal_light.png";
 
   return (
     <div className="overflow-x-hidden relative">
       <div ref={glowRef} className="cursor-glow hidden md:block" aria-hidden="true" />
 
       {/* ═══════════ HERO ═══════════ */}
-      <section className="section-spacing" style={{ background: "linear-gradient(180deg, var(--color-background) 0%, var(--color-muted) 100%)" }}>
-        <div className="container-app text-center relative z-10 max-w-3xl mx-auto">
-          <div className="animate-fade-up flex justify-center mb-5" style={{ animationDelay: "0ms" }}>
-            <span className="badge badge-primary">
-              <Star size={13} weight="fill" />
-              100+ Free Tools · No Signup · No Limits
-            </span>
-          </div>
-
-          <h1 className="animate-fade-up" style={{ animationDelay: "60ms" }}>
-            All The Tools You Need,{" "}
-            <span className="text-primary">All In One Place.</span>
-          </h1>
-
-          <p className="animate-fade-up text-muted-foreground mt-5 max-w-xl mx-auto" style={{ animationDelay: "120ms" }}>
-            Krynn Tools provides 100+ free online utilities to simplify your work, boost productivity, and save time — all running in your browser.
-          </p>
-
-          {/* CTAs */}
-          <div className="animate-fade-up flex flex-wrap gap-3 justify-center mt-8" style={{ animationDelay: "180ms" }}>
-            <a href="#categories" className="btn-primary">
-              <Lightning size={18} weight="fill" /> Explore All Tools
-            </a>
-            <a href="#popular" className="btn-secondary">
-              <Star size={18} weight="fill" /> Popular Tools
-            </a>
-          </div>
-
-          {/* Search */}
-          <div className="animate-fade-up relative max-w-lg mx-auto mt-10" style={{ animationDelay: "240ms" }}>
-            <MagnifyingGlass size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
-            <input
-              type="text"
-              placeholder="Search 100+ tools..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-card border border-border text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all shadow-lg"
-            />
-            {query && (
-              <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" aria-label="Clear">
-                <X size={16} />
-              </button>
-            )}
-            {results.length > 0 && (
-              <div className="absolute top-full mt-2 w-full rounded-2xl border border-border bg-card overflow-hidden shadow-2xl z-50">
-                {results.slice(0, 8).map((tool) => {
-                  const cat = categories.find(c => c.slug === tool.categorySlug);
-                  const color = cat?.color ?? "#ef4444";
-                  return (
-                    <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} onClick={() => setQuery("")} className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors">
-                      <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${color}18` }}>
-                        <KrynnIcon name={tool.icon} size={18} weight="duotone" color={color} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium truncate">{tool.name}</div>
-                        <div className="text-xs text-muted-foreground">{tool.category}</div>
-                      </div>
-                      <CaretRight size={14} className="text-muted-foreground" />
-                    </Link>
-                  );
-                })}
+      <section
+        className="section-spacing relative"
+        style={{ background: "linear-gradient(180deg, var(--color-background) 0%, var(--color-muted) 100%)" }}
+      >
+        <div className="container-app relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+            {/* Left column 60% */}
+            <div className="flex-1 w-full max-w-2xl lg:max-w-none text-center lg:text-left">
+              <div className="animate-fade-up flex justify-center lg:justify-start mb-5" style={{ animationDelay: "0ms" }}>
+                <span className="badge badge-primary uppercase tracking-wider text-xs font-semibold">
+                  <Star size={13} weight="fill" />
+                  128+ Free Online Tools
+                </span>
               </div>
-            )}
-          </div>
 
-          {/* Trust chips */}
-          <div className="animate-fade-up flex flex-wrap gap-2 justify-center mt-8" style={{ animationDelay: "300ms" }}>
-            {[
-              { Icon: CheckCircle, label: "100% Free" },
-              { Icon: Lock, label: "No Signup" },
-              { Icon: Shield, label: "Private & Secure" },
-              { Icon: DeviceMobile, label: "Mobile Friendly" },
-            ].map(({ Icon, label }) => (
-              <span key={label} className="badge badge-primary flex items-center gap-1.5 text-xs">
-                <Icon size={13} weight="fill" /> {label}
-              </span>
-            ))}
+              <h1 className="animate-fade-up text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight" style={{ animationDelay: "60ms" }}>
+                The Only Tool Kit{" "}
+                <br className="hidden sm:block" />
+                <span className="text-primary">You&apos;ll Ever Need</span>
+              </h1>
+
+              <p className="animate-fade-up text-muted-foreground mt-5 max-w-xl mx-auto lg:mx-0 text-base md:text-lg leading-relaxed" style={{ animationDelay: "120ms" }}>
+                Free online tools for PDF, images, text, code, design, and more. No signup. No uploads. Everything runs in your browser.
+              </p>
+
+              {/* Trust badges */}
+              <div className="animate-fade-up flex flex-wrap gap-3 justify-center lg:justify-start mt-7" style={{ animationDelay: "160ms" }}>
+                {[
+                  { Icon: Lock, label: "No Signup" },
+                  { Icon: CheckCircle, label: "100% Free" },
+                  { Icon: Shield, label: "Private & Secure" },
+                  { Icon: DeviceMobile, label: "Mobile Friendly" },
+                ].map(({ Icon, label }) => (
+                  <span key={label} className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-muted/60 border border-border rounded-full px-3 py-1.5">
+                    <Icon size={14} weight="fill" className="text-primary" /> {label}
+                  </span>
+                ))}
+              </div>
+
+              {/* Search bar */}
+              <div className="animate-fade-up relative max-w-lg mx-auto lg:mx-0 mt-8" style={{ animationDelay: "220ms" }} ref={searchRef}>
+                <MagnifyingGlass size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                <input
+                  type="text"
+                  placeholder="Search 128+ free tools..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="w-full pl-12 pr-12 py-4 rounded-2xl bg-card border border-border text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all shadow-xl"
+                />
+                {query && (
+                  <button
+                    onClick={() => setQuery("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label="Clear"
+                  >
+                    <X size={18} />
+                  </button>
+                )}
+                {results.length > 0 && (
+                  <div className="absolute top-full mt-2 w-full rounded-2xl border border-border bg-card overflow-hidden shadow-2xl z-50">
+                    {results.slice(0, 8).map((tool) => {
+                      const cat = categories.find((c) => c.slug === tool.categorySlug);
+                      const color = cat?.color ?? "#ef4444";
+                      return (
+                        <Link
+                          key={tool.slug}
+                          href={`/${tool.categorySlug}/${tool.slug}`}
+                          onClick={() => setQuery("")}
+                          className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors"
+                        >
+                          <div
+                            className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                            style={{ background: `${color}18` }}
+                          >
+                            <KrynnIcon name={tool.icon} size={18} weight="duotone" color={color} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-medium truncate">{tool.name}</div>
+                            <div className="text-xs text-muted-foreground">{tool.category}</div>
+                          </div>
+                          <CaretRight size={14} className="text-muted-foreground" />
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Popular shortcuts */}
+              <div className="animate-fade-up flex flex-wrap gap-2 justify-center lg:justify-start mt-4" style={{ animationDelay: "280ms" }}>
+                <span className="text-xs text-muted-foreground">Popular:</span>
+                {["Compress PDF", "Resize Image", "Word Counter", "QR Code"].map((label) => (
+                  <button
+                    key={label}
+                    onClick={() => setQuery(label)}
+                    className="text-xs font-medium text-primary hover:underline cursor-pointer"
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Right column 40% — Pedestal */}
+            <div className="flex-1 w-full max-w-md lg:max-w-none flex items-center justify-center relative min-h-[320px] md:min-h-[420px]">
+              <div className="pedestal-glow relative">
+                <img
+                  src={pedestalImg}
+                  alt="Krynn Tools"
+                  className="w-full max-w-[320px] md:max-w-[380px] mx-auto relative z-10"
+                  loading="eager"
+                />
+              </div>
+
+              {/* Floating cards */}
+              {FLOAT_CARDS.map((fc, i) => {
+                const cat = categories.find((c) => c.slug === fc.categorySlug);
+                const color = cat?.color ?? "#ef4444";
+                const positions = [
+                  "absolute top-4 left-0 md:-left-4",
+                  "absolute top-8 right-0 md:-right-6",
+                  "absolute bottom-10 left-2 md:-left-6",
+                ];
+                return (
+                  <Link
+                    key={fc.slug}
+                    href={`/${fc.slug}`}
+                    className={`glass-card ${i === 0 ? "float-card" : "float-card-delayed"} ${positions[i]} z-20 flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-xl hover:scale-105 transition-transform`}
+                  >
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ background: `${color}20` }}
+                    >
+                      <KrynnIcon name={fc.icon} size={16} weight="duotone" color={color} />
+                    </div>
+                    <span className="text-sm font-semibold whitespace-nowrap">{fc.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -136,20 +230,29 @@ export default function HomePage() {
       {/* ═══════════ CATEGORIES ═══════════ */}
       <section id="categories" className="section-spacing">
         <div className="container-app">
-          <span className="section-label">Tool Categories</span>
+          <span className="section-label">CATEGORIES</span>
           <h2 className="text-center">Browse by Category</h2>
-          <p className="text-center text-muted-foreground mt-3 mb-12">Pick a category and get started instantly.</p>
+          <p className="text-center text-muted-foreground mt-3 mb-12">
+            Pick a category and get started instantly.
+          </p>
 
           <div className="grid-4 stagger-children">
-            {categories.map((cat) => (
-              <Link key={cat.slug} href={`/${cat.slug}`} className="category-card animate-on-scroll text-center">
-                <div className="w-13 h-13 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{ background: `${cat.color}15` }}>
-                  <KrynnIcon name={cat.icon} size={26} weight="duotone" color={cat.color} />
-                </div>
-                <h3 className="font-bold text-sm mb-1.5">{cat.name}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{cat.description}</p>
-              </Link>
-            ))}
+            {categories.map((cat) => {
+              const count = getToolCountForCategory(cat.slug);
+              return (
+                <Link key={cat.slug} href={`/${cat.slug}`} className="category-card animate-on-scroll text-center">
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                    style={{ background: `${cat.color}15` }}
+                  >
+                    <KrynnIcon name={cat.icon} size={26} weight="duotone" color={cat.color} />
+                  </div>
+                  <h3 className="font-bold text-sm mb-1.5">{cat.name}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">{cat.description}</p>
+                  <span className="badge badge-muted text-xs">{count} Tools</span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -157,9 +260,11 @@ export default function HomePage() {
       {/* ═══════════ POPULAR TOOLS ═══════════ */}
       <section id="popular" className="section-spacing bg-muted relative">
         <div className="container-app relative z-10">
-          <span className="section-label">Popular Tools</span>
+          <span className="section-label">POPULAR TOOLS</span>
           <h2 className="text-center">Most Used Tools</h2>
-          <p className="text-center text-muted-foreground mt-3 mb-12">Explore our most popular tools, used by thousands every day.</p>
+          <p className="text-center text-muted-foreground mt-3 mb-12">
+            Explore our most popular tools, used by thousands every day.
+          </p>
 
           <div className="grid-3 stagger-children">
             {popularTools.map((tool) => {
@@ -167,13 +272,23 @@ export default function HomePage() {
               const color = cat?.color ?? "#ef4444";
               return (
                 <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} className="tool-card animate-on-scroll flex flex-col">
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: `${color}18` }}>
-                    <KrynnIcon name={tool.icon} size={22} weight="duotone" color={color} />
+                  <div className="flex items-center justify-between mb-4">
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center"
+                      style={{ background: `${color}18` }}
+                    >
+                      <KrynnIcon name={tool.icon} size={22} weight="duotone" color={color} />
+                    </div>
+                    {tool.popular && (
+                      <span className="badge badge-primary text-xs">
+                        <Star size={11} weight="fill" /> Popular
+                      </span>
+                    )}
                   </div>
                   <h3 className="font-bold text-sm mb-2">{tool.name}</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed flex-1 mb-4">{tool.description}</p>
                   <span className="use-tool-link">
-                    Use Tool <CaretRight size={13} weight="bold" className="arrow-icon" />
+                    Use Tool <ArrowRight size={13} weight="bold" className="arrow-icon" />
                   </span>
                 </Link>
               );
@@ -188,42 +303,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════ FEATURES ═══════════ */}
-      <section className="section-spacing">
-        <div className="container-app max-w-4xl">
-          <span className="section-label">Why Krynn Tools?</span>
-          <h2 className="text-center">Built for Speed & Privacy</h2>
-          <p className="text-center text-muted-foreground mt-3 mb-12">Every tool is engineered to be fast, private, and completely free.</p>
-
-          <div className="grid sm:grid-cols-3 gap-6">
-            {FEATURES.map((f) => (
-              <div key={f.title} className="text-center p-7 rounded-2xl border border-border bg-card hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ background: `${f.color}15` }}>
-                  <KrynnIcon name={f.icon} size={26} weight="duotone" color={f.color} />
-                </div>
-                <h3 className="font-bold text-base mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+      {/* ═══════════ STATS ═══════════ */}
+      <section className="section-spacing bg-muted relative overflow-hidden">
+        <div className="container-app">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+            {STATS.map((stat) => (
+              <div key={stat.label}>
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary">{stat.value}</div>
+                <div className="text-sm text-muted-foreground mt-2 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════ STATS ═══════════ */}
-      <section className="section-spacing bg-muted">
+      {/* ═══════════ WHY CHOOSE ═══════════ */}
+      <section className="section-spacing">
         <div className="container-app">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "100+", label: "Free Tools" },
-              { value: "10M+", label: "Files Processed" },
-              { value: "0", label: "Signups Required" },
-              { value: "100%", label: "Client-Side" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div className="text-3xl sm:text-4xl font-extrabold text-primary">{stat.value}</div>
-                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+          <span className="section-label">WHY KRYNN TOOLS</span>
+          <h2 className="text-center">Built for Speed & Privacy</h2>
+          <p className="text-center text-muted-foreground mt-3 mb-12 max-w-2xl mx-auto">
+            Every tool is engineered to be fast, private, and completely free.
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {FEATURES.map((f) => {
+              const Icon = f.icon;
+              return (
+                <div key={f.title} className="text-center p-7 rounded-2xl border border-border bg-card hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5"
+                    style={{ background: `${f.color}15` }}
+                  >
+                    <Icon size={26} weight="duotone" color={f.color} />
+                  </div>
+                  <h3 className="font-bold text-base mb-2">{f.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ TESTIMONIAL ═══════════ */}
+      <section className="section-spacing bg-muted">
+        <div className="container-app max-w-3xl mx-auto">
+          <div className="glass-card p-8 md:p-12 text-center relative">
+            <Quotes
+              size={48}
+              weight="fill"
+              className="text-primary/15 mx-auto mb-4"
+            />
+            <div className="flex justify-center gap-1 mb-6">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} size={20} weight="fill" className="text-yellow-400" />
+              ))}
+            </div>
+            <blockquote className="text-lg md:text-xl font-medium leading-relaxed text-foreground mb-8">
+              &ldquo;Krynn Tools is my go-to for quick file conversions. No signup, no hassle — it just works.&rdquo;
+            </blockquote>
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-11 h-11 rounded-full bg-primary/15 flex items-center justify-center text-primary font-bold text-sm">
+                AK
               </div>
-            ))}
+              <div className="text-left">
+                <div className="font-semibold text-sm">Alex K.</div>
+                <div className="text-xs text-muted-foreground">Web Developer</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -236,31 +384,12 @@ export default function HomePage() {
           <p className="text-white/80 mt-4 mb-10 text-base leading-relaxed">
             Join thousands of users who rely on Krynn Tools every day. Free, fast, and no account required.
           </p>
-          <Link href={`/${categories[0]?.slug ?? ""}`} className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3.5 rounded-full font-bold text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
-            <Lightning size={18} weight="fill" /> Explore All Tools — It's Free
+          <Link
+            href={`/${categories[0]?.slug ?? ""}`}
+            className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3.5 rounded-full font-bold text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <Lightning size={18} weight="fill" /> Explore All Tools — It&apos;s Free
           </Link>
-        </div>
-      </section>
-
-      {/* ═══════════ SEO TEXT ═══════════ */}
-      <section className="section-spacing">
-        <div className="container-app max-w-4xl">
-          <h2 className="text-center mb-10">Why Krynn Tools?</h2>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {[
-              { icon: "BracketsCurly", title: "Browser-first processing", text: "Every tool runs entirely in your browser. Your files never leave your device — no uploads, no servers, no waiting." },
-              { icon: "ShieldCheck", title: "Complete privacy", text: "We never see, store, or share your data. Compress PDFs, resize images, or format code — all locally, all private." },
-              { icon: "Devices", title: "Works everywhere", text: "100+ tools with no paywalls, no account required, on any device — desktop, tablet, or mobile." },
-            ].map((item) => (
-              <div key={item.title} className="p-6 rounded-2xl border border-border bg-card">
-                <div className="w-11 h-11 rounded-xl bg-muted flex items-center justify-center mb-4">
-                  <KrynnIcon name={item.icon} size={22} weight="duotone" color="var(--color-muted-foreground)" />
-                </div>
-                <h3 className="font-bold text-sm mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
     </div>

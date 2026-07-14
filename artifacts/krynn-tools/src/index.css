@@ -117,8 +117,8 @@
    TAILWIND @THEME
    ───────────────────────────────────────────────────────────── */
 @theme inline {
-  --font-sans:                       'Geist', 'Inter', system-ui, sans-serif;
-  --font-heading:                    'Geist', 'Inter', system-ui, sans-serif;
+  --font-sans:                       'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-heading:                    'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
   --font-mono:                       'Geist Mono', ui-monospace, 'Cascadia Code', monospace;
 
   --color-background:                var(--color-background);
@@ -214,6 +214,18 @@
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(100%); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(239,68,68,0.2); }
+  50% { box-shadow: 0 0 40px rgba(239,68,68,0.4); }
+}
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -396,6 +408,39 @@
 }
 @media (min-width: 640px) { .workspace-card { padding: var(--space-6); } }
 @media (min-width: 1024px) { .workspace-card { padding: var(--space-8); } }
+
+/* ── Glassmorphic Card ── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+/* ── Floating Card (for hero animation) ── */
+.float-card {
+  animation: float 4s ease-in-out infinite;
+}
+.float-card-delayed {
+  animation: float-delayed 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* ── Pedestal Glow ── */
+.pedestal-glow {
+  position: relative;
+}
+.pedestal-glow::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(239,68,68,0.15) 0%, transparent 70%);
+  animation: pulse-glow 3s ease-in-out infinite;
+  pointer-events: none;
+}
 
 /* ── Inputs ── */
 textarea,
