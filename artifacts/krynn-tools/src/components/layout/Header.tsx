@@ -76,8 +76,8 @@ export default function Header() {
 
           <div className="flex-1" />
 
-          {/* Desktop Search */}
-          <div className="hidden md:flex items-center relative max-w-sm w-full mr-3">
+          {/* Desktop Search — hidden on homepage (hero has its own) */}
+          <div className={`hidden items-center relative max-w-sm w-full mr-3 ${pathname === "/" ? "" : "md:flex"}`}>
             <MagnifyingGlass size={16} className="absolute left-3 text-muted-foreground pointer-events-none" />
             <input
               type="text"
