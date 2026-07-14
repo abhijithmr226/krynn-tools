@@ -87,7 +87,7 @@ export default function HomePage() {
       >
         <div className="container-app relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
-            {/* Left column 60% */}
+            {/* Left column 55% */}
             <div className="flex-1 w-full max-w-2xl lg:max-w-none text-center lg:text-left">
               <div className="animate-fade-up flex justify-center lg:justify-start mb-5" style={{ animationDelay: "0ms" }}>
                 <span className="badge badge-primary uppercase tracking-wider text-xs font-semibold">
@@ -96,26 +96,29 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <h1 className="animate-fade-up text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight" style={{ animationDelay: "60ms" }}>
-                The Only Tool Kit{" "}
-                <br className="hidden sm:block" />
-                <span className="text-primary">You&apos;ll Ever Need</span>
+              <h1 className="animate-fade-up text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight" style={{ animationDelay: "60ms" }}>
+                All-in-One <br className="hidden sm:block" />
+                Online Tools. <br />
+                <span className="text-primary">Fast. Private. Free.</span>
               </h1>
 
               <p className="animate-fade-up text-muted-foreground mt-5 max-w-xl mx-auto lg:mx-0 text-base md:text-lg leading-relaxed" style={{ animationDelay: "120ms" }}>
-                Free online tools for PDF, images, text, code, design, and more. No signup. No uploads. Everything runs in your browser.
+                Complete collection of productivity, conversion, development, and AI tools. Everything works in your browser.
               </p>
 
               {/* Trust badges */}
               <div className="animate-fade-up flex flex-wrap gap-3 justify-center lg:justify-start mt-7" style={{ animationDelay: "160ms" }}>
                 {[
-                  { Icon: Lock, label: "No Signup" },
-                  { Icon: CheckCircle, label: "100% Free" },
-                  { Icon: Shield, label: "Private & Secure" },
-                  { Icon: DeviceMobile, label: "Mobile Friendly" },
-                ].map(({ Icon, label }) => (
-                  <span key={label} className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-muted/60 border border-border rounded-full px-3 py-1.5">
-                    <Icon size={14} weight="fill" className="text-primary" /> {label}
+                  { Icon: Shield, label: "100% Private", sub: "No uploads" },
+                  { Icon: Lightning, label: "Blazing Fast", sub: "Instant results" },
+                  { Icon: CheckCircle, label: "Unlimited", sub: "No restrictions" },
+                  { Icon: DeviceMobile, label: "Works Offline", sub: "Browser based" },
+                ].map(({ Icon, label, sub }) => (
+                  <span key={label} className="inline-flex flex-col items-center lg:items-start text-xs font-medium bg-muted/60 border border-border rounded-xl px-4 py-2.5 min-w-[120px]">
+                    <span className="flex items-center gap-1.5 font-bold text-foreground">
+                      <Icon size={14} weight="fill" className="text-primary" /> {label}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground mt-0.5">{sub}</span>
                   </span>
                 ))}
               </div>
@@ -125,20 +128,23 @@ export default function HomePage() {
                 <MagnifyingGlass size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
                 <input
                   type="text"
-                  placeholder="Search 128+ free tools..."
+                  placeholder="Search any tool..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="w-full pl-12 pr-12 py-4 rounded-2xl bg-card border border-border text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all shadow-xl"
+                  className="w-full pl-12 pr-28 py-4 rounded-2xl bg-card border border-border text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all shadow-xl"
                 />
                 {query && (
                   <button
                     onClick={() => setQuery("")}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    className="absolute right-20 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                     aria-label="Clear"
                   >
                     <X size={18} />
                   </button>
                 )}
+                <kbd className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:inline-flex items-center gap-0.5 px-2 py-1 rounded bg-muted border border-border text-[10px] font-mono text-muted-foreground pointer-events-none">
+                  Ctrl + K
+                </kbd>
                 {results.length > 0 && (
                   <div className="absolute top-full mt-2 w-full rounded-2xl border border-border bg-card overflow-hidden shadow-2xl z-50">
                     {results.slice(0, 8).map((tool) => {
@@ -171,8 +177,8 @@ export default function HomePage() {
 
               {/* Popular shortcuts */}
               <div className="animate-fade-up flex flex-wrap gap-2 justify-center lg:justify-start mt-4" style={{ animationDelay: "280ms" }}>
-                <span className="text-xs text-muted-foreground">Popular:</span>
-                {["Compress PDF", "Resize Image", "Word Counter", "QR Code"].map((label) => (
+                <span className="text-xs text-muted-foreground mr-1">Popular searches:</span>
+                {["Compress PDF", "Remove Background", "JSON Formatter", "Word Counter", "QR Code"].map((label) => (
                   <button
                     key={label}
                     onClick={() => setQuery(label)}
@@ -184,12 +190,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right column 50% — High-Fidelity Hero Graphic */}
+            {/* Right column 45% — High-Fidelity Hero Graphic */}
             <div className="flex-1 w-full lg:max-w-none flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
               <img
                 src={dark ? "/images/hero_dark.png" : "/images/hero_light.png"}
                 alt="Krynn Tools Platform Overview"
-                className="w-[120%] sm:w-full max-w-none lg:max-w-full object-cover lg:object-contain object-right h-full max-h-[480px] select-none pointer-events-none transition-opacity duration-300"
+                className="w-[110%] sm:w-[100%] max-w-none lg:max-w-none lg:w-[130%] object-cover lg:object-contain object-right h-full max-h-[480px] select-none pointer-events-none transition-opacity duration-300 lg:-ml-24 xl:-ml-36"
                 loading="eager"
               />
             </div>
