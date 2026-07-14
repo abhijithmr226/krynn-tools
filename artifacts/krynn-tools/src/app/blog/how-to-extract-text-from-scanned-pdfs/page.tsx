@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import BlogAd from "../BlogAd";
 import BlogMidAd from "../BlogMidAd";
+import TrustpilotCta from "../TrustpilotCta";
 
 
 export default function BlogPost() {
@@ -44,7 +45,10 @@ export default function BlogPost() {
         <BlogAd />
 
 
+
         <BlogMidAd />
+
+        <TrustpilotCta />
 
         <div className="prose max-w-none space-y-6 text-[var(--color-muted-foreground)] leading-relaxed">
           <p>

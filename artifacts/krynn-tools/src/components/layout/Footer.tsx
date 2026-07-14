@@ -61,6 +61,7 @@ export default function Footer() {
         <div className="mt-10 border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Krynn Tools. All rights reserved.</p>
           <div className="flex items-center gap-4">
+            <a href="https://www.trustpilot.com/evaluate/krynntools.online" target="_blank" rel="noopener noreferrer" className="hover:text-[#00b67a] transition-colors">Trustpilot Reviews</a>
             <a href="https://linkedin.com/in/abhijithmr226" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
             <a href="https://instagram.com/krynnlabs" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
           </div>
