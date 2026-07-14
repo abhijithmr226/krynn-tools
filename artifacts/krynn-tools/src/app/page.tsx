@@ -2,60 +2,20 @@ import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { Link } from "wouter";
 import { categories, getPopularTools, searchTools } from "@/lib/tools";
 import KrynnIcon from "@/components/KrynnIcon";
-import AdSlot from "@/components/AdSlot";
-import {
-  MagnifyingGlass, Star, Lightning, CheckCircle,
-  LockSimple, DeviceMobile, CaretRight, X,
-} from "@phosphor-icons/react";
+import { MagnifyingGlass, Star, Lightning, CheckCircle, Lock, Shield, DeviceMobile, CaretRight, X } from "@phosphor-icons/react";
 
-/* ── Feature cards data ─────────────────────────────────────── */
 const FEATURES = [
-  {
-    icon: "Lightning",
-    title: "Instant Results",
-    desc: "Processing happens right in your browser — no server uploads, no waiting.",
-    color: "#E8100A",
-    bg: "#FFF0EF",
-    darkBg: "#2A0A09",
-    borderColor: "rgba(232,16,10,0.18)",
-  },
-  {
-    icon: "Lock",
-    title: "100% Private",
-    desc: "Your files never leave your device. We never see, store, or share your data.",
-    color: "#059669",
-    bg: "#F0FDF4",
-    darkBg: "#0A2E1C",
-    borderColor: "rgba(5,150,105,0.18)",
-  },
-  {
-    icon: "Money",
-    title: "Always Free",
-    desc: "100+ tools at zero cost, forever. No paywalls, no plans, no hidden limits.",
-    color: "#7C3AED",
-    bg: "#F5F3FF",
-    darkBg: "#1E1040",
-    borderColor: "rgba(124,58,237,0.18)",
-  },
+  { icon: "Lightning", title: "Instant Results", desc: "Processing happens right in your browser — no server uploads, no waiting.", color: "#ef4444" },
+  { icon: "Lock", title: "100% Private", desc: "Your files never leave your device. We never see, store, or share your data.", color: "#22c55e" },
+  { icon: "Money", title: "Always Free", desc: "100+ tools at zero cost, forever. No paywalls, no plans, no hidden limits.", color: "#a855f7" },
 ];
 
 export default function HomePage() {
   const [query, setQuery] = useState("");
-  const [isDark, setIsDark] = useState(false);
   const results = useMemo(() => (query.length > 0 ? searchTools(query) : []), [query]);
   const popularTools = getPopularTools(8);
 
-  useEffect(() => {
-    const check = () => setIsDark(document.documentElement.classList.contains("dark"));
-    check();
-    const obs = new MutationObserver(check);
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    return () => obs.disconnect();
-  }, []);
-
-  // ── Cursor glow ────────────────────────────────────────────
   const glowRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!glowRef.current) return;
@@ -67,27 +27,6 @@ export default function HomePage() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [handleMouseMove]);
 
-  // ── Card tilt physics ──────────────────────────────────────
-  const handleCardMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.01)`;
-    card.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 24px rgba(213,13,9,0.08), var(--shadow-lg)`;
-  }, []);
-
-  const handleCardMouseLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    card.style.transform = "";
-    card.style.boxShadow = "";
-  }, []);
-
-  // ── Intersection Observer for stagger ─────────────────────
   useEffect(() => {
     const els = document.querySelectorAll(".animate-on-scroll");
     const observer = new IntersectionObserver(
@@ -109,165 +48,68 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div style={{ overflowX: "hidden", position: "relative" }}>
+    <div className="overflow-x-hidden relative">
+      <div ref={glowRef} className="cursor-glow hidden md:block" aria-hidden="true" />
 
-      {/* ── Cursor glow (AI-inspired reactive effect) ── */}
-      <div ref={glowRef} className="cursor-glow" aria-hidden="true" />
-
-      {/* ══════════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════════ */}
-      <section ref={heroRef} className="hero-gradient" style={{ padding: "clamp(56px,8vw,88px) 0 clamp(52px,7vw,80px)" }}>
-        {/* Mesh overlay */}
-        <div className="hero-mesh" aria-hidden="true" />
-
-        <div style={{ maxWidth: "820px", margin: "0 auto", padding: "0 clamp(16px,4vw,24px)", textAlign: "center", position: "relative", zIndex: 1 }}>
-
-          {/* Badge */}
-          <div className="animate-fade-up" style={{ display: "flex", justifyContent: "center", marginBottom: "22px", animationDelay: "0ms" }}>
+      {/* ═══════════ HERO ═══════════ */}
+      <section className="section-spacing" style={{ background: "linear-gradient(180deg, var(--color-background) 0%, var(--color-muted) 100%)" }}>
+        <div className="container-app text-center relative z-10 max-w-3xl mx-auto">
+          <div className="animate-fade-up flex justify-center mb-5" style={{ animationDelay: "0ms" }}>
             <span className="badge badge-primary">
               <Star size={13} weight="fill" />
               100+ Free Tools · No Signup · No Limits
             </span>
           </div>
 
-          {/* H1 */}
-          <h1 style={{
-            fontSize: "clamp(2rem, 5.5vw, 3.75rem)",
-            fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: "-0.03em",
-            marginBottom: "18px",
-          }}>
+          <h1 className="animate-fade-up" style={{ animationDelay: "60ms" }}>
             All The Tools You Need,{" "}
-            <span style={{
-              background: "linear-gradient(135deg, #E8100A 0%, #C20000 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}>
-              All In One Place.
-            </span>
+            <span className="text-primary">All In One Place.</span>
           </h1>
 
-          <p className="animate-fade-up" style={{
-            fontSize: "clamp(1rem, 2.5vw, 1.125rem)",
-            color: "var(--color-muted-foreground)",
-            lineHeight: 1.75,
-            maxWidth: "540px",
-            margin: "0 auto 36px",
-            animationDelay: "120ms",
-          }}>
-            Krynn Tools provides 100+ free online utilities to simplify your
-            work, boost productivity, and save time — all running in your browser.
+          <p className="animate-fade-up text-muted-foreground mt-5 max-w-xl mx-auto" style={{ animationDelay: "120ms" }}>
+            Krynn Tools provides 100+ free online utilities to simplify your work, boost productivity, and save time — all running in your browser.
           </p>
 
           {/* CTAs */}
-          <div className="animate-fade-up" style={{
-            display: "flex", flexWrap: "wrap", gap: "12px",
-            justifyContent: "center", marginBottom: "36px",
-            animationDelay: "180ms",
-          }}>
+          <div className="animate-fade-up flex flex-wrap gap-3 justify-center mt-8" style={{ animationDelay: "180ms" }}>
             <Link href={`/${categories[0]?.slug ?? ""}`} className="btn-primary">
-              <Lightning size={18} weight="fill" />
-              Explore All Tools
+              <Lightning size={18} weight="fill" /> Explore All Tools
             </Link>
-            <Link href="#popular" className="btn-secondary">
-              <Star size={18} weight="fill" />
-              Popular Tools
-            </Link>
+            <a href="#popular" className="btn-secondary">
+              <Star size={18} weight="fill" /> Popular Tools
+            </a>
           </div>
 
-          {/* Hero Search */}
-          <div id="hero-search" className="animate-fade-up" style={{ maxWidth: "540px", margin: "0 auto", position: "relative", zIndex: 10, animationDelay: "240ms" }}>
-            <div style={{ position: "relative" }}>
-              <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none", display: "flex", color: "var(--color-muted-foreground)" }}>
-                <MagnifyingGlass size={16} />
-              </span>
-              <input
-                type="text"
-                placeholder="Search 100+ tools..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "11px 36px 11px 38px",
-                  borderRadius: "10px",
-                  border: "1.5px solid var(--color-border)",
-                  background: "var(--color-muted)",
-                  fontSize: "0.9375rem",
-                  boxShadow: "none",
-                  outline: "none",
-                  fontFamily: "inherit",
-                  color: "var(--color-foreground)",
-                  transition: "border-color 180ms ease, background 180ms ease, box-shadow 180ms ease",
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = "var(--color-primary)";
-                  e.target.style.background = "var(--color-card)";
-                  e.target.style.boxShadow = "0 0 0 3px rgba(232,16,10,0.14)";
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = "var(--color-border)";
-                  e.target.style.background = "var(--color-muted)";
-                  e.target.style.boxShadow = "none";
-                }}
-              />
-              {query && (
-                <button
-                  onClick={() => setQuery("")}
-                  style={{
-                    position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)",
-                    background: "none", border: "none", cursor: "pointer",
-                    color: "var(--color-muted-foreground)", display: "flex", padding: "4px",
-                  }}
-                  aria-label="Clear search"
-                >
-                  <X size={14} />
-                </button>
-              )}
-            </div>
-
-            {/* Results dropdown */}
+          {/* Search */}
+          <div className="animate-fade-up relative max-w-lg mx-auto mt-10" style={{ animationDelay: "240ms" }}>
+            <MagnifyingGlass size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search 100+ tools..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-card border border-border text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all shadow-lg"
+            />
+            {query && (
+              <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" aria-label="Clear">
+                <X size={16} />
+              </button>
+            )}
             {results.length > 0 && (
-              <div style={{
-                position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0, zIndex: 50,
-                borderRadius: "12px", border: "1px solid var(--color-border)",
-                background: "var(--color-card)", overflow: "hidden",
-                maxHeight: "320px", overflowY: "auto",
-                boxShadow: "var(--shadow-xl)", textAlign: "left",
-                animation: "fadeUp 0.15s ease both",
-              }}>
-                {results.slice(0, 8).map((tool, idx) => {
+              <div className="absolute top-full mt-2 w-full rounded-2xl border border-border bg-card overflow-hidden shadow-2xl z-50">
+                {results.slice(0, 8).map((tool) => {
                   const cat = categories.find(c => c.slug === tool.categorySlug);
-                  const colour = cat?.color ?? "#D50D09";
+                  const color = cat?.color ?? "#ef4444";
                   return (
-                    <Link
-                      key={tool.slug}
-                      href={`/${tool.categorySlug}/${tool.slug}`}
-                      onClick={() => setQuery("")}
-                      style={{
-                        display: "flex", alignItems: "center", gap: "12px",
-                        padding: "11px 14px",
-                        borderBottom: idx < Math.min(results.length - 1, 7) ? "1px solid var(--color-border)" : "none",
-                        textDecoration: "none", color: "inherit",
-                        transition: "background 150ms",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = "var(--color-muted)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                    >
-                      <div style={{
-                        width: "36px", height: "36px", flexShrink: 0, borderRadius: "9px",
-                        background: `${colour}18`, display: "flex",
-                        alignItems: "center", justifyContent: "center",
-                      }}>
-                        <KrynnIcon name={tool.icon} size={18} weight="duotone" color={colour} />
+                    <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} onClick={() => setQuery("")} className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors">
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${color}18` }}>
+                        <KrynnIcon name={tool.icon} size={18} weight="duotone" color={color} />
                       </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontWeight: 600, fontSize: "0.875rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{tool.name}</div>
-                        <div style={{ fontSize: "0.75rem", color: "var(--color-muted-foreground)" }}>{tool.category}</div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium truncate">{tool.name}</div>
+                        <div className="text-xs text-muted-foreground">{tool.category}</div>
                       </div>
-                      <CaretRight size={14} color="var(--color-muted-foreground)" />
+                      <CaretRight size={14} className="text-muted-foreground" />
                     </Link>
                   );
                 })}
@@ -275,107 +117,61 @@ export default function HomePage() {
             )}
           </div>
 
-          {/* Trust row — icon chips */}
-          <div className="animate-fade-up" style={{
-            display: "flex", flexWrap: "wrap", gap: "10px",
-            justifyContent: "center", marginTop: "28px",
-            animationDelay: "300ms",
-          }}>
+          {/* Trust chips */}
+          <div className="animate-fade-up flex flex-wrap gap-2 justify-center mt-8" style={{ animationDelay: "300ms" }}>
             {[
               { Icon: CheckCircle, label: "100% Free" },
-              { Icon: LockSimple,   label: "No Signup" },
-              { Icon: LockSimple,   label: "Private & Secure" },
+              { Icon: Lock, label: "No Signup" },
+              { Icon: Shield, label: "Private & Secure" },
               { Icon: DeviceMobile, label: "Mobile Friendly" },
             ].map(({ Icon, label }) => (
-              <span
-                key={label}
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: "6px",
-                  padding: "5px 12px",
-                  background: "var(--color-primary-tint)",
-                  border: "1px solid rgba(232,16,10,0.18)",
-                  borderRadius: "9999px",
-                  fontSize: "0.78125rem", fontWeight: 600,
-                  color: "var(--color-primary)",
-                  letterSpacing: "0.01em",
-                }}
-              >
-                <Icon size={14} weight="fill" />
-                {label}
+              <span key={label} className="badge badge-primary flex items-center gap-1.5 text-xs">
+                <Icon size={13} weight="fill" /> {label}
               </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          CATEGORIES
-      ══════════════════════════════════════════════ */}
-      <section style={{ padding: "clamp(48px,8vw,80px) 0", background: "var(--color-background)" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(16px,4vw,24px)" }}>
+      {/* ═══════════ CATEGORIES ═══════════ */}
+      <section className="section-spacing">
+        <div className="container-app">
           <span className="section-label">Tool Categories</span>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(1.6rem, 3vw, 2.25rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "10px" }}>
-            Browse by Category
-          </h2>
-          <p style={{ textAlign: "center", color: "var(--color-muted-foreground)", marginBottom: "40px" }}>
-            Pick a category and get started instantly.
-          </p>
+          <h2 className="text-center">Browse by Category</h2>
+          <p className="text-center text-muted-foreground mt-3 mb-12">Pick a category and get started instantly.</p>
 
-          <div className="centered-flex-grid-4 stagger-children">
+          <div className="grid-4 stagger-children">
             {categories.map((cat) => (
-              <Link key={cat.slug} href={`/${cat.slug}`} className="category-card glow-card animate-card animate-on-scroll centered-flex-item-4" style={{ display: "block" }} onMouseMove={handleCardMouseMove as any} onMouseLeave={handleCardMouseLeave as any}>
-                <div style={{
-                  width: "52px", height: "52px", borderRadius: "14px",
-                  background: `${cat.color}18`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto 14px",
-                }}>
+              <Link key={cat.slug} href={`/${cat.slug}`} className="category-card animate-on-scroll text-center">
+                <div className="w-13 h-13 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{ background: `${cat.color}15` }}>
                   <KrynnIcon name={cat.icon} size={26} weight="duotone" color={cat.color} />
                 </div>
-                <h3 style={{ fontWeight: 700, marginBottom: "6px", fontSize: "0.9375rem", textAlign: "center" }}>{cat.name}</h3>
-                <p style={{ fontSize: "0.8125rem", color: "var(--color-muted-foreground)", textAlign: "center", lineHeight: 1.6 }}>{cat.description}</p>
+                <h3 className="font-bold text-sm mb-1.5">{cat.name}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{cat.description}</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
- 
-      <AdSlot position="in-content" className="max-w-4xl mx-auto" />
- 
-      {/* ══════════════════════════════════════════════
-          POPULAR TOOLS
-      ══════════════════════════════════════════════ */}
-      <section id="popular" style={{ padding: "clamp(48px,8vw,80px) 0", background: "var(--color-muted)", position: "relative" }}>
-        {/* Dot grid decorative pattern */}
-        <div className="dot-pattern" style={{
-          position: "absolute", inset: 0, opacity: 0.5, pointerEvents: "none",
-        }} aria-hidden="true" />
- 
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(16px,4vw,24px)", position: "relative" }}>
+
+      {/* ═══════════ POPULAR TOOLS ═══════════ */}
+      <section id="popular" className="section-spacing bg-muted relative">
+        <div className="container-app relative z-10">
           <span className="section-label">Popular Tools</span>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(1.6rem, 3vw, 2.25rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "10px" }}>
-            Most Used Tools
-          </h2>
-          <p style={{ textAlign: "center", color: "var(--color-muted-foreground)", marginBottom: "40px" }}>
-            Explore our most popular tools, used by thousands every day.
-          </p>
- 
-          <div className="centered-flex-grid stagger-children">
+          <h2 className="text-center">Most Used Tools</h2>
+          <p className="text-center text-muted-foreground mt-3 mb-12">Explore our most popular tools, used by thousands every day.</p>
+
+          <div className="grid-3 stagger-children">
             {popularTools.map((tool) => {
               const cat = categories.find((c) => c.slug === tool.categorySlug);
-              const colour = cat?.color ?? "#E8100A";
+              const color = cat?.color ?? "#ef4444";
               return (
-                <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} className="tool-card animate-card animate-on-scroll tilt-card centered-flex-item-3" style={{ display: "flex", flexDirection: "column" }} onMouseMove={handleCardMouseMove as any} onMouseLeave={handleCardMouseLeave as any}>
-                  <div style={{
-                    width: "46px", height: "46px", borderRadius: "12px",
-                    background: `${colour}18`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    marginBottom: "14px", flexShrink: 0,
-                  }}>
-                    <KrynnIcon name={tool.icon} size={23} weight="duotone" color={colour} />
+                <Link key={tool.slug} href={`/${tool.categorySlug}/${tool.slug}`} className="tool-card animate-on-scroll flex flex-col">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: `${color}18` }}>
+                    <KrynnIcon name={tool.icon} size={22} weight="duotone" color={color} />
                   </div>
-                  <h3 style={{ fontWeight: 700, marginBottom: "7px", fontSize: "0.9375rem" }}>{tool.name}</h3>
-                  <p style={{ fontSize: "0.8125rem", color: "var(--color-muted-foreground)", lineHeight: 1.65, flex: 1, marginBottom: "14px" }}>{tool.description}</p>
+                  <h3 className="font-bold text-sm mb-2">{tool.name}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed flex-1 mb-4">{tool.description}</p>
                   <span className="use-tool-link">
                     Use Tool <CaretRight size={13} weight="bold" className="arrow-icon" />
                   </span>
@@ -384,143 +180,89 @@ export default function HomePage() {
             })}
           </div>
 
-          <div style={{ textAlign: "center", marginTop: "44px" }}>
+          <div className="text-center mt-12">
             <Link href={`/${categories[0]?.slug ?? ""}`} className="btn-primary">
-              <Lightning size={18} weight="fill" />
-              View All Tools
+              <Lightning size={18} weight="fill" /> View All Tools
             </Link>
           </div>
         </div>
       </section>
 
-      <AdSlot position="below-tool" className="max-w-4xl mx-auto" />
-
-      {/* ══════════════════════════════════════════════
-          FEATURES
-      ══════════════════════════════════════════════ */}
-      <section style={{ padding: "clamp(48px,8vw,80px) 0", background: "var(--color-background)" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 clamp(16px,4vw,24px)" }}>
+      {/* ═══════════ FEATURES ═══════════ */}
+      <section className="section-spacing">
+        <div className="container-app max-w-4xl">
           <span className="section-label">Why Krynn Tools?</span>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(1.6rem, 3vw, 2.25rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "10px" }}>
-            Built for Speed &amp; Privacy
-          </h2>
-          <p style={{ textAlign: "center", color: "var(--color-muted-foreground)", marginBottom: "48px" }}>
-            Every tool is engineered to be fast, private, and completely free.
-          </p>
+          <h2 className="text-center">Built for Speed & Privacy</h2>
+          <p className="text-center text-muted-foreground mt-3 mb-12">Every tool is engineered to be fast, private, and completely free.</p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "20px" }}>
+          <div className="grid sm:grid-cols-3 gap-6">
             {FEATURES.map((f) => (
-              <div key={f.title} className="animate-card animate-on-scroll" style={{
-                borderRadius: "16px", padding: "28px 24px", textAlign: "center",
-                background: isDark ? f.darkBg : f.bg,
-                border: `1px solid ${f.borderColor}`,
-                transition: "transform 240ms ease, box-shadow 240ms ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow-lg)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "";
-                (e.currentTarget as HTMLElement).style.boxShadow = "";
-              }}>
-                <div style={{
-                  width: "58px", height: "58px", borderRadius: "16px",
-                  background: `${f.color}18`, display: "flex", alignItems: "center",
-                  justifyContent: "center", margin: "0 auto 18px",
-                }}>
-                  <KrynnIcon name={f.icon} size={28} weight="duotone" color={f.color} />
+              <div key={f.title} className="text-center p-7 rounded-2xl border border-border bg-card hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ background: `${f.color}15` }}>
+                  <KrynnIcon name={f.icon} size={26} weight="duotone" color={f.color} />
                 </div>
-                <h3 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "9px" }}>{f.title}</h3>
-                <p style={{ fontSize: "0.875rem", color: "var(--color-muted-foreground)", lineHeight: 1.75 }}>{f.desc}</p>
+                <h3 className="font-bold text-base mb-2">{f.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          CTA BANNER
-      ══════════════════════════════════════════════ */}
-      <section className="band-brand" style={{
-        padding: "clamp(56px,8vw,80px) clamp(16px,4vw,24px)",
-        textAlign: "center",
-        position: "relative",
-        overflow: "hidden",
-      }}>
-        {/* Ambient blob in CTA */}
-        <div style={{
-          position: "absolute", width: "400px", height: "400px", borderRadius: "50%",
-          background: "rgba(255,255,255,0.06)", top: "-100px", right: "-80px",
-          pointerEvents: "none",
-          animation: "blob-morph 12s ease-in-out infinite",
-        }} aria-hidden="true" />
-        <div style={{ maxWidth: "620px", margin: "0 auto", position: "relative" }}>
-          <h2 style={{ fontSize: "clamp(1.6rem, 3vw, 2.25rem)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", marginBottom: "14px" }}>
-            Ready to Get Started?
-          </h2>
-          <p style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)", color: "rgba(255,255,255,0.88)", lineHeight: 1.7, marginBottom: "32px" }}>
+      {/* ═══════════ STATS ═══════════ */}
+      <section className="section-spacing bg-muted">
+        <div className="container-app">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+            {[
+              { value: "100+", label: "Free Tools" },
+              { value: "10M+", label: "Files Processed" },
+              { value: "0", label: "Signups Required" },
+              { value: "100%", label: "Client-Side" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <div className="text-3xl sm:text-4xl font-extrabold text-primary">{stat.value}</div>
+                <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ CTA ═══════════ */}
+      <section className="band-brand section-spacing relative overflow-hidden">
+        <div className="absolute w-[400px] h-[400px] rounded-full bg-white/5 -top-24 -right-24 pointer-events-none" aria-hidden="true" />
+        <div className="container-app relative text-center max-w-2xl mx-auto">
+          <h2 className="text-white">Ready to Get Started?</h2>
+          <p className="text-white/80 mt-4 mb-10 text-base leading-relaxed">
             Join thousands of users who rely on Krynn Tools every day. Free, fast, and no account required.
           </p>
-          <Link href={`/${categories[0]?.slug ?? ""}`} className="btn-inverse">
-            <Lightning size={18} weight="fill" />
-            Explore All Tools — It&apos;s Free
+          <Link href={`/${categories[0]?.slug ?? ""}`} className="inline-flex items-center gap-2 bg-white text-primary px-8 py-3.5 rounded-full font-bold text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
+            <Lightning size={18} weight="fill" /> Explore All Tools — It's Free
           </Link>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          SEO TEXT
-      ══════════════════════════════════════════════ */}
-      <section className="band-muted" style={{ padding: "clamp(48px,6vw,72px) 0" }}>
-        <div style={{ maxWidth: "960px", margin: "0 auto", padding: "0 clamp(16px,4vw,24px)" }}>
-          <h2 style={{ fontSize: "clamp(1.25rem,2.5vw,1.75rem)", fontWeight: 700, marginBottom: "36px", textAlign: "center", letterSpacing: "-0.02em" }}>Why Krynn Tools?</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "20px" }}>
+      {/* ═══════════ SEO TEXT ═══════════ */}
+      <section className="section-spacing">
+        <div className="container-app max-w-4xl">
+          <h2 className="text-center mb-10">Why Krynn Tools?</h2>
+          <div className="grid sm:grid-cols-3 gap-6">
             {[
-              {
-                icon: "BracketsCurly",
-                title: "Browser-first processing",
-                text: "Every tool runs entirely in your browser. Your files never leave your device — no uploads, no servers, no waiting.",
-              },
-              {
-                icon: "ShieldCheck",
-                title: "Complete privacy",
-                text: "We never see, store, or share your data. Compress PDFs, resize images, or format code — all locally, all private.",
-              },
-              {
-                icon: "Devices",
-                title: "Works everywhere",
-                text: "100+ tools with no paywalls, no account required, on any device — desktop, tablet, or mobile.",
-              },
+              { icon: "BracketsCurly", title: "Browser-first processing", text: "Every tool runs entirely in your browser. Your files never leave your device — no uploads, no servers, no waiting." },
+              { icon: "ShieldCheck", title: "Complete privacy", text: "We never see, store, or share your data. Compress PDFs, resize images, or format code — all locally, all private." },
+              { icon: "Devices", title: "Works everywhere", text: "100+ tools with no paywalls, no account required, on any device — desktop, tablet, or mobile." },
             ].map((item) => (
-              <div
-                key={item.title}
-                style={{
-                  background: "var(--color-card)",
-                  border: "1px solid var(--color-border)",
-                  borderRadius: "12px",
-                  padding: "24px 20px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                }}
-              >
-                <div style={{
-                  width: "44px", height: "44px", borderRadius: "10px",
-                  background: "var(--color-muted)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  marginBottom: "4px",
-                }}>
+              <div key={item.title} className="p-6 rounded-2xl border border-border bg-card">
+                <div className="w-11 h-11 rounded-xl bg-muted flex items-center justify-center mb-4">
                   <KrynnIcon name={item.icon} size={22} weight="duotone" color="var(--color-muted-foreground)" />
                 </div>
-                <h3 style={{ fontSize: "0.9375rem", fontWeight: 700 }}>{item.title}</h3>
-                <p style={{ fontSize: "0.875rem", color: "var(--color-muted-foreground)", lineHeight: 1.75 }}>{item.text}</p>
+                <h3 className="font-bold text-sm mb-2">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-
     </div>
   );
 }

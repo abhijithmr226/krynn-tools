@@ -1,6 +1,5 @@
 {
-  "framework": "vite",
-  "buildCommand": "pnpm --filter @workspace/krynn-tools run build",
+  "buildCommand": "cd artifacts/krynn-tools && pnpm run build",
   "outputDirectory": "artifacts/krynn-tools/dist/public",
   "installCommand": "pnpm install",
   "rewrites": [

@@ -326,7 +326,7 @@ function DiceCube({
       >
         {displayValue}
       </span>
-      <style jsx>{`
+      <style>{`
         @keyframes dice-tumble {
           0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); }
           25% { transform: rotateX(15deg) rotateY(-20deg) rotateZ(10deg) scale(1.05); }

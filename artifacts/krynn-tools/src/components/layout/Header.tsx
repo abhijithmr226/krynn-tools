@@ -4,10 +4,7 @@ import { useTheme } from "@/lib/theme-provider";
 import { categories, searchTools, tools } from "@/lib/tools";
 import KrynnIcon from "../common/KrynnIcon";
 import KrynnLogo from "../common/KrynnLogo";
-import {
-  MagnifyingGlass, Sun, Moon, X,
-  CaretRight,
-} from "@phosphor-icons/react";
+import { MagnifyingGlass, Sun, Moon, X, CaretRight, GridFour, House } from "@phosphor-icons/react";
 
 export default function Header() {
   const [pathname] = useLocation();
@@ -17,11 +14,8 @@ export default function Header() {
   const [query, setQuery] = useState("");
   const [mounted, setMounted] = useState(false);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
-  const catInputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
   const results = query.length >= 1 ? searchTools(query).slice(0, 8) : [];
 
@@ -30,7 +24,6 @@ export default function Header() {
     setTimeout(() => mobileSearchInputRef.current?.focus(), 100);
   }, []);
 
-  // Keyboard shortcut: Ctrl+K or Cmd+K
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -47,21 +40,15 @@ export default function Header() {
     return () => window.removeEventListener("keydown", handler);
   }, [focusSearch]);
 
-  // Lock body scroll when category bottom-sheet or search overlay is open
   useEffect(() => {
     document.body.style.overflow = catOpen || mobileSearchOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [catOpen, mobileSearchOpen]);
 
-  useEffect(() => {
-    setCatOpen(false);
-  }, [pathname]);
+  useEffect(() => { setCatOpen(false); }, [pathname]);
 
   const isActive = useCallback(
-    (href: string) => {
-      if (href === "/") return pathname === "/";
-      return pathname.startsWith(href);
-    },
+    (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href),
     [pathname]
   );
 
@@ -69,112 +56,81 @@ export default function Header() {
   const filteredCategories = useMemo(() => {
     if (!catQuery.trim()) return categories;
     const q = catQuery.toLowerCase();
-    return categories.filter(
-      (c) =>
-        c.name.toLowerCase().includes(q) ||
-        c.description.toLowerCase().includes(q)
-    );
+    return categories.filter(c => c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q));
   }, [catQuery]);
 
   const toolCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    tools.forEach((t) => {
-      counts[t.categorySlug] = (counts[t.categorySlug] || 0) + 1;
-    });
+    tools.forEach(t => { counts[t.categorySlug] = (counts[t.categorySlug] || 0) + 1; });
     return counts;
   }, []);
 
-  // Focus category search input when open drawer
-  useEffect(() => {
-    if (catOpen) {
-      setTimeout(() => catInputRef.current?.focus(), 300);
-    }
-  }, [catOpen]);
-
   return (
     <>
-      {/* Header Bar */}
+      {/* ── Header Bar ── */}
       <header className="header-glass sticky top-0 z-50">
-        <div style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 16px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: "64px",
-          gap: "8px",
-        }}>
-          {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0, color: "var(--color-foreground)" }}>
-            <KrynnLogo height={34} />
+        <div className="container-app flex items-center justify-between h-16 gap-2">
+          <Link href="/" className="flex items-center flex-shrink-0">
+            <KrynnLogo height={32} />
           </Link>
 
-          {/* Spacer */}
-          <div style={{ flex: 1 }} />
+          <div className="flex-1" />
+
+          {/* Desktop Search */}
+          <div className="hidden md:flex items-center relative max-w-sm w-full mr-3">
+            <MagnifyingGlass size={16} className="absolute left-3 text-muted-foreground pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search tools..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full pl-9 pr-8 py-2 text-sm rounded-full bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
+            />
+            <kbd className="absolute right-3 text-[10px] font-mono text-muted-foreground bg-background border border-border rounded px-1.5 py-0.5">⌘K</kbd>
+            {query && (
+              <button onClick={() => setQuery("")} className="absolute right-12 text-muted-foreground hover:text-foreground transition-colors" aria-label="Clear search">
+                <X size={14} />
+              </button>
+            )}
+            {results.length > 0 && (
+              <div className="absolute top-full mt-2 w-full rounded-xl border border-border bg-card overflow-hidden shadow-xl z-50">
+                {results.map((tool) => {
+                  const cat = categories.find(c => c.slug === tool.categorySlug);
+                  const color = cat?.color ?? "#ef4444";
+                  return (
+                    <Link
+                      key={tool.slug}
+                      href={`/${tool.categorySlug}/${tool.slug}`}
+                      onClick={() => setQuery("")}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors"
+                    >
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${color}18` }}>
+                        <KrynnIcon name={tool.icon} size={16} weight="duotone" color={color} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-sm font-medium truncate">{tool.name}</div>
+                        <div className="text-xs text-muted-foreground">{tool.category}</div>
+                      </div>
+                      <CaretRight size={14} className="text-muted-foreground" />
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
           {/* Mobile Search Button */}
-          <button
-            onClick={focusSearch}
-            style={{
-              display: "flex", alignItems: "center", justifyContent: "center",
-              width: "44px", height: "44px", borderRadius: "8px",
-              background: "none", border: "none", cursor: "pointer",
-              color: "var(--color-muted-foreground)",
-              transition: "background 200ms, color 200ms",
-              flexShrink: 0,
-            }}
-            aria-label="Search tools"
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "var(--color-muted)";
-              e.currentTarget.style.color = "var(--color-foreground)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "none";
-              e.currentTarget.style.color = "var(--color-muted-foreground)";
-            }}
-          >
+          <button onClick={focusSearch} className="md:flex items-center justify-center w-10 h-10 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-all" aria-label="Search tools">
             <MagnifyingGlass size={20} weight="bold" />
           </button>
 
-          {/* Theme Toggle Button */}
-          <button
-            onClick={toggle}
-            style={{
-              display: "flex", alignItems: "center", justifyContent: "center",
-              width: "44px", height: "44px", borderRadius: "8px",
-              background: "none", border: "none", cursor: "pointer",
-              color: "var(--color-muted-foreground)",
-              transition: "background 200ms, color 200ms",
-              flexShrink: 0,
-            }}
-            aria-label={mounted && dark ? "Switch to light mode" : "Switch to dark mode"}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "var(--color-muted)";
-              e.currentTarget.style.color = "var(--color-foreground)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "none";
-              e.currentTarget.style.color = "var(--color-muted-foreground)";
-            }}
-          >
-            <div style={{ position: "relative", width: "20px", height: "20px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{
-                position: "absolute",
-                opacity: mounted && dark ? 1 : 0,
-                transform: mounted && dark ? "rotate(0deg) scale(1)" : "rotate(90deg) scale(0.8)",
-                transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)",
-                display: "flex",
-              }}>
+          {/* Theme Toggle */}
+          <button onClick={toggle} className="flex items-center justify-center w-10 h-10 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-all" aria-label={mounted && dark ? "Switch to light mode" : "Switch to dark mode"}>
+            <div className="relative w-5 h-5 flex items-center justify-center">
+              <span className={`absolute transition-all duration-200 ${mounted && dark ? "opacity-100 rotate-0 scale-100" : "opacity-0 rotate-90 scale-75"}`}>
                 <Sun size={20} weight="bold" />
               </span>
-              <span style={{
-                position: "absolute",
-                opacity: mounted && !dark ? 1 : (mounted ? 0 : 1),
-                transform: mounted && !dark ? "rotate(0deg) scale(1)" : (mounted ? "rotate(-90deg) scale(0.8)" : "rotate(0deg) scale(1)"),
-                transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)",
-                display: "flex",
-              }}>
+              <span className={`absolute transition-all duration-200 ${mounted && !dark ? "opacity-100 rotate-0 scale-100" : mounted ? "opacity-0 -rotate-90 scale-75" : "opacity-100 rotate-0 scale-100"}`}>
                 <Moon size={20} weight="bold" />
               </span>
             </div>
@@ -182,396 +138,142 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Category Drawer (slide-up bottom-sheet) */}
-      <div
-        className="category-drawer-overlay"
-        data-open={catOpen}
-        style={{
-          position: "fixed", inset: 0, zIndex: 200,
-          background: "rgba(0,0,0,0.45)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          pointerEvents: catOpen ? "auto" : "none",
-          opacity: catOpen ? 1 : 0,
-          transition: "opacity 0.3s cubic-bezier(0.4,0,0.2,1)",
-        }}
-        onClick={(e) => { if (e.target === e.currentTarget) setCatOpen(false); }}
-      >
-        <div
-          className="category-drawer"
-          style={{
-            position: "absolute",
-            bottom: 0, left: 0, right: 0,
-            height: "min(78vh, calc(100dvh - 80px))",
-            background: "var(--color-card)",
-            borderTopLeftRadius: "24px",
-            borderTopRightRadius: "24px",
-            borderTop: "1px solid var(--color-border)",
-            boxShadow: "0 -8px 40px rgba(0,0,0,0.18)",
-            display: "flex", flexDirection: "column",
-            transform: catOpen ? "translateY(0)" : "translateY(100%)",
-            transition: "transform 0.35s cubic-bezier(0.16,1,0.3,1)",
-          }}
-        >
-          {/* Bottom sheet pull handle */}
-          <div style={{ display: "flex", justifyContent: "center", padding: "10px 0 2px", flexShrink: 0 }}>
-            <div style={{ width: "38px", height: "4px", borderRadius: "2px", background: "var(--color-border)" }} />
-          </div>
-          {/* Drawer header */}
-          <div style={{
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "20px 20px 0", flexShrink: 0,
-          }}>
-            <div>
-              <span style={{ fontSize: "1.125rem", fontWeight: 800, color: "var(--color-foreground)", letterSpacing: "-0.01em" }}>All Categories</span>
-              <span style={{ display: "block", fontSize: "0.75rem", color: "var(--color-muted-foreground)", marginTop: "2px" }}>{categories.length} categories · {tools.length} tools</span>
+      {/* ── Category Drawer ── */}
+      {catOpen && (
+        <div className="fixed inset-0 z-[200] bg-black/50 backdrop-blur-sm" onClick={(e) => { if (e.target === e.currentTarget) setCatOpen(false); }}>
+          <div className="absolute bottom-0 left-0 right-0 bg-card border-t border-border rounded-t-3xl shadow-2xl flex flex-col" style={{ height: "min(78vh, calc(100dvh - 80px))" }}>
+            <div className="flex justify-center pt-3 pb-1 flex-shrink-0">
+              <div className="w-10 h-1 rounded-full bg-border" />
             </div>
-            <button
-              onClick={() => setCatOpen(false)}
-              style={{
-                display: "flex", alignItems: "center", justifyContent: "center",
-                width: "38px", height: "38px", borderRadius: "10px",
-                background: "var(--color-muted)", border: "none", cursor: "pointer",
-                color: "var(--color-muted-foreground)", transition: "background 150ms",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--color-border)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-muted)")}
-              aria-label="Close categories"
-            >
-              <X size={18} weight="bold" />
-            </button>
-          </div>
-
-          {/* Search filter */}
-          <div style={{ padding: "16px 20px 8px", flexShrink: 0 }}>
-            <div style={{ position: "relative" }}>
-              <span style={{
-                position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)",
-                display: "flex", color: "var(--color-muted-foreground)", pointerEvents: "none",
-              }}>
-                <MagnifyingGlass size={16} />
-              </span>
-              <input
-                ref={catInputRef}
-                type="text"
-                placeholder="Search categories…"
-                value={catQuery}
-                onChange={(e) => setCatQuery(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "11px 12px 11px 38px",
-                  borderRadius: "12px",
-                  border: "1.5px solid var(--color-border)",
-                  background: dark ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.70)",
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
-                  fontSize: "0.875rem",
-                  color: "var(--color-foreground)",
-                  outline: "none",
-                  fontFamily: "inherit",
-                  transition: "border-color 180ms, box-shadow 180ms",
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.borderColor = "var(--color-primary)";
-                  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(232,16,10,0.14)";
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.borderColor = "var(--color-border)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
-              />
-              {catQuery && (
-                <button
-                  onClick={() => setCatQuery("")}
-                  style={{
-                    position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)",
-                    background: "var(--color-muted)", border: "none", cursor: "pointer",
-                    color: "var(--color-muted-foreground)", display: "flex",
-                    width: "22px", height: "22px", borderRadius: "6px",
-                    alignItems: "center", justifyContent: "center",
-                  }}
-                >
-                  <X size={13} weight="bold" />
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Category list */}
-          <div style={{ flex: 1, overflowY: "auto", padding: "8px 12px calc(32px + env(safe-area-inset-bottom, 0px))" }}>
-            {filteredCategories.length > 0 ? (
-              filteredCategories.map((cat, idx) => {
-                const count = toolCounts[cat.slug] || 0;
-                return (
-                  <Link
-                    key={cat.slug}
-                    href={`/${cat.slug}`}
-                    style={{
-                      display: "flex", alignItems: "center", gap: "14px",
-                      padding: "14px", borderRadius: "14px",
-                      textDecoration: "none", color: "var(--color-foreground)",
-                      marginBottom: "4px",
-                      transition: "background 150ms, transform 150ms",
-                      opacity: catOpen ? 1 : 0,
-                      transform: catOpen ? "translateY(0)" : "translateY(16px)",
-                      transitionDelay: catOpen ? `${idx * 35}ms` : "0ms",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = "var(--color-muted)";
-                      e.currentTarget.style.transform = "translateX(4px)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.transform = "translateX(0)";
-                    }}
-                  >
-                    <span style={{
-                      width: "44px", height: "44px", borderRadius: "12px",
-                      background: `${cat.color}15`,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      flexShrink: 0,
-                    }}>
-                      <KrynnIcon name={cat.icon} size={22} weight="duotone" color={cat.color} />
-                    </span>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 600, fontSize: "0.9375rem" }}>{cat.name}</div>
-                      <div style={{ fontSize: "0.75rem", color: "var(--color-muted-foreground)", marginTop: "2px", lineHeight: 1.4 }}>{cat.description}</div>
-                    </div>
-                    <div style={{
-                      display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "2px", flexShrink: 0,
-                    }}>
-                      <span style={{
-                        fontSize: "0.75rem", fontWeight: 700,
-                        color: cat.color, background: `${cat.color}12`,
-                        padding: "2px 8px", borderRadius: "6px",
-                      }}>
-                        {count}
-                      </span>
-                      <CaretRight size={12} color="var(--color-muted-foreground)" />
-                    </div>
-                  </Link>
-                );
-              })
-            ) : (
-              <div style={{
-                padding: "48px 20px", textAlign: "center",
-                color: "var(--color-muted-foreground)",
-              }}>
-                <MagnifyingGlass size={36} style={{ margin: "0 auto 12px", display: "block", opacity: 0.3 }} />
-                <div style={{ fontWeight: 600, fontSize: "0.9rem" }}>No categories found</div>
-                <div style={{ fontSize: "0.8rem", marginTop: "4px" }}>Try a different search term</div>
+            <div className="flex items-center justify-between px-5 pt-3 flex-shrink-0">
+              <div>
+                <span className="text-base font-bold">All Categories</span>
+                <span className="block text-xs text-muted-foreground mt-0.5">{categories.length} categories · {tools.length} tools</span>
               </div>
-            )}
+              <button onClick={() => setCatOpen(false)} className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center text-muted-foreground hover:bg-border transition-colors" aria-label="Close">
+                <X size={18} weight="bold" />
+              </button>
+            </div>
+            <div className="px-5 pt-4 pb-2 flex-shrink-0">
+              <div className="relative">
+                <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                <input
+                  type="text"
+                  placeholder="Search categories..."
+                  value={catQuery}
+                  onChange={(e) => setCatQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-muted border border-border text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
+                />
+              </div>
+            </div>
+            <div className="flex-1 overflow-y-auto px-3 pb-8">
+              {filteredCategories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/${cat.slug}`}
+                  className="flex items-center gap-3.5 p-3.5 rounded-xl hover:bg-muted transition-all mb-1 group"
+                >
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${cat.color}15` }}>
+                    <KrynnIcon name={cat.icon} size={22} weight="duotone" color={cat.color} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-sm">{cat.name}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5 truncate">{cat.description}</div>
+                  </div>
+                  <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-md" style={{ color: cat.color, background: `${cat.color}12` }}>
+                      {toolCounts[cat.slug] || 0}
+                    </span>
+                    <CaretRight size={12} className="text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Mobile Search Overlay */}
+      {/* ── Mobile Search Overlay ── */}
       {mobileSearchOpen && (
-        <div
-          style={{
-            position: "fixed", inset: 0, zIndex: 250,
-            background: "var(--color-background)",
-            display: "flex", flexDirection: "column",
-          }}
-        >
-          <div style={{
-            display: "flex", alignItems: "center", gap: "8px",
-            padding: "12px 16px",
-            borderBottom: "1px solid var(--color-border)",
-            background: "var(--color-card)",
-          }}>
-            <button
-              onClick={() => { setMobileSearchOpen(false); setQuery(""); }}
-              style={{
-                display: "flex", alignItems: "center", justifyContent: "center",
-                width: "38px", height: "38px", borderRadius: "8px",
-                background: "none", border: "none", cursor: "pointer",
-                color: "var(--color-muted-foreground)", flexShrink: 0,
-              }}
-              aria-label="Close search"
-            >
+        <div className="fixed inset-0 z-[250] bg-background flex flex-col md:hidden">
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-card">
+            <button onClick={() => { setMobileSearchOpen(false); setQuery(""); }} className="w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground flex-shrink-0" aria-label="Close search">
               <X size={20} weight="bold" />
             </button>
-            <div style={{ position: "relative", flex: 1 }}>
-              <span style={{
-                position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)",
-                display: "flex", color: "var(--color-muted-foreground)", pointerEvents: "none",
-              }}>
-                <MagnifyingGlass size={16} weight="bold" />
-              </span>
+            <div className="relative flex-1">
+              <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
               <input
                 ref={mobileSearchInputRef}
                 type="text"
                 placeholder="Search tools..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "10px 12px 10px 36px",
-                  borderRadius: "10px",
-                  border: "1.5px solid var(--color-border)",
-                  background: "var(--color-muted)",
-                  fontSize: "0.9375rem",
-                  color: "var(--color-foreground)",
-                  outline: "none",
-                  fontFamily: "inherit",
-                }}
+                className="w-full pl-9 pr-8 py-2.5 rounded-xl bg-muted border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none transition-all"
               />
               {query && (
-                <button
-                  onClick={() => setQuery("")}
-                  style={{
-                    position: "absolute", right: "8px", top: "50%", transform: "translateY(-50%)",
-                    background: "none", border: "none", cursor: "pointer",
-                    color: "var(--color-muted-foreground)", display: "flex", padding: "4px",
-                  }}
-                  aria-label="Clear search"
-                >
+                <button onClick={() => setQuery("")} className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors" aria-label="Clear">
                   <X size={14} weight="bold" />
                 </button>
               )}
             </div>
           </div>
-          <div style={{ flex: 1, overflowY: "auto", padding: "8px 16px", paddingBottom: "calc(8px + env(safe-area-inset-bottom, 0px))" }}>
-            {results.length > 0 ? results.map((tool, idx) => {
+          <div className="flex-1 overflow-y-auto px-4 py-2">
+            {results.length > 0 ? results.map((tool) => {
               const cat = categories.find(c => c.slug === tool.categorySlug);
-              const colour = cat?.color ?? "#E8100A";
+              const color = cat?.color ?? "#ef4444";
               return (
                 <Link
                   key={tool.slug}
                   href={`/${tool.categorySlug}/${tool.slug}`}
                   onClick={() => { setMobileSearchOpen(false); setQuery(""); }}
-                  style={{
-                    display: "flex", alignItems: "center", gap: "12px",
-                    padding: "12px 14px",
-                    borderBottom: idx < results.length - 1 ? "1px solid var(--color-border)" : "none",
-                    textDecoration: "none", color: "inherit",
-                    borderRadius: "10px",
-                    transition: "background 120ms",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--color-muted)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  className="flex items-center gap-3 px-3 py-3 border-b border-border last:border-0 rounded-xl hover:bg-muted transition-colors"
                 >
-                  <div style={{
-                    width: "38px", height: "38px", flexShrink: 0, borderRadius: "10px",
-                    background: `${colour}18`, display: "flex",
-                    alignItems: "center", justifyContent: "center",
-                  }}>
-                    <KrynnIcon name={tool.icon} size={18} weight="duotone" color={colour} />
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${color}18` }}>
+                    <KrynnIcon name={tool.icon} size={18} weight="duotone" color={color} />
                   </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontWeight: 600, fontSize: "0.9375rem" }}>{tool.name}</div>
-                    <div style={{ fontSize: "0.75rem", color: "var(--color-muted-foreground)" }}>{tool.category}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium">{tool.name}</div>
+                    <div className="text-xs text-muted-foreground">{tool.category}</div>
                   </div>
-                  <CaretRight size={14} color="var(--color-muted-foreground)" />
+                  <CaretRight size={14} className="text-muted-foreground" />
                 </Link>
               );
             }) : query.length > 0 ? (
-              <div style={{ padding: "48px 20px", textAlign: "center", color: "var(--color-muted-foreground)" }}>
-                <MagnifyingGlass size={32} style={{ margin: "0 auto 10px", display: "block", opacity: 0.3 }} />
-                <div style={{ fontWeight: 600, fontSize: "0.9rem" }}>No tools found for &quot;{query}&quot;</div>
+              <div className="py-16 text-center text-muted-foreground">
+                <MagnifyingGlass size={32} className="mx-auto mb-3 opacity-30" />
+                <div className="font-semibold text-sm">No tools found for "{query}"</div>
               </div>
             ) : (
-              <div style={{ padding: "32px 20px", textAlign: "center", color: "var(--color-muted-foreground)" }}>
-                <MagnifyingGlass size={32} style={{ margin: "0 auto 10px", display: "block", opacity: 0.3 }} />
-                <div style={{ fontWeight: 600, fontSize: "0.9rem" }}>Start typing to search tools</div>
+              <div className="py-16 text-center text-muted-foreground">
+                <MagnifyingGlass size={32} className="mx-auto mb-3 opacity-30" />
+                <div className="font-semibold text-sm">Start typing to search</div>
               </div>
             )}
           </div>
         </div>
       )}
 
-      {/* Mobile Bottom Navigation Bar */}
-      <nav
-        className="fixed bottom-0 left-0 right-0 z-40 flex md:hidden"
-        style={{
-          height: "64px",
-          background: "var(--glass-bg)",
-          backdropFilter: "var(--glass-blur)",
-          WebkitBackdropFilter: "var(--glass-blur)",
-          borderTop: "1px solid var(--color-border)",
-          boxShadow: "0 -4px 16px rgba(0,0,0,0.06)",
-          alignItems: "center",
-          justifyContent: "space-around",
-          paddingBottom: "env(safe-area-inset-bottom, 0px)",
-        }}
-      >
-        <Link
-          href="/"
-          style={{
-            display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "3px",
-            textDecoration: "none",
-            color: isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)",
-            fontSize: "0.6875rem", fontWeight: 600,
-            transition: "color 200ms",
-            width: "25%",
-            height: "100%",
-          }}
-        >
-          <KrynnIcon name="House" size={20} weight={isActive("/") ? "fill" : "duotone"} color={isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)"} />
+      {/* ── Mobile Bottom Nav ── */}
+      <nav className="fixed bottom-0 left-0 right-0 z-40 flex md:hidden h-16 bg-card/90 backdrop-blur-xl border-t border-border items-center justify-around" style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}>
+        <Link href="/" className="flex flex-col items-center justify-center gap-1 w-1/4 h-full text-xs font-semibold transition-colors" style={{ color: isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)" }}>
+          <House size={20} weight={isActive("/") ? "fill" : "duotone"} />
           Home
         </Link>
-        <button
-          onClick={() => setCatOpen(true)}
-          style={{
-            background: "none", border: "none", display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center", gap: "3px", cursor: "pointer",
-            color: catOpen ? "var(--color-primary)" : "var(--color-muted-foreground)", 
-            fontSize: "0.6875rem", fontWeight: 600,
-            transition: "color 200ms",
-            width: "25%",
-            height: "100%",
-          }}
-        >
-          <KrynnIcon name="GridFour" size={20} weight={catOpen ? "fill" : "duotone"} color={catOpen ? "var(--color-primary)" : "var(--color-muted-foreground)"} />
+        <button onClick={() => setCatOpen(true)} className="flex flex-col items-center justify-center gap-1 w-1/4 h-full text-xs font-semibold transition-colors" style={{ color: catOpen ? "var(--color-primary)" : "var(--color-muted-foreground)" }}>
+          <GridFour size={20} weight={catOpen ? "fill" : "duotone"} />
           Categories
         </button>
-        <button
-          onClick={focusSearch}
-          style={{
-            background: "none", border: "none", display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center", gap: "3px", cursor: "pointer",
-            color: "var(--color-muted-foreground)", 
-            fontSize: "0.6875rem", fontWeight: 600,
-            transition: "color 200ms",
-            width: "25%",
-            height: "100%",
-          }}
-        >
-          <KrynnIcon name="MagnifyingGlass" size={20} weight="duotone" color="var(--color-muted-foreground)" />
+        <button onClick={focusSearch} className="flex flex-col items-center justify-center gap-1 w-1/4 h-full text-xs font-semibold text-muted-foreground transition-colors">
+          <MagnifyingGlass size={20} weight="duotone" />
           Search
         </button>
-        <button
-          onClick={toggle}
-          style={{
-            background: "none", border: "none", display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center", gap: "3px", cursor: "pointer",
-            color: "var(--color-muted-foreground)",
-            fontSize: "0.6875rem", fontWeight: 600,
-            transition: "color 200ms",
-            width: "25%",
-            height: "100%",
-          }}
-        >
-          <div style={{ position: "relative", width: "20px", height: "20px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "2px" }}>
-            <span style={{
-              position: "absolute",
-              opacity: mounted && dark ? 1 : 0,
-              transform: mounted && dark ? "rotate(0deg) scale(1)" : "rotate(90deg) scale(0.8)",
-              transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)",
-              display: "flex",
-            }}>
-              <KrynnIcon name="Sun" size={20} weight="fill" color={isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)"} />
+        <button onClick={toggle} className="flex flex-col items-center justify-center gap-1 w-1/4 h-full text-xs font-semibold text-muted-foreground transition-colors">
+          <div className="relative w-5 h-5 flex items-center justify-center">
+            <span className={`absolute transition-all duration-200 ${mounted && dark ? "opacity-100 rotate-0 scale-100" : "opacity-0 rotate-90 scale-75"}`}>
+              <Sun size={20} weight="fill" />
             </span>
-            <span style={{
-              position: "absolute",
-              opacity: mounted && !dark ? 1 : (mounted ? 0 : 1),
-              transform: mounted && !dark ? "rotate(0deg) scale(1)" : (mounted ? "rotate(-90deg) scale(0.8)" : "rotate(0deg) scale(1)"),
-              transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms cubic-bezier(0.4, 0, 0.2, 1)",
-              display: "flex",
-            }}>
-              <KrynnIcon name="Moon" size={20} weight="duotone" color={isActive("/") ? "var(--color-primary)" : "var(--color-muted-foreground)"} />
+            <span className={`absolute transition-all duration-200 ${mounted && !dark ? "opacity-100 rotate-0 scale-100" : mounted ? "opacity-0 -rotate-90 scale-75" : "opacity-100 rotate-0 scale-100"}`}>
+              <Moon size={20} weight="duotone" />
             </span>
           </div>
           Theme

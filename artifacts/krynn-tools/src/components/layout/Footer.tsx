@@ -4,29 +4,26 @@ import { categories } from "@/lib/tools";
 
 export default function Footer() {
   return (
-    <footer className="footer-band google-anno-skip pb-[calc(64px+env(safe-area-inset-bottom,0px))] md:pb-0">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 py-6 sm:py-8 lg:py-16">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 items-start">
+    <footer className="footer-band pb-[calc(64px+env(safe-area-inset-bottom,0px))] md:pb-0">
+      <div className="container-app py-12 sm:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
-          <div>
-            <Link href="/" className="inline-flex items-center gap-2" style={{ color: "var(--color-foreground)" }}>
-              <KrynnLogo height={34} />
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Link href="/" className="inline-flex items-center gap-2">
+              <KrynnLogo height={30} />
             </Link>
-            <p className="mt-3 text-sm text-[var(--color-muted-foreground)]">
-              100+ free online tools. PDF, Image, Text, Dev, Design, Calculators &amp; More. Everything runs in your browser.
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
+              100+ free online tools. PDF, Image, Text, Dev, Design, Calculators & More. Everything runs in your browser.
             </p>
           </div>
 
-          {/* Tool Categories */}
+          {/* Tools */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--color-muted-foreground)]">Tools</h3>
-            <ul className="space-y-2">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Tools</h3>
+            <ul className="space-y-2.5">
               {categories.map((cat) => (
                 <li key={cat.slug}>
-                  <Link
-                    href={`/${cat.slug}`}
-                    className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer"
-                  >
+                  <Link href={`/${cat.slug}`} className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
                     {cat.name}
                   </Link>
                 </li>
@@ -36,62 +33,32 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--color-muted-foreground)]">Company</h3>
-            <ul className="space-y-2">
-              <li><Link href="/about"   className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">About Us</Link></li>
-              <li><Link href="/contact" className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Contact</Link></li>
-              <li><Link href="/blog"    className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Blog</Link></li>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Company</h3>
+            <ul className="space-y-2.5">
+              <li><Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">About Us</Link></li>
+              <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">Contact</Link></li>
+              <li><Link href="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">Blog</Link></li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--color-muted-foreground)]">Legal</h3>
-            <ul className="space-y-2">
-              <li><Link href="/privacy-policy"  className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Privacy Policy</Link></li>
-              <li><Link href="/terms-of-service" className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Terms of Service</Link></li>
-              <li><Link href="/cookie-policy"   className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Cookie Policy</Link></li>
-              <li><Link href="/disclaimer"      className="text-sm text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors duration-200 cursor-pointer">Disclaimer</Link></li>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4">Legal</h3>
+            <ul className="space-y-2.5">
+              <li><Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">Privacy Policy</Link></li>
+              <li><Link href="/terms-of-service" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">Terms of Service</Link></li>
+              <li><Link href="/cookie-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">Cookie Policy</Link></li>
+              <li><Link href="/disclaimer" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">Disclaimer</Link></li>
             </ul>
           </div>
         </div>
 
-        {/* Built by credit */}
-        <div className="mt-8 border-t border-[var(--color-border)] pt-6">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <p className="text-sm text-[var(--color-muted-foreground)]">
-              Built by{" "}
-              <a
-                href="https://linkedin.com/in/abhijithmr226"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[var(--color-primary)] hover:underline"
-              >
-                Abhijith MR
-              </a>
-            </p>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://linkedin.com/in/abhijithmr226"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors"
-              >
-                LinkedIn
-              </a>
-              <span className="text-[var(--color-border)]">·</span>
-              <a
-                href="https://instagram.com/krynnlabs"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)] transition-colors"
-              >
-                Instagram @krynnlabs
-              </a>
-            </div>
-            <p className="text-xs text-[var(--color-muted-foreground)]">
-              &copy; {new Date().getFullYear()} Krynn Tools. All rights reserved. All tools are free and process data in your browser.
-            </p>
+        {/* Bottom */}
+        <div className="mt-10 border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} Krynn Tools. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <a href="https://linkedin.com/in/abhijithmr226" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
+            <a href="https://instagram.com/krynnlabs" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
           </div>
         </div>
       </div>

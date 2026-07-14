@@ -1,19 +1,19 @@
-import { Suspense, lazy, ComponentType, ReactNode } from 'react';
-import { Switch, Route, useParams, Router as WouterRouter } from 'wouter';
+import { Suspense, lazy, ComponentType, ReactNode, useEffect } from 'react';
+import { Switch, Route, useParams, Router as WouterRouter, useLocation } from 'wouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from '@/lib/theme-provider';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import { categories, tools } from '@/lib/tools';
+import KrynnIcon from '@/components/common/KrynnIcon';
+import { Lightning } from '@phosphor-icons/react';
 
-// ── Home page is EAGERLY imported — renders on first paint, no spinner. ───────
 import HomePageComponent from './app/page';
 
 const queryClient = new QueryClient();
 
-// ── All other pages are lazily code-split. ───────────────────────────────────
-// Direct lazy() imports give Vite explicit split points (better DX than glob).
 const _BlogPage         = lazy(() => import('./app/blog/page'));
 const _AboutPage        = lazy(() => import('./app/about/page'));
 const _ContactPage      = lazy(() => import('./app/contact/page'));
@@ -23,28 +23,13 @@ const _CookiePolicyPage = lazy(() => import('./app/cookie-policy/page'));
 const _DisclaimerPage   = lazy(() => import('./app/disclaimer/page'));
 const _SlugPage         = lazy(() => import('./app/[slug]/page'));
 
-// ── Dynamic discovery for tool + blog-post routes ────────────────────────────
-const toolModules = import.meta.glob('./app/*/*/page.tsx') as Record<
-  string,
-  () => Promise<{ default: ComponentType<unknown> }>
->;
-const blogModules = import.meta.glob('./app/blog/*/page.tsx') as Record<
-  string,
-  () => Promise<{ default: ComponentType<unknown> }>
->;
-const categoryModules = import.meta.glob('./app/*/page.tsx') as Record<
-  string,
-  () => Promise<{ default: ComponentType<unknown> }>
->;
+const toolModules = import.meta.glob('./app/*/*/page.tsx') as Record<string, () => Promise<{ default: ComponentType<unknown> }>>;
+const blogModules = import.meta.glob('./app/blog/*/page.tsx') as Record<string, () => Promise<{ default: ComponentType<unknown> }>>;
+const categoryModules = import.meta.glob('./app/*/page.tsx') as Record<string, () => Promise<{ default: ComponentType<unknown> }>>;
 
-// Cache lazy components so React sees a stable reference across renders —
-// critical for Suspense: a new component type forces an unnecessary remount.
 const lazyCache = new Map<string, ComponentType<unknown>>();
 
-function getOrCreateLazy(
-  key: string,
-  modules: Record<string, () => Promise<{ default: ComponentType<unknown> }>>
-): ComponentType<unknown> | null {
+function getOrCreateLazy(key: string, modules: Record<string, () => Promise<{ default: ComponentType<unknown> }>>): ComponentType<unknown> | null {
   if (lazyCache.has(key)) return lazyCache.get(key)!;
   const loader = modules[key];
   if (!loader) return null;
@@ -53,54 +38,20 @@ function getOrCreateLazy(
   return C;
 }
 
-// ── Loading spinner ───────────────────────────────────────────────────────────
 const PageSpinner = () => (
-  <div
-    style={{
-      minHeight: '60vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
+  <div className="min-h-[60vh] flex items-center justify-center">
     <div className="spinner" />
   </div>
 );
 
-// ── 404 ──────────────────────────────────────────────────────────────────────
 const NotFoundPage = () => (
-  <div
-    style={{
-      minHeight: '60vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '16px',
-      textAlign: 'center',
-      padding: '0 24px',
-    }}
-  >
-    <h1 style={{ fontSize: '5rem', fontWeight: 800, color: 'var(--color-primary)', lineHeight: 1 }}>
-      404
-    </h1>
-    <p style={{ color: 'var(--color-muted-foreground)', fontSize: '1.125rem' }}>
-      Page not found
-    </p>
-    <a
-      href="/"
-      style={{
-        marginTop: '8px', padding: '10px 24px', borderRadius: '10px',
-        background: 'var(--color-primary)', color: '#fff',
-        fontWeight: 600, fontSize: '0.9375rem',
-      }}
-    >
-      ← Back to Home
-    </a>
+  <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4 text-center px-6">
+    <h1 className="text-6xl font-extrabold text-primary">404</h1>
+    <p className="text-muted-foreground text-lg">Page not found</p>
+    <a href="/" className="btn-primary mt-2">← Back to Home</a>
   </div>
 );
 
-// ── Lazy page wrapper — wraps with Suspense + ErrorBoundary ──────────────────
 function LazyPage({ Page }: { Page: ComponentType<unknown> | null }) {
   if (!Page) return <NotFoundPage />;
   return (
@@ -112,10 +63,38 @@ function LazyPage({ Page }: { Page: ComponentType<unknown> | null }) {
   );
 }
 
-// ── Static route components — defined at module scope for stable refs ─────────
-// Never define these inline (e.g. component={() => ...}): React treats new
-// function references as new component types and remounts the subtree,
-// resetting Suspense and losing state.
+// ── SEO: Update document title on route change ──
+function SeoUpdater() {
+  const [pathname] = useLocation();
+
+  useEffect(() => {
+    const tool = tools.find(t => {
+      const cat = categories.find(c => c.slug === t.categorySlug);
+      return cat && pathname === `/${t.categorySlug}/${t.slug}`;
+    });
+
+    const category = categories.find(c => pathname === `/${c.slug}`);
+
+    if (tool) {
+      document.title = `${tool.name} — Free Online Tool | Krynn Tools`;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', tool.description);
+    } else if (category) {
+      document.title = `${category.name} Tools — Free Online | Krynn Tools`;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', `${category.description} Free, fast, runs in your browser.`);
+    } else if (pathname === '/') {
+      document.title = 'Krynn Tools — 100+ Free Online Tools';
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', '100+ free online tools for PDF, Image, Text, Developer, Design, Calculators & Security. Fast, private, runs in your browser.');
+    } else {
+      document.title = 'Krynn Tools — 100+ Free Online Tools';
+    }
+  }, [pathname]);
+
+  return null;
+}
+
 function HomePage()         { return <HomePageComponent />; }
 function BlogPage()         { return <LazyPage Page={_BlogPage} />; }
 function AboutPage()        { return <LazyPage Page={_AboutPage} />; }
@@ -125,7 +104,6 @@ function TermsPage()        { return <LazyPage Page={_TermsPage} />; }
 function CookiePolicyPage() { return <LazyPage Page={_CookiePolicyPage} />; }
 function DisclaimerPage()   { return <LazyPage Page={_DisclaimerPage} />; }
 
-// ── Dynamic routes ────────────────────────────────────────────────────────────
 function BlogPostRoute() {
   const { slug } = useParams<{ slug: string }>();
   const Page = getOrCreateLazy(`./app/blog/${slug}/page.tsx`, blogModules);
@@ -145,15 +123,11 @@ function CategoryOrSlugRoute() {
   return <LazyPage Page={specificPage ?? _SlugPage} />;
 }
 
-// ── App layout ────────────────────────────────────────────────────────────────
 function AppLayout({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider>
+      <SeoUpdater />
       <Header />
-      {/*
-        pb-safe-nav: On mobile, the bottom nav is 64px + safe-area-inset-bottom.
-        On md+ screens the bottom nav is hidden (md:hidden) so no padding needed.
-      */}
       <main className="min-h-[calc(100vh-4rem)] pb-[calc(72px+env(safe-area-inset-bottom,0px))] md:pb-0">
         {children}
       </main>
@@ -163,7 +137,6 @@ function AppLayout({ children }: { children: ReactNode }) {
   );
 }
 
-// ── Router ────────────────────────────────────────────────────────────────────
 function AppRouter() {
   return (
     <AppLayout>
@@ -178,9 +151,7 @@ function AppRouter() {
           <Route path="/terms-of-service" component={TermsPage} />
           <Route path="/cookie-policy"    component={CookiePolicyPage} />
           <Route path="/disclaimer"       component={DisclaimerPage} />
-          {/* Two-segment paths are tools; must be registered before /:slug */}
           <Route path="/:category/:tool"  component={ToolRoute} />
-          {/* One-segment paths are category listings or other pages */}
           <Route path="/:slug"            component={CategoryOrSlugRoute} />
           <Route component={NotFoundPage} />
         </Switch>
@@ -189,7 +160,6 @@ function AppRouter() {
   );
 }
 
-// ── Root ──────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
