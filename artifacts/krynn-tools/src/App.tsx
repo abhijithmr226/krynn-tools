@@ -21,6 +21,8 @@ const _PrivacyPage      = lazy(() => import('./app/privacy-policy/page'));
 const _TermsPage        = lazy(() => import('./app/terms-of-service/page'));
 const _CookiePolicyPage = lazy(() => import('./app/cookie-policy/page'));
 const _DisclaimerPage   = lazy(() => import('./app/disclaimer/page'));
+const _SearchPage       = lazy(() => import('./app/search/page'));
+const _SettingsPage     = lazy(() => import('./app/settings/page'));
 const _SlugPage         = lazy(() => import('./app/[slug]/page'));
 
 const toolModules = import.meta.glob('./app/*/*/page.tsx') as Record<string, () => Promise<{ default: ComponentType<unknown> }>>;
@@ -138,6 +140,8 @@ function PrivacyPage()      { return <LazyPage Page={_PrivacyPage} />; }
 function TermsPage()        { return <LazyPage Page={_TermsPage} />; }
 function CookiePolicyPage() { return <LazyPage Page={_CookiePolicyPage} />; }
 function DisclaimerPage()   { return <LazyPage Page={_DisclaimerPage} />; }
+function SettingsPage()    { return <LazyPage Page={_SettingsPage} />; }
+function SearchPage()     { return <LazyPage Page={_SearchPage} />; }
 
 function BlogPostRoute() {
   const { slug } = useParams<{ slug: string }>();
@@ -186,6 +190,8 @@ function AppRouter() {
           <Route path="/terms-of-service" component={TermsPage} />
           <Route path="/cookie-policy"    component={CookiePolicyPage} />
           <Route path="/disclaimer"       component={DisclaimerPage} />
+          <Route path="/settings"         component={SettingsPage} />
+          <Route path="/search"          component={SearchPage} />
           <Route path="/:category/:tool"  component={ToolRoute} />
           <Route path="/:slug"            component={CategoryOrSlugRoute} />
           <Route component={NotFoundPage} />

@@ -19,6 +19,8 @@ async function generateSitemap() {
     "terms-of-service",
     "cookie-policy",
     "disclaimer",
+    "search",
+    "settings",
   ];
   staticPages.forEach((p) => urls.push(p));
 

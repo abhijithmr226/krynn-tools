@@ -14,6 +14,7 @@ import {
   House,
   Star,
   CaretDown,
+  Gear,
 } from "@phosphor-icons/react";
 
 const navCategories = [
@@ -307,6 +308,15 @@ export default function Header() {
             <Star size={18} weight="fill" />
           </Link>
 
+          {/* Settings Link */}
+          <Link
+            href="/settings"
+            className="hidden md:flex items-center justify-center w-10 h-10 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-all"
+            aria-label="Settings"
+          >
+            <Gear size={20} weight="bold" />
+          </Link>
+
           {/* Theme Toggle */}
           <button
             onClick={toggle}
@@ -552,7 +562,7 @@ export default function Header() {
       >
         <Link
           href="/"
-          className="flex flex-col items-center justify-center gap-1 w-1/4 h-full text-xs font-semibold transition-colors"
+          className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold transition-colors"
           style={{
             color: isActive("/")
               ? "var(--color-primary)"
@@ -564,7 +574,7 @@ export default function Header() {
         </Link>
         <button
           onClick={() => setCatOpen(true)}
-          className="flex flex-col items-center justify-center gap-1 w-1/4 h-full text-xs font-semibold transition-colors"
+          className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold transition-colors"
           style={{
             color: catOpen
               ? "var(--color-primary)"
@@ -576,14 +586,26 @@ export default function Header() {
         </button>
         <button
           onClick={focusSearch}
-          className="flex flex-col items-center justify-center gap-1 w-1/4 h-full text-xs font-semibold text-muted-foreground transition-colors"
+          className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold text-muted-foreground transition-colors"
         >
           <MagnifyingGlass size={20} weight="duotone" />
           Search
         </button>
+        <Link
+          href="/settings"
+          className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold transition-colors"
+          style={{
+            color: isActive("/settings")
+              ? "var(--color-primary)"
+              : "var(--color-muted-foreground)",
+          }}
+        >
+          <Gear size={20} weight={isActive("/settings") ? "fill" : "duotone"} />
+          Settings
+        </Link>
         <button
           onClick={toggle}
-          className="flex flex-col items-center justify-center gap-1 w-1/4 h-full text-xs font-semibold text-muted-foreground transition-colors"
+          className="flex flex-col items-center justify-center gap-1 w-1/5 h-full text-[10px] font-semibold text-muted-foreground transition-colors"
         >
           <div className="relative w-5 h-5 flex items-center justify-center">
             <span
