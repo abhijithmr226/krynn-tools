@@ -25,7 +25,7 @@ const RSS_FEEDS = [
 ];
 
 const MAX_ARTICLES = 200;
-const DEDUP_WINDOW_HOURS = 48;
+const DEDUP_WINDOW_HOURS = 24;
 
 function parseRSS(xml) {
   const items = [];
@@ -283,10 +283,15 @@ async function main() {
     finalIds.add(a.id);
     return true;
   });
+  // Filter out any articles older than the cutoff (guarantees only fresh news is kept)
+  const finalRecent = final.filter(a => {
+    const d = new Date(a.publishedAt).getTime();
+    return !isNaN(d) && d > cutoff;
+  });
   // Sort all by date
-  final.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+  finalRecent.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
   // Keep top 200
-  const finalTop = final.slice(0, 200);
+  const finalTop = finalRecent.slice(0, 200);
 
   // Save
   const outDir = join(process.cwd(), 'public', 'trending-news');
