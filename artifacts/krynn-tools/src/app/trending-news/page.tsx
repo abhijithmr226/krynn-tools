@@ -110,7 +110,7 @@ export default function TrendingNewsPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)] mb-4 tracking-tight">
               Trending <span className="text-[var(--color-primary)]">Tech News</span>
             </h1>
-            <p className="text-lg text-[var(--color-muted)] mb-8 leading-relaxed">
+            <p className="text-lg text-[var(--color-muted-foreground)] mb-8 leading-relaxed">
               Stay ahead with the latest in technology, AI, and cybersecurity. Curated from TechCrunch, The Verge, WIRED, and more — updated automatically every 30 minutes.
             </p>
             <div className="max-w-xl mx-auto">
@@ -145,13 +145,13 @@ export default function TrendingNewsPage() {
           {/* Main Content */}
           <main className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-6">
-              <p className="text-sm text-[var(--color-muted)]">
+              <p className="text-sm text-[var(--color-muted-foreground)]">
                 {loading ? 'Loading...' : `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`}
                 {activeCategory !== 'All' && ` in ${activeCategory}`}
                 {search && ` matching "${search}"`}
               </p>
               {data && (
-                <p className="text-xs text-[var(--color-muted)]">
+                <p className="text-xs text-[var(--color-muted-foreground)]">
                   Updated: {new Date(data.lastUpdated).toLocaleString()}
                 </p>
               )}
@@ -159,7 +159,7 @@ export default function TrendingNewsPage() {
 
             {error && (
               <div className="text-center py-16 bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)]">
-                <p className="text-[var(--color-muted)] mb-4">{error}</p>
+                <p className="text-[var(--color-muted-foreground)] mb-4">{error}</p>
                 <button onClick={() => window.location.reload()} className="px-6 py-2 bg-[var(--color-primary)] text-white rounded-xl hover:opacity-90 transition-opacity">
                   Try Again
                 </button>
@@ -176,9 +176,9 @@ export default function TrendingNewsPage() {
               <>
                 {visible.length === 0 ? (
                   <div className="text-center py-16 bg-[var(--color-card)] rounded-2xl border border-[var(--color-border)]">
-                    <svg className="w-16 h-16 mx-auto text-[var(--color-muted)] mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    <svg className="w-16 h-16 mx-auto text-[var(--color-muted-foreground)] mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
                     <h3 className="text-lg font-semibold text-[var(--color-foreground)] mb-2">No articles found</h3>
-                    <p className="text-[var(--color-muted)]">Try adjusting your search or filters.</p>
+                    <p className="text-[var(--color-muted-foreground)]">Try adjusting your search or filters.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -41,7 +41,8 @@ export default function SearchBar({ value, onChange, placeholder = "Search artic
         value={localValue}
         onChange={handleChange}
         placeholder={placeholder}
-        className="h-12 w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] pl-14 pr-12 text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] transition-all duration-200 focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:outline-none"
+        className="h-12 w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] transition-all duration-200 focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:outline-none"
+        style={{ paddingLeft: "3.75rem", paddingRight: "3.25rem" }}
       />
       <svg
         width="20"
@@ -52,7 +53,7 @@ export default function SearchBar({ value, onChange, placeholder = "Search artic
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+        className="absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none"
       >
         <circle cx="11" cy="11" r="8" />
         <line x1="21" y1="21" x2="16.65" y2="16.65" />
