@@ -1561,16 +1561,4 @@
       <news:keywords>technology, wired, Technology</news:keywords>
     </news:news>
   </url>
-  <url>
-    <loc>https://www.krynntools.online/trending-news/microsoft-copilot-now-default-in-office</loc>
-    <news:news>
-      <news:publication>
-        <news:name>WIRED</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:title>Microsoft Makes Copilot the Default Experience in Office 365</news:title>
-      <news:publication_date>2026-07-14T04:15:00.000Z</news:publication_date>
-      <news:keywords>technology, microsoft, copilot, ai, office, Technology</news:keywords>
-    </news:news>
-  </url>
 </urlset>

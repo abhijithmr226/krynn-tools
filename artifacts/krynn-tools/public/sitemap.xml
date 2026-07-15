@@ -2095,10 +2095,4 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://www.krynntools.online/trending-news/microsoft-copilot-now-default-in-office</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
 </urlset>

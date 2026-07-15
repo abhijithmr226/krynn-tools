@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-07-15T04:13:11.680Z",
-  "totalArticles": 131,
+  "lastUpdated": "2026-07-15T04:28:14.027Z",
+  "totalArticles": 130,
   "articles": [
     {
       "id": "b37627ebd72c",
@@ -2108,25 +2108,6 @@
         "wired"
       ],
       "readTime": 1,
-      "image": ""
-    },
-    {
-      "id": "a7b8c9d0e1f2",
-      "slug": "microsoft-copilot-now-default-in-office",
-      "title": "Microsoft Makes Copilot the Default Experience in Office 365",
-      "summary": "Microsoft has announced that Copilot AI will now be the default interface across all Office 365 applications. Users can expect AI-powered drafting, summarization, and data analysis built into Word, Excel, PowerPoint, and Outlook.",
-      "source": "WIRED",
-      "sourceUrl": "https://wired.com/2026/07/14/microsoft-copilot-office",
-      "publishedAt": "2026-07-14T04:15:00Z",
-      "category": "Technology",
-      "tags": [
-        "technology",
-        "microsoft",
-        "copilot",
-        "ai",
-        "office"
-      ],
-      "readTime": 5,
       "image": ""
     }
   ]
