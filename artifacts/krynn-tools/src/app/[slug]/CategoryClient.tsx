@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import KrynnIcon from "@/components/KrynnIcon";
 import { categories, getToolColor } from "@/lib/tools";
+import { categorySeoData } from "@/lib/category-seo";
 
 const PAGE_SIZE = 9;
 
@@ -16,6 +17,8 @@ export default function CategoryClient({ cat, catTools, currentSlug }: CategoryC
   const visibleTools = catTools.slice(0, visibleCount);
   const hasMore = visibleCount < catTools.length;
   const toolCount = catTools.length;
+
+  const seoData = categorySeoData[currentSlug];
 
   return (
     <div className="container-app py-8 sm:py-12 lg:py-16">
@@ -51,6 +54,57 @@ export default function CategoryClient({ cat, catTools, currentSlug }: CategoryC
           <button onClick={() => setVisibleCount((c) => c + PAGE_SIZE)} className="btn-secondary">
             Show More ({catTools.length - visibleCount} remaining)
           </button>
+        </div>
+      )}
+
+      {/* ── SEO Explanatory Guide Section ── */}
+      {seoData && (
+        <div className="mt-20 pt-16 border-t border-border max-w-4xl mx-auto space-y-12">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-foreground mb-4">{seoData.guideTitle}</h2>
+            <div className="w-16 h-1 bg-primary mx-auto rounded-full" />
+          </div>
+
+          <div className="space-y-8">
+            {seoData.sections.map((section, idx) => (
+              <div key={idx} className="space-y-3">
+                <h2 className="text-xl font-bold text-foreground">{section.heading}</h2>
+                <p className="text-base text-muted-foreground leading-relaxed">{section.content}</p>
+              </div>
+            ))}
+          </div>
+
+          {seoData.faqs.length > 0 && (
+            <div className="space-y-6 pt-8 border-t border-border">
+              <h3 className="text-2xl font-bold text-foreground text-center mb-8">Frequently Asked Questions</h3>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {seoData.faqs.map((faq, idx) => (
+                  <div key={idx} className="p-5 rounded-2xl border border-border bg-card space-y-2">
+                    <h4 className="font-bold text-sm text-foreground">{faq.question}</h4>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* JSON-LD Schema */}
+          {seoData.faqs.length > 0 && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: seoData.faqs.map((item) => ({
+                    "@type": "Question",
+                    name: item.question,
+                    acceptedAnswer: { "@type": "Answer", text: item.answer },
+                  })),
+                }),
+              }}
+            />
+          )}
         </div>
       )}
 
