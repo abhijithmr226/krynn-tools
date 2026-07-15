@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { existsSync } from "fs";
 import { categories, tools } from "../src/lib/tools.ts";
 import { blogPosts } from "../src/app/blog/page.tsx";
 
@@ -129,6 +130,62 @@ async function prerender() {
         schema
       });
     });
+
+    // --- Trending News Pages ---
+    try {
+      const newsDataPath = path.resolve(import.meta.dirname, "../public/trending-news/data.json");
+      if (existsSync(newsDataPath)) {
+        const newsRaw = await fs.readFile(newsDataPath, "utf-8");
+        const newsData = JSON.parse(newsRaw);
+        if (newsData && Array.isArray(newsData.articles)) {
+          // Pre-render the main trending-news list page
+          urls.push({
+            path: "trending-news",
+            title: "Trending Tech News — AI, Technology & Cybersecurity | Krynn Tools",
+            desc: "Stay ahead with the latest in technology, AI, and cybersecurity. Curated from TechCrunch, The Verge, WIRED, and more — updated automatically."
+          });
+
+          // Pre-render individual news articles
+          newsData.articles.forEach((article: any) => {
+            const schema = {
+              "@context": "https://schema.org",
+              "@type": "NewsArticle",
+              "headline": article.title,
+              "description": article.summary,
+              "image": article.image || undefined,
+              "datePublished": article.publishedAt,
+              "dateModified": article.publishedAt,
+              "author": {
+                "@type": "Organization",
+                "name": article.source
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Krynn Tools",
+                "url": BASE_URL,
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": `${BASE_URL}/logo.png`
+                }
+              },
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `${BASE_URL}/trending-news/${article.slug}`
+              }
+            };
+
+            urls.push({
+              path: `trending-news/${article.slug}`,
+              title: `${article.title} | Krynn Tools`,
+              desc: article.summary,
+              schema
+            });
+          });
+        }
+      }
+    } catch (e) {
+      console.error("Failed to prerender trending news:", e);
+    }
 
     // Prerender loop
     for (const item of urls) {

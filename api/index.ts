@@ -1,6 +1,8 @@
 interface VercelRequest {
   method: string;
   body?: unknown;
+  url?: string;
+  headers?: Record<string, string | string[] | undefined>;
 }
 interface VercelResponse {
   setHeader(name: string, value: string): void;
@@ -46,6 +48,37 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (req.method === "OPTIONS") {
     res.status(200).end();
+    return;
+  }
+
+  // Cron update endpoint to trigger Vercel deployment
+  if (req.url && (req.url.includes("/api/cron-update") || req.url.includes("/cron-update"))) {
+    const cronAuth = req.headers?.authorization || req.headers?.Authorization;
+    const cronSecret = process.env.CRON_SECRET;
+
+    // Verify request authenticity using Vercel CRON_SECRET if configured
+    if (cronSecret && cronAuth !== `Bearer ${cronSecret}`) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+
+    const deployHookUrl = process.env.VERCEL_DEPLOY_HOOK_URL;
+    if (!deployHookUrl) {
+      res.status(500).json({ error: "VERCEL_DEPLOY_HOOK_URL environment variable is not configured" });
+      return;
+    }
+
+    try {
+      const deployRes = await fetch(deployHookUrl, { method: "POST" });
+      if (deployRes.ok) {
+        res.status(200).json({ success: true, message: "Deploy hook triggered successfully" });
+      } else {
+        const errText = await deployRes.text();
+        res.status(deployRes.status).json({ error: `Deploy hook failed: ${errText}` });
+      }
+    } catch (err: any) {
+      res.status(500).json({ error: `Failed to trigger deploy hook: ${err.message}` });
+    }
     return;
   }
 
