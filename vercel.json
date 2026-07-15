@@ -4,6 +4,10 @@
   "installCommand": "npm install -g pnpm && pnpm install",
   "rewrites": [
     {
+      "source": "/api/cron",
+      "destination": "/api/cron.ts"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/index.ts"
     },
@@ -14,7 +18,7 @@
   ],
   "crons": [
     {
-      "path": "/api/cron-update",
+      "path": "/api/cron",
       "schedule": "*/30 * * * *"
     }
   ]
