@@ -66,7 +66,7 @@ async function generateNewsSitemap() {
     <loc>${escapeXml(articleUrl)}</loc>
     <news:news>
       <news:publication>
-        <news:name>${escapeXml(article.source)}</news:name>
+        <news:name>Krynn Tools</news:name>
         <news:language>en</news:language>
       </news:publication>
       <news:title>${escapeXml(article.title)}</news:title>
