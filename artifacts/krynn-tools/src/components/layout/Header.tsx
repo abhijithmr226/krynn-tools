@@ -125,7 +125,7 @@ export default function Header() {
               >
                 <Link
                   href={`/${cat.slug}`}
-                  className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
+                  className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all whitespace-nowrap"
                 >
                   {cat.name}
                   <CaretDown
@@ -176,7 +176,7 @@ export default function Header() {
             {/* Trending News */}
             <Link
               href="/trending-news"
-              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all whitespace-nowrap"
             >
               <TrendUp size={14} />
               Trending
@@ -188,7 +188,7 @@ export default function Header() {
               onMouseEnter={() => setMoreOpen(true)}
               onMouseLeave={() => setMoreOpen(false)}
             >
-              <button className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all">
+              <button className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all whitespace-nowrap">
                 More
                 <CaretDown
                   size={12}
@@ -251,7 +251,8 @@ export default function Header() {
               placeholder="Search tools..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 text-sm rounded-full bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
+              className="w-full pr-8 py-2 text-sm rounded-full bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
+              style={{ paddingLeft: "2.5rem" }}
             />
             <kbd className="absolute right-3 text-[10px] font-mono text-muted-foreground bg-background border border-border rounded px-1.5 py-0.5">
               ⌘K
@@ -486,7 +487,8 @@ export default function Header() {
                 placeholder="Search tools..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full pl-9 pr-8 py-2.5 rounded-xl bg-muted border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none transition-all"
+                className="w-full pr-8 py-2.5 rounded-xl bg-muted border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none transition-all"
+                style={{ paddingLeft: "2.5rem" }}
               />
               {query && (
                 <button
