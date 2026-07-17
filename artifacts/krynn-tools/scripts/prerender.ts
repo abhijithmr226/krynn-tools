@@ -8,6 +8,17 @@ const BASE_URL = "https://www.krynntools.online";
 const DIST_DIR = path.resolve(import.meta.dirname, "../dist/public");
 const INDEX_HTML_PATH = path.join(DIST_DIR, "index.html");
 
+interface PrerenderUrl {
+  path: string;
+  title: string;
+  desc: string;
+  keywords: string;
+  type: "home" | "category" | "tool" | "static" | "blog" | "news";
+  name: string;
+  schema?: object;
+  extra?: any;
+}
+
 /** Escape special HTML characters so they are safe inside attribute values. */
 function escapeHtml(str: string): string {
   return str
@@ -17,21 +28,158 @@ function escapeHtml(str: string): string {
     .replace(/>/g, "&gt;");
 }
 
+/** Generates search-engine friendly static body content for crawlers. */
+function generateStaticBody(type: string, name: string, desc: string, extra: any = {}): string {
+  const categoriesList = categories.map(c => `<li><a href="/${c.slug}">${c.name}</a></li>`).join("\n          ");
+  
+  let mainContent = "";
+  
+  if (type === "home") {
+    const popularToolsList = tools.filter(t => t.popular).slice(0, 12).map(t => 
+      `<li>
+          <a href="/${t.categorySlug}/${t.slug}">
+            <h3>${t.name}</h3>
+            <p>${t.description}</p>
+          </a>
+        </li>`
+    ).join("\n        ");
+    mainContent = `
+      <section>
+        <h1>The Best Free Online Tools in 2026</h1>
+        <p>${desc}</p>
+        <h2>Popular Tools</h2>
+        <ul>
+          ${popularToolsList}
+        </ul>
+      </section>
+    `;
+  } else if (type === "category") {
+    const catTools = tools.filter(t => t.categorySlug === extra.slug).map(t =>
+      `<li>
+          <a href="/${t.categorySlug}/${t.slug}">
+            <h3>${t.name}</h3>
+            <p>${t.description}</p>
+          </a>
+        </li>`
+    ).join("\n        ");
+    mainContent = `
+      <section>
+        <h1>${name}</h1>
+        <p>${desc}</p>
+        <h2>Available ${name}</h2>
+        <ul>
+          ${catTools}
+        </ul>
+      </section>
+    `;
+  } else if (type === "tool") {
+    mainContent = `
+      <article>
+        <h1>${name}</h1>
+        <p>${desc}</p>
+        
+        <h2>How to Use ${name}</h2>
+        <ol>
+          <li>Open the ${name} tool page.</li>
+          <li>Upload, drag & drop, or input your file or text into the interface.</li>
+          <li>Adjust any settings or parameters locally.</li>
+          <li>Click the action button to process. Your files never leave your device.</li>
+          <li>Download the processed output instantly.</li>
+        </ol>
+
+        <h2>Why Choose Krynn Tools for ${name}?</h2>
+        <ul>
+          <li><strong>100% Client-Side:</strong> Processing runs entirely inside your browser. No files are uploaded to our servers, guaranteeing absolute privacy.</li>
+          <li><strong>No Registration Required:</strong> Start using the tool immediately without email, password, or signup steps.</li>
+          <li><strong>No Watermarks or Limits:</strong> Process unlimited files of any size without watermarks or payment walls.</li>
+          <li><strong>Blazing Fast:</strong> Local GPU/CPU acceleration means processing finishes in milliseconds.</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div>
+          <h3>Is the ${name} tool safe to use?</h3>
+          <p>Yes. Because the processing occurs in your local browser memory via WebAssembly and client-side JS libraries, your confidential data is never exposed over the network.</p>
+          
+          <h3>Do I need to install any software?</h3>
+          <p>No. Krynn Tools runs in standard modern web browsers (Chrome, Firefox, Safari, Edge) on mobile and desktop without external plug-ins.</p>
+        </div>
+      </article>
+    `;
+  } else if (type === "blog") {
+    mainContent = `
+      <article>
+        <h1>${name}</h1>
+        <p>${desc}</p>
+        <div>${extra.content || ""}</div>
+      </article>
+    `;
+  } else {
+    mainContent = `
+      <section>
+        <h1>${name}</h1>
+        <p>${desc}</p>
+      </section>
+    `;
+  }
+
+  return `
+    <header style="padding: 1rem; border-bottom: 1px solid #eee;">
+      <nav style="display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto;">
+        <a href="/"><strong>Krynn Tools</strong></a>
+        <ul style="display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0;">
+          <li><a href="/pdf">PDF Tools</a></li>
+          <li><a href="/image">Image Tools</a></li>
+          <li><a href="/text">Text Tools</a></li>
+          <li><a href="/dev">Developer Tools</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main style="max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6;">
+      ${mainContent}
+    </main>
+    <footer style="margin-top: 4rem; padding: 2rem 1rem; border-top: 1px solid #eee; background: #fafafa; font-size: 0.9rem;">
+      <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+        <div>
+          <h4>Tool Categories</h4>
+          <ul style="list-style: none; padding: 0; line-height: 1.8;">
+            ${categoriesList}
+          </ul>
+        </div>
+        <div>
+          <h4>Information</h4>
+          <ul style="list-style: none; padding: 0; line-height: 1.8;">
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/terms-of-service">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="max-width: 1200px; margin: 2rem auto 0; text-align: center; color: #666; font-size: 0.8rem;">
+        <p>&copy; 2026 Krynn Tools. All rights reserved. Processed locally for your privacy.</p>
+      </div>
+    </footer>
+  `;
+}
+
 async function prerender() {
   try {
     // 1. Read index.html shell generated by Vite
     const indexHtml = await fs.readFile(INDEX_HTML_PATH, "utf-8");
 
-    const urls: { path: string; title: string; desc: string; keywords: string; schema?: object }[] = [];
+    const urls: PrerenderUrl[] = [];
 
     const defaultKeywords = "free online tools, PDF tools, image compressor, remove background, QR code generator, resume builder, AI writing tools, grammar checker, word counter, JSON formatter, base64 encoder, password generator, BMI calculator, unit converter, file converter, image upscaler, OCR, text to speech, plagiarism checker";
 
-    // --- Homepage (prerender is just index.html itself, but we can also ensure it has correct canonical) ---
+    // --- Homepage ---
     urls.push({
       path: "",
       title: "Krynn Tools — 140+ Free Online Tools | PDF, Image, AI, Converter",
       desc: "140+ free online tools — Compress PDF, Remove Background, Image Upscaler, Resume Builder, QR Code Generator, AI Writing Tools, and more. No signup required. Runs in your browser.",
-      keywords: defaultKeywords
+      keywords: defaultKeywords,
+      type: "home",
+      name: "Krynn Tools"
     });
 
     // --- Static Pages ---
@@ -78,7 +226,9 @@ async function prerender() {
         path: p.slug,
         title: p.title,
         desc: p.desc,
-        keywords: `${p.title.toLowerCase().replace(" | krynn tools", "")}, free online tools, krynn tools`
+        keywords: `${p.title.toLowerCase().replace(" | krynn tools", "")}, free online tools, krynn tools`,
+        type: "static",
+        name: p.title.split(" | ")[0]
       });
     });
 
@@ -112,7 +262,15 @@ async function prerender() {
           ]
         }
       };
-      urls.push({ path: p.slug, title: p.title, desc: p.desc, keywords: p.keywords, schema });
+      urls.push({
+        path: p.slug,
+        title: p.title,
+        desc: p.desc,
+        keywords: p.keywords,
+        type: "static",
+        name: p.title.split(" — ")[0],
+        schema
+      });
     });
 
     // --- Category Pages ---
@@ -121,7 +279,10 @@ async function prerender() {
         path: cat.slug,
         title: `${cat.name} Online Free — No Signup Required | Krynn Tools`,
         desc: `Free online ${cat.name.toLowerCase()} — ${cat.description} 100% free, no signup, no watermark. All tools run in your browser for instant & private results.`,
-        keywords: `${cat.name.toLowerCase()}, free online ${cat.name.toLowerCase()}, browser based ${cat.name.toLowerCase()}, krynn tools`
+        keywords: `${cat.name.toLowerCase()}, free online ${cat.name.toLowerCase()}, browser based ${cat.name.toLowerCase()}, krynn tools`,
+        type: "category",
+        name: cat.name,
+        extra: { slug: cat.slug }
       });
     });
 
@@ -158,6 +319,8 @@ async function prerender() {
         title: toolTitle,
         desc: toolDesc,
         keywords: tool.keywords.slice(0, 15).join(", "),
+        type: "tool",
+        name: tool.name,
         schema
       });
     });
@@ -199,6 +362,8 @@ async function prerender() {
         title: post.title,
         desc: post.description,
         keywords: blogKeywords,
+        type: "blog",
+        name: post.title,
         schema
       });
     });
@@ -210,12 +375,14 @@ async function prerender() {
         const newsRaw = await fs.readFile(newsDataPath, "utf-8");
         const newsData = JSON.parse(newsRaw);
         if (newsData && Array.isArray(newsData.articles)) {
-          // Pre-render the main trending-news list page
+          // Pre-render trending-news hub
           urls.push({
             path: "trending-news",
             title: "Trending Tech News — AI, Technology & Cybersecurity | Krynn Tools",
             desc: "Stay ahead with the latest in technology, AI, and cybersecurity. Curated from TechCrunch, The Verge, WIRED, and more — updated automatically.",
-            keywords: "trending tech news, ai news, technology news, cybersecurity news, tech article aggregator"
+            keywords: "trending tech news, ai news, technology news, cybersecurity news, tech article aggregator",
+            type: "static",
+            name: "Trending Tech News"
           });
 
           // Pre-render individual news articles
@@ -247,13 +414,15 @@ async function prerender() {
               }
             };
 
-            const newsKeywords = article.tags ? [...article.tags, article.category].join(', ') : article.category;
+            const newsKeywords = article.tags ? [...article.tags, article.category].join(", ") : article.category;
 
             urls.push({
               path: `trending-news/${article.slug}`,
               title: `${article.title} | Krynn Tools`,
               desc: article.summary,
               keywords: newsKeywords,
+              type: "news",
+              name: article.title,
               schema
             });
           });
@@ -302,9 +471,13 @@ async function prerender() {
         html = html.replace("</head>", `${schemaString}\n  </head>`);
       }
 
+      // Inject static semantic body inside <div id="root"></div> for indexing
+      const staticBodyHtml = generateStaticBody(item.type, item.name, item.desc, item.extra || {});
+      html = html.replace('<div id="root"></div>', `<div id="root">${staticBodyHtml}</div>`);
+
       // Write output
       if (item.path === "") {
-        // Just overwrite index.html with the correct canonicals/title (in case Vite generated defaults)
+        // Overwrite root index.html
         await fs.writeFile(INDEX_HTML_PATH, html, "utf-8");
       } else {
         const outDir = path.join(DIST_DIR, item.path);
