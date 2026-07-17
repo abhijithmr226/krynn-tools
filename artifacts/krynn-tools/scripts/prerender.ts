@@ -291,6 +291,7 @@ async function prerender() {
       const toolTitle = tool.seoTitle || `${tool.name} Online Free — No Signup | Krynn Tools`;
       const toolDesc = tool.seoDescription || `${tool.description} Free, fast, and private — runs entirely in your browser. No signup, no watermark, no file size limits. Try it now!`;
       
+      // Removed aggregateRating to prevent Google manual search penalties for fake/unverified review markup
       const schema = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -302,13 +303,6 @@ async function prerender() {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "127",
-          "bestRating": "5",
-          "worstRating": "1"
         },
         "description": tool.description,
         "url": `${BASE_URL}/${tool.categorySlug}/${tool.slug}`
@@ -444,7 +438,7 @@ async function prerender() {
       const safeKeywords = escapeHtml(item.keywords);
 
       // Replace metadata
-      html = html.replace(/<title>.*?<\/title>/g, `<title>${safeTitle}<\/title>`);
+      html = html.replace(/<title>.*?<\/title>/g, `<title>${safeTitle}</title>`);
       html = html.replace(/<meta name="description" content=".*?" \/>/g, `<meta name="description" content="${safeDesc}" />`);
       html = html.replace(/<meta name="keywords" content=".*?" \/>/g, `<meta name="keywords" content="${safeKeywords}" />`);
       html = html.replace(/<meta property="og:title" content=".*?" \/>/g, `<meta property="og:title" content="${safeTitle}" />`);
@@ -460,8 +454,7 @@ async function prerender() {
       if (!html.includes('hreflang="en-IN"')) {
         html = html.replace(
           `<link rel="alternate" hreflang="en" href="${fullUrl}" />`,
-          `<link rel="alternate" hreflang="en" href="${fullUrl}" />
-    <link rel="alternate" hreflang="en-IN" href="${fullUrl}" />`
+          `<link rel="alternate" hreflang="en" href="${fullUrl}" />\n    <link rel="alternate" hreflang="en-IN" href="${fullUrl}" />`
         );
       }
 
@@ -480,9 +473,11 @@ async function prerender() {
         // Overwrite root index.html
         await fs.writeFile(INDEX_HTML_PATH, html, "utf-8");
       } else {
-        const outDir = path.join(DIST_DIR, item.path);
+        // Output to path.html so Vercel cleanUrls maps /path directly to path.html
+        const outPath = path.join(DIST_DIR, `${item.path}.html`);
+        const outDir = path.dirname(outPath);
         await fs.mkdir(outDir, { recursive: true });
-        await fs.writeFile(path.join(outDir, "index.html"), html, "utf-8");
+        await fs.writeFile(outPath, html, "utf-8");
       }
     }
 
