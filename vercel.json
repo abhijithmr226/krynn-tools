@@ -2,6 +2,8 @@
   "buildCommand": "cd artifacts/krynn-tools && npm run build",
   "outputDirectory": "artifacts/krynn-tools/dist/public",
   "installCommand": "npm install -g pnpm && pnpm install",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/api/cron",
@@ -19,7 +21,7 @@
   "crons": [
     {
       "path": "/api/cron",
-      "schedule": "0 0 * * *"
+      "schedule": "0 0,6,12,18 * * *"
     }
   ]
 }

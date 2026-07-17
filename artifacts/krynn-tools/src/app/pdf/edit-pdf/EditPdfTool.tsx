@@ -86,7 +86,7 @@ export default function EditPdfTool({ relatedTools, schema }: Props) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const signatureInputRef = useRef<HTMLInputElement>(null);
-  const renderedPages = useRef<Map<number, string>>(new Map());
+  const renderedPages = useRef<Map<string, string>>(new Map());
   const [renderTick, setRenderTick] = useState(0);
 
   const renderPage = useCallback(async (pageIndex: number, scale: number) => {

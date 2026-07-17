@@ -1,146 +1,157 @@
 import fs from "fs/promises";
+import { existsSync } from "fs";
 import path from "path";
 import { categories, tools } from "../src/lib/tools.ts";
+import { blogPosts } from "../src/lib/blog-data.ts";
 
 const BASE_URL = "https://www.krynntools.online";
 
+/** Convert a human-readable date string to ISO 8601 YYYY-MM-DD */
+function toIsoDate(dateStr: string): string {
+  const parsed = new Date(dateStr);
+  if (!isNaN(parsed.getTime())) return parsed.toISOString().split("T")[0];
+  return new Date().toISOString().split("T")[0];
+}
+
 async function generateSitemap() {
-  const urls: string[] = [];
+  const todayStr = new Date().toISOString().split("T")[0];
+
+  // Build a slug→post lookup for efficient access
+  const blogPostMap = new Map(blogPosts.map((p) => [p.slug, p]));
+
+  interface SitemapEntry {
+    url: string;
+    lastmod: string;
+    changefreq: string;
+    priority: string;
+    imageTag?: string;
+  }
+
+  const entries: SitemapEntry[] = [];
 
   // 1. Homepage
-  urls.push("");
+  entries.push({ url: "", lastmod: todayStr, changefreq: "daily", priority: "1.0" });
 
   // 2. Static pages
-  const staticPages = [
-    "about",
-    "contact",
-    "blog",
-    "trending-news",
-    "privacy-policy",
-    "terms-of-service",
-    "cookie-policy",
-    "disclaimer",
+  const staticPages: { slug: string; date?: string }[] = [
+    { slug: "about" },
+    { slug: "contact" },
+    { slug: "blog" },
+    { slug: "trending-news" },
+    { slug: "privacy-policy" },
+    { slug: "terms-of-service" },
+    { slug: "cookie-policy" },
+    { slug: "disclaimer" },
+    // Comparison landing pages — high-intent SEO targets
+    { slug: "ilovepdf-alternative" },
+    { slug: "smallpdf-alternative" },
   ];
-  staticPages.forEach((p) => urls.push(p));
+  const comparisonSlugs = new Set(["ilovepdf-alternative", "smallpdf-alternative"]);
+  staticPages.forEach(({ slug }) => {
+    const isComparison = comparisonSlugs.has(slug);
+    entries.push({
+      url: slug,
+      lastmod: todayStr,
+      changefreq: isComparison ? "weekly" : "monthly",
+      priority: isComparison ? "0.8" : "0.5",
+    });
+  });
 
   // 3. Category pages
   categories.forEach((cat) => {
-    urls.push(cat.slug);
+    entries.push({ url: cat.slug, lastmod: todayStr, changefreq: "weekly", priority: "0.8" });
   });
 
   // 4. Individual tool pages
   tools.forEach((tool) => {
-    urls.push(`${tool.categorySlug}/${tool.slug}`);
+    entries.push({
+      url: `${tool.categorySlug}/${tool.slug}`,
+      lastmod: todayStr,
+      changefreq: "weekly",
+      priority: "0.6",
+    });
   });
 
-  // 5. Blog posts (read directories dynamically)
-  const blogSlugs: string[] = [];
+  // 5. Blog posts — use real publication dates from blog-data.ts
   try {
     const blogDir = path.resolve(import.meta.dirname, "../src/app/blog");
     const items = await fs.readdir(blogDir, { withFileTypes: true });
-    
+
     for (const item of items) {
       if (item.isDirectory() && !item.name.startsWith(".")) {
-        blogSlugs.push(item.name);
-        urls.push(`blog/${item.name}`);
+        const slug = item.name;
+        const post = blogPostMap.get(slug);
+        const lastmod = post ? toIsoDate(post.date) : todayStr;
+        const imagePath = post?.image || "/images/blog/compress-pdf.png";
+        // Convert .png extension to use absolute URL; keep as-is otherwise
+        const imageUrl = imagePath.startsWith("/") ? `${BASE_URL}${imagePath}` : imagePath;
+        const imageTitle = post?.title || slug.replace(/-/g, " ");
+
+        entries.push({
+          url: `blog/${slug}`,
+          lastmod,
+          changefreq: "monthly",
+          priority: "0.7",
+          imageTag: `
+    <image:image>
+      <image:loc>${imageUrl}</image:loc>
+      <image:title>${imageTitle.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</image:title>
+    </image:image>`,
+        });
       }
     }
   } catch (err) {
     console.error("Failed to read blog directory:", err);
   }
 
-  // 6. Trending news articles (from data.json)
-  const newsSlugs: string[] = [];
+  // 6. Trending news articles (from data.json) — use real publishedAt dates
   try {
     const newsDataPath = path.resolve(import.meta.dirname, "../public/trending-news/data.json");
     const newsData = JSON.parse(await fs.readFile(newsDataPath, "utf-8"));
     for (const article of newsData.articles || []) {
       if (article.slug) {
-        newsSlugs.push(article.slug);
-        urls.push(`trending-news/${article.slug}`);
+        const lastmod = article.publishedAt
+          ? new Date(article.publishedAt).toISOString().split("T")[0]
+          : todayStr;
+        entries.push({
+          url: `trending-news/${article.slug}`,
+          lastmod,
+          changefreq: "daily",
+          priority: "0.9",
+        });
       }
     }
-  } catch (err) {
+  } catch {
     console.log("No trending news data found, skipping news article URLs");
   }
 
-  // Generate XML sitemap
-  const dateStr = new Date().toISOString().split("T")[0];
+  // Generate XML
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${urls
-  .map((url) => {
+${entries
+  .map(({ url, lastmod, changefreq, priority, imageTag }) => {
     const loc = url ? `${BASE_URL}/${url}` : `${BASE_URL}/`;
-    const isHomepage = url === "";
-    const isBlog = url.startsWith("blog/");
-    const isNews = url.startsWith("trending-news/");
-    
-    // Add image sitemap entries for blog posts
-    let imageTag = "";
-    if (isBlog) {
-      const blogSlug = url.replace("blog/", "");
-      // Map blog slugs to their image paths
-      const imageMap: Record<string, string> = {
-        "best-free-online-tools-2026": "/images/blog/compress-pdf.svg",
-        "free-grammarly-alternative-offline": "/images/blog/json-formatter.svg",
-        "smallpdf-vs-ilovepdf-vs-krynn-tools": "/images/blog/compress-pdf.svg",
-        "remove-background-image-free-2026": "/images/blog/remove-background.svg",
-        "best-free-image-upscaler-2026": "/images/blog/compress-image.svg",
-        "best-free-qr-code-generator-2026": "/images/blog/qr-code-generator.svg",
-        "convert-png-to-jpg-free": "/images/blog/compress-image.svg",
-        "best-free-resume-builder-2026": "/images/blog/compress-pdf.svg",
-        "how-to-compress-pdf-without-losing-quality": "/images/blog/compress-pdf.svg",
-        "how-to-merge-multiple-pdfs": "/images/blog/merge-pdf.svg",
-        "10-signs-your-password-isnt-strong-enough": "/images/blog/password-generator.svg",
-        "qr-codes-explained-static-vs-dynamic": "/images/blog/qr-code-generator.svg",
-        "best-practices-for-qr-code-design": "/images/blog/qr-code-generator.svg",
-        "how-to-generate-qr-codes-for-business": "/images/blog/qr-code-generator.svg",
-        "understanding-error-correction-in-qr-codes": "/images/blog/qr-code-generator.svg",
-        "how-to-shrink-image-file-size": "/images/blog/compress-image.svg",
-        "how-to-remove-background-from-photo": "/images/blog/remove-background.svg",
-        "json-formatting-best-practices": "/images/blog/json-formatter.svg",
-        "what-is-base64-encoding": "/images/blog/base64-encoder.svg",
-        "bmi-explained-what-numbers-mean": "/images/blog/bmi-calculator.svg",
-        "how-emi-is-calculated-on-loan": "/images/blog/loan-emi-calculator.svg",
-        "how-to-extract-text-from-scanned-pdfs": "/images/blog/compress-pdf.svg",
-        "best-free-dice-roller-for-board-games": "/images/blog/base64-encoder.svg",
-        "how-to-crop-passport-size-photos-online": "/images/blog/compress-image.svg",
-        "how-to-generate-strong-passwords-online": "/images/blog/password-generator.svg",
-        "how-to-convert-text-case-online": "/images/blog/json-formatter.svg",
-        "how-to-resize-images-for-social-media": "/images/blog/compress-image.svg",
-        "what-is-a-uuid-and-how-to-generate-one": "/images/blog/base64-encoder.svg",
-        "how-to-calculate-percentage-online": "/images/blog/bmi-calculator.svg",
-        "how-to-convert-units-online": "/images/blog/loan-emi-calculator.svg",
-        "how-to-checksum-a-file": "/images/blog/base64-encoder.svg",
-        "how-to-count-words-and-characters-online": "/images/blog/json-formatter.svg",
-        "how-to-convert-heic-to-jpg": "/images/blog/compress-image.svg",
-        "best-free-json-formatter-online": "/images/blog/json-formatter.svg",
-        "best-free-password-generator-2026": "/images/blog/password-generator.svg",
-        "how-to-ocr-text-from-image": "/images/blog/compress-image.svg",
-        "base64-encoder-decoder-explained": "/images/blog/base64-encoder.svg",
-      };
-      const imgPath = imageMap[blogSlug] || "/images/blog/compress-pdf.svg";
-      imageTag = `
-    <image:image>
-      <image:loc>${BASE_URL}${imgPath}</image:loc>
-      <image:title>${blogSlug.replace(/-/g, " ")}</image:title>
-    </image:image>`;
-    }
-
     return `  <url>
     <loc>${loc}</loc>
-    <lastmod>${dateStr}</lastmod>
-    <changefreq>${isHomepage ? "daily" : isNews ? "daily" : "weekly"}</changefreq>
-    <priority>${isHomepage ? "1.0" : isNews ? "0.9" : url.includes("/") ? "0.6" : "0.8"}</priority>${imageTag}
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>${imageTag || ""}
   </url>`;
   })
   .join("\n")}
 </urlset>`;
 
   const publicDest = path.resolve(import.meta.dirname, "../public/sitemap.xml");
+  const distDest = path.resolve(import.meta.dirname, "../dist/public/sitemap.xml");
+
   await fs.writeFile(publicDest, xml, "utf-8");
-  console.log(`Successfully generated sitemap.xml with ${urls.length} URLs!`);
+  console.log(`✓ Generated sitemap.xml with ${entries.length} URLs at ${publicDest}`);
+
+  if (existsSync(path.resolve(import.meta.dirname, "../dist/public"))) {
+    await fs.writeFile(distDest, xml, "utf-8");
+    console.log(`✓ Copied sitemap.xml to build directory`);
+  }
 }
 
 generateSitemap().catch(console.error);

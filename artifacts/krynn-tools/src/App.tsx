@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { categories, tools } from '@/lib/tools';
+import { blogPosts } from '@/lib/blog-data';
 import KrynnIcon from '@/components/common/KrynnIcon';
 import { Lightning } from '@phosphor-icons/react';
 
@@ -74,26 +75,57 @@ function SeoUpdater() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const cleanPath = pathname.replace(/\/$/, '');
+    
     const tool = tools.find(t => {
-      const cat = categories.find(c => c.slug === t.categorySlug);
-      return cat && pathname === `/${t.categorySlug}/${t.slug}`;
+      const toolPath = `/${t.categorySlug}/${t.slug}`;
+      return cleanPath === toolPath;
     });
 
-    const category = categories.find(c => pathname === `/${c.slug}`);
+    const blogPost = blogPosts.find(p => cleanPath === `/blog/${p.slug}`);
+
+    const staticPageMap: Record<string, { title: string; desc: string }> = {
+      '/': { title: 'Free Online Tools — PDF, Image, AI, Developer & More | Krynn Tools', desc: 'Krynn Tools — 140+ free online tools for PDF, image editing, AI writing, developer utilities, and more. No signup, no file upload, 100% private.' },
+      '/blog': { title: 'Blog & Tutorials — Krynn Tools', desc: 'Tips, guides, and tutorials for getting the most out of free online tools.' },
+      '/about': { title: 'About — Krynn Tools', desc: 'Learn about Krynn Tools — our mission to provide free, private, browser-based tools for everyone.' },
+      '/contact': { title: 'Contact Us — Krynn Tools', desc: 'Get in touch with the Krynn Tools team.' },
+      '/trending-news': { title: 'Trending Tech News — Krynn Tools', desc: 'Stay updated with the latest technology, AI, cybersecurity, and open source news. Updated every 6 hours.' },
+      '/privacy-policy': { title: 'Privacy Policy — Krynn Tools', desc: 'Krynn Tools privacy policy: how we handle your data.' },
+      '/terms-of-service': { title: 'Terms of Service — Krynn Tools', desc: 'Krynn Tools terms of service.' },
+      '/cookie-policy': { title: 'Cookie Policy — Krynn Tools', desc: 'Understand how we use cookies and caching to speed up your local browser utility executions.' },
+      '/disclaimer': { title: 'Disclaimer — Krynn Tools', desc: 'Disclaimer terms regarding calculations, conversions, and output files from Krynn Tools.' },
+      '/ilovepdf-alternative': { title: 'Best Free iLovePDF Alternative 2026 — Krynn Tools', desc: 'Krynn Tools is the best free iLovePDF alternative. 20+ PDF tools, no file uploads, no sign-up, no rate limits. 100% private browser processing.' },
+      '/smallpdf-alternative': { title: 'Best Free Smallpdf Alternative 2026 — Krynn Tools', desc: 'Tired of Smallpdf\'s 2-task/day limit? Krynn Tools offers unlimited free PDF tools with no uploads, no sign-up, and 100% privacy.' },
+    };
+
+    const staticPage = staticPageMap[cleanPath];
+    const category = categories.find(c => cleanPath === `/${c.slug}`);
+
+    // Blog post lookup (not duplicated from line 85)
+    const resolvedBlogPost = blogPost ?? (() => {
+      if (cleanPath.startsWith('/blog/')) {
+        const slug = cleanPath.replace('/blog/', '');
+        return blogPosts.find(p => p.slug === slug) ?? null;
+      }
+      return null;
+    })()
 
     let title = 'Krynn Tools — 140+ Free Online Tools | PDF, Image, AI, Converter';
     let desc = '140+ free online tools — Compress PDF, Remove Background, Image Upscaler, Resume Builder, QR Code Generator, AI Writing Tools, and more. No signup required. Runs in your browser.';
 
-    if (pathname.startsWith('/trending-news/')) {
-      const slug = pathname.replace('/trending-news/', '');
+    if (cleanPath.startsWith('/trending-news/')) {
+      const slug = cleanPath.replace('/trending-news/', '');
       title = `${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} — Trending News | Krynn Tools`;
       desc = `Read the latest trending tech news story. Stay updated with technology, AI, and cybersecurity news from trusted sources.`;
-    } else if (pathname === '/trending-news') {
-      title = 'Trending Tech News — AI, Technology & Cybersecurity | Krynn Tools';
-      desc = 'Stay ahead with the latest trending news in technology, AI, and cybersecurity. Curated from TechCrunch, The Verge, WIRED, and more. Updated every 30 minutes.';
+    } else if (resolvedBlogPost) {
+      title = resolvedBlogPost.title;
+      desc = resolvedBlogPost.description;
+    } else if (staticPage) {
+      title = staticPage.title;
+      desc = staticPage.desc;
     } else if (tool) {
-      title = `${tool.name} Online Free — No Signup | Krynn Tools`;
-      desc = `${tool.description} Free, fast, and private — runs entirely in your browser. No signup, no watermark, no file size limits. Try it now!`;
+      title = tool.seoTitle || `${tool.name} Online Free — No Signup | Krynn Tools`;
+      desc = tool.seoDescription || `${tool.description} Free, fast, and private — runs entirely in your browser. No signup, no watermark, no file size limits. Try it now!`;
     } else if (category) {
       title = `${category.name} Online Free — No Signup Required | Krynn Tools`;
       desc = `Free online ${category.name.toLowerCase()} — ${category.description} 100% free, no signup, no watermark. All tools run in your browser for instant & private results.`;

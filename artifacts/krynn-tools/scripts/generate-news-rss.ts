@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+import { existsSync } from 'fs';
 import path from 'path';
 
 const BASE_URL = 'https://www.krynntools.online';
@@ -99,8 +100,16 @@ ${items.join('\n')}
 </rss>`;
 
   const outputPath = path.resolve(import.meta.dirname, '../public/trending-news/rss.xml');
+  const distPath = path.resolve(import.meta.dirname, '../dist/public/trending-news/rss.xml');
   await fs.writeFile(outputPath, rss, 'utf-8');
   console.log(`Generated RSS feed with ${recent.length} items at ${outputPath}`);
+
+  if (existsSync(path.resolve(import.meta.dirname, '../dist/public'))) {
+    const distNewsDir = path.resolve(import.meta.dirname, '../dist/public/trending-news');
+    await fs.mkdir(distNewsDir, { recursive: true });
+    await fs.writeFile(distPath, rss, 'utf-8');
+    console.log(`Successfully copied RSS feed to build directory at ${distPath}`);
+  }
 }
 
 generateNewsRss().catch(err => {

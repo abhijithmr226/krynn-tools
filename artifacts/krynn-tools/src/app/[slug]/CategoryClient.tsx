@@ -68,7 +68,7 @@ export default function CategoryClient({ cat, catTools, currentSlug }: CategoryC
           <div className="space-y-8">
             {seoData.sections.map((section, idx) => (
               <div key={idx} className="space-y-3">
-                <h2 className="text-xl font-bold text-foreground">{section.heading}</h2>
+                <h3 className="text-xl font-bold text-foreground">{section.heading}</h3>
                 <p className="text-base text-muted-foreground leading-relaxed">{section.content}</p>
               </div>
             ))}

@@ -33,13 +33,13 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Core React and routing
-            if (id.includes('react') || id.includes('react-dom') || id.includes('wouter') || id.includes('@tanstack')) {
-              return 'vendor-core';
-            }
             // Icons (large bundle)
             if (id.includes('@phosphor-icons')) {
               return 'vendor-icons';
+            }
+            // Core React and routing
+            if (id.includes('react') || id.includes('react-dom') || id.includes('wouter') || id.includes('@tanstack')) {
+              return 'vendor-core';
             }
             // PDF libraries (heavy, lazy loaded)
             if (id.includes('pdf-lib') || id.includes('pdfjs-dist')) {

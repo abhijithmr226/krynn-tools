@@ -182,6 +182,14 @@ export default function Header() {
               Trending
             </Link>
 
+            {/* Blog */}
+            <Link
+              href="/blog"
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all whitespace-nowrap"
+            >
+              Blog
+            </Link>
+
             {/* More dropdown */}
             <div
               className="relative"

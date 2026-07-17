@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+import { existsSync } from 'fs';
 import path from 'path';
 
 const BASE_URL = 'https://www.krynntools.online';
@@ -83,8 +84,16 @@ ${urlEntries.join('\n')}
 </urlset>`;
 
   const outputPath = path.resolve(import.meta.dirname, '../public/trending-news/sitemap.xml');
+  const distPath = path.resolve(import.meta.dirname, '../dist/public/trending-news/sitemap.xml');
   await fs.writeFile(outputPath, xml, 'utf-8');
   console.log(`Generated news sitemap with ${recentArticles.length} URLs at ${outputPath}`);
+
+  if (existsSync(path.resolve(import.meta.dirname, '../dist/public'))) {
+    const distNewsDir = path.resolve(import.meta.dirname, '../dist/public/trending-news');
+    await fs.mkdir(distNewsDir, { recursive: true });
+    await fs.writeFile(distPath, xml, 'utf-8');
+    console.log(`Successfully copied news sitemap to build directory at ${distPath}`);
+  }
 
   const categories = allCategories.join(', ');
   console.log(`All categories tracked: ${categories}`);

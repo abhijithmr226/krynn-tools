@@ -9,6 +9,7 @@ interface SearchBarProps {
 export default function SearchBar({ value, onChange, placeholder = "Search articles..." }: SearchBarProps) {
   const [localValue, setLocalValue] = useState(value);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setLocalValue(value);
@@ -34,10 +35,29 @@ export default function SearchBar({ value, onChange, placeholder = "Search artic
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, []);
 
+  // Press "/" anywhere to focus the search bar
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === "/" &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA"
+      ) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <div className="relative w-full">
       <input
+        ref={inputRef}
         type="text"
+        id="news-search"
+        aria-label="Search articles"
         value={localValue}
         onChange={handleChange}
         placeholder={placeholder}

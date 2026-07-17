@@ -105,7 +105,7 @@ export default function TrendingNewsPage() {
             </nav>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-medium mb-6 border border-[var(--color-primary)]/20">
               <span className="w-2 h-2 rounded-full bg-[var(--color-success)] animate-pulse" />
-              Live Updates Every 30 Minutes
+              Updated Every 6 Hours
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)] mb-4 tracking-tight">
               Trending <span className="text-[var(--color-primary)]">Tech News</span>

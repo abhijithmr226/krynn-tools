@@ -174,6 +174,14 @@
     overflow-x: hidden;
     overflow-wrap: break-word;
     word-break: break-word;
+    /* Smooth dark/light mode transition */
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  /* Apply colour transitions to common elements so theme-toggle feels instant */
+  body *:not(img):not(video):not(svg):not(canvas):not(.no-transition) {
+    transition-property: background-color, border-color, color, box-shadow;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
   }
   html, body {
     max-width: 100vw;

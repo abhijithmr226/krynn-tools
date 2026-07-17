@@ -146,8 +146,8 @@ export default function AdSlot({ position, className = "" }: AdSlotProps) {
   if (position === "mobile-anchor") {
     if (!isMobile) return null;
     return (
-      <div className="fixed bottom-16 left-0 right-0 z-50 border-t border-[var(--color-border)] bg-[var(--color-card)] p-2 shadow-lg">
-        <div className="relative flex flex-col items-center">
+      <div className="fixed bottom-16 left-0 right-0 z-50 pointer-events-none px-4">
+        <div className="relative flex flex-col items-center border border-[var(--color-border)] bg-[var(--color-card)] p-2 shadow-lg pointer-events-auto mx-auto max-w-[340px] rounded-xl">
           <button
             onClick={() => setDismissed(true)}
             className="absolute -top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-muted)] text-[var(--color-muted-foreground)] hover:bg-[var(--color-border)] transition-colors duration-200 cursor-pointer z-10"
