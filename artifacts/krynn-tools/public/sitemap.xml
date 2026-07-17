@@ -68,6 +68,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.krynntools.online/pdf24-alternative</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.krynntools.online/tinypng-alternative</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.krynntools.online/removebg-alternative</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.krynntools.online/privacy-explainer</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.krynntools.online/pdf</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>

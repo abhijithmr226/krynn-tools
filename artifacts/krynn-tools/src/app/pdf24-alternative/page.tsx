@@ -4,61 +4,61 @@ const COMPARE_DATA = [
   {
     feature: "Price",
     krynn: "100% Free — always",
-    ilovepdf: "Freemium — 2 tasks/hour free, $4/mo for unlimited",
-    winner: "krynn",
-  },
-  {
-    feature: "File size limit",
-    krynn: "No limits (browser RAM only)",
-    ilovepdf: "Free: 200 MB max per file",
-    winner: "krynn",
+    pdf24: "Free (desktop software)",
+    winner: "tie",
   },
   {
     feature: "Privacy",
-    krynn: "Files never leave your device",
-    ilovepdf: "Files uploaded to iLovePDF servers, auto-deleted in 2h",
+    krynn: "Files never leave your device — browser processing",
+    pdf24: "Files processed locally on your desktop",
+    winner: "tie",
+  },
+  {
+    feature: "No Install Required",
+    krynn: "Yes — works in any browser",
+    pdf24: "No — requires desktop software installation",
     winner: "krynn",
   },
   {
-    feature: "Sign-up required",
-    krynn: "No sign-up ever",
-    ilovepdf: "Not required for basic use; required for premium",
+    feature: "Mobile Support",
+    krynn: "Yes — fully responsive, works on any device",
+    pdf24: "Limited — desktop-only software",
     winner: "krynn",
   },
   {
-    feature: "Number of PDF tools",
-    krynn: "20+ PDF tools",
-    ilovepdf: "25+ PDF tools",
-    winner: "ilovepdf",
+    feature: "File Size Limits",
+    krynn: "No limits (browser RAM only)",
+    pdf24: "Limited by system resources",
+    winner: "tie",
   },
   {
-    feature: "Image tools",
-    krynn: "15+ image tools included",
-    ilovepdf: "Basic image-to-PDF only",
+    feature: "Number of Tools",
+    krynn: "20+ PDF tools + 140+ total tools",
+    pdf24: "20+ PDF tools (PDF only)",
     winner: "krynn",
   },
   {
-    feature: "Works offline",
+    feature: "Works Offline",
     krynn: "Yes — fully client-side",
-    ilovepdf: "No — requires internet",
+    pdf24: "Yes — desktop software",
+    winner: "tie",
+  },
+  {
+    feature: "Updates",
+    krynn: "Automatic — always up to date",
+    pdf24: "Manual updates required",
     winner: "krynn",
   },
   {
-    feature: "Mobile app",
-    krynn: "PWA-ready, mobile browser",
-    ilovepdf: "iOS & Android apps",
-    winner: "ilovepdf",
-  },
-  {
-    feature: "AI writing tools",
-    krynn: "Yes — essay writer, summariser, grammar fixer",
-    ilovepdf: "No",
+    feature: "Cross-platform",
+    krynn: "Any OS with a browser",
+    pdf24: "Windows only (primary), Linux (limited)",
     winner: "krynn",
   },
   {
-    feature: "Developer tools",
-    krynn: "Yes — JSON, Base64, UUID, regex, etc.",
-    ilovepdf: "No",
+    feature: "Image & AI Tools",
+    krynn: "15+ image tools, AI writing tools included",
+    pdf24: "No — PDF only",
     winner: "krynn",
   },
 ];
@@ -76,7 +76,7 @@ const KRYNN_PDF_TOOLS = [
   { name: "Protect PDF", href: "/pdf/protect-pdf" },
 ];
 
-export default function IlovepdfAlternativePage() {
+export default function Pdf24AlternativePage() {
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
       {/* Hero */}
@@ -85,16 +85,16 @@ export default function IlovepdfAlternativePage() {
           <nav className="flex items-center justify-center gap-2 text-sm text-[var(--color-muted-foreground)] mb-6">
             <Link href="/" className="hover:text-[var(--color-primary)] transition-colors">Home</Link>
             <span>/</span>
-            <span className="text-[var(--color-foreground)]">iLovePDF Alternative</span>
+            <span className="text-[var(--color-foreground)]">PDF24 Alternative</span>
           </nav>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm font-semibold mb-6 border border-[var(--color-primary)]/20">
-            Free · No Upload · No Sign-up
+            No Install · No Upload · Browser-Based
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)] mb-5 tracking-tight">
-            Best Free <span className="text-[var(--color-primary)]">iLovePDF Alternative</span> in 2026
+            Best Free <span className="text-[var(--color-primary)]">PDF24 Alternative</span> in 2026 — No Software Needed
           </h1>
           <p className="text-lg text-[var(--color-muted-foreground)] mb-8 leading-relaxed">
-            Krynn Tools gives you every PDF tool iLovePDF offers — plus 120+ more tools for images, text, AI writing, and development. 100% free, no uploads, no sign-up. Your files never leave your browser.
+            PDF24 requires you to download and install desktop software. Krynn Tools gives you the same PDF tools — and 140+ more — running entirely in your browser. No downloads, no installation, no maintenance.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/pdf" className="btn-primary px-8 py-3 text-base">
@@ -112,10 +112,10 @@ export default function IlovepdfAlternativePage() {
         <div className="container-app py-5">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
+              { value: "0", label: "Downloads Required" },
               { value: "20+", label: "PDF Tools" },
               { value: "140+", label: "Total Tools" },
-              { value: "$0", label: "Forever" },
-              { value: "0", label: "Uploads Required" },
+              { value: "0", label: "Installation Steps" },
             ].map(s => (
               <div key={s.label}>
                 <div className="text-2xl font-extrabold text-[var(--color-primary)]">{s.value}</div>
@@ -129,10 +129,10 @@ export default function IlovepdfAlternativePage() {
       {/* Comparison table */}
       <section id="compare" className="container-app py-16">
         <h2 className="text-3xl font-bold text-center text-[var(--color-foreground)] mb-3">
-          Krynn Tools vs iLovePDF — Feature Comparison
+          Krynn Tools vs PDF24 — Feature Comparison
         </h2>
         <p className="text-center text-[var(--color-muted-foreground)] mb-10 max-w-2xl mx-auto">
-          Side-by-side comparison of features that matter most when choosing a free PDF tool.
+          Side-by-side comparison of browser-based vs desktop PDF tools.
         </p>
         <div className="overflow-x-auto rounded-2xl border border-[var(--color-border)]">
           <table className="w-full text-sm">
@@ -143,7 +143,7 @@ export default function IlovepdfAlternativePage() {
                   ✦ Krynn Tools
                 </th>
                 <th className="px-6 py-4 font-bold text-[var(--color-muted-foreground)] text-center">
-                  iLovePDF
+                  PDF24
                 </th>
               </tr>
             </thead>
@@ -157,8 +157,8 @@ export default function IlovepdfAlternativePage() {
                   <td className={`px-6 py-4 text-center ${row.winner === "krynn" ? "text-[var(--color-success)] font-medium" : "text-[var(--color-foreground)]"}`}>
                     {row.winner === "krynn" && <span className="mr-1">✓</span>}{row.krynn}
                   </td>
-                  <td className={`px-6 py-4 text-center ${row.winner === "ilovepdf" ? "text-[var(--color-success)] font-medium" : "text-[var(--color-muted-foreground)]"}`}>
-                    {row.winner === "ilovepdf" && <span className="mr-1">✓</span>}{row.ilovepdf}
+                  <td className={`px-6 py-4 text-center ${row.winner === "pdf24" ? "text-[var(--color-success)] font-medium" : "text-[var(--color-muted-foreground)]"}`}>
+                    {row.winner === "pdf24" && <span className="mr-1">✓</span>}{row.pdf24}
                   </td>
                 </tr>
               ))}
@@ -171,10 +171,10 @@ export default function IlovepdfAlternativePage() {
       <section className="bg-[var(--color-muted)] border-t border-[var(--color-border)]">
         <div className="container-app py-16">
           <h2 className="text-3xl font-bold text-center text-[var(--color-foreground)] mb-3">
-            All PDF Tools — Free & Private
+            All PDF Tools — No Software Required
           </h2>
           <p className="text-center text-[var(--color-muted-foreground)] mb-10">
-            Everything iLovePDF does, running entirely in your browser.
+            Everything PDF24 does, running entirely in your browser. Zero downloads.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-3xl mx-auto">
             {KRYNN_PDF_TOOLS.map(tool => (
@@ -200,23 +200,23 @@ export default function IlovepdfAlternativePage() {
       {/* Why switch */}
       <section className="container-app py-16">
         <h2 className="text-3xl font-bold text-center text-[var(--color-foreground)] mb-10">
-          Why Switch from iLovePDF to Krynn Tools?
+          Why Switch from PDF24 to Krynn Tools?
         </h2>
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {[
             {
-              title: "Your Files Stay Private",
-              desc: "iLovePDF uploads your documents to their servers. Krynn Tools processes everything locally in your browser — your bank statements, contracts, and CVs never leave your device.",
-              icon: "🔒",
+              title: "Zero Installation Required",
+              desc: "PDF24 requires you to download and install desktop software. Krynn Tools runs in your browser — open it and start working immediately. No setup wizards, no update prompts, no disk space used.",
+              icon: "🌐",
             },
             {
-              title: "No Rate Limits, Ever",
-              desc: "iLovePDF's free plan limits you to 2 tasks per hour. Krynn Tools has zero rate limits — compress 100 PDFs back-to-back, completely free.",
-              icon: "⚡",
+              title: "Works on Every Device",
+              desc: "PDF24 is desktop-only software primarily for Windows. Krynn Tools works on any device with a browser — Windows, Mac, Linux, Chromebook, iPhone, Android. Same tools, same experience everywhere.",
+              icon: "📱",
             },
             {
-              title: "120+ Bonus Tools",
-              desc: "Beyond PDF, Krynn Tools includes image compressors, AI writing assistants, password generators, JSON formatters, and much more — all free.",
+              title: "140+ Tools Beyond PDF",
+              desc: "PDF24 is a PDF-only tool. Krynn Tools includes image compressors, AI writing assistants, password generators, JSON formatters, calculators, and much more — all free, all in your browser.",
               icon: "🛠️",
             },
           ].map(item => (
@@ -229,51 +229,14 @@ export default function IlovepdfAlternativePage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="bg-[var(--color-muted)] border-t border-[var(--color-border)]">
-        <div className="container-app py-16 max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-[var(--color-foreground)] mb-10">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            {[
-              {
-                q: "Is Krynn Tools really free forever?",
-                a: "Yes. Krynn Tools is 100% free with no premium tier, no trial period, and no hidden fees. All 140+ tools — including PDF, image, AI writing, developer, and calculator tools — are free forever.",
-              },
-              {
-                q: "How does Krynn Tools protect my privacy compared to iLovePDF?",
-                a: "iLovePDF uploads your files to their servers and auto-deletes them after 2 hours. Krynn Tools never uploads your files at all — all processing happens in your browser using JavaScript. Your files stay on your device the entire time.",
-              },
-              {
-                q: "Can I use Krynn Tools for business documents?",
-                a: "Absolutely. Since files are processed locally in your browser and never uploaded, Krynn Tools is ideal for sensitive business documents like contracts, financial reports, and legal filings. No data leaves your device.",
-              },
-              {
-                q: "Does Krynn Tools support all the same formats as iLovePDF?",
-                a: "Krynn Tools supports all major PDF formats (PDF, DOCX, JPG, PNG, PPTX) plus additional image and text formats. iLovePDF has a slight edge in niche PDF-to-PDF/A conversion, but for everyday use cases, Krynn Tools covers everything you need.",
-              },
-            ].map(({ q, a }) => (
-              <details key={q} className="group rounded-xl border border-[var(--color-border)] bg-[var(--color-card)]">
-                <summary className="cursor-pointer px-6 py-4 font-semibold text-sm text-[var(--color-foreground)] flex items-center justify-between list-none">
-                  {q}
-                  <span className="text-[var(--color-muted-foreground)] group-open:rotate-180 transition-transform">▾</span>
-                </summary>
-                <p className="px-6 pb-5 text-sm text-[var(--color-muted-foreground)] leading-relaxed">{a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="border-t border-[var(--color-border)] bg-gradient-to-br from-[var(--color-primary)]/8 to-[var(--color-muted)]">
         <div className="container-app py-16 text-center max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold text-[var(--color-foreground)] mb-4">
-            Ready to Try the Best iLovePDF Alternative?
+            Ready to Ditch Desktop PDF Software?
           </h2>
           <p className="text-[var(--color-muted-foreground)] mb-8">
-            No sign-up. No uploads. No limits. Just free tools that work.
+            No download. No installation. No updates. Just open your browser and go.
           </p>
           <Link href="/pdf" className="btn-primary px-10 py-4 text-base">
             Start Using Krynn Tools — It's Free
@@ -288,60 +251,17 @@ export default function IlovepdfAlternativePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Best Free iLovePDF Alternative 2026 — Krynn Tools",
+            name: "Best Free PDF24 Alternative 2026 — No Software Needed | Krynn Tools",
             description:
-              "Krynn Tools is the best free iLovePDF alternative. 20+ PDF tools, 140+ total tools, no file uploads, no sign-up, 100% private browser processing.",
-            url: "https://www.krynntools.online/ilovepdf-alternative",
+              "Krynn Tools is a free PDF24 alternative with 20+ PDF tools. No desktop software needed — runs entirely in your browser. 100% private.",
+            url: "https://www.krynntools.online/pdf24-alternative",
             breadcrumb: {
               "@type": "BreadcrumbList",
               itemListElement: [
                 { "@type": "ListItem", position: 1, name: "Home", item: "https://www.krynntools.online" },
-                { "@type": "ListItem", position: 2, name: "iLovePDF Alternative", item: "https://www.krynntools.online/ilovepdf-alternative" },
+                { "@type": "ListItem", position: 2, name: "PDF24 Alternative", item: "https://www.krynntools.online/pdf24-alternative" },
               ],
             },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "Is Krynn Tools really free forever?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes. Krynn Tools is 100% free with no premium tier, no trial period, and no hidden fees. All 140+ tools are free forever.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How does Krynn Tools protect my privacy compared to iLovePDF?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "iLovePDF uploads your files to their servers and auto-deletes them after 2 hours. Krynn Tools never uploads your files — all processing happens in your browser. Your files stay on your device the entire time.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Can I use Krynn Tools for business documents?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Absolutely. Since files are processed locally in your browser and never uploaded, Krynn Tools is ideal for sensitive business documents like contracts, financial reports, and legal filings.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Does Krynn Tools support all the same formats as iLovePDF?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Krynn Tools supports all major PDF formats (PDF, DOCX, JPG, PNG, PPTX) plus additional image and text formats. For everyday use cases, Krynn Tools covers everything you need.",
-                },
-              },
-            ],
           }),
         }}
       />

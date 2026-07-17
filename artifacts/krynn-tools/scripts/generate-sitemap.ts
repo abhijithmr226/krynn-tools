@@ -45,8 +45,12 @@ async function generateSitemap() {
     // Comparison landing pages — high-intent SEO targets
     { slug: "ilovepdf-alternative" },
     { slug: "smallpdf-alternative" },
+    { slug: "pdf24-alternative" },
+    { slug: "tinypng-alternative" },
+    { slug: "removebg-alternative" },
+    { slug: "privacy-explainer" },
   ];
-  const comparisonSlugs = new Set(["ilovepdf-alternative", "smallpdf-alternative"]);
+  const comparisonSlugs = new Set(["ilovepdf-alternative", "smallpdf-alternative", "pdf24-alternative", "tinypng-alternative", "removebg-alternative"]);
   staticPages.forEach(({ slug }) => {
     const isComparison = comparisonSlugs.has(slug);
     entries.push({

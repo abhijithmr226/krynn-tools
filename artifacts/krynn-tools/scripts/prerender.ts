@@ -74,11 +74,23 @@ function generateStaticBody(type: string, name: string, desc: string, extra: any
     `;
   } else if (type === "tool") {
     const catSlug = extra.categorySlug || "";
+    const prerenderData = extra.prerender;
+
     let localInstructions = "";
     let localBenefits = "";
     let localFaqs = "";
-    
-    if (catSlug === "pdf") {
+
+    if (prerenderData && prerenderData.steps.length > 0) {
+      localInstructions = prerenderData.steps
+        .map((step: string) => `<li>${step}</li>`)
+        .join("\n        ");
+      localBenefits = prerenderData.benefits
+        .map((b: string) => `<li>${b}</li>`)
+        .join("\n        ");
+      localFaqs = prerenderData.faqs
+        .map((f: any) => `<h3>${f.question}</h3>\n        <p>${f.answer}</p>`)
+        .join("\n        ");
+    } else if (catSlug === "pdf") {
       localInstructions = `
         <li>Select or drag and drop your PDF file into the drop zone.</li>
         <li>Configure options, ranges, text overlays, or security settings locally in the interface.</li>
@@ -314,6 +326,26 @@ async function prerender() {
         slug: "disclaimer",
         title: "Disclaimer | Krynn Tools",
         desc: "Disclaimer terms regarding calculations, conversions, and output files from Krynn Tools."
+      },
+      {
+        slug: "privacy-explainer",
+        title: "How Your Data Stays Private — Browser-Based Security | Krynn Tools",
+        desc: "Learn how Krynn Tools keeps your files private by processing everything in your browser. No uploads, no storage, no tracking. Verify it yourself."
+      },
+      {
+        slug: "pdf24-alternative",
+        title: "Best Free PDF24 Alternative 2026 — No Software Needed | Krynn Tools",
+        desc: "Krynn Tools is a free PDF24 alternative with 20+ PDF tools. No desktop software needed — runs entirely in your browser. 100% private."
+      },
+      {
+        slug: "tinypng-alternative",
+        title: "Best Free TinyPNG Alternative 2026 — No Limits, Browser-Based | Krynn Tools",
+        desc: "Krynn Tools is the best free TinyPNG alternative. Compress PNG, JPG, WebP with no file size limits, no upload, no signup."
+      },
+      {
+        slug: "removebg-alternative",
+        title: "Best Free Remove.bg Alternative 2026 — No Watermark | Krynn Tools",
+        desc: "Remove backgrounds from images free with Krynn Tools. No watermark, no signup, no upload. AI-powered browser-based background removal."
       }
     ];
 
@@ -341,6 +373,24 @@ async function prerender() {
         title: "Best Free Smallpdf Alternative 2026 — Unlimited, No Sign-up | Krynn Tools",
         desc: "Tired of Smallpdf's 2-task/day limit? Krynn Tools is a free Smallpdf alternative with unlimited PDF tools, no uploads, no sign-up, and complete privacy.",
         keywords: "smallpdf alternative, smallpdf free alternative, free pdf tools unlimited, smallpdf no limit alternative, krynn tools"
+      },
+      {
+        slug: "pdf24-alternative",
+        title: "Best Free PDF24 Alternative 2026 — No Software Needed | Krynn Tools",
+        desc: "Krynn Tools is a free PDF24 alternative with 20+ PDF tools. No desktop software needed — runs entirely in your browser. 100% private.",
+        keywords: "pdf24 alternative, pdf24 free alternative, no install pdf tools, browser pdf tools, krynn tools"
+      },
+      {
+        slug: "tinypng-alternative",
+        title: "Best Free TinyPNG Alternative 2026 — No Limits, Browser-Based | Krynn Tools",
+        desc: "Krynn Tools is the best free TinyPNG alternative. Compress PNG, JPG, WebP with no file size limits, no upload, no signup.",
+        keywords: "tinypng alternative, tinypng free alternative, image compressor no limits, browser image compress, krynn tools"
+      },
+      {
+        slug: "removebg-alternative",
+        title: "Best Free Remove.bg Alternative 2026 — No Watermark | Krynn Tools",
+        desc: "Remove backgrounds from images free with Krynn Tools. No watermark, no signup, no upload. AI-powered browser-based background removal.",
+        keywords: "removebg alternative, remove bg free alternative, background remover no watermark, browser background removal, krynn tools"
       },
     ];
     comparisonPages.forEach((p) => {
@@ -411,7 +461,7 @@ async function prerender() {
         type: "tool",
         name: tool.name,
         schema,
-        extra: { categorySlug: tool.categorySlug }
+        extra: { categorySlug: tool.categorySlug, prerender: tool.prerender }
       });
     });
 

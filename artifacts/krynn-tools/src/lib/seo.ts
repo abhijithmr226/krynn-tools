@@ -6,8 +6,8 @@ const SITE_NAME = "Krynn Tools";
 
 export function generateToolMetadata(tool: Tool): Metadata {
   const url = `${BASE_URL}/${tool.categorySlug}/${tool.slug}`;
-  const title = `${tool.name} Online Free – No Signup | Krynn Tools`;
-  const description = `${tool.description} 100% free, no signup, no watermark. Fast, private, and instant results. Works on mobile and desktop.`;
+  const title = tool.seoTitle || `${tool.name} Free — No Signup, No Upload | Krynn Tools`;
+  const description = tool.seoDescription || `${tool.description} 100% free, no signup, no watermark. Runs in your browser — files never uploaded. Fast, private, instant results.`;
 
   return {
     title,
@@ -43,36 +43,22 @@ export function generateToolSchema(tool: Tool): object {
   const url = `${BASE_URL}/${tool.categorySlug}/${tool.slug}`;
   return {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: tool.name,
+    "@type": "SoftwareApplication",
+    name: `${tool.name} — ${SITE_NAME}`,
     url,
     description: tool.description,
     applicationCategory: getCategoryApplicationType(tool.categorySlug),
-    operatingSystem: "All",
+    operatingSystem: "Any (Web Browser)",
     image: `${BASE_URL}/logo.png`,
-    screenshot: `${BASE_URL}/logo.png`,
-    datePublished: "2025-01-01",
-    dateModified: new Date().toISOString().split("T")[0],
-    featureList: tool.keywords.slice(0, 5).join(", "),
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
     },
     author: {
       "@type": "Organization",
       name: SITE_NAME,
       url: BASE_URL,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: BASE_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: `${BASE_URL}/favicon.svg`,
-      },
     },
   };
 }
