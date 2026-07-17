@@ -49,6 +49,22 @@ export default defineConfig({
             if (id.includes('tesseract.js')) {
               return 'vendor-ocr';
             }
+            // Isolate individual heavy utility libraries to keep vendor-others minimal
+            if (id.includes('qrcode')) {
+              return 'vendor-qrcode';
+            }
+            if (id.includes('jsbarcode')) {
+              return 'vendor-jsbarcode';
+            }
+            if (id.includes('sql-formatter')) {
+              return 'vendor-sql-formatter';
+            }
+            if (id.includes('crypto-js')) {
+              return 'vendor-crypto';
+            }
+            if (id.includes('browser-image-compression')) {
+              return 'vendor-image-compression';
+            }
             // Other utilities
             return 'vendor-others';
           }
