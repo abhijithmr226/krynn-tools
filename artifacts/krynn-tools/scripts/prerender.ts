@@ -73,6 +73,113 @@ function generateStaticBody(type: string, name: string, desc: string, extra: any
       </section>
     `;
   } else if (type === "tool") {
+    const catSlug = extra.categorySlug || "";
+    let localInstructions = "";
+    let localBenefits = "";
+    let localFaqs = "";
+    
+    if (catSlug === "pdf") {
+      localInstructions = `
+        <li>Select or drag and drop your PDF file into the drop zone.</li>
+        <li>Configure options, ranges, text overlays, or security settings locally in the interface.</li>
+        <li>Click the action button. The files are modified entirely inside your browser memory.</li>
+        <li>Preview the modified document and download your processed PDF file instantly.</li>
+      `;
+      localBenefits = `
+        <li><strong>Zero Upload Privacy:</strong> Processing runs 100% locally via WebAssembly. Your confidential PDF contents never leave your device.</li>
+        <li><strong>No File Size or Task Limits:</strong> Merge, split, or compress documents of any size without limitations or registration requirements.</li>
+        <li><strong>No Watermark Branding:</strong> Download pristine, clean PDFs with no watermark overlays.</li>
+      `;
+      localFaqs = `
+        <h3>Are my PDF documents uploaded to your servers?</h3>
+        <p>No. Krynn Tools runs client-side processing using <code>pdf-lib</code> inside your browser. Your files never hit our servers or networks.</p>
+        <h3>Does the PDF compressor degrade document layouts?</h3>
+        <p>No. Layout boundaries and vector elements are preserved while embedded raster images are optimized to maintain readability at a fraction of the file size.</p>
+        <h3>Can I merge encrypted PDF files?</h3>
+        <p>You can merge password-protected files, provided you unlock them using our <em>Unlock PDF</em> tool first to decrypt the PDF streams locally.</p>
+      `;
+    } else if (catSlug === "image") {
+      localInstructions = `
+        <li>Drag and drop your image (JPEG, PNG, WebP, GIF, or raw HEIC) into the selector.</li>
+        <li>Set output dimensions, quality percentages, or crop handles.</li>
+        <li>The Canvas API processes and compresses the graphic streams in real time.</li>
+        <li>Download the customized, lightweight output image instantly.</li>
+      `;
+      localBenefits = `
+        <li><strong>Lossless & Lossy Options:</strong> Fine-tune image parameters with real-time browser preview comparisons.</li>
+        <li><strong>Private Processing:</strong> Canvas modifications execute in sandbox local memory, making it safe for personal photographs.</li>
+        <li><strong>Multiple Format Support:</strong> Convert easily between PNG, JPG, WebP, TIFF, PSD, and camera RAW formats.</li>
+      `;
+      localFaqs = `
+        <h3>Does background removal preserve transparent layers?</h3>
+        <p>Yes. Background removal exports to PNG with a fully transparent alpha channel, ideal for web design and presentations.</p>
+        <h3>Are my photos saved on a database?</h3>
+        <p>No. Your photos are converted into base64 or temporary blobs inside your browser's local sandbox and are destroyed as soon as you close the tab.</p>
+        <h3>Can I batch process multiple images at once?</h3>
+        <p>Yes, tools like our Bulk Image Resizer process multiple image canvases in parallel directly in your browser.</p>
+      `;
+    } else if (catSlug === "dev") {
+      localInstructions = `
+        <li>Paste your raw data, query, JSON string, or file content into the code editor panel.</li>
+        <li>Select validation, minification, formatting options, or generation schema keys.</li>
+        <li>The utility immediately parses the tokens and shows structured results.</li>
+        <li>Copy the outputs to your clipboard or download them as raw text files.</li>
+      `;
+      localBenefits = `
+        <li><strong>Developer-Focused Security:</strong> Safe formatting for API keys, client configs, and database connection strings without network leak risks.</li>
+        <li><strong>Syntax Highlighting & Error Tracking:</strong> Highlights exact syntax error line numbers instantly.</li>
+        <li><strong>Offline Support:</strong> Works perfectly on local networks without active internet connections.</li>
+      `;
+      localFaqs = `
+        <h3>Is my sensitive JSON or connection string sent to an API?</h3>
+        <p>No. Everything is parsed inside local JavaScript memory, ensuring zero network exposure for API tokens or environment configurations.</p>
+        <h3>Do validation errors show lines?</h3>
+        <p>Yes, JSON parser highlights the exact token mismatch and line number for debug convenience.</p>
+        <h3>Are formatting styles customizable?</h3>
+        <p>Yes, tools like SQL Formatter support custom indentations and syntax highlighting preferences.</p>
+      `;
+    } else if (catSlug === "ai-writing") {
+      localInstructions = `
+        <li>Type your topic, instructions, outline prompts, or paste text in the field.</li>
+        <li>Adjust tone settings (Professional, Casual, Creative) and choose desired outputs.</li>
+        <li>The AI generates original drafts and formats paragraph blocks instantly.</li>
+        <li>Edit the text right in the browser, copy to clipboard, or save.</li>
+      `;
+      localBenefits = `
+        <li><strong>Zero Account Creation:</strong> No signups, no subscriptions, and no trial limits. Generates text instantly.</li>
+        <li><strong>Gemini Powered Quality:</strong> Uses clean prompts to craft high-quality professional documents.</li>
+        <li><strong>Privacy Guarded:</strong> Prompts are passed to a secure proxy that does not log or store queries.</li>
+      `;
+      localFaqs = `
+        <h3>Are my prompts used to train AI models?</h3>
+        <p>No. Requests are routed through clean developer APIs where data storage and model training options are fully opted out.</p>
+        <h3>Do I need to sign up for an API key?</h3>
+        <p>No, Krynn Tools handles all key authorization securely in a backend proxy so you can start writing immediately.</p>
+        <h3>Can I generate unlimited text content?</h3>
+        <p>Yes, our AI writing suite is fully free to use without standard daily query caps or prompt restrictions.</p>
+      `;
+    } else {
+      localInstructions = `
+        <li>Open the ${name} interface on your device.</li>
+        <li>Type your values, choose unit parameters, or drop files.</li>
+        <li>Calculations and conversions process instantly as you change inputs.</li>
+        <li>Copy or download your finalized outputs.</li>
+      `;
+      localBenefits = `
+        <li><strong>No Limits:</strong> Run calculators and utility processes infinitely.</li>
+        <li><strong>Browser Running:</strong> Zero installs, zero permissions required.</li>
+        <li><strong>Fast Results:</strong> Local client script calculations respond in real time.</li>
+      `;
+      localFaqs = `
+        <h3>Are results accurate?</h3>
+        <p>Yes. All formulas, converter constants, and generators are fully tested and validated against global standard parameters.</p>
+        <h3>Can I run this offline?</h3>
+        <p>Yes, once loaded, these tools run 100% in client-side memory even if you lose network connectivity.</p>
+        <h3>Is any data cached on a remote server?</h3>
+        <p>No, calculations and file operations are completely transient and isolated in your local javascript context.</p>
+      `;
+    }
+
     mainContent = `
       <article>
         <h1>${name}</h1>
@@ -80,28 +187,17 @@ function generateStaticBody(type: string, name: string, desc: string, extra: any
         
         <h2>How to Use ${name}</h2>
         <ol>
-          <li>Open the ${name} tool page.</li>
-          <li>Upload, drag & drop, or input your file or text into the interface.</li>
-          <li>Adjust any settings or parameters locally.</li>
-          <li>Click the action button to process. Your files never leave your device.</li>
-          <li>Download the processed output instantly.</li>
+          ${localInstructions}
         </ol>
 
         <h2>Why Choose Krynn Tools for ${name}?</h2>
         <ul>
-          <li><strong>100% Client-Side:</strong> Processing runs entirely inside your browser. No files are uploaded to our servers, guaranteeing absolute privacy.</li>
-          <li><strong>No Registration Required:</strong> Start using the tool immediately without email, password, or signup steps.</li>
-          <li><strong>No Watermarks or Limits:</strong> Process unlimited files of any size without watermarks or payment walls.</li>
-          <li><strong>Blazing Fast:</strong> Local GPU/CPU acceleration means processing finishes in milliseconds.</li>
+          ${localBenefits}
         </ul>
 
         <h2>Frequently Asked Questions</h2>
         <div>
-          <h3>Is the ${name} tool safe to use?</h3>
-          <p>Yes. Because the processing occurs in your local browser memory via WebAssembly and client-side JS libraries, your confidential data is never exposed over the network.</p>
-          
-          <h3>Do I need to install any software?</h3>
-          <p>No. Krynn Tools runs in standard modern web browsers (Chrome, Firefox, Safari, Edge) on mobile and desktop without external plug-ins.</p>
+          ${localFaqs}
         </div>
       </article>
     `;
@@ -291,7 +387,6 @@ async function prerender() {
       const toolTitle = tool.seoTitle || `${tool.name} Online Free — No Signup | Krynn Tools`;
       const toolDesc = tool.seoDescription || `${tool.description} Free, fast, and private — runs entirely in your browser. No signup, no watermark, no file size limits. Try it now!`;
       
-      // Removed aggregateRating to prevent Google manual search penalties for fake/unverified review markup
       const schema = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -315,7 +410,8 @@ async function prerender() {
         keywords: tool.keywords.slice(0, 15).join(", "),
         type: "tool",
         name: tool.name,
-        schema
+        schema,
+        extra: { categorySlug: tool.categorySlug }
       });
     });
 
