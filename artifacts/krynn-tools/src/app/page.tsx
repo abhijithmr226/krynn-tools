@@ -153,6 +153,7 @@ export default function HomePage() {
                 <input
                   type="text"
                   placeholder="Search any tool..."
+                  aria-label="Search tools"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDown}

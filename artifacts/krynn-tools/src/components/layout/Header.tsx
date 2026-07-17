@@ -257,6 +257,7 @@ export default function Header() {
             <input
               type="text"
               placeholder="Search tools..."
+              aria-label="Search tools"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full pr-8 py-2 text-sm rounded-full bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
@@ -418,6 +419,7 @@ export default function Header() {
                 <input
                   type="text"
                   placeholder="Search categories..."
+                  aria-label="Search categories"
                   value={catQuery}
                   onChange={(e) => setCatQuery(e.target.value)}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-muted border border-border text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
@@ -493,6 +495,7 @@ export default function Header() {
                 ref={mobileSearchInputRef}
                 type="text"
                 placeholder="Search tools..."
+                aria-label="Search tools"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full pr-8 py-2.5 rounded-xl bg-muted border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none transition-all"
