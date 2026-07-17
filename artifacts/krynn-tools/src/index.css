@@ -15,8 +15,8 @@
    DARK MODE (default) — Token definitions
    ───────────────────────────────────────────────────────────── */
 :root {
-  --color-primary:          #ef4444;
-  --color-primary-hover:    #dc2626;
+  --color-primary:          #dc2626;
+  --color-primary-hover:    #b91c1c;
   --color-on-primary:       #FFFFFF;
 
   --color-background:       #ffffff;
