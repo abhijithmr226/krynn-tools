@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <!-- Terminal window -->
+  <rect x="180" y="110" width="440" height="230" rx="12" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+  <circle cx="210" cy="135" r="6" fill="#EF4444"/>
+  <circle cx="230" cy="135" r="6" fill="#F59E0B"/>
+  <circle cx="250" cy="135" r="6" fill="#10B981"/>
+  <!-- UUID text rendering -->
+  <text x="210" y="195" font-family="monospace" font-size="20" fill="#38BDF8" font-weight="bold">f47ac10b-58cc-4372-a567-0e02b2c3d479</text>
+  <text x="210" y="240" font-family="monospace" font-size="20" fill="#A855F7" font-weight="bold">c9a84210-9f12-4e8b-b389-1100aa338902</text>
+  <text x="210" y="285" font-family="monospace" font-size="20" fill="#34D399" font-weight="bold">7d9e1150-12bc-4401-90ef-5544bb221100</text>
+</svg>
