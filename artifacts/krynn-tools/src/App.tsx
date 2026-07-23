@@ -149,7 +149,7 @@ function SeoUpdater() {
     if (ogUrl) ogUrl.setAttribute('content', `https://www.krynntools.online${pathname}`);
 
     const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) ogImage.setAttribute('content', `https://www.krynntools.online/logo.png`);
+    if (ogImage) ogImage.setAttribute('content', `https://www.krynntools.online/apple-touch-icon.png`);
 
     // Update Twitter meta tags
     const twTitle = document.querySelector('meta[name="twitter:title"]');
@@ -159,7 +159,7 @@ function SeoUpdater() {
     if (twDesc) twDesc.setAttribute('content', desc);
 
     const twImage = document.querySelector('meta[name="twitter:image"]');
-    if (twImage) twImage.setAttribute('content', `https://www.krynntools.online/logo.png`);
+    if (twImage) twImage.setAttribute('content', `https://www.krynntools.online/apple-touch-icon.png`);
 
     // Dynamically insert/update Canonical link tag
     let canonicalLink = document.querySelector('link[rel="canonical"]');

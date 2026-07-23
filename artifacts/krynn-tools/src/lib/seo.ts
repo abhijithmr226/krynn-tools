@@ -23,13 +23,13 @@ export function generateToolMetadata(tool: Tool): Metadata {
       siteName: SITE_NAME,
       title: `${tool.name} Online Free – No Signup | Krynn Tools`,
       description: `${tool.description} 100% free, no signup, no watermark. Fast, private, and instant results.`,
-      images: [{ url: `${BASE_URL}/logo.png`, width: 1200, height: 630, alt: `${tool.name} – ${SITE_NAME}` }],
+      images: [{ url: `${BASE_URL}/apple-touch-icon.png`, width: 180, height: 180, alt: `${tool.name} – ${SITE_NAME}` }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${tool.name} Online Free – No Signup | Krynn Tools`,
       description: `${tool.description} 100% free, no signup, no watermark. Fast, private, and instant results.`,
-      images: [`${BASE_URL}/logo.png`],
+      images: [`${BASE_URL}/apple-touch-icon.png`],
     },
     robots: {
       index: true,
@@ -49,7 +49,7 @@ export function generateToolSchema(tool: Tool): object {
     description: tool.description,
     applicationCategory: getCategoryApplicationType(tool.categorySlug),
     operatingSystem: "Any (Web Browser)",
-    image: `${BASE_URL}/logo.png`,
+    image: `${BASE_URL}/apple-touch-icon.png`,
     offers: {
       "@type": "Offer",
       price: "0",
