@@ -246,6 +246,38 @@ export function ToolLayout({
   const category = categorySlug ? categories.find((c) => c.slug === categorySlug) : undefined;
   const categoryName = category?.name ?? categorySlug;
 
+  const effectiveHowToUse = useMemo(() => {
+    if (howToUse && howToUse.length > 0) return howToUse;
+    return [
+      `Select or upload your input into the ${title} workspace above.`,
+      `Configure settings or options to match your requirements.`,
+      `Click the primary action button to process your request instantly.`,
+      `Download or copy your result — 100% free, private, with zero watermarks.`,
+    ];
+  }, [howToUse, title]);
+
+  const effectiveFaq = useMemo(() => {
+    if (faq && faq.length > 0) return faq;
+    return [
+      {
+        question: `Is ${title} completely free to use?`,
+        answer: `Yes, ${title} on Krynn Tools is 100% free with no signup, no subscriptions, and no hidden limitations.`,
+      },
+      {
+        question: `Are my files and data safe when using ${title}?`,
+        answer: `Absolutely. ${title} operates entirely within your web browser using client-side Web APIs. Your data is never uploaded to external servers.`,
+      },
+      {
+        question: `Do I need to download or install software for ${title}?`,
+        answer: `No software installation or browser plugin is needed. ${title} runs instantly in any modern web browser.`,
+      },
+      {
+        question: `Does ${title} work on mobile devices?`,
+        answer: `Yes, ${title} is optimized for mobile phones, tablets, laptops, and desktop computers.`,
+      },
+    ];
+  }, [faq, title]);
+
   const breadcrumbItems = [
     ...(categoryName ? [{ label: categoryName, href: `/${categorySlug}` }] : []),
     ...(toolSlug ? [{ label: title }] : []),
@@ -293,8 +325,8 @@ export function ToolLayout({
       {/* ── Secondary Sections ── */}
       <section className="border-t border-border bg-muted">
         <div className="container-app py-10 sm:py-14 lg:py-16 space-y-8 sm:space-y-10">
-          {howToUse.length > 0 && <HowToUse steps={howToUse} />}
-          {faq.length > 0 && <FAQ items={faq} />}
+          <HowToUse steps={effectiveHowToUse} />
+          <FAQ items={effectiveFaq} />
           {relatedTools.length > 0 && <RelatedTools tools={relatedTools} />}
           <UserReviews toolTitle={title} />
 
@@ -334,7 +366,7 @@ export function ToolLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: faq.map((item) => ({
+            mainEntity: effectiveFaq.map((item) => ({
               "@type": "Question",
               name: item.question,
               acceptedAnswer: { "@type": "Answer", text: item.answer },
@@ -369,7 +401,7 @@ export function ToolLayout({
         />
       )}
       {/* HowTo Schema */}
-      {howToUse.length > 0 && (
+      {effectiveHowToUse.length > 0 && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -378,7 +410,7 @@ export function ToolLayout({
               "@type": "HowTo",
               name: title,
               description: subtitle,
-              step: howToUse.map((step, i) => ({
+              step: effectiveHowToUse.map((step, i) => ({
                 "@type": "HowToStep",
                 position: i + 1,
                 name: `Step ${i + 1}`,
